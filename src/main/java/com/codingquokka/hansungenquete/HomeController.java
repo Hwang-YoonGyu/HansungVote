@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import dao.MemberDAO;
-import domain.MemberVO;
+
 
 /**
  * Handles requests for the application home page.
@@ -27,8 +27,7 @@ public class HomeController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
-	@Inject
-	private MemberDAO mdao; 
+	
 	
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -41,13 +40,7 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-        MemberVO vo = new MemberVO();
-        vo.setUser_id("MIN-IT");
-        vo.setUser_pw("1234");
-        vo.setUser_email("min-it.tistory.com");
-        vo.setUser_name("Test");
-        mdao.insertMember(vo);
-		
+      
 		
 		return "home";
 	}
