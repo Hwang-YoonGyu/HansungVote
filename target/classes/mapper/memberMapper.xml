@@ -7,9 +7,6 @@
  
 <mapper namespace="org.hello.mapper.MemberMapper">
 
-    <insert id="insertMember" parameterType="domain.MemberVO">
-        insert into member(user_id,user_pw,user_email,user_name) values
-                          (#{user_id},#{user_pw},#{user_email},#{user_name});
-    </insert>
+   
 
 </mapper>
