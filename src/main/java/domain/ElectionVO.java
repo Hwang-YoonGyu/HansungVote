@@ -2,7 +2,7 @@ package domain;
 
 import java.util.Date;
 
-public class EnqueteVO {
+public class ElectionVO {
 	   
     private String election_name;
     private Date start_date;

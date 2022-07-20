@@ -1,6 +1,6 @@
 package domain;
 
-public class EnquetevotedVO {
+public class ElectionvotedVO {
 	   
     private String stu_id;
     private String name;
