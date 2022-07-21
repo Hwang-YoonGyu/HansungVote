@@ -13,7 +13,7 @@ public class CandidateDAO {
 	@Inject 
 	SqlSession sqlSession;
 	
-	private static String namespace = "mapper.CandidateMapper";
+	private static String namespace = "mapper.candidateMapper";
 	
 	public void insert(CandidateVO vo) {
 		sqlSession.insert(namespace+".insertCandidate", vo);

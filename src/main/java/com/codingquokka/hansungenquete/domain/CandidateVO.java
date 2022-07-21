@@ -4,7 +4,7 @@ public class CandidateVO {
     private String candidate_name;
     private String election_name;
     private byte[] image;
-    private Integer vote_count;
+    private int vote_count;
    
     public String getCandidate_name() {
         return candidate_name;
@@ -24,10 +24,10 @@ public class CandidateVO {
     public void setImage(byte[] image) {
         this.image = image;
     }
-    public Integer getVote_Count() {
+    public int getVote_Count() {
     	return vote_count;
     }
-    public void setVote_Count(Integer vote_count){
+    public void setVote_Count(int vote_count){
     	this.vote_count = vote_count;
     }
 }

@@ -5,14 +5,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
  
-<mapper namespace="org.hello.mapper.CandidateMapper">
+<mapper namespace="mapper.candidateMapper">
 
-	<insert id="insertCandidate" parameterType="domain.CandidateVO">
+	<insert id="insertCandidate" parameterType="com.codingquokka.hansungenquete.domain.CandidateVO">
 		insert into candidate (candidate_name, election_name, image, vote_count)
 		values (#{candidate_name}, #{election_name}, #{image}, #{vote_count});
 	</insert>
 	
-	<select id="selectCandidate" parameterType="String" resultType="domain.CandidateVO">
+	<select id="selectCandidate" parameterType="String" resultType="com.codingquokka.hansungenquete.domain.CandidateVO">
 		select *
 		from candidate
 		where election_name=#{election_name};

@@ -20,10 +20,11 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> 
+	</beans:bean>
 	
 	<context:component-scan base-package="com.codingquokka.hansungenquete" />
 	<context:component-scan base-package="web" />
-	<context:component-scan base-package="dao"></context:component-scan>
     <context:component-scan base-package="service"></context:component-scan>
     <context:component-scan base-package="controller" />
     <context:component-scan base-package="domain" />

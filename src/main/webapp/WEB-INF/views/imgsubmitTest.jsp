@@ -7,15 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-   <form action="/saveImage" enctype="multipart/form-data" method="post">
+   <form action="/hansungenquete/saveImage" enctype="multipart/form-data" method="post">
       <div>
          <label>title</label>
-         <input type="text" name="election_name" value=""/>
+         <input type="text" name="title" value=""/>
          
       </div>
       <div>
          <label>content</label>
-         <input type="text" name="candidate_name" value=""/>
+         <input type="text" name="content" value=""/>
          
       </div>
       
