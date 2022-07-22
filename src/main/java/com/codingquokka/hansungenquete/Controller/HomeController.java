@@ -63,7 +63,7 @@ public class HomeController {
 		//return "home";
 	}
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String Login(@RequestParam("stu_id") String stu_id, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) {
+	public String Login(@RequestParam("stu_id") String stu_id, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		UserVO uVo = new UserVO();
 		uVo.setStu_id(stu_id);
