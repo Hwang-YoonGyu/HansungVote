@@ -1,5 +1,5 @@
-<%@ page language="java" pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +15,7 @@
 
 </script>
 <body>
-   <!-- imgíƒœê·¸ì˜ src ê²½ë¡œëŠ” byteì´ë¯¸ì§€ ê°€ì ¸ì˜¤ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬ í˜¸ì¶œ(/getByteImage) -->
+   <!-- imgÅÂ±×ÀÇ src °æ·Î´Â byteÀÌ¹ÌÁö °¡Á®¿À´Â ÄÁÆ®·Ñ·¯ È£Ãâ(/getByteImage) -->
    <img alt="" src="${imgSrc}" />
 </body>
 
