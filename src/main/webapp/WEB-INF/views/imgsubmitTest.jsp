@@ -9,15 +9,15 @@
 <body>
    <form action="/hansungenquete/saveImage" enctype="multipart/form-data" method="post">
       <div>
-         <label>¼±°ÅÀÌ¸§</label>
+         <label>ì„ ê±°ì´ë¦„</label>
          <input type="text" name="title" value=""/>
       </div>
       <div>
-         <label>ÈÄº¸ÀÚ</label>
+         <label>í›„ë³´ìž</label>
          <input type="text" name="content" value=""/>
       </div>
       <input type="file" name="imgFile" />
-      <input type="submit" value="ÀÌ¹ÌÁöÀúÀå"/>
+      <input type="submit" value="ì´ë¯¸ì§€ì €ìž¥"/>
    </form>
 </body>
 </html>

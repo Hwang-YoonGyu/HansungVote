@@ -1,7 +1,6 @@
 package com.codingquokka.hansungenquete.domain;
 public class UserVO {
 
-    @Column(name="stu_id")
     private String stu_id;
     private String name;
     private String password;

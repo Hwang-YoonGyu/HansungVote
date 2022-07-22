@@ -23,7 +23,7 @@
          <!-- 중첩구문내 RowBound 사용 허용여부 -->
          <setting name="safeRowBoundsEnabled" value="false" />
          <!-- 전통적 DB 컴럼명을 JAVA의 Camel표기법으로 자동 매핑 설정 -->
-         <setting name="mapUnderscoreToCamelCase" value="true" />
+         <setting name="mapUnderscoreToCamelCase" value="false" />
          <!-- 로컬캐시 사용여부(SESSION: 세션을 사용해서 모든쿼리를 캐시) -->
          <setting name="localCacheScope" value="SESSION" />
          <!-- mybatis로 넘어오는 parameter가 null인 경우, jdbcType을 Setting -->

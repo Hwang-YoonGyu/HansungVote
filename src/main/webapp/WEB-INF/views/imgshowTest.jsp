@@ -15,7 +15,7 @@
 
 </script>
 <body>
-   <!-- imgÅÂ±×ÀÇ src °æ·Î´Â byteÀÌ¹ÌÁö °¡Á®¿À´Â ÄÁÆ®·Ñ·¯ È£Ãâ(/getByteImage) -->
+   <!-- imgíƒœê·¸ì˜ src ê²½ë¡œëŠ” byteì´ë¯¸ì§€ ê°€ì ¸ì˜¤ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬ í˜¸ì¶œ(/getByteImage) -->
    <img alt="" src="${imgSrc}" />
 </body>
 
