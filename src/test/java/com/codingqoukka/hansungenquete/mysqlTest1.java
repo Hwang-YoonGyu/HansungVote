@@ -1,3 +1,4 @@
+/*
 package com.codingqoukka.hansungenquete;
 
 import java.sql.Connection;
@@ -27,4 +28,4 @@ public class mysqlTest1 {
   }
  }
 
-}
+}*/

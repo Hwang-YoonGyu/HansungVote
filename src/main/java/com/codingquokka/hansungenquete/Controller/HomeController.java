@@ -59,7 +59,7 @@ public class HomeController {
 
 
 
-		return "000_Lobby";
+		return "001_Login";
 		//return "home";
 	}
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -69,9 +69,18 @@ public class HomeController {
 		uVo.setStu_id(stu_id);
 		uVo.setPassword(password);
 
-		String result = uDao.login(uVo);
+		System.out.println(uVo.getStu_id()+" "+uVo.getPassword());
 
-		 if (result == "성공") {
+		UserVO result = uDao.login(uVo);
+		if (result==null) {
+			System.out.println("널임 ㅂㅅ");
+		}
+
+
+		System.out.println(result.toString());
+
+
+		 if (stu_id.equals(result.getStu_id())) {
 			 return "redirect:/lobby";
 		 }
 		else {

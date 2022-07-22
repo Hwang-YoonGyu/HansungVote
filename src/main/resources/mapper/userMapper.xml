@@ -6,17 +6,9 @@
 
  
 <mapper namespace="mapper.userMapper">
-<select id="login" parameterType="com.codingquokka.hansungenquete.domain.UserVO" resultType="String">
-
-with temp as(
-	select stu_id,password
-	from user
-	where stu_id=#{stu_id}
-	and password=#{password}
-)
-
-select if (temp.stu_id=null, "실패","성공") as result
-from temp
-
-</select>
+	<select id="login" parameterType="com.codingquokka.hansungenquete.domain.UserVO" resultType="com.codingquokka.hansungenquete.domain.UserVO">
+		select *
+		from user
+		where stu_id=#{stu_id} and password=#{password}
+	</select>
 </mapper>

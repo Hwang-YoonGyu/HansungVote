@@ -15,9 +15,9 @@ public class UserDAO {
 	@Inject 
 	SqlSession sqlSession;
 	
-	private static String namespace = "mapper.UserMapper";
+	private static String namespace = "mapper.userMapper";
 	
-	public String login(UserVO vo) throws Exception {
+	public UserVO login(UserVO vo) throws Exception {
 		return sqlSession.selectOne(namespace+".login", vo);
 		
 	}
