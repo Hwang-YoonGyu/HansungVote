@@ -2,6 +2,7 @@ package com.codingquokka.hansungenquete.Controller;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -26,6 +28,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.codingquokka.hansungenquete.*;
@@ -39,6 +42,52 @@ public class HomeController {
 
 	@Inject
 	private CandidateDAO cDao;
+
+	@Inject UserDAO uDao;
+
+	@RequestMapping(value = "/lobby", method = RequestMethod.GET)
+	public String Lobby(HttpServletRequest request) {
+
+
+
+		//return "000_Lobby";
+		return "home";
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String Login(HttpServletRequest request) {
+
+
+
+		return "000_Lobby";
+		//return "home";
+	}
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String Login(@RequestParam("stu_id") String stu_id, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) {
+
+		UserVO uVo = new UserVO();
+		uVo.setStu_id(stu_id);
+		uVo.setPassword(password);
+
+		String result = uDao.login(uVo);
+
+		 if (result == "성공") {
+			 return "redirect:/lobby";
+		 }
+		else {
+			 PrintWriter out = null;
+			 try {
+				 out = response.getWriter();
+			 } catch (IOException e) {
+				 throw new RuntimeException(e);
+			 }
+			 out.println("<script>alert('로그인정보를 다시 입력해주세요.'); </script>");
+			 out.flush();
+			 return "redirect:/login";
+		 }
+	}
+
+
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
