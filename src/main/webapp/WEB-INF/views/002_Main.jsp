@@ -71,7 +71,7 @@
 
 <body>
 
-    <header style="border-bottom: 1px solid hsl(0, 0%, 56%);">
+    <header class="fixed-top" style="border-bottom: 1px solid hsl(0, 0%, 56%);">
         <img src="resources/img/Logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
 
     </header>
