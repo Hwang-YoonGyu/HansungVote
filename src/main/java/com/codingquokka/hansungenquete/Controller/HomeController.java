@@ -46,12 +46,12 @@ public class HomeController {
     @Inject
     UserDAO uDao;
 
-    @RequestMapping(value = "/lobby", method = RequestMethod.GET)
+    @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String Lobby(HttpServletRequest request) {
 
 
-        //return "002_Lobby";
-        return "home";
+        return "002_Main";
+        //return "home";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -73,7 +73,7 @@ public class HomeController {
         UserVO result = uDao.login(uVo);
 
         if (result != null) {
-            return "redirect:/lobby";
+            return "redirect:/main";
         } else {
             response.setContentType("text/html; charset=euc-kr");
             PrintWriter out = null;

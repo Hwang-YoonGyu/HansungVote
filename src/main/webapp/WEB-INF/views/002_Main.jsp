@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -70,7 +72,7 @@
 <body>
 
     <header style="border-bottom: 1px solid hsl(0, 0%, 56%);">
-        <img src="img/HV_logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
+        <img src="resources/img/Logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
 
     </header>
 
@@ -78,9 +80,9 @@
         <div class="wrapper" style="margin-top: 250px;">
 
             <a href="#"><img class="rounded float-start" src="resources/img/voteimg1.png" style="width: 35%; margin-left: 200px;" onmouseenter="zoomIn(event)"
-                onmouseleave="zoomOut(event)" alt="온라인 투표 바로가기"></a>
+                onmouseleave="zoomOut(event)" alt="ì¨ë¼ì¸ í¬í ë°ë¡ê°ê¸°"></a>
             <a href="#"><img class="rounded float-end" src="resources/img/voteimg2.png"  style="width: 35%; margin-right: 200px;"onmouseenter="zoomIn(event)"
-                onmouseleave="zoomOut(event)" alt="설문조사 바로가기"></a>
+                onmouseleave="zoomOut(event)" alt="ì¤ë¬¸ì¡°ì¬ ë°ë¡ê°ê¸°"></a>
 
         </div>
     </main>
