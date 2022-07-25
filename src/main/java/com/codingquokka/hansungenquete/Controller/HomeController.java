@@ -14,6 +14,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -46,9 +47,10 @@ public class HomeController {
     @Inject
     UserDAO uDao;
 
+
+
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String Lobby(HttpServletRequest request) {
-
 
         return "002_Main";
         //return "home";
@@ -71,6 +73,8 @@ public class HomeController {
         System.out.println(uVo.getStu_id() + " " + uVo.getPassword());
 
         UserVO result = uDao.login(uVo);
+        HttpSession session = request.getSession();
+        session.setAttribute("UserVO", result);
 
         if (result != null) {
             return "redirect:/main";
@@ -83,6 +87,20 @@ public class HomeController {
             out.flush();
             return "001_Login";
         }
+    }
+
+    @RequestMapping(value = "/vote1", method = RequestMethod.GET)
+    public String vote1(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        UserVO user = (UserVO) session.getAttribute("UserVO");
+
+        request.setAttribute("username",user.getName()+" ("+user.getStu_id()+")");
+
+
+
+        return "003_Vote1";
+        //return "home";
     }
 
     //--------------------------------------여기 아래는 프로젝트 종료시 삭제-----------------------------------------------//

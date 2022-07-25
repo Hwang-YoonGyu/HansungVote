@@ -79,10 +79,10 @@
     <main>
         <div class="wrapper" style="margin-top: 250px;">
 
-            <a href="#"><img class="rounded float-start" src="resources/img/voteimg1.png" style="width: 35%; margin-left: 200px;" onmouseenter="zoomIn(event)"
-                onmouseleave="zoomOut(event)" alt="ì¨ë¼ì¸ í¬í ë°ë¡ê°ê¸°"></a>
+            <a href="/vote1"><img class="rounded float-start" src="resources/img/voteimg1.png" style="width: 35%; margin-left: 200px;" onmouseenter="zoomIn(event)"
+                onmouseleave="zoomOut(event)" alt="온라인투표 바로가기"></a>
             <a href="#"><img class="rounded float-end" src="resources/img/voteimg2.png"  style="width: 35%; margin-right: 200px;"onmouseenter="zoomIn(event)"
-                onmouseleave="zoomOut(event)" alt="ì¤ë¬¸ì¡°ì¬ ë°ë¡ê°ê¸°"></a>
+                onmouseleave="zoomOut(event)" alt="설문조사 바로가기"></a>
 
         </div>
     </main>
