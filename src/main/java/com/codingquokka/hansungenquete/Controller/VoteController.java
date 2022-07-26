@@ -49,7 +49,7 @@ public class VoteController {
 
 
     @RequestMapping(value = "/votehome", method = RequestMethod.GET)
-    public String home(Locale locale, HttpServletRequest request) {
+    public String VoteHome(Locale locale, HttpServletRequest request) {
     	 HttpSession session = request.getSession();
 
          UserVO user = (UserVO) session.getAttribute("UserVO");
@@ -58,5 +58,40 @@ public class VoteController {
 
 
         return "003_Vote1";
-    }    
+    }
+    
+    @RequestMapping(value = "/voteDetail", method = RequestMethod.GET)
+    public String VoteDetail(Locale locale, HttpServletRequest request) {
+    	 HttpSession session = request.getSession();
+
+    	 String election = request.getParameter("election");
+    	 
+    	 List<CandidateVO> candiList = cDao.selectList(election);
+    	 request.setAttribute("candiList", candiList);
+    	 
+
+
+
+        return "003_Vote1";
+    }
+    
+    @RequestMapping(value = "/DoVote", method = RequestMethod.POST)
+    public String DoVote(Locale locale, HttpServletRequest request) {
+    	 HttpSession session = request.getSession();
+
+    	 String election_name = request.getParameter("election");
+    	 String vote_name = request.getParameter("vote");
+    	 
+    	 
+
+    	 
+    	 
+
+
+
+        return "redirect:/votehome";
+    }
+    
+    
+    
 }

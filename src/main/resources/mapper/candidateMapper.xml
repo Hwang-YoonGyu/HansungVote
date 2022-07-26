@@ -15,7 +15,7 @@
 	<select id="selectCandidate" parameterType="String" resultType="com.codingquokka.hansungenquete.domain.CandidateVO">
 		select *
 		from candidate
-		where election_name=#{election_name};
+		where candidate_name=#{candidate_name};
 	</select>
    
 
