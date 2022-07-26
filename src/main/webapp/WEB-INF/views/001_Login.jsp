@@ -34,6 +34,15 @@
             margin: auto;
             position: relative;
         }
+
+                footer {
+                    position: absolute;
+                    background-color: white;
+                    bottom: 0;
+                    width: 100%;
+                    height: 60px;
+
+                }
     </style>
 
 
@@ -77,14 +86,14 @@
 </main>
 
 
+
     <div class="fixed-bottom">
         <footer>
             <div>
-                <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 2.5rem;">@2022 Team Coding Quokka All Rights Reserved</p>
+                <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 1rem;">@2022 Team Coding Quokka All Rights Reserved</p>
             </div>
         </footer>
     </div>
-</div>
 
 </body>
 

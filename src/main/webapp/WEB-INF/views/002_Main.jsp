@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>
-    <title>loginPage</title>
+    <title>mainPage</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,13 +28,12 @@
             background-color: white;
             min-height: 500px;
         }
-
         footer {
             position: absolute;
             background-color: hsl(228, 26%, 96%);
             bottom: 0;
             width: 100%;
-            height: 100px;
+            height: 60px;
 
         }
 
@@ -51,16 +50,16 @@
         /* .voteimg {
             width: 30%;
             margin: 10px;
-           
 
-            
+
+
         } */
         .wrapper{
 
             display: block;
             justify-content: center;
             align-items: center;
-            
+
 
         }
     </style>
@@ -71,7 +70,7 @@
 
 <body>
 
-    <header class="fixed-top" style="border-bottom: 1px solid hsl(0, 0%, 56%);">
+    <header style="border-bottom: 1px solid hsl(0, 0%, 56%);">
         <img src="resources/img/Logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
 
     </header>
@@ -80,22 +79,21 @@
         <div class="wrapper" style="margin-top: 250px;">
 
             <a href="/vote/votehome"><img class="rounded float-start" src="resources/img/voteimg1.png" style="width: 35%; margin-left: 200px;" onmouseenter="zoomIn(event)"
-                onmouseleave="zoomOut(event)" alt="온라인투표 바로가기"></a>
+                onmouseleave="zoomOut(event)" alt="온라인 투표 바로가기"></a>
             <a href="#"><img class="rounded float-end" src="resources/img/voteimg2.png"  style="width: 35%; margin-right: 200px;"onmouseenter="zoomIn(event)"
                 onmouseleave="zoomOut(event)" alt="설문조사 바로가기"></a>
 
         </div>
     </main>
 
-
     <div class="fixed-bottom">
         <footer>
             <div>
-                <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 2.5rem;">@2022 Team Coding Quokka All Rights Reserved</p>
+                <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 1rem;">@2022 Team Coding Quokka All Rights Reserved</p>
             </div>
         </footer>
     </div>
-<script>
+    <script>
          function zoomIn(event) {
     event.target.style.transform = "scale(1.2)";
     event.target.style.zIndex = 1;
@@ -107,7 +105,7 @@
     event.target.style.zIndex = 0;
     event.target.style.transition = "all 0.4s";
   }
-</script>
+      </script>
 </body>
 
 </html>

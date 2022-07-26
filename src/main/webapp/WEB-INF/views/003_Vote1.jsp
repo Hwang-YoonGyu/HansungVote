@@ -36,9 +36,14 @@
             background-color: white;
             bottom: 0;
             width: 100%;
-            height: 100px;
+            height: 60px;
 
         }
+
+        /* .time_td {
+            background-color: white;
+        } */
+
 
         /* body {
             margin-bottom: 0;
@@ -51,16 +56,12 @@
             position: relative;
         } */
     </style>
-
-
-
 </head>
 
 <body>
 
     <header class="fixed-top" style="border-bottom: 1px solid hsl(0, 0%, 56%);">
-        <img src="/resources/img/Logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
-
+        <img src="resources/img/Logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
     </header>
 
     <main>
@@ -86,7 +87,7 @@
                 <div class="col-md-8 offset-md-2">
                     <div class="login-form bg-white mt-4 p-4 rounded">
                         <form action="" method="" class="row g-3">
-                            <span style="font-size: 30px;"> ${username}<span style="font-size: 20px;"> 의 참여 가능 투표
+                            <span style="font-size: 30px;"> 홍길동(1912123) <span style="font-size: 20px;"> 의 참여 가능 투표
                                     목록</span></span>
 
 
@@ -94,7 +95,8 @@
                             <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
                             padding-top: 10px; padding-bottom: 10px;">
                                 <label for="exampleFormControlTextarea1" class="form-label">선거 단위</label>
-                                <select onchange="showValue(this)" class="form-select" aria-label="Default select example">
+                                <select onchange="showValue(this)" class="form-select"
+                                    aria-label="Default select example">
                                     <a href="#">
                                         <option selected>투표1</option>
                                     </a>
@@ -111,9 +113,97 @@
                             </div>
 
                             <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
-                            padding-top: 10px; padding-bottom: 800px;">
-                                <label for="exampleFormControlTextarea1" class="form-label" id="vote_change">-------</label>
+                            padding-top: 10px; padding-bottom: 60px;">
+                                <p id="vote_change" style="text-align: center; padding-top: 10px;">
+                                    ------------------------------------------------</p>
                                 <hr class="mt-4">
+
+                                <div class="container" style="padding-bottom: 20px; text-align:center;">
+                                    <div class="row">
+                                        <div class="col">
+                                            <img src="img/clock.png" class="img-fluid" alt="clockimg"
+                                                style="width: 30px; height: 30px; background-color: transparent;">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col" style="padding-top: 10px;">
+                                            투표 가능 기간
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <table class="table table-bordered border-white-50 " style="text-align: center;  ">
+                                    <thead>
+                                        <tr>
+                                            <th class="rounded-start" scope="col"
+                                                style="background-color:hsl(0, 0%, 41%) ; color: white;">투표 시작 시간</th>
+                                            <th class="rounded-end" scope="col"
+                                                style="background-color:hsl(0, 0%, 41%); color: white;">투표 종료 시간</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td style="background-color: white;">7/19 10:00</td>
+                                            <td style="background-color: white;">7/20 23:00</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="background-color: white;">7/20 10:00</td>
+                                            <td style="background-color: white;">7/21 23:00</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+
+
+                                <div class="container" style="padding-top: 50px; text-align:center;">
+                                    <div class="row">
+                                        <div class="col" style="border-right: 1px solid gray;">
+                                            총 유권자 수
+                                        </div>
+                                        <div class="col" style="border-right: 1px solid gray;">
+                                            실시간 투표율
+                                        </div>
+                                        <div class="col">
+                                            투표 종료까지
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top: 10px;">
+                                        <div class="col" style="border-right: 1px solid gray;">
+                                            <img src="resources/img/person.png" class="img-fluid" alt="personimg"
+                                                style="width: 60px; height: 60px; background-color: transparent;">
+                                        </div>
+                                        <div class="col" style="border-right: 1px solid gray;">
+                                            <img src="resources/img/vote.png" class="img-fluid" alt="voteimg"
+                                                style="width: 60px; height: 60px; background-color: transparent;">
+                                        </div>
+                                        <div class="col">
+                                            <img src="resources/img/bomb.png" class="img-fluid" alt="bombimg"
+                                                style="width: 60px; height: 60px; background-color: transparent;">
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="padding-top: 10px;">
+                                        <div id="person" class="col" style="border-right: 1px solid gray;">
+                                            400명
+                                        </div>
+                                        <div id="vote" class="col" style="border-right: 1px solid gray;">
+                                            23.5%
+                                        </div>
+                                        <div id="bomb" class="col">
+                                            1일, 2시간
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="d-grid gap-2 col-6 mx-auto" style="padding-top: 50px;">
+                                    <a href="#" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">상세 페이지로</a>
+                                </div>
                             </div>
 
                             <div class="col-12">
@@ -127,23 +217,11 @@
         </div>
 
 
-    </main>
-
-
     <div class="fixed-bottom">
         <footer>
             <div>
-                <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 2.5rem;">@2022 Team Coding Quokka All Rights Reserved</p>
+                <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 1rem;">@2022 Team Coding Quokka All Rights Reserved</p>
             </div>
         </footer>
     </div>
-
-    <script>
-        const showValue = (target) => {
-            const text = target.options[target.selectedIndex].text;
-            document.getElementById('vote_change').innerHTML =`${text}`;
-        }
-    </script>
 </body>
-
-</html>
