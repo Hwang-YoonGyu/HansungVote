@@ -15,5 +15,20 @@ public class ElectionvotedDAO {
 	
 	private static String namespace = "mapper.electionvotedMapper";
 	
+	//다중 투표 방지
+	public ElectionvotedVO multiplevoting(ElectionvotedVO vo) throws Exception{
+		return sqlSession.selectOne(namespace + ".multiplevoting", vo);
+	}
 	
+	//득표율 계산 
+	public int votepercentage(ElectionvotedVO vo) throws Exception{
+		int num = sqlSession.selectOne(namespace+".votepercentage",vo);
+		return num;
+	}
+	
+	//투표율 계산 
+	public int turnout(ElectionvotedVO vo) throws Exception{
+		int num = sqlSession.selectOne(namespace+".turnout",vo);
+		return num;
+	}
 }

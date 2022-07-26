@@ -11,4 +11,15 @@
 		from user
 		where stu_id=#{stu_id} and password=#{password}
 	</select>
+	
+	 <!-- 총유권자수 계산  -->
+	<select id = "totalvoters" resultType = "int">
+		select COUNT(*)
+		from user
+		where department=#{departement}
+	</select>
+	
+	
+	
+	
 </mapper>

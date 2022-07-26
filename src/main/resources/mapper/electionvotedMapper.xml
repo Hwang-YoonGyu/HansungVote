@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
- 
+
+ <!-- 다중투표 방지  -->
 <mapper namespace="mapper.electionvotedMapper">
-
-
+	<select id = "multiplevoting" parameterType = "com.codingquokka.hansungenquete.domain.ElectionvotedVO" resultType = "com.codingquokka.hansungenquete.domain.ElectionvotedVO">
+		select * 
+		from electionvoted
+		where stu_id=#{stu_id} and election_name=#{election_name}
+	</select> 
+	
+<!-- 1.득표율 계산  -->
+   <select id = "votepercentage" resultType = "int">
+		select COUNT(*)
+		from electionvoted
+		where election_name=#{election_name} and vote_name=#{vote_name}
+	</select>
+	
+ <!-- 2.투표율 계산  -->   
+   <select id = "turnout" resultType = "int">
+		select COUNT(*)
+		from electionvoted
+		where election_name=#{election_name}
+	</select>
    
 
 </mapper>
