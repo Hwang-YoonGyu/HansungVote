@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -47,11 +48,15 @@ public class VoteController {
     private UserDAO uDao;
 
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/votehome", method = RequestMethod.GET)
     public String home(Locale locale, HttpServletRequest request) {
+    	 HttpSession session = request.getSession();
+
+         UserVO user = (UserVO) session.getAttribute("UserVO");
+
+         request.setAttribute("username",user.getName()+" ("+user.getStu_id()+")");
 
 
-        return "001_VoteHome";
-    }
-
+        return "003_Vote1";
+    }    
 }

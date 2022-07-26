@@ -133,7 +133,7 @@
     <div class="fixed-bottom">
         <footer>
             <div>
-                <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 2.5rem;">@2022 Team HansungVote</p>
+                <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 2.5rem;">@2022 Team Coding Quokka All Rights Reserved</p>
             </div>
         </footer>
     </div>

@@ -79,7 +79,7 @@
     <main>
         <div class="wrapper" style="margin-top: 250px;">
 
-            <a href="/vote1"><img class="rounded float-start" src="resources/img/voteimg1.png" style="width: 35%; margin-left: 200px;" onmouseenter="zoomIn(event)"
+            <a href="/vote/votehome"><img class="rounded float-start" src="resources/img/voteimg1.png" style="width: 35%; margin-left: 200px;" onmouseenter="zoomIn(event)"
                 onmouseleave="zoomOut(event)" alt="온라인투표 바로가기"></a>
             <a href="#"><img class="rounded float-end" src="resources/img/voteimg2.png"  style="width: 35%; margin-right: 200px;"onmouseenter="zoomIn(event)"
                 onmouseleave="zoomOut(event)" alt="설문조사 바로가기"></a>
@@ -88,12 +88,14 @@
     </main>
 
 
-    <footer>
-        <div>
-            <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 2.5rem;">@2022 Team HansungVote</p>
-        </div>
-    </footer>
-    <script>
+    <div class="fixed-bottom">
+        <footer>
+            <div>
+                <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 2.5rem;">@2022 Team Coding Quokka All Rights Reserved</p>
+            </div>
+        </footer>
+    </div>
+<script>
          function zoomIn(event) {
     event.target.style.transform = "scale(1.2)";
     event.target.style.zIndex = 1;
@@ -105,7 +107,7 @@
     event.target.style.zIndex = 0;
     event.target.style.transition = "all 0.4s";
   }
-      </script>
+</script>
 </body>
 
 </html>

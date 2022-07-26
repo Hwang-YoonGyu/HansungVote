@@ -89,19 +89,6 @@ public class HomeController {
         }
     }
 
-    @RequestMapping(value = "/vote1", method = RequestMethod.GET)
-    public String vote1(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-
-        UserVO user = (UserVO) session.getAttribute("UserVO");
-
-        request.setAttribute("username",user.getName()+" ("+user.getStu_id()+")");
-
-
-
-        return "003_Vote1";
-        //return "home";
-    }
 
     //--------------------------------------여기 아래는 프로젝트 종료시 삭제-----------------------------------------------//
 
