@@ -71,16 +71,16 @@
 <body>
 
     <header style="border-bottom: 1px solid hsl(0, 0%, 56%);">
-        <img src="resources/img/Logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
+        <img src="/resources/img/Logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
 
     </header>
 
     <main>
         <div class="wrapper" style="margin-top: 250px;">
 
-            <a href="/vote/votehome"><img class="rounded float-start" src="resources/img/voteimg1.png" style="width: 35%; margin-left: 200px;" onmouseenter="zoomIn(event)"
+            <a href="/vote/votehome"><img class="rounded float-start" src="/resources/img/voteimg1.png" style="width: 35%; margin-left: 200px;" onmouseenter="zoomIn(event)"
                 onmouseleave="zoomOut(event)" alt="온라인 투표 바로가기"></a>
-            <a href="#"><img class="rounded float-end" src="resources/img/voteimg2.png"  style="width: 35%; margin-right: 200px;"onmouseenter="zoomIn(event)"
+            <a href="#"><img class="rounded float-end" src="/resources/img/voteimg2.png"  style="width: 35%; margin-right: 200px;"onmouseenter="zoomIn(event)"
                 onmouseleave="zoomOut(event)" alt="설문조사 바로가기"></a>
 
         </div>

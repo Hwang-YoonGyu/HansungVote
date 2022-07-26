@@ -52,7 +52,7 @@
 <body>
 
 <header class="fixed-top">
-    <img src="resources/img/Logo.png" style="height: 100px;">
+    <img src="/resources/img/Logo.png" style="height: 100px;">
 </header>
 
 <main>

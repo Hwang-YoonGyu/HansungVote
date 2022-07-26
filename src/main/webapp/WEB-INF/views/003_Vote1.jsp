@@ -61,7 +61,7 @@
 <body>
 
     <header class="fixed-top" style="border-bottom: 1px solid hsl(0, 0%, 56%);">
-        <img src="resources/img/Logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
+        <img src="/resources/img/Logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
     </header>
 
     <main>
@@ -87,7 +87,7 @@
                 <div class="col-md-8 offset-md-2">
                     <div class="login-form bg-white mt-4 p-4 rounded">
                         <form action="" method="" class="row g-3">
-                            <span style="font-size: 30px;"> 홍길동(1912123) <span style="font-size: 20px;"> 의 참여 가능 투표
+                            <span style="font-size: 30px;"> ${username} <span style="font-size: 20px;"> 의 참여 가능 투표
                                     목록</span></span>
 
 
@@ -121,7 +121,7 @@
                                 <div class="container" style="padding-bottom: 20px; text-align:center;">
                                     <div class="row">
                                         <div class="col">
-                                            <img src="img/clock.png" class="img-fluid" alt="clockimg"
+                                            <img src="/resources/img/clock.png" class="img-fluid" alt="clockimg"
                                                 style="width: 30px; height: 30px; background-color: transparent;">
                                         </div>
                                     </div>
@@ -174,15 +174,15 @@
                                     </div>
                                     <div class="row" style="padding-top: 10px;">
                                         <div class="col" style="border-right: 1px solid gray;">
-                                            <img src="resources/img/person.png" class="img-fluid" alt="personimg"
+                                            <img src="/resources/img/person.png" class="img-fluid" alt="personimg"
                                                 style="width: 60px; height: 60px; background-color: transparent;">
                                         </div>
                                         <div class="col" style="border-right: 1px solid gray;">
-                                            <img src="resources/img/vote.png" class="img-fluid" alt="voteimg"
+                                            <img src="/resources/img/vote.png" class="img-fluid" alt="voteimg"
                                                 style="width: 60px; height: 60px; background-color: transparent;">
                                         </div>
                                         <div class="col">
-                                            <img src="resources/img/bomb.png" class="img-fluid" alt="bombimg"
+                                            <img src="/resources/img/bomb.png" class="img-fluid" alt="bombimg"
                                                 style="width: 60px; height: 60px; background-color: transparent;">
                                         </div>
                                     </div>
