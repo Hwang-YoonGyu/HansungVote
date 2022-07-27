@@ -7,7 +7,7 @@
  
 <mapper namespace="mapper.userMapper">
 	<select id="login" parameterType="com.codingquokka.hansungenquete.domain.UserVO" resultType="com.codingquokka.hansungenquete.domain.UserVO">
-		select *
+		select stuId, name, password, phoneNumber, department
 		from user
 		where stuId=#{stuId} and password=#{password}
 	</select>

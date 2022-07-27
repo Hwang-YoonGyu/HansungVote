@@ -7,10 +7,10 @@
  
 <mapper namespace="mapper.electionMapper">
 
-    <select id="selectElection" parameterType="String" resultType="com.codingquokka.hansungenquete.domain.ElectionVO">
+    <select id="selectElection" parameterType="com.codingquokka.hansungenquete.domain.ElectionVO" resultType="com.codingquokka.hansungenquete.domain.ElectionVO">
         select *
         from election
-        where department like "%#{department}%";
+        where department like CONCAT('%',#{department},'%');
     </select>
    
 

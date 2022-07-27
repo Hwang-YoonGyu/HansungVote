@@ -70,11 +70,12 @@ public class HomeController {
         uVo.setStuid(stu_id);
         uVo.setPassword(password);
 
-        System.out.println(uVo.getStuid() + " " + uVo.getName() + " "+uVo.getDepartment());
 
         UserVO result = uDao.login(uVo);
         HttpSession session = request.getSession();
         session.setAttribute("UserVO", result);
+        System.out.println(result.getStuid() + " " + result.getName() + " "+result.getDepartment() + " " + result.getPassword() +" "+result.getPhoneNumber());
+
 
         if (result != null) {
             return "redirect:/main";
