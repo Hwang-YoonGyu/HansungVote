@@ -70,7 +70,7 @@ public class HomeController {
         uVo.setStu_id(stu_id);
         uVo.setPassword(password);
 
-        System.out.println(uVo.getStu_id() + " " + uVo.getPassword());
+        System.out.println(uVo.getStu_id() + " " + uVo.getName() + " "+uVo.getDepartment());
 
         UserVO result = uDao.login(uVo);
         HttpSession session = request.getSession();

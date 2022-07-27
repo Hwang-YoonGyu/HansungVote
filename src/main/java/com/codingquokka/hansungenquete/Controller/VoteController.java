@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.codingquokka.hansungenquete.*;
 import com.codingquokka.hansungenquete.domain.*;
+
 @RequestMapping("/vote")
 @Controller
 public class VoteController {
@@ -49,49 +50,42 @@ public class VoteController {
 
 
     @RequestMapping(value = "/votehome", method = RequestMethod.GET)
-    public String VoteHome(Locale locale, HttpServletRequest request) {
-    	 HttpSession session = request.getSession();
+    public String VoteHome(Locale locale, HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession();
 
-         UserVO user = (UserVO) session.getAttribute("UserVO");
+        UserVO user = (UserVO) session.getAttribute("UserVO");
+        List<ElectionVO> electionList = eDao.SelectElection(user.getDepartment());
 
-         request.setAttribute("username",user.getName()+" ("+user.getStu_id()+")");
 
+        request.setAttribute("username", user.getName() + " (" + user.getStu_id() + ")");
+        request.setAttribute("electionList",electionList);
 
         return "003_Vote1";
     }
-    
+
     @RequestMapping(value = "/voteDetail", method = RequestMethod.GET)
     public String VoteDetail(Locale locale, HttpServletRequest request) {
-    	 HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
 
-    	 String election = request.getParameter("election");
-    	 
-    	 List<CandidateVO> candiList = cDao.selectList(election);
-    	 request.setAttribute("candiList", candiList);
-    	 
+        String election = request.getParameter("election");
 
+        List<CandidateVO> candiList = cDao.selectList(election);
+        request.setAttribute("candiList", candiList);
 
 
         return "003_Vote1";
     }
-    
+
     @RequestMapping(value = "/DoVote", method = RequestMethod.POST)
     public String DoVote(Locale locale, HttpServletRequest request) {
-    	 HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
 
-    	 String election_name = request.getParameter("election");
-    	 String vote_name = request.getParameter("vote");
-    	 
-    	 
-
-    	 
-    	 
-
+        String election_name = request.getParameter("election");
+        String vote_name = request.getParameter("vote");
 
 
         return "redirect:/votehome";
     }
-    
-    
-    
+
+
 }

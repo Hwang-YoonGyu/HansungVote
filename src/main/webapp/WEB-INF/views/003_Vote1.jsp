@@ -97,7 +97,15 @@
                                 <label for="exampleFormControlTextarea1" class="form-label">선거 단위</label>
                                 <select onchange="showValue(this)" class="form-select"
                                     aria-label="Default select example">
-                                    <a href="#">
+                                    <c:forEach items="${electionList}" var="ElectionVO" varStatus="status">
+                                        <c:when test="${status eq '0'}">
+                                            <a href=\"#\"><option selected>${electionList.election_name}</option></a>"/>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href=\"#\"><option>${electionList.election_name}</option></a>"/>
+                                        </c:otherwise>
+                                    </c:forEach>
+ <%--                                   <a href="#">
                                         <option selected>투표1</option>
                                     </a>
                                     <a href="#">
@@ -108,7 +116,7 @@
                                     </a>
                                     <a href="#">
                                         <option value="3">투표4</option>
-                                    </a>
+                                    </a>--%>
                                 </select>
                             </div>
 

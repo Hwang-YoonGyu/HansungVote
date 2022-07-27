@@ -14,6 +14,8 @@ public class ElectionDAO {
 	SqlSession sqlSession;
 	
 	private static String namespace = "mapper.electionMapper";
-	
+	public List<ElectionVO> SelectElection (String department) throws Exception {
+		return sqlSession.selectList(namespace + ".selectElection", department);
+	}
 	
 }

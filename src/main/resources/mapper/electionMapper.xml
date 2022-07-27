@@ -7,7 +7,11 @@
  
 <mapper namespace="mapper.electionMapper">
 
-	
+    <select id="selectElection" parameterType="String" resultType="com.codingquokka.hansungenquete.domain.ElectionVO">
+        select *
+        from election
+        where department like "%#{department}%";
+    </select>
    
 
 </mapper>

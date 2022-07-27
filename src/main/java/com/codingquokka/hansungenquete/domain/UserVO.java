@@ -42,7 +42,7 @@ public class UserVO {
     }
 
     public String toString() {
-        return stu_id+" "+password+" "+name+" "+department+" "+phone_number;
+        return stu_id+" "+password+" "+name+" "+ department +" "+phone_number;
     }
 
 }
