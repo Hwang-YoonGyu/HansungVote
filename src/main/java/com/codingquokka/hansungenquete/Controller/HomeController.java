@@ -113,10 +113,10 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/saveImage", method = RequestMethod.POST)
-    public String saveImage(HttpServletRequest request, String title, String content) {
+    public String saveImage(HttpServletRequest request, String election_name, String candidate_name) {
         MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request;
 
-        System.out.println(title + "  " + content);
+        System.out.println(election_name + "  " + candidate_name);
         byte[] file = null;
         try {
             file = mhsr.getFile("imgFile").getBytes();
@@ -131,10 +131,9 @@ public class HomeController {
         }
 
         CandidateVO cVo = new CandidateVO();
-        cVo.setElection_Name(title);
+        cVo.setElection_Name(election_name);
         cVo.setImage(file);
-        cVo.setVote_name(content);
-        cVo.setVote_Count(0);
+        cVo.setVote_name(candidate_name);
         cDao.insert(cVo);
         request.setAttribute("msg", "파일 저장 성공");
         return "home";
@@ -143,12 +142,11 @@ public class HomeController {
     @RequestMapping(value = "/getByteImage", method = RequestMethod.GET)
     public ResponseEntity<byte[]> getByteImage(HttpServletRequest request) {// ResponseEntity는 HttpEntity를 상속받음으로써
         // HttpHeader와 body를 가질 수 있음
-        String a = request.getParameter("number");
-        int temp = Integer.parseInt(a);
+        int num = Integer.parseInt(request.getParameter("number"));
+        String election_name = request.getParameter("election_name");
 
-        List<CandidateVO> list = cDao.selectList("테스트 선거");
-        System.out.println(list.size() + " " + temp);
-        byte[] imageContent = list.get(temp).getImage();
+        List<CandidateVO> list = cDao.selectList(election_name);
+        byte[] imageContent = list.get(num).getImage();
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.IMAGE_PNG); // 미디어 타입을 나타내기 위한 헤더(헤더는 클라이언트와 서버가 요청 또는 응답으로 부가적인 정보를 전송할 수 있게
         // 해줌)
@@ -158,7 +156,7 @@ public class HomeController {
     @RequestMapping(value = "/view", method = RequestMethod.GET)
     public String view(HttpServletRequest request) {
 
-        request.setAttribute("imgSrc", "/hansungenquete/getByteImage?number=0");
+        request.setAttribute("imgSrc", "/getByteImage?number=0&election_name=테스트 빅데이터 선거");
         return "imgshowTest";
     }
 

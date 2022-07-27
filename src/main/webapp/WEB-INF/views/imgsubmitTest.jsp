@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,17 +7,17 @@
 <title>Insert Image</title>
 </head>
 <body>
-   <form action="/hansungenquete/saveImage" enctype="multipart/form-data" method="post">
+   <form action="/saveImage" enctype="multipart/form-data" method="post">
       <div>
          <label>선거이름</label>
-         <input type="text" name="title" value=""/>
+         <input type="text" name="election_name" value=""/>
       </div>
       <div>
-         <label>후보자</label>
-         <input type="text" name="content" value=""/>
+         <label>후보자이름</label>
+         <input type="text" name="candidate_name" value=""/>
       </div>
       <input type="file" name="imgFile" />
-      <input type="submit" value="이미지저장"/>
+      <input type="submit" value="업로드"/>
    </form>
 </body>
 </html>

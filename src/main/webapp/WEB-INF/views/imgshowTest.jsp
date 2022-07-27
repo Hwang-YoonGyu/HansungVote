@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,7 @@
 
 </script>
 <body>
-   <!-- img태그의 src 경로는 byte이미지 가져오는 컨트롤러 호출(/getByteImage) -->
+   <!-- img��洹몄�� src 寃쎈��� byte�대�몄� 媛��몄�ㅻ�� 而⑦�몃·�� �몄�(/getByteImage) -->
    <img alt="" src="${imgSrc}" />
 </body>
 
