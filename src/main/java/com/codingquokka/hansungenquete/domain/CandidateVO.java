@@ -1,21 +1,17 @@
 package com.codingquokka.hansungenquete.domain;
 public class CandidateVO {
 	   
-    private String candidate_name;
-    private String election_name;
+    private String candidateName;
+    private String electionName;
     private byte[] image;
    
-    public String getCandidate_name() {
-        return candidate_name;
+    public String getCandidateName() {return candidateName;}
+    public void setCandidateName(String candidateName) {this.candidateName = candidateName;}
+    public String getElectionName() {
+        return electionName;
     }
-    public void setVote_name(String vote_name) {
-        this.candidate_name = vote_name;
-    }
-    public String getElection_Name() {
-        return election_name;
-    }
-    public void setElection_Name(String election_name) {
-        this.election_name = election_name;
+    public void setElectionName(String electionName) {
+        this.electionName = electionName;
     }
     public byte[] getImage() {
         return image;

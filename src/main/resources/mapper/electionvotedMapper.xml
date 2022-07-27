@@ -9,21 +9,21 @@
 	<select id = "multiplevoting" parameterType = "com.codingquokka.hansungenquete.domain.ElectionvotedVO" resultType = "com.codingquokka.hansungenquete.domain.ElectionvotedVO">
 		select * 
 		from electionvoted
-		where stu_id=#{stu_id} and election_name=#{election_name}
+		where stuId=#{stuId} and electionName=#{electionName}
 	</select> 
 	
 <!-- 1.득표율 계산  -->
    <select id = "votepercentage" resultType = "int">
 		select COUNT(*)
 		from electionvoted
-		where election_name=#{election_name} and vote_name=#{vote_name}
+		where electionName=#{electionName} and voteName=#{voteName}
 	</select>
 	
  <!-- 2.투표율 계산  -->   
    <select id = "turnout" resultType = "int">
 		select COUNT(*)
 		from electionvoted
-		where election_name=#{election_name}
+		where electionName=#{electionName}
 	</select>
    
 

@@ -20,7 +20,7 @@ public class CandidateDAO {
 		
 	}
 	public List<CandidateVO> selectList(String election_name) {
-		return sqlSession.selectList(namespace+".selectCandidate", election_name);
+		return sqlSession.selectList(namespace+".selectCandidate", electionName);
 		
 	}
 

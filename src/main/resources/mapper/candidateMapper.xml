@@ -8,14 +8,14 @@
 <mapper namespace="mapper.candidateMapper">
 
 	<insert id="insertCandidate" parameterType="com.codingquokka.hansungenquete.domain.CandidateVO">
-		insert into candidate (candidate_name, election_name, image)
-		values (#{candidate_name}, #{election_name}, #{image});
+		insert into candidate (candidateName, electionName, image)
+		values (#{candidateName}, #{electionName}, #{image});
 	</insert>
 	
 	<select id="selectCandidate" parameterType="String" resultType="com.codingquokka.hansungenquete.domain.CandidateVO">
 		select *
 		from candidate
-		where election_name=#{election_name};
+		where electionName=#{electionName};
 	</select>
    
    

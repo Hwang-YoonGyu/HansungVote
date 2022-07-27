@@ -9,7 +9,7 @@
 	<select id="login" parameterType="com.codingquokka.hansungenquete.domain.UserVO" resultType="com.codingquokka.hansungenquete.domain.UserVO">
 		select *
 		from user
-		where stu_id=#{stu_id} and password=#{password}
+		where stuId=#{stuId} and password=#{password}
 	</select>
 	
 	 <!-- 총유권자수 계산  -->
