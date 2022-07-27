@@ -57,7 +57,7 @@ public class VoteController {
         List<ElectionVO> electionList = eDao.SelectElection(user.getDepartment());
 
 
-        request.setAttribute("username", user.getName() + " (" + user.getStu_id() + ")");
+        request.setAttribute("username", user.getName() + " (" + user.getStuid() + ")");
         request.setAttribute("electionList",electionList);
 
         return "003_Vote1";

@@ -19,7 +19,7 @@ public class CandidateDAO {
 		sqlSession.insert(namespace+".insertCandidate", vo);
 		
 	}
-	public List<CandidateVO> selectList(String election_name) {
+	public List<CandidateVO> selectList(String electionName) {
 		return sqlSession.selectList(namespace+".selectCandidate", electionName);
 		
 	}

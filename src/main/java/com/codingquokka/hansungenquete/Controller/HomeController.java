@@ -67,10 +67,10 @@ public class HomeController {
     public String Login(@RequestParam("stu_id") String stu_id, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         UserVO uVo = new UserVO();
-        uVo.setStu_id(stu_id);
+        uVo.setStuid(stu_id);
         uVo.setPassword(password);
 
-        System.out.println(uVo.getStu_id() + " " + uVo.getName() + " "+uVo.getDepartment());
+        System.out.println(uVo.getStuid() + " " + uVo.getName() + " "+uVo.getDepartment());
 
         UserVO result = uDao.login(uVo);
         HttpSession session = request.getSession();
@@ -131,9 +131,9 @@ public class HomeController {
         }
 
         CandidateVO cVo = new CandidateVO();
-        cVo.setElection_Name(election_name);
+        cVo.setElectionName(election_name);
         cVo.setImage(file);
-        cVo.setVote_name(candidate_name);
+        cVo.setCandidateName(candidate_name);
         cDao.insert(cVo);
         request.setAttribute("msg", "파일 저장 성공");
         return "home";
