@@ -13,10 +13,10 @@
 	</select>
 	
 	 <!-- 총유권자수 계산  -->
-	<select id = "totalvoters" resultType = "int">
+	<select id = "totalvoters" parameterType="String" resultType = "int">
 		select COUNT(*)
 		from user
-		where department=#{departement}
+		where department like CONCAT('%',#{department},'%');
 	</select>
 	
 	

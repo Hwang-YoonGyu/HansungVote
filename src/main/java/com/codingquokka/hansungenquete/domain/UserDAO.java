@@ -24,8 +24,8 @@ public class UserDAO {
 	}
 	
 	//총유권자수 계산
-	public int totalvoters(UserVO vo) throws Exception {
-		int num = sqlSession.selectOne(namespace+".totalvoters", vo);
+	public int totalvoters(String department) throws Exception {
+		int num = sqlSession.selectOne(namespace+".totalvoters", department);
 		return num;
 	}
 }
