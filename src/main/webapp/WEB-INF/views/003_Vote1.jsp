@@ -107,7 +107,7 @@
 
                             <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
                             padding-top: 10px; padding-bottom: 60px;">
-                                <p id="vote_change" style="text-align: center; padding-top: 10px;">
+                                <p id="election_name" style="text-align: center; padding-top: 10px;">
                                     ------------------------------------------------</p>
                                 <hr class="mt-4">
 
@@ -139,8 +139,8 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td style="background-color: white;">7/19 10:00</td>
-                                            <td style="background-color: white;">7/20 23:00</td>
+                                            <td style="background-color: white;">7/20 10:00</td>
+                                            <td style="background-color: white;">7/21 23:00</td>
 
                                         </tr>
                                         <tr>

@@ -3,7 +3,7 @@ package com.codingquokka.hansungenquete.domain;
 import java.util.Date;
 
 public class ElectionVO {
-	   
+
     private String electionName;
     private Date startDate;
     private Date endDate;

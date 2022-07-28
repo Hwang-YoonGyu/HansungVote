@@ -39,6 +39,7 @@ import com.codingquokka.hansungenquete.domain.*;
 
 @Controller
 public class HomeController {
+    ServerLog temp = ServerLog.instance;
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
     @Inject
@@ -51,14 +52,12 @@ public class HomeController {
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String Lobby(HttpServletRequest request) {
-
         return "002_Main";
         //return "home";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String Login(HttpServletRequest request) {
-
 
         return "001_Login";
     }
@@ -83,7 +82,6 @@ public class HomeController {
             response.setContentType("text/html; charset=euc-kr");
             PrintWriter out = null;
             out = response.getWriter();
-            String encodingAlert = URLEncoder.encode("<script>alert('로그인정보를 다시 입력해주세요.'); </script>", "UTF-8");
             out.println("<script>alert('로그인정보를 다시 입력해주세요.'); </script>");
             out.flush();
             return "001_Login";

@@ -50,7 +50,7 @@ public class VoteController {
 
 
     @RequestMapping(value = "/votehome", method = RequestMethod.GET)
-    public String VoteHome(Locale locale, HttpServletRequest request) {
+    public String VoteHome(Locale locale, HttpServletRequest request) throws Exception {
         HttpSession session = request.getSession();
 
         UserVO user = (UserVO) session.getAttribute("UserVO");
@@ -61,16 +61,18 @@ public class VoteController {
 
         ElectionVO vo = new ElectionVO();
         vo.setDepartment(department);
-        List<ElectionVO> electionList = null;
-        try {
-            electionList = eDao.SelectElection(vo);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        List<ElectionVO> electionList = eDao.SelectElection(vo);
+
+
+
+
+
+
 
 
         request.setAttribute("username", user.getName() + " (" + user.getStuid() + ")");
         request.setAttribute("electionList",electionList);
+
 
         return "003_Vote1";
     }

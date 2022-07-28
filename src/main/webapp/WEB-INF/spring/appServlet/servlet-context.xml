@@ -24,10 +24,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.codingquokka.hansungenquete" />
-	<context:component-scan base-package="web" />
-    <context:component-scan base-package="service"></context:component-scan>
-    <context:component-scan base-package="controller" />
-    <context:component-scan base-package="domain" />
+
 	
 	
 </beans:beans>
