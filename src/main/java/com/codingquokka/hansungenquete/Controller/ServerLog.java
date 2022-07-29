@@ -1,4 +1,3 @@
-/*
 package com.codingquokka.hansungenquete.Controller;
 
 import java.time.LocalDate;
@@ -70,4 +69,3 @@ class FileOut implements Runnable {
     }
 }
 
-*/
