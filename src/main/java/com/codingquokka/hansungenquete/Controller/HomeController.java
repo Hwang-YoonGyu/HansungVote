@@ -39,7 +39,7 @@ import com.codingquokka.hansungenquete.domain.*;
 
 @Controller
 public class HomeController {
-    ServerLog temp = ServerLog.instance;
+    //ServerLog temp = ServerLog.instance;
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
     @Inject

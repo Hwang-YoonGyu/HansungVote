@@ -27,8 +27,8 @@ public class ElectionvotedDAO {
 	}
 	
 	//투표율 계산 
-	public int turnout(ElectionvotedVO vo) throws Exception{
-		int num = sqlSession.selectOne(namespace+".turnout",vo);
+	public int turnout(String electionName) throws Exception{
+		int num = sqlSession.selectOne(namespace+".turnout",electionName);
 		return num;
 	}
 }

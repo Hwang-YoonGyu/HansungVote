@@ -20,7 +20,7 @@
 	</select>
 	
  <!-- 2.투표율 계산  -->   
-   <select id = "turnout" resultType = "int">
+   <select id = "turnout" parameterType="String" resultType = "int">
 		select COUNT(*)
 		from electionvoted
 		where electionName=#{electionName}

@@ -10,7 +10,9 @@
     <select id="selectElection" parameterType="com.codingquokka.hansungenquete.domain.ElectionVO" resultType="com.codingquokka.hansungenquete.domain.ElectionVO">
         select *
         from election
-        where department like CONCAT('%',#{department},'%');
+        where department like CONCAT('%',#{department},'%')
+           or department = substring(#{department} from 1 for 1)
+           or department = "";
     </select>
    
 

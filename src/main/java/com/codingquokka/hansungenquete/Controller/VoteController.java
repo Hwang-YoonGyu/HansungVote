@@ -3,11 +3,7 @@ package com.codingquokka.hansungenquete.Controller;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.DateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -62,8 +58,15 @@ public class VoteController {
         ElectionVO vo = new ElectionVO();
         vo.setDepartment(department);
         List<ElectionVO> electionList = eDao.SelectElection(vo);
-
-
+        List<Float> votePercentageList = new ArrayList<>();
+        List<Integer> voteRightCountList = new ArrayList<>();
+        for(ElectionVO e : electionList) {
+            int voteRightCount = uDao.totalvoters(e.getDepartment());
+            int votePercentage = evDao.turnout(e.getElectionName());
+            votePercentageList.add((float)votePercentage/voteRightCount);
+            voteRightCountList.add(voteRightCount);
+            System.out.println(votePercentage+"/"+voteRightCount+"="+(float)votePercentage/voteRightCount);
+        }
 
 
 
