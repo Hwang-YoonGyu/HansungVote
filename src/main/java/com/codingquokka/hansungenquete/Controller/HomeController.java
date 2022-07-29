@@ -66,20 +66,24 @@ public class HomeController {
         uVo.setStuid(stu_id);
         uVo.setPassword(password);
 
-
         UserVO result = uDao.login(uVo);
         HttpSession session = request.getSession();
         session.setAttribute("UserVO", result);
 
-
         if (result != null) {
+            if ("manager".equals(result.getStuid())) {
+                System.out.println(result.getStuid() + " " + result.getName() + " "+result.getDepartment() + " " + result.getPassword() +" "+result.getPhoneNumber());
+                return "redirect:/manager/main";
+
+            }
             System.out.println(result.getStuid() + " " + result.getName() + " "+result.getDepartment() + " " + result.getPassword() +" "+result.getPhoneNumber());
-            return "redirect:/main";
-        } else {
+            return "redirect:/vote/votehome";
+        }
+        else {
             response.setContentType("text/html; charset=euc-kr");
             PrintWriter out = null;
             out = response.getWriter();
-            out.println("<script>alert('로그인정보를 다시 입력해주세요.'); </script>");
+            out.println("<script>alert('로그인 정보를 다시 입력해주세요.'); </script>");
             out.flush();
             return "001_Login";
         }

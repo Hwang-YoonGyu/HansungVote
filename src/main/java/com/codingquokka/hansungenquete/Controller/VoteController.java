@@ -61,8 +61,8 @@ public class VoteController {
         ElectionVO vo = new ElectionVO();
         vo.setDepartment(department);
         List<ElectionVO> electionList = eDao.SelectElection(vo);
-        List<Float> votePercentageList = new ArrayList<>();
-        List<Integer> voteRightCountList = new ArrayList<>();
+        List<Float> votePercentageList = new ArrayList<Float>();
+        List<Integer> voteRightCountList = new ArrayList<Integer>();
         for(ElectionVO e : electionList) {
             int voteRightCount = uDao.totalvoters(e.getDepartment());
             int votePercentage = evDao.turnout(e.getElectionName());
@@ -81,7 +81,7 @@ public class VoteController {
 
 
     @RequestMapping(value = "/voteDetail", method = RequestMethod.GET)
-    public String VoteDetail(Locale locale, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String VoteDetail(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO)session.getAttribute("UserVO");
 
@@ -91,8 +91,12 @@ public class VoteController {
         evVo.setName(uVo.getName());
         evVo.setDepartment(uVo.getDepartment());
         evVo.setElectionName(election);
-/*
         ElectionvotedVO wasVoted = evDao.wasVoted(evVo);
+
+
+
+
+
 
         if (wasVoted != null) {
             response.setContentType("text/html; charset=euc-kr");
@@ -103,7 +107,6 @@ public class VoteController {
 
             return "redirect:/votehome";
         }
-*/
         List<CandidateVO> candiList = cDao.selectList(election);
         request.setAttribute("candiList", candiList);
 
@@ -127,7 +130,7 @@ public class VoteController {
         response.setContentType("text/html; charset=euc-kr");
         PrintWriter out = null;
         out = response.getWriter();
-        out.println("<script>alert('로그인정보를 다시 입력해주세요.'); </script>");
+        out.println("<script>alert('투표가 완료 되었습니다. 감사합니다 :)'); </script>");
         out.flush();
 
         return "redirect:/votehome";
