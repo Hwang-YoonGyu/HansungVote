@@ -6,6 +6,8 @@
 
  
 <mapper namespace="mapper.userMapper">
+
+	<!-- 로그인  -->
 	<select id="login" parameterType="com.codingquokka.hansungenquete.domain.UserVO" resultType="com.codingquokka.hansungenquete.domain.UserVO">
 		select stuId, name, password, phoneNumber, department
 		from user
@@ -18,8 +20,11 @@
 		from user
 		where department like CONCAT('%',#{department},'%');
 	</select>
-	
-	
+
+	<insert id = "insertUser" parameterType="com.codingquokka.hansungenquete.domain.ElectionvotedVO">
+		insert into user(stuId, name, password, phoneNumber, department)
+		values (#{stuId}, #{name}, #{password}, #{phoneNumber}, #{department});
+	</insert>
 	
 	
 </mapper>

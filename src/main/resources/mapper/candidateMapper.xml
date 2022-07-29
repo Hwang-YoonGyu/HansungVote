@@ -7,17 +7,19 @@
  
 <mapper namespace="mapper.candidateMapper">
 
+
+
 	<insert id="insertCandidate" parameterType="com.codingquokka.hansungenquete.domain.CandidateVO">
 		insert into candidate (candidateName, electionName, image)
 		values (#{candidateName}, #{electionName}, #{image});
 	</insert>
-	
+
 	<select id="selectCandidate" parameterType="String" resultType="com.codingquokka.hansungenquete.domain.CandidateVO">
 		select *
 		from candidate
 		where electionName=#{electionName};
 	</select>
-   
-   
+
+
 
 </mapper>

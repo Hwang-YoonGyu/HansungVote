@@ -28,5 +28,8 @@ public class UserDAO {
 		int num = sqlSession.selectOne(namespace+".totalvoters", department);
 		return num;
 	}
+	public void insertUser(ElectionvotedVO vo) throws Exception {
+		sqlSession.insert(namespace + ".insertUser", vo);
+	}
 }
 
