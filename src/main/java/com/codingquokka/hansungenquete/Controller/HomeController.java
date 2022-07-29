@@ -41,7 +41,6 @@ import com.codingquokka.hansungenquete.domain.*;
 public class HomeController {
     //ServerLog temp = ServerLog.instance;
 
-    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
     @Inject
     private CandidateDAO cDao;
 
@@ -53,12 +52,10 @@ public class HomeController {
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String Lobby(HttpServletRequest request) {
         return "002_Main";
-        //return "home";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String Login(HttpServletRequest request) {
-
         return "001_Login";
     }
 
@@ -73,10 +70,10 @@ public class HomeController {
         UserVO result = uDao.login(uVo);
         HttpSession session = request.getSession();
         session.setAttribute("UserVO", result);
-        System.out.println(result.getStuid() + " " + result.getName() + " "+result.getDepartment() + " " + result.getPassword() +" "+result.getPhoneNumber());
 
 
         if (result != null) {
+            System.out.println(result.getStuid() + " " + result.getName() + " "+result.getDepartment() + " " + result.getPassword() +" "+result.getPhoneNumber());
             return "redirect:/main";
         } else {
             response.setContentType("text/html; charset=euc-kr");
@@ -93,7 +90,6 @@ public class HomeController {
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String home(Locale locale, Model model) {
-        logger.info("Welcome home! The client locale is {}.", locale);
 
         Date date = new Date();
         DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);

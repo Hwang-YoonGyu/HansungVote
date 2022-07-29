@@ -2,11 +2,13 @@ package com.codingquokka.hansungenquete.Controller;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.util.*;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
@@ -23,6 +25,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.codingquokka.hansungenquete.*;
@@ -68,11 +71,6 @@ public class VoteController {
             System.out.println(votePercentage+"/"+voteRightCount+"="+(float)votePercentage/voteRightCount);
         }
 
-
-
-
-
-
         request.setAttribute("username", user.getName() + " (" + user.getStuid() + ")");
         request.setAttribute("electionList",electionList);
 
@@ -81,12 +79,31 @@ public class VoteController {
         return "003_Vote1";
     }
 
+
     @RequestMapping(value = "/voteDetail", method = RequestMethod.GET)
-    public String VoteDetail(Locale locale, HttpServletRequest request) {
+    public String VoteDetail(Locale locale, HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
+        UserVO uVo = (UserVO)session.getAttribute("UserVO");
 
         String election = request.getParameter("election");
+        ElectionvotedVO evVo = new ElectionvotedVO();
+        evVo.setStuId(uVo.getStuid());
+        evVo.setName(uVo.getName());
+        evVo.setDepartment(uVo.getDepartment());
+        evVo.setElectionName(election);
+/*
+        ElectionvotedVO wasVoted = evDao.wasVoted(evVo);
 
+        if (wasVoted != null) {
+            response.setContentType("text/html; charset=euc-kr");
+            PrintWriter out = null;
+            out = response.getWriter();
+            out.println("<script>alert('중복투표는 불가합니다.'); </script>");
+            out.flush();
+
+            return "redirect:/votehome";
+        }
+*/
         List<CandidateVO> candiList = cDao.selectList(election);
         request.setAttribute("candiList", candiList);
 
@@ -95,12 +112,23 @@ public class VoteController {
     }
 
     @RequestMapping(value = "/DoVote", method = RequestMethod.POST)
-    public String DoVote(Locale locale, HttpServletRequest request) {
+    public String DoVote(Locale locale, HttpServletRequest request, HttpServletResponse response, @RequestParam("CandidateName") String CandidateName, @RequestParam("ElectionName") String ElectionName) throws IOException {
         HttpSession session = request.getSession();
+        UserVO uVo = (UserVO)session.getAttribute("UserVO");
 
-        String election_name = request.getParameter("election");
-        String vote_name = request.getParameter("vote");
+        ElectionvotedVO evVo = new ElectionvotedVO();
+        evVo.setElectionName(ElectionName);
+        evVo.setVotename(CandidateName);
+        evVo.setStuId(uVo.getStuid());
+        evVo.setName(uVo.getName());
 
+        //evDao.insertVote(evVo);
+
+        response.setContentType("text/html; charset=euc-kr");
+        PrintWriter out = null;
+        out = response.getWriter();
+        out.println("<script>alert('로그인정보를 다시 입력해주세요.'); </script>");
+        out.flush();
 
         return "redirect:/votehome";
     }
