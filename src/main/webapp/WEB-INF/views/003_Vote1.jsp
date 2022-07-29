@@ -95,11 +95,11 @@
                             <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
                             padding-top: 10px; padding-bottom: 10px;">
                                 <label for="exampleFormControlTextarea1" class="form-label">선거 단위</label>
-                                <select onchange="showValue(this)" class="form-select"
-                                    aria-label="Default select example">
+                                <select onchange="getIndex()" class="form-select"
+                                    aria-label="Default select example" id = "select">
                                     <c:forEach items="${electionList}" var="ElectionVO" varStatus="status">
-                                        <a href=\"#\">
-                                            <option>${ElectionVO.electionName}</option>
+                                        <a href=\"#\>
+                                            <option id =status">${ElectionVO.electionName}</option>
                                         </a>"/>
                                     </c:forEach>
                                 </select>
@@ -108,7 +108,7 @@
                             <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
                             padding-top: 10px; padding-bottom: 60px;">
                                 <p id="election_name" style="text-align: center; padding-top: 10px;">
-                                    ------------------------------------------------</p>
+                                    </p>
                                 <hr class="mt-4">
 
                                 <div class="container" style="padding-bottom: 20px; text-align:center;">
@@ -182,10 +182,10 @@
 
                                     <div class="row" style="padding-top: 10px;">
                                         <div id="person" class="col" style="border-right: 1px solid gray;">
-                                            ${voteRightCountList[0]}
+											
                                         </div>
                                         <div id="vote" class="col" style="border-right: 1px solid gray;">
-                                            ${votePercentageList[0]}
+                                            
                                         </div>
                                         <div id="bomb" class="col">
                                             1일, 2시간
@@ -208,7 +208,22 @@
                 </div>
             </div>
         </div>
+<script>
+	function getIndex()
+	{
+		var votePercentageList = ${votePercentageList};
+		var voteRightCountList = ${voteRightCountList};
+		
+		var index = document.getElementById("select").selectedIndex;
+		var vote = document.getElementById("vote");
+		var person =  document.getElementById("person");
+		
+		vote.innerHTML = votePercentageList[index];
+		person.innerHTML =  voteRightCountList[index];
+		console.log(index);
+	}
 
+</script>
 
     <div class="fixed-bottom">
         <footer>
