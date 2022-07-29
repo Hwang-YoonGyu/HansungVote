@@ -76,7 +76,8 @@ public class VoteController {
         request.setAttribute("username", user.getName() + " (" + user.getStuid() + ")");
         request.setAttribute("electionList",electionList);
 
-
+        request.setAttribute("votePercentageList",votePercentageList);
+        request.setAttribute("voteRightCountList",voteRightCountList);
         return "003_Vote1";
     }
 

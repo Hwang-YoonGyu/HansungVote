@@ -182,10 +182,10 @@
 
                                     <div class="row" style="padding-top: 10px;">
                                         <div id="person" class="col" style="border-right: 1px solid gray;">
-                                            400명
+                                            ${voteRightCountList[0]}
                                         </div>
                                         <div id="vote" class="col" style="border-right: 1px solid gray;">
-                                            23.5%
+                                            ${votePercentageList[0]}
                                         </div>
                                         <div id="bomb" class="col">
                                             1일, 2시간
