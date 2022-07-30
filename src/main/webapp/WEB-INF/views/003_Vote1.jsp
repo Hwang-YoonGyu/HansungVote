@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import ="com.codingquokka.hansungenquete.domain.ElectionVO"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -211,19 +211,19 @@
 <script>
 	function getIndex()
 	{
-		var votePercentageList = ${votePercentageList};
+        var votePercentageList = ${votePercentageList};
 		var voteRightCountList = ${voteRightCountList};
-		//var eleciotnList = ${electionList}
 
-		var index = document.getElementById("select").selectedIndex;
-		var vote = document.getElementById("vote");
+        var select = document.getElementById("select");
+        var index = select.selectedIndex;
+
+        var vote = document.getElementById("vote");
 		var person =  document.getElementById("person");
-		//var electionName = document.getElementById("election_name");
+		var electionName = document.getElementById("election_name");
 
 		vote.innerHTML = votePercentageList[index];
 		person.innerHTML =  voteRightCountList[index];
-        //electionName.innerHTML = eleciotnList[index].electionName;
-		console.log(index);
+        electionName.innerHTML = select.options[index].value;
 	}
 
 </script>

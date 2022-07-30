@@ -48,7 +48,10 @@ public class HomeController {
     UserDAO uDao;
 
 
-
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String welcome(HttpServletRequest request) {
+        return "redirect:/login";
+    }
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String Lobby(HttpServletRequest request) {
         return "002_Main";
@@ -77,12 +80,11 @@ public class HomeController {
 
             }
             System.out.println(result.getStuid() + " " + result.getName() + " "+result.getDepartment() + " " + result.getPassword() +" "+result.getPhoneNumber());
-            return "redirect:/vote/votehome";
+            return "redirect:/main";
         }
         else {
             response.setContentType("text/html; charset=euc-kr");
-            PrintWriter out = null;
-            out = response.getWriter();
+            PrintWriter out = response.getWriter();
             out.println("<script>alert('로그인 정보를 다시 입력해주세요.'); </script>");
             out.flush();
             return "001_Login";
