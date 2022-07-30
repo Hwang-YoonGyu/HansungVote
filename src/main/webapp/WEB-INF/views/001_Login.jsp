@@ -4,7 +4,8 @@
 <html lang="en">
 
 <head>
-    <title>loginPage</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/resources/img/codingquokka.png">
+    <title>한성대학교 온라인 투표 시스템</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

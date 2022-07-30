@@ -49,11 +49,19 @@ public class VoteController {
 
 
     @RequestMapping(value = "/votehome", method = RequestMethod.GET)
-    public String VoteHome(Locale locale, HttpServletRequest request) throws Exception {
+    public String VoteHome(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
 
         UserVO user = (UserVO) session.getAttribute("UserVO");
+        if (user == null) {
+            response.setContentType("text/html; charset=euc-kr");
+            PrintWriter out = null;
+            out = response.getWriter();
+            out.println("<script>alert('세션이 만료되었습니다. 다시 로그인해 주세요 :('); </script>");
+            out.flush();
 
+            return "redirect:/login";
+        }
         String department = user.getDepartment();
         System.out.println(department);
 
@@ -83,19 +91,24 @@ public class VoteController {
     @RequestMapping(value = "/voteDetail", method = RequestMethod.GET)
     public String VoteDetail(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
-        UserVO uVo = (UserVO)session.getAttribute("UserVO");
+        UserVO user = (UserVO)session.getAttribute("UserVO");
+        if (user == null) {
+            response.setContentType("text/html; charset=euc-kr");
+            PrintWriter out = null;
+            out = response.getWriter();
+            out.println("<script>alert('세션이 만료되었습니다. 다시 로그인해 주세요 :('); </script>");
+            out.flush();
 
-        String election = request.getParameter("election");
+            return "redirect:/login";
+        }
+
+        String election = request.getParameter("electionName");
         ElectionvotedVO evVo = new ElectionvotedVO();
-        evVo.setStuId(uVo.getStuid());
-        evVo.setName(uVo.getName());
-        evVo.setDepartment(uVo.getDepartment());
+        evVo.setStuId(user.getStuid());
+        evVo.setName(user.getName());
+        evVo.setDepartment(user.getDepartment());
         evVo.setElectionName(election);
         ElectionvotedVO wasVoted = evDao.wasVoted(evVo);
-
-
-
-
 
 
         if (wasVoted != null) {
@@ -105,27 +118,27 @@ public class VoteController {
             out.println("<script>alert('중복투표는 불가합니다.'); </script>");
             out.flush();
 
-            return "redirect:/votehome";
+            return "redirect:/vote/votehome";
         }
         List<CandidateVO> candiList = cDao.selectList(election);
         request.setAttribute("candiList", candiList);
 
 
-        return "003_Vote1";
+        return "004_Vote2";
     }
 
     @RequestMapping(value = "/DoVote", method = RequestMethod.POST)
-    public String DoVote(Locale locale, HttpServletRequest request, HttpServletResponse response, @RequestParam("CandidateName") String CandidateName, @RequestParam("ElectionName") String ElectionName) throws IOException {
+    public String DoVote(Locale locale, HttpServletRequest request, HttpServletResponse response, @RequestParam("CandidateName") String CandidateName, @RequestParam("ElectionName") String ElectionName) throws Exception {
         HttpSession session = request.getSession();
-        UserVO uVo = (UserVO)session.getAttribute("UserVO");
+        UserVO user = (UserVO)session.getAttribute("UserVO");
 
         ElectionvotedVO evVo = new ElectionvotedVO();
         evVo.setElectionName(ElectionName);
         evVo.setVotename(CandidateName);
-        evVo.setStuId(uVo.getStuid());
-        evVo.setName(uVo.getName());
+        evVo.setStuId(user.getStuid());
+        evVo.setName(user.getName());
 
-        //evDao.insertVote(evVo);
+        evDao.insertVote(evVo);
 
         response.setContentType("text/html; charset=euc-kr");
         PrintWriter out = null;
@@ -133,7 +146,7 @@ public class VoteController {
         out.println("<script>alert('투표가 완료 되었습니다. 감사합니다 :)'); </script>");
         out.flush();
 
-        return "redirect:/votehome";
+        return "redirect:/vote/votehome";
     }
 
 
