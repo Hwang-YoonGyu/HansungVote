@@ -54,13 +54,7 @@ public class VoteController {
 
         UserVO user = (UserVO) session.getAttribute("UserVO");
         if (user == null) {
-            response.setContentType("text/html; charset=euc-kr");
-            PrintWriter out = null;
-            out = response.getWriter();
-            out.println("<script>alert('세션이 만료되었습니다. 다시 로그인해 주세요 :('); </script>");
-            out.flush();
-
-            return "redirect:/login";
+            return sessionIsNull(response);
         }
         String department = user.getDepartment();
         System.out.println(department);
@@ -93,13 +87,7 @@ public class VoteController {
         HttpSession session = request.getSession();
         UserVO user = (UserVO)session.getAttribute("UserVO");
         if (user == null) {
-            response.setContentType("text/html; charset=euc-kr");
-            PrintWriter out = null;
-            out = response.getWriter();
-            out.println("<script>alert('세션이 만료되었습니다. 다시 로그인해 주세요 :('); </script>");
-            out.flush();
-
-            return "redirect:/login";
+            return sessionIsNull(response);
         }
 
         String election = request.getParameter("electionName");
@@ -120,6 +108,7 @@ public class VoteController {
 
             return "redirect:/vote/votehome";
         }
+
         List<CandidateVO> candiList = cDao.selectList(election);
         request.setAttribute("candiList", candiList);
 
@@ -131,6 +120,9 @@ public class VoteController {
     public String DoVote(Locale locale, HttpServletRequest request, HttpServletResponse response, @RequestParam("CandidateName") String CandidateName, @RequestParam("ElectionName") String ElectionName) throws Exception {
         HttpSession session = request.getSession();
         UserVO user = (UserVO)session.getAttribute("UserVO");
+        if (user == null) {
+            return sessionIsNull(response);
+        }
 
         ElectionvotedVO evVo = new ElectionvotedVO();
         evVo.setElectionName(ElectionName);
@@ -148,6 +140,15 @@ public class VoteController {
 
         return "redirect:/vote/votehome";
     }
+    //----------------------------------Method------------------------------------------------------------------------//
+    String sessionIsNull(HttpServletResponse response) throws IOException {
+        response.setContentType("text/html; charset=euc-kr");
+        PrintWriter out = null;
+        out = response.getWriter();
+        out.println("<script>alert('세션이 만료되었습니다. 다시 로그인해 주세요 :('); </script>");
+        out.flush();
 
+        return "redirect:/login";
+    }
 
 }

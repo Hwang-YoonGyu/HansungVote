@@ -57,7 +57,7 @@
             <div class="col-md-8 offset-md-2">
                 <div class="login-form bg-white mt-4 p-4 rounded">
                     <form action="" method="" class="row g-3">
-                        <span style="font-size: 20px;"> 선거 이름~~~~~~~~~~~</span>
+                        <span style="font-size: 20px;">${candiList[0].electionName}</span>
                         <hr class="mt-4">
 
                         <div class="container mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
@@ -65,25 +65,21 @@
                                 <span class="px-3" id="candidate" style="padding-top: 10px; font-size: 30px;">
                                     후보자 목록</span>
 
-
+                            <c:forEach items="${candiList}" var="CandidateVO" varStatus="status">
                             <div class="my-3" style="padding-top: 10px">
                                 <div class="card background-color white">
                                     <div class="row card-body">
 
                                         <div class="col-sm my-3" style="text-align: start">
-                                            <img src="/resources/img/zzang.png" width="300" height="400">
+                                            <img src="/getByteImage?number=${status.index}&electionName=${CandidateVO.electionName}" width="300" height="400">
                                         </div>
 
                                         <div class="col-sm my-3">
 
-                                            <h3 class="candidate"><b>기호 1번 장재영</b></h3>
+                                            <h3 class="candidate"><b>${CandidateVO.candidateName}</b></h3>
                                             <p>
                                                 <br>
-                                                후보자 설명~~~~~~~~~~~~
-                                                후보자 설명~~~~~~~~~~~~
-                                                후보자 설명~~~~~~~~~~~~
-                                                후보자 설명~~~~~~~~~~~~
-
+                                                ----------------후보자 설명-----------------
                                                 <br>
                                             </p>
                                         </div>
@@ -91,8 +87,7 @@
                                     </div>
                                 </div>
                             </div>
-
-
+                            </c:forEach>
                         </div>
 
 

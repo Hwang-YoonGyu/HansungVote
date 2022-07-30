@@ -144,7 +144,7 @@ public class HomeController {
     public ResponseEntity<byte[]> getByteImage(HttpServletRequest request) {// ResponseEntity는 HttpEntity를 상속받음으로써
         // HttpHeader와 body를 가질 수 있음
         int num = Integer.parseInt(request.getParameter("number"));
-        String election_name = request.getParameter("election_name");
+        String election_name = request.getParameter("electionName");
 
         List<CandidateVO> list = cDao.selectList(election_name);
         byte[] imageContent = list.get(num).getImage();

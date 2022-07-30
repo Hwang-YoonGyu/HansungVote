@@ -41,22 +41,6 @@
             height: 60px;
 
         }
-
-        /* .time_td {
-            background-color: white;
-        } */
-
-
-        /* body {
-            margin-bottom: 0;
-
-        } */
-        /*
-        div {
-            display: block;
-            margin: auto;
-            position: relative;
-        } */
     </style>
 </head>
 
@@ -67,22 +51,6 @@
 </header>
 
 <main>
-    <!-- <div class="container bg-white mt-4 p-4" style="width: 50%; margin: 0 auto; padding-top: 200px;">
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">홍길동의 참여 가능 투표 목록 </label>
-            <hr>
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">선거 단위</label>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>투표1</option>
-                <option value="1">투표2</option>
-                <option value="2">투표3</option>
-                <option value="3">투표4</option>
-            </select>
-        </div>
-    </div> -->
-
 
     <div class="container">
         <div class="row">
