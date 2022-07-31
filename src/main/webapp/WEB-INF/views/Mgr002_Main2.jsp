@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,6 +29,7 @@
             background-color: white;
             min-height: 500px;
         }
+
         footer {
             position: absolute;
             background-color: hsl(228, 26%, 96%);
@@ -48,6 +49,7 @@
             margin: auto;
             position: relative;
         }
+
         /* .voteimg {
             width: 30%;
             margin: 10px;
@@ -55,7 +57,7 @@
 
 
         } */
-        .wrapper{
+        .wrapper {
 
             display: block;
             justify-content: center;
@@ -66,47 +68,49 @@
     </style>
 
 
-
 </head>
 
 <body>
 
-    <header style="border-bottom: 1px solid hsl(0, 0%, 56%);">
-        <img src="/resources/img/Logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
+<header style="border-bottom: 1px solid hsl(0, 0%, 56%);">
+    <img src="/resources/img/Logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
 
-    </header>
+</header>
 
-    <main>
-        <div class="wrapper" style="margin-top: 250px;">
+<main>
+    <div class="wrapper" style="margin-top: 250px;">
 
-            <a href="#"><img class="rounded float-start" src="/resources/img/voteMgr3.png" style="width: 35%; margin-left: 200px;" onmouseenter="zoomIn(event)"
-                onmouseleave="zoomOut(event)" alt="투표 관리 바로가기"></a>
-            <a href="#"><img class="rounded float-end" src="/resources/img/voteMgr4.png"  style="width: 35%; margin-right: 200px;"onmouseenter="zoomIn(event)"
-                onmouseleave="zoomOut(event)" alt="설문조사 관리 바로가기"></a>
+        <a href="/manager/searchVote"><img class="rounded float-start" src="/resources/img/voteMgr3.png"
+                         style="width: 35%; margin-left: 200px;" onmouseenter="zoomIn(event)"
+                         onmouseleave="zoomOut(event)" alt="선거 개설 관리"></a>
+        <a href="/manager/createVote"><img class="rounded float-end" src="/resources/img/voteMgr4.png"
+                         style="width: 35%; margin-right: 200px;" onmouseenter="zoomIn(event)"
+                         onmouseleave="zoomOut(event)" alt="선거 현황"></a>
 
-        </div>
-    </main>
-
-    <div class="fixed-bottom">
-        <footer>
-            <div>
-                <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 1rem;">@2022 Team Coding Quokka All Rights Reserved</p>
-            </div>
-        </footer>
     </div>
-    <script>
-         function zoomIn(event) {
-    event.target.style.transform = "scale(1.2)";
-    event.target.style.zIndex = 1;
-    event.target.style.transition = "all 0.4s";
-  }
+</main>
 
-  function zoomOut(event) {
-    event.target.style.transform = "scale(1)";
-    event.target.style.zIndex = 0;
-    event.target.style.transition = "all 0.4s";
-  }
-      </script>
+<div class="fixed-bottom">
+    <footer>
+        <div>
+            <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 1rem;">@2022 Team Coding Quokka All Rights
+                Reserved</p>
+        </div>
+    </footer>
+</div>
+<script>
+    function zoomIn(event) {
+        event.target.style.transform = "scale(1.2)";
+        event.target.style.zIndex = 1;
+        event.target.style.transition = "all 0.4s";
+    }
+
+    function zoomOut(event) {
+        event.target.style.transform = "scale(1)";
+        event.target.style.zIndex = 0;
+        event.target.style.transition = "all 0.4s";
+    }
+</script>
 </body>
 
 </html>

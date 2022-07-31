@@ -1,8 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>voteSearchMgr</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/resources/img/codingquokka.png">
+    <title>한성대학교 온라인 투표 시스템</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -66,7 +69,7 @@
 
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
-                                    <a href="#"><button class="btn btn-primary" type="button" style="margin-bottom: 30px">투표 추가</button></a>
+                                    <a href="/manager/openVote"><button class="btn btn-primary" type="button" style="margin-bottom: 30px">투표 추가</button></a>
                                 </div>
 
 

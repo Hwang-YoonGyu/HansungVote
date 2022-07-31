@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 import javax.inject.Inject;
@@ -57,12 +59,11 @@ public class VoteController {
             return sessionIsNull(response);
         }
         String department = user.getDepartment();
-        System.out.println(department);
 
 
-        ElectionVO vo = new ElectionVO();
-        vo.setDepartment(department);
-        List<ElectionVO> electionList = eDao.SelectElection(vo);
+        ElectionVO evVo = new ElectionVO();
+        evVo.setDepartment(department);
+        List<ElectionVO> electionList = eDao.SelectElection(evVo);
         List<Float> votePercentageList = new ArrayList<Float>();
         List<Integer> voteRightCountList = new ArrayList<Integer>();
         for(ElectionVO e : electionList) {
@@ -70,7 +71,6 @@ public class VoteController {
             int votePercentage = evDao.turnout(e.getElectionName());
             votePercentageList.add((float)votePercentage/voteRightCount);
             voteRightCountList.add(voteRightCount);
-            System.out.println(votePercentage+"/"+voteRightCount+"="+(float)votePercentage/voteRightCount);
         }
 
         request.setAttribute("username", user.getName() + " (" + user.getStuid() + ")");
@@ -88,6 +88,15 @@ public class VoteController {
         UserVO user = (UserVO)session.getAttribute("UserVO");
         if (user == null) {
             return sessionIsNull(response);
+        }
+        if (LocalTime.now().getHour() < 9 || LocalTime.now().getHour() > 23) {
+            response.setContentType("text/html; charset=euc-kr");
+            PrintWriter out = null;
+            out = response.getWriter();
+            out.println("<script>alert('투표가능시간이 아닙니다'); </script>");
+            out.flush();
+
+            return "redirect:/vote/votehome";
         }
 
         String election = request.getParameter("electionName");

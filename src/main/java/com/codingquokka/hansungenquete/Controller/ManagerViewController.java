@@ -58,6 +58,41 @@ public class ManagerViewController {
             return abnormal(response);
         }
     }
+    @RequestMapping(value = "/createVote", method = RequestMethod.GET)
+    public String CreateVote(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        if (uVo != null) {
+            return "Mgr003_VoteSearch";
+        }
+        else {
+            return abnormal(response);
+        }
+    }
+    @RequestMapping(value = "/searchVote", method = RequestMethod.GET)
+    public String SearchVote(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        if (uVo != null) {
+            return "Mgr004_VoteOpen";
+        }
+        else {
+            return abnormal(response);
+        }
+    }
+    @RequestMapping(value = "/openVote", method = RequestMethod.GET)
+    public String OpenVote(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        if (uVo != null) {
+            return "Mgr004_VoteOpen";
+        }
+        else {
+            return abnormal(response);
+        }
+    }
+
+
     //----------------------------------Method------------------------------------------------------------------------//
     String sessionIsNull(HttpServletResponse response) throws IOException {
         response.setContentType("text/html; charset=euc-kr");

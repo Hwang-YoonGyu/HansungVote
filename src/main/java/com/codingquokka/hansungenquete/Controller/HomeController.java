@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -70,16 +73,18 @@ public class HomeController {
         uVo.setPassword(password);
 
         UserVO result = uDao.login(uVo);
-        HttpSession session = request.getSession();
-        session.setAttribute("UserVO", result);
 
         if (result != null) {
+
+            HttpSession session = request.getSession();
+            session.setAttribute("UserVO", result);
+
             if ("manager".equals(result.getStuid())) {
-                System.out.println(result.getStuid() + " " + result.getName() + " "+result.getDepartment() + " " + result.getPassword() +" "+result.getPhoneNumber());
+                System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login");
                 return "redirect:/manager/main";
 
             }
-            System.out.println(result.getStuid() + " " + result.getName() + " "+result.getDepartment() + " " + result.getPassword() +" "+result.getPhoneNumber());
+            System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login");
             return "redirect:/main";
         }
         else {
