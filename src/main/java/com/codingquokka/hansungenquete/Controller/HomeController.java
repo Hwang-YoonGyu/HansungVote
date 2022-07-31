@@ -87,7 +87,7 @@ public class HomeController {
             PrintWriter out = response.getWriter();
             out.println("<script>alert('로그인 정보를 다시 입력해주세요.'); </script>");
             out.flush();
-            return "001_Login";
+            return "redirect:/login";
         }
     }
 

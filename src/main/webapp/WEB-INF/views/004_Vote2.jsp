@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,47 +67,69 @@
                                     후보자 목록</span>
 
                             <c:forEach items="${candiList}" var="CandidateVO" varStatus="status">
-                            <div class="my-3" style="padding-top: 10px">
-                                <div class="card background-color white">
-                                    <div class="row card-body">
+                                <div class="my-3" style="padding-top: 10px">
+                                    <div class="card background-color white">
+                                        <div class="row card-body">
 
-                                        <div class="col-sm my-3" style="text-align: start">
-                                            <img src="/getByteImage?number=${status.index}&electionName=${CandidateVO.electionName}" width="300" height="400">
+                                            <div class="col-sm my-3" style="text-align: start">
+                                                <img src="/getByteImage?number=${status.index}&electionName=${CandidateVO.electionName}"
+                                                     width="300" height="400">
+                                            </div>
+
+                                            <div class="col-sm my-3">
+
+                                                <h3 class="candidate"><b>${CandidateVO.candidateName}</b></h3>
+                                                <p>
+                                                    <br>
+                                                    ----------------후보자 설명-----------------
+                                                    <br>
+                                                </p>
+                                            </div>
+
                                         </div>
-
-                                        <div class="col-sm my-3">
-
-                                            <h3 class="candidate"><b>${CandidateVO.candidateName}</b></h3>
-                                            <p>
-                                                <br>
-                                                ----------------후보자 설명-----------------
-                                                <br>
-                                            </p>
-                                        </div>
-
                                     </div>
                                 </div>
-                            </div>
                             </c:forEach>
                         </div>
 
 
                         <div class="container" style="text-align: center; padding-top: 10px;">
-                            <div class="form-check form-check-inline ">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                       id="inlineRadio1" value="option1">
-                                <p class="agree">찬성</p>
-                            </div>
-                            <div class="form-check form-check-inline" style="padding-left: 150px;">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                       id="inlineRadio2" value="option2">
-                                <p class="disagree">반대</p>
-                            </div>
-                            <div class="form-check form-check-inline" style="padding-left: 150px;">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                       id="inlineRadio3" value="option3">
-                                <p class="giveup">기권</p>
-                            </div>
+                                <c:choose>
+                                    <c:when test="${fn:length(candiList) < 2}">
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                   id="${candiList[0].candidateName}" value="option1">
+                                            <p class="agree">찬성</p>
+                                        </div>
+                                        <div class="form-check form-check-inline" style="padding-left: 150px;">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                   id="disagree" value="option2">
+                                            <p class="disagree">반대</p>
+                                        </div>
+                                        <div class="form-check form-check-inline" style="padding-left: 150px;">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                   id="inject" value="option3">
+                                            <p class="giveup">기권</p>
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:forEach items="${candiList}" var="CandidateVO" varStatus="status">
+                                            <div class="form-check form-check-inline ">
+                                                <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                       id="${status.index}" value="option${status.index}">
+                                                <p class="agree">${candiList[status.index].candidateName}</p>
+                                            </div>
+                                        </c:forEach>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                                   id="inject" value="option${fn:length(candiList)}">
+                                            <p class="agree">기권</p>
+                                        </div>
+                                    </c:otherwise>
+                                </c:choose>
+
+
+
                         </div>
 
 
