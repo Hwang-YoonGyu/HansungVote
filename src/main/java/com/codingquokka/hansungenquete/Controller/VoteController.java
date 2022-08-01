@@ -1,10 +1,7 @@
 package com.codingquokka.hansungenquete.Controller;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
@@ -13,24 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.codingquokka.hansungenquete.*;
 import com.codingquokka.hansungenquete.domain.*;
 
 @RequestMapping("/vote")
@@ -63,7 +47,7 @@ public class VoteController {
 
         ElectionVO evVo = new ElectionVO();
         evVo.setDepartment(department);
-        List<ElectionVO> electionList = eDao.SelectElection(evVo);
+        List<ElectionVO> electionList = eDao.selectElection(evVo);
         List<Float> votePercentageList = new ArrayList<Float>();
         List<Integer> voteRightCountList = new ArrayList<Integer>();
         for(ElectionVO e : electionList) {
@@ -89,14 +73,14 @@ public class VoteController {
         if (user == null) {
             return sessionIsNull(response);
         }
-        if (LocalTime.now().getHour() < 9 || LocalTime.now().getHour() > 23) {
+        if (LocalTime.now().getHour() < 9 || LocalTime.now().getHour() >  23) {
             response.setContentType("text/html; charset=euc-kr");
             PrintWriter out = null;
             out = response.getWriter();
-            out.println("<script>alert('투표가능시간이 아닙니다'); </script>");
+            out.println("<script>alert('투표가능시간이 아닙니다');" +
+                    "location.href = \"/vote/votehome\";" +
+                    "</script>");
             out.flush();
-
-            return "redirect:/vote/votehome";
         }
 
         String election = request.getParameter("electionName");
@@ -112,10 +96,10 @@ public class VoteController {
             response.setContentType("text/html; charset=euc-kr");
             PrintWriter out = null;
             out = response.getWriter();
-            out.println("<script>alert('중복투표는 불가합니다.'); </script>");
+            out.println("<script>alert('중복투표는 불가합니다');" +
+                    "location.href = \"/vote/votehome\";" +
+                    "</script>");
             out.flush();
-
-            return "redirect:/vote/votehome";
         }
 
         List<CandidateVO> candiList = cDao.selectList(election);
@@ -125,7 +109,7 @@ public class VoteController {
         return "004_Vote2";
     }
 
-    @RequestMapping(value = "/DoVote", method = RequestMethod.POST)
+    @RequestMapping(value = "/doVote", method = RequestMethod.POST)
     public String DoVote(Locale locale, HttpServletRequest request, HttpServletResponse response, @RequestParam("CandidateName") String CandidateName, @RequestParam("ElectionName") String ElectionName) throws Exception {
         HttpSession session = request.getSession();
         UserVO user = (UserVO)session.getAttribute("UserVO");
@@ -144,20 +128,23 @@ public class VoteController {
         response.setContentType("text/html; charset=euc-kr");
         PrintWriter out = null;
         out = response.getWriter();
-        out.println("<script>alert('투표가 완료 되었습니다. 감사합니다 :)'); </script>");
+        out.println("<script>alert('투표가 완료되었습니다. 감사합니다 :)');" +
+                "location.href = \"/vote/votehome\";" +
+                "</script>");
         out.flush();
-
-        return "redirect:/vote/votehome";
+        return "redirect:/vote/votehome";//가라 return
     }
     //----------------------------------Method------------------------------------------------------------------------//
     String sessionIsNull(HttpServletResponse response) throws IOException {
         response.setContentType("text/html; charset=euc-kr");
         PrintWriter out = null;
         out = response.getWriter();
-        out.println("<script>alert('세션이 만료되었습니다. 다시 로그인해 주세요 :('); </script>");
+        out.println("<script>alert('세션이 만료되었습니다. 다시 로그인해 주세요 :(');" +
+                "location.href = \"/login\";" +
+                "</script>");
         out.flush();
 
-        return "redirect:/login";
+        return "redirect:/login";//가라 return
     }
 
 }

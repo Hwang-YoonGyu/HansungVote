@@ -80,10 +80,10 @@
 <main>
     <div class="wrapper" style="margin-top: 250px;">
 
-        <a href="/manager/searchVote"><img class="rounded float-start" src="/resources/img/voteMgr3.png"
+        <a href="/manager/createAndModifyVote"><img class="rounded float-start" src="/resources/img/voteMgr3.png"
                          style="width: 35%; margin-left: 200px;" onmouseenter="zoomIn(event)"
                          onmouseleave="zoomOut(event)" alt="선거 개설 관리"></a>
-        <a href="/manager/createVote"><img class="rounded float-end" src="/resources/img/voteMgr4.png"
+        <a href="/manager/searchVote"><img class="rounded float-end" src="/resources/img/voteMgr4.png"
                          style="width: 35%; margin-right: 200px;" onmouseenter="zoomIn(event)"
                          onmouseleave="zoomOut(event)" alt="선거 현황"></a>
 

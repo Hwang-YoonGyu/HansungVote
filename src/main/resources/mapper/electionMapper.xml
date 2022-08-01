@@ -15,6 +15,11 @@
            or department = "";
     </select>
 
+    <select id="selectElectionAll" parameterType="com.codingquokka.hansungenquete.domain.ElectionVO" resultType="com.codingquokka.hansungenquete.domain.ElectionVO">
+        select *
+        from election;
+    </select>
+
     <insert id = "insertElection" parameterType="com.codingquokka.hansungenquete.domain.ElectionvotedVO">
         insert into election(electionName, startDate, endDate, explain, department)
         values (#{electionName}, #{startDate}, #{endDate}, #{explain}, #{department});

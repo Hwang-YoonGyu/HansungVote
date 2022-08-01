@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -42,7 +43,7 @@ import com.codingquokka.hansungenquete.domain.*;
 
 @Controller
 public class HomeController {
-    //ServerLog temp = ServerLog.instance;
+    //ServerLog logger = ServerLog.instance;
 
     @Inject
     private CandidateDAO cDao;
@@ -81,16 +82,20 @@ public class HomeController {
 
             if ("manager".equals(result.getStuid())) {
                 System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login");
+                //logger.WriteLog(LocalDateTime.now().toString(), result.getStuid() + " " + result.getName()+" login");
                 return "redirect:/manager/main";
 
             }
             System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login");
+            //logger.WriteLog(LocalDateTime.now().toString(), result.getStuid() + " " + result.getName()+" login");
             return "redirect:/main";
         }
         else {
             response.setContentType("text/html; charset=euc-kr");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('로그인 정보를 다시 입력해주세요.'); </script>");
+            out.println("<script>alert('로그인 정보를 다시 확인해주세요');" +
+                    "location.href = \"/login\";" +
+                    "</script>");
             out.flush();
             return "redirect:/login";
         }

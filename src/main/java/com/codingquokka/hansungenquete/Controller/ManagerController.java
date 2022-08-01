@@ -11,10 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @RequestMapping("/manager")
 @Controller
-public class ManagerViewController {
+public class ManagerController {
 
     @Inject
     private CandidateDAO cDao;
@@ -52,18 +53,33 @@ public class ManagerViewController {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null) {
-            return "Mgr002_Main2";
+            if (uVo.getStuid().equals("manager")) {
+                return "Mgr002_Main2";
+
+            }
+            else {
+                return abnormal(response);
+            }
         }
         else {
             return abnormal(response);
         }
     }
-    @RequestMapping(value = "/createVote", method = RequestMethod.GET)
-    public String CreateVote(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @RequestMapping(value = "/createAndModifyVote", method = RequestMethod.GET)
+    public String CreateVote(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null) {
-            return "Mgr003_VoteSearch";
+            if (uVo.getStuid().equals("manager")) {
+
+                List<ElectionVO> eList = eDao.selectElectionAll();
+                request.setAttribute("electionList", eList);
+
+                return "Mgr004_createAndModify";
+            }
+            else {
+                return abnormal(response);
+            }
         }
         else {
             return abnormal(response);
@@ -74,7 +90,13 @@ public class ManagerViewController {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null) {
-            return "Mgr004_VoteOpen";
+            if (uVo.getStuid().equals("manager")) {
+                return "Mgr003_VoteSearch";
+
+            }
+            else {
+                return abnormal(response);
+            }
         }
         else {
             return abnormal(response);
@@ -85,7 +107,13 @@ public class ManagerViewController {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null) {
-            return "Mgr004_VoteOpen";
+            if (uVo.getStuid().equals("manager")) {
+                return "Mgr004_createAndModify";
+
+            }
+            else {
+                return abnormal(response);
+            }
         }
         else {
             return abnormal(response);
@@ -98,7 +126,9 @@ public class ManagerViewController {
         response.setContentType("text/html; charset=euc-kr");
         PrintWriter out = null;
         out = response.getWriter();
-        out.println("<script>alert('세션이 만료되었습니다. 다시 로그인해 주세요 :('); </script>");
+        out.println("<script>alert('세션이 만료되었습니다. 다시 로그인해 주세요 :(');" +
+                "location.href = \"/login\";" +
+                "</script>");
         out.flush();
 
         return "redirect:/login";
@@ -107,7 +137,9 @@ public class ManagerViewController {
         response.setContentType("text/html; charset=euc-kr");
         PrintWriter out = null;
         out = response.getWriter();
-        out.println("<script>alert('비정상적인 접근입니다 :('); </script>");
+        out.println("<script>alert('비정상적인 접근입니다.');" +
+                "location.href = \"/login\";" +
+                "</script>");
         out.flush();
         return "redirect:/login";
     }

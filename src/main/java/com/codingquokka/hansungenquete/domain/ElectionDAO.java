@@ -14,8 +14,12 @@ public class ElectionDAO {
 	SqlSession sqlSession;
 	
 	private static String namespace = "mapper.electionMapper";
-	public List<ElectionVO> SelectElection(ElectionVO vo) throws Exception {
+	public List<ElectionVO> selectElection(ElectionVO vo) throws Exception {
 		return sqlSession.selectList(namespace + ".selectElection", vo);
+	}
+
+	public List<ElectionVO> selectElectionAll() throws Exception {
+		return sqlSession.selectList(namespace + ".selectElectionAll");
 	}
 
 	public void insertUser(ElectionvotedVO vo) throws Exception {

@@ -5,12 +5,15 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.defaults.DefaultSqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+@SuppressWarnings("ALL")
 @Repository
 public class ElectionvotedDAO {
 	
-	@Inject 
+	@Inject
 	SqlSession sqlSession;
 	
 	private static String namespace = "mapper.electionvotedMapper";

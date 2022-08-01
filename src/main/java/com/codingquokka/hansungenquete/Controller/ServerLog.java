@@ -1,6 +1,12 @@
 package com.codingquokka.hansungenquete.Controller;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -35,14 +41,13 @@ class ManagerFile implements Runnable {
             LocalTime now = LocalTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm");
             int formatedNow = Integer.parseInt(now.format(formatter));
-            if (formatedNow % 5 == 0 ) {
+            if (formatedNow % 2 == 0) {
                 if (!ServerLog.instance.SaveSwitch) {
                     Thread t = new Thread(new FileOut(ServerLog.instance.list));
                     t.start();
                     ServerLog.instance.SaveSwitch = true;
                 }
-            }
-            else {
+            } else {
                 ServerLog.instance.SaveSwitch = false;
 
             }
@@ -58,6 +63,24 @@ class FileOut implements Runnable {
     public void run() {
         synchronized (list) {
             System.out.println("Auto Save doing");
+            try {
+
+                File file = new File("C:\\\\Users\\\\NCL-NT-0162\\\\Desktop\\\\log.txt");
+                if (!file.exists()) {
+                    file.createNewFile();
+                }
+                FileWriter fw = null;
+                fw = new FileWriter(file, true);
+
+                BufferedWriter writer = new BufferedWriter(fw);
+                for (String s: list) {
+                    writer.write(s+"\n");
+                }
+                list.clear();
+                writer.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
 
             System.out.println("Save Done");
         }
