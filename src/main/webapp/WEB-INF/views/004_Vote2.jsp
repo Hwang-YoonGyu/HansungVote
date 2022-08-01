@@ -28,7 +28,7 @@
 
         main {
             background-color: hsl(228, 26%, 96%);
-            min-height: 1000px;
+            min-height: ${1000 +(fn:length(candiList)-1)*500}px;
             margin-top: 100px;
 
         }
