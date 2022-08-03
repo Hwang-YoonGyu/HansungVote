@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  import="com.codingquokka.hansungenquete.domain.UserVO" %> %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
+         import="com.codingquokka.hansungenquete.domain.UserVO" %>
+%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -69,10 +71,11 @@
 
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
-                                <a href="/manager/openVote">
-                                    <button class="btn btn-primary" type="button" style="margin-bottom: 30px">투표 추가
-                                    </button>
-                                </a>
+
+                                <button onclick="location.href ='/manager/modifyEletion'" class="btn btn-primary"
+                                        type="button" style="margin-bottom: 30px">투표 추가
+                                </button>
+
                             </div>
 
 
@@ -92,24 +95,28 @@
                                         style="background-color:hsl(0, 0%, 41%) ; color: white;">종료날짜
                                     </th>
                                     <th class="rounded-end" scope="col"
-                                        style="background-color:hsl(0, 0%, 41%); color: white;">투표수정
+                                        style="background-color:hsl(0, 0%, 41%); color: white;">투표수정 및 조회
                                     </th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <c:forEach items="${electionList}" var="ElectionVO" varStatus="status">
                                     <tr>
-                                        <c:set var="start"><fmt:formatDate value="${ElectionVO.startDate}" pattern="yyyy-MM-dd HH:mm" /></c:set>
-                                        <c:set var="end"><fmt:formatDate value="${ElectionVO.endDate}" pattern="yyyy-MM-dd HH:mm" /></c:set>
+                                        <c:set var="start"><fmt:formatDate value="${ElectionVO.startDate}"
+                                                                           pattern="yyyy-MM-dd HH:mm"/></c:set>
+                                        <c:set var="end"><fmt:formatDate value="${ElectionVO.endDate}"
+                                                                         pattern="yyyy-MM-dd HH:mm"/></c:set>
                                         <td style="background-color: white;">${ElectionVO.department}</td>
                                         <td style="background-color: white;">${ElectionVO.electionName}</td>
                                         <td style="background-color: white;">${start}</td>
                                         <td style="background-color: white;">${end}</td>
                                         <td style="background-color: white;">
-                                            <button type="button"
+                                            <button onclick="location.href ='/manager/modifyEletion?electionName=${ElectionVO.electionName}'"
+                                                    type="button"
                                                     class="btn btn-outline-primary btn-sm">수정
                                             </button>
-                                            <button onclick="/showTurnOutList" type="button"
+                                            <button onclick="location.href ='/manager/showTurnOutList?electionName=${ElectionVO.electionName}'"
+                                                    type="button"
                                                     class="btn btn-outline-primary btn-sm">조회
                                             </button>
                                         </td>

@@ -54,17 +54,17 @@ public class HomeController {
         return "redirect:/login";
     }
     @RequestMapping(value = "/main", method = RequestMethod.GET)
-    public String Lobby(HttpServletRequest request) {
+    public String main(HttpServletRequest request) {
         return "002_Main";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String Login(HttpServletRequest request) {
+    public String login(HttpServletRequest request) {
         return "001_Login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String Login(@RequestParam("stu_id") String stu_id, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String login(@RequestParam("stu_id") String stu_id, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         UserVO uVo = new UserVO();
         uVo.setStuid(stu_id);
@@ -159,19 +159,6 @@ public class HomeController {
         headers.setContentType(MediaType.IMAGE_PNG); // 미디어 타입을 나타내기 위한 헤더(헤더는 클라이언트와 서버가 요청 또는 응답으로 부가적인 정보를 전송할 수 있게
         // 해줌)
         return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/getUserTest", method = RequestMethod.GET)
-    public ResponseEntity<List<UserVO>> getRightUserCount(HttpServletRequest request) throws Exception {// ResponseEntity는 HttpEntity를 상속받음으로써
-        // HttpHeader와 body를 가질 수 있음
-        System.out.println("왔다");
-        String election_name = request.getParameter("electionName");
-
-        List<UserVO> list = uDao.allUser();
-        final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_PNG); // 미디어 타입을 나타내기 위한 헤더(헤더는 클라이언트와 서버가 요청 또는 응답으로 부가적인 정보를 전송할 수 있게
-        // 해줌)
-        return new ResponseEntity<List<UserVO>>(list, headers, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/view", method = RequestMethod.GET)

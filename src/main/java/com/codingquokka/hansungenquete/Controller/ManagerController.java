@@ -30,7 +30,7 @@ public class ManagerController {
     private UserDAO uDao;
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
-    public String MgrLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String main(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null) {
@@ -49,7 +49,7 @@ public class ManagerController {
 
     }
     @RequestMapping(value = "/vote", method = RequestMethod.GET)
-    public String MgrMain(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String vote(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null) {
@@ -67,7 +67,7 @@ public class ManagerController {
     }
 
     @RequestMapping(value = "/viewVote", method = RequestMethod.GET)
-    public String SearchVote(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String viewVote(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null) {
@@ -86,11 +86,31 @@ public class ManagerController {
         }
     }
     @RequestMapping(value = "/showTurnOutList", method = RequestMethod.GET)
-    public String OpenVote(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String showTurnOutList(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null) {
             if (uVo.getStuid().equals("manager")) {
+                return "Mgr003_showTurnOutList";
+
+            }
+            else {
+                return abnormal(response);
+            }
+        }
+        else {
+            return abnormal(response);
+        }
+    }
+
+    @RequestMapping(value = "/modifyElection", method = RequestMethod.GET)
+    public String modifyElection(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        if (uVo != null) {
+            if (uVo.getStuid().equals("manager")) {
+
+
                 return "Mgr003_showTurnOutList";
 
             }

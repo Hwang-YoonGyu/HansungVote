@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-         import="com.codingquokka.hansungenquete.domain.ElectionVO" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="com.codingquokka.hansungenquete.domain.ElectionVO" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -110,15 +111,10 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td style="background-color: white;">7/20 10:00</td>
-                                    <td style="background-color: white;">7/21 23:00</td>
+                                    <td id="startDate" style="background-color: white;">${electionList[0].startDate}</td>
+                                    <td id="endDate" style="background-color: white;">${electionList[0].endDate}</td>
 
                                 </tr>
-                                <tr>
-                                    <td style="background-color: white;">7/20 10:00</td>
-                                    <td style="background-color: white;">7/21 23:00</td>
-                                </tr>
-
                                 </tbody>
                             </table>
 
@@ -187,10 +183,14 @@
 
             var select = document.getElementById("select");
             var index = select.selectedIndex;
+
+
             var vote = document.getElementById("vote");
             var person = document.getElementById("person");
             var electionName = document.getElementById("election_name");
             var detailButton = document.getElementById("DetailButton");
+            var startDate = document.getElementById("startDate");
+            var endDate = document.getElementById("endDate");
 
 
             vote.innerHTML = votePercentageList[index];
