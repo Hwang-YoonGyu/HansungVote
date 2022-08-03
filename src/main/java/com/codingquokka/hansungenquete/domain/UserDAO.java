@@ -1,14 +1,11 @@
 package com.codingquokka.hansungenquete.domain;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.codingquokka.hansungenquete.domain.*;
-
+import java.util.List;
 
 @Repository
 public class UserDAO {
@@ -24,9 +21,12 @@ public class UserDAO {
 	}
 	
 	//총유권자수 계산
-	public int totalvoters(String department) throws Exception {
+	public int totalVoters(String department) throws Exception {
 		int num = sqlSession.selectOne(namespace+".totalvoters", department);
 		return num;
+	}
+	public List<UserVO> allUser() throws Exception {
+		return sqlSession.selectList(namespace+".allUser");
 	}
 	public void insertUser(ElectionvotedVO vo) throws Exception {
 		sqlSession.insert(namespace + ".insertUser", vo);

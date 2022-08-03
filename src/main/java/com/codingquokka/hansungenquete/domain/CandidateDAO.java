@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CandidateDAO {
 	
-	@Inject 
+	@Inject
 	SqlSession sqlSession;
 	
 	private static String namespace = "mapper.candidateMapper";

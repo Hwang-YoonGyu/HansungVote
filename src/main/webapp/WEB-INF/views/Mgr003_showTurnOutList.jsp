@@ -63,8 +63,8 @@
                         <hr class="mt-4">
                         <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
                             padding-top: 10px; padding-bottom: 10px;">
-                            <label for="exampleFormControlTextarea1" class="form-label">선거 단위</label>
-                            <select onchange="showValue(this)" class="form-select"
+                            <label class="form-label">선거 단위</label>
+                            <select onchange="changeList()" class="form-select"
                                     aria-label="Default select example">
                                 <a href="#">
                                     <option selected>투표1</option>
@@ -111,7 +111,7 @@ padding-top: 10px; padding-bottom: 60px;">
                                         </th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="targetTable">
                                     <tr>
                                         <td style="background-color: white;">1971441</td>
                                         <td style="background-color: white;">임수빈</td>
@@ -138,6 +138,11 @@ padding-top: 10px; padding-bottom: 60px;">
 
 </main>
 
+<script>
+    function changeList() {
+    }
+
+</script>
 <div class="fixed-bottom">
     <footer>
         <div>

@@ -5,11 +5,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.defaults.DefaultSqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@SuppressWarnings("ALL")
 @Repository
 public class ElectionvotedDAO {
 	
@@ -24,7 +21,7 @@ public class ElectionvotedDAO {
 	}
 	
 	//득표율 계산 
-	public int votepercentage(ElectionvotedVO vo) throws Exception{
+	public int votePercentage(ElectionvotedVO vo) throws Exception{
 		int num = sqlSession.selectOne(namespace+".votepercentage",vo);
 		return num;
 	}

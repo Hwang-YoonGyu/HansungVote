@@ -40,7 +40,7 @@ public class VoteController {
 
         UserVO user = (UserVO) session.getAttribute("UserVO");
         if (user == null) {
-            return sessionIsNull(response);
+            sessionIsNull(response);
         }
         String department = user.getDepartment();
 
@@ -51,7 +51,7 @@ public class VoteController {
         List<Float> votePercentageList = new ArrayList<Float>();
         List<Integer> voteRightCountList = new ArrayList<Integer>();
         for(ElectionVO e : electionList) {
-            int voteRightCount = uDao.totalvoters(e.getDepartment());
+            int voteRightCount = uDao.totalVoters(e.getDepartment());
             int votePercentage = evDao.turnout(e.getElectionName());
             votePercentageList.add((float)votePercentage/voteRightCount);
             voteRightCountList.add(voteRightCount);
@@ -71,7 +71,7 @@ public class VoteController {
         HttpSession session = request.getSession();
         UserVO user = (UserVO)session.getAttribute("UserVO");
         if (user == null) {
-            return sessionIsNull(response);
+            sessionIsNull(response);
         }
         if (LocalTime.now().getHour() < 9 || LocalTime.now().getHour() >  23) {
             response.setContentType("text/html; charset=euc-kr");
@@ -110,11 +110,11 @@ public class VoteController {
     }
 
     @RequestMapping(value = "/doVote", method = RequestMethod.POST)
-    public String DoVote(Locale locale, HttpServletRequest request, HttpServletResponse response, @RequestParam("CandidateName") String CandidateName, @RequestParam("ElectionName") String ElectionName) throws Exception {
+    public void DoVote(Locale locale, HttpServletRequest request, HttpServletResponse response, @RequestParam("CandidateName") String CandidateName, @RequestParam("ElectionName") String ElectionName) throws Exception {
         HttpSession session = request.getSession();
         UserVO user = (UserVO)session.getAttribute("UserVO");
         if (user == null) {
-            return sessionIsNull(response);
+            sessionIsNull(response);
         }
 
         ElectionvotedVO evVo = new ElectionvotedVO();
@@ -132,10 +132,9 @@ public class VoteController {
                 "location.href = \"/vote/votehome\";" +
                 "</script>");
         out.flush();
-        return "redirect:/vote/votehome";//가라 return
     }
     //----------------------------------Method------------------------------------------------------------------------//
-    String sessionIsNull(HttpServletResponse response) throws IOException {
+    void sessionIsNull(HttpServletResponse response) throws IOException {
         response.setContentType("text/html; charset=euc-kr");
         PrintWriter out = null;
         out = response.getWriter();
@@ -143,8 +142,6 @@ public class VoteController {
                 "location.href = \"/login\";" +
                 "</script>");
         out.flush();
-
-        return "redirect:/login";//가라 return
     }
 
 }

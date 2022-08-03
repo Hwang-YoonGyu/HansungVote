@@ -49,12 +49,12 @@ public class ManagerController {
 
     }
     @RequestMapping(value = "/vote", method = RequestMethod.GET)
-    public String MgrMain(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String MgrMain(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null) {
             if (uVo.getStuid().equals("manager")) {
-                return "Mgr002_Main2";
+                return "Mgr003_showTurnOutList";
 
             }
             else {
@@ -65,33 +65,16 @@ public class ManagerController {
             return abnormal(response);
         }
     }
-    @RequestMapping(value = "/createAndModifyVote", method = RequestMethod.GET)
-    public String CreateVote(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+    @RequestMapping(value = "/viewVote", method = RequestMethod.GET)
+    public String SearchVote(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null) {
             if (uVo.getStuid().equals("manager")) {
-
                 List<ElectionVO> eList = eDao.selectElectionAll();
                 request.setAttribute("electionList", eList);
-
-                return "Mgr004_createAndModify";
-            }
-            else {
-                return abnormal(response);
-            }
-        }
-        else {
-            return abnormal(response);
-        }
-    }
-    @RequestMapping(value = "/searchVote", method = RequestMethod.GET)
-    public String SearchVote(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HttpSession session = request.getSession();
-        UserVO uVo = (UserVO) session.getAttribute("UserVO");
-        if (uVo != null) {
-            if (uVo.getStuid().equals("manager")) {
-                return "Mgr003_VoteSearch";
+                return "Mgr002_ViewVote";
 
             }
             else {
@@ -102,13 +85,13 @@ public class ManagerController {
             return abnormal(response);
         }
     }
-    @RequestMapping(value = "/openVote", method = RequestMethod.GET)
+    @RequestMapping(value = "/showTurnOutList", method = RequestMethod.GET)
     public String OpenVote(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null) {
             if (uVo.getStuid().equals("manager")) {
-                return "Mgr004_createAndModify";
+                return "Mgr003_showTurnOutList";
 
             }
             else {

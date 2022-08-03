@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"  import="com.codingquokka.hansungenquete.domain.UserVO" %> %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,20 +98,23 @@
                                 </thead>
                                 <tbody>
                                 <c:forEach items="${electionList}" var="ElectionVO" varStatus="status">
-                                <tr>
-                                    <c:set var="start"><fmt:formatDate value="${ElectionVO.startDate}" pattern="yyyy-MM-dd HH:mm" /></c:set>
-                                    <c:set var="end"><fmt:formatDate value="${ElectionVO.endDate}" pattern="yyyy-MM-dd HH:mm" /></c:set>
-                                    <td style="background-color: white;">${ElectionVO.department}</td>
-                                    <td style="background-color: white;">${ElectionVO.electionName}</td>
-                                    <td style="background-color: white;">${start}</td>
-                                    <td style="background-color: white;">${end}</td>
-                                    <td style="background-color: white;">
-                                        <button type="button"
-                                                class="btn btn-outline-primary btn-sm">수정
-                                        </button>
-                                    </td>
+                                    <tr>
+                                        <c:set var="start"><fmt:formatDate value="${ElectionVO.startDate}" pattern="yyyy-MM-dd HH:mm" /></c:set>
+                                        <c:set var="end"><fmt:formatDate value="${ElectionVO.endDate}" pattern="yyyy-MM-dd HH:mm" /></c:set>
+                                        <td style="background-color: white;">${ElectionVO.department}</td>
+                                        <td style="background-color: white;">${ElectionVO.electionName}</td>
+                                        <td style="background-color: white;">${start}</td>
+                                        <td style="background-color: white;">${end}</td>
+                                        <td style="background-color: white;">
+                                            <button type="button"
+                                                    class="btn btn-outline-primary btn-sm">수정
+                                            </button>
+                                            <button onclick="/showTurnOutList" type="button"
+                                                    class="btn btn-outline-primary btn-sm">조회
+                                            </button>
+                                        </td>
 
-                                </tr>
+                                    </tr>
                                 </c:forEach>
                                 </tbody>
                             </table>

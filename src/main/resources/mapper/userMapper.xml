@@ -21,6 +21,13 @@
 		where department like CONCAT('%',#{department},'%');
 	</select>
 
+	<select id="allUser" resultType="com.codingquokka.hansungenquete.domain.UserVO">
+		select *
+		from user;
+
+	</select>
+
+
 	<insert id = "insertUser" parameterType="com.codingquokka.hansungenquete.domain.ElectionvotedVO">
 		insert into user(stuId, name, password, phoneNumber, department)
 		values (#{stuId}, #{name}, #{password}, #{phoneNumber}, #{department});

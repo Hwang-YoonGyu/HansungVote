@@ -9,10 +9,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ElectionDAO {
-	
-	@Inject 
+
+	@Inject
 	SqlSession sqlSession;
-	
+
+
 	private static String namespace = "mapper.electionMapper";
 	public List<ElectionVO> selectElection(ElectionVO vo) throws Exception {
 		return sqlSession.selectList(namespace + ".selectElection", vo);

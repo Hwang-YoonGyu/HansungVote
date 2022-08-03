@@ -3,17 +3,12 @@ package com.codingquokka.hansungenquete.Controller;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +19,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.xmlbeans.impl.xb.xsdschema.Attribute;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,7 +31,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.codingquokka.hansungenquete.*;
 import com.codingquokka.hansungenquete.domain.*;
 
 
@@ -49,7 +42,11 @@ public class HomeController {
     private CandidateDAO cDao;
 
     @Inject
-    UserDAO uDao;
+    private UserDAO uDao;
+
+    @Inject
+    private  ElectionvotedDAO evDao;
+
 
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -162,6 +159,19 @@ public class HomeController {
         headers.setContentType(MediaType.IMAGE_PNG); // 미디어 타입을 나타내기 위한 헤더(헤더는 클라이언트와 서버가 요청 또는 응답으로 부가적인 정보를 전송할 수 있게
         // 해줌)
         return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/getUserTest", method = RequestMethod.GET)
+    public ResponseEntity<List<UserVO>> getRightUserCount(HttpServletRequest request) throws Exception {// ResponseEntity는 HttpEntity를 상속받음으로써
+        // HttpHeader와 body를 가질 수 있음
+        System.out.println("왔다");
+        String election_name = request.getParameter("electionName");
+
+        List<UserVO> list = uDao.allUser();
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.IMAGE_PNG); // 미디어 타입을 나타내기 위한 헤더(헤더는 클라이언트와 서버가 요청 또는 응답으로 부가적인 정보를 전송할 수 있게
+        // 해줌)
+        return new ResponseEntity<List<UserVO>>(list, headers, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/view", method = RequestMethod.GET)
