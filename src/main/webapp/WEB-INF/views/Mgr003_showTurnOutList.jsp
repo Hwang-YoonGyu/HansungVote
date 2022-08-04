@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -95,7 +96,16 @@ padding-top: 10px; padding-bottom: 60px;">
                                             <td style="background-color: white;">${map.name}</td>
                                             <td style="background-color: white;">${map.phoneNumber}</td>
                                             <td style="background-color: white;">${map.password}</td>
-                                            <td style="background-color: white;">${map.voteName}</td>
+
+                                            <c:choose>
+                                                <c:when test="${fn:length(map.voteName) eq 0}">
+                                                    <td style="background-color: white;">X</td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td style="background-color: white;">O</td>
+                                                </c:otherwise>
+                                            </c:choose>
+
                                         </tr>
                                     </c:forEach>
 
