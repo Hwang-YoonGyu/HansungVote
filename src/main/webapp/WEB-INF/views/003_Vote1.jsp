@@ -111,8 +111,10 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td id="startDate" style="background-color: white;">${electionList[0].startDate}</td>
-                                    <td id="endDate" style="background-color: white;">${electionList[0].endDate}</td>
+                                    <c:set var="startset"><fmt:formatDate value="${electionList[0].startDate}" pattern="yyyy-MM-dd HH:mm"/></c:set>
+                                    <c:set var="endset"><fmt:formatDate value="${electionList[0].endDate}" pattern="yyyy-MM-dd HH:mm"/></c:set>
+                                    <td id="startDate" style="background-color: white;">${startset}</td>
+                                    <td id="endDate" style="background-color: white;">${endset}</td>
 
                                 </tr>
                                 </tbody>
@@ -177,6 +179,20 @@
         </div>
     </div>
     <script>
+        var list = [
+            <c:forEach var = "ElectionVO" items="${electionList}" varStatus="status">
+            {
+                <c:set var="start"><fmt:formatDate value="${ElectionVO.startDate}" pattern="yyyy-MM-dd HH:mm"/></c:set>
+                <c:set var="end"><fmt:formatDate value="${ElectionVO.endDate}" pattern="yyyy-MM-dd HH:mm"/></c:set>
+                electionName : "${ElectionVO.electionName}",
+                startDate : "${start}",
+                endDate : "${end}",
+                explain : "${ElectionVO.explain}",
+                department : "${ElectionVO.department}"
+            },
+            </c:forEach>
+        ];
+
         function getIndex() {
             var votePercentageList = ${votePercentageList};
             var voteRightCountList = ${voteRightCountList};
@@ -192,7 +208,8 @@
             var startDate = document.getElementById("startDate");
             var endDate = document.getElementById("endDate");
 
-
+            startDate.innerHTML = list[index].startDate;
+            endDate.innerHTML = list[index].endDate;
             vote.innerHTML = votePercentageList[index];
             person.innerHTML = voteRightCountList[index];
             electionName.innerHTML = select.options[index].value;

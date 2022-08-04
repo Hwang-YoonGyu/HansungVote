@@ -1,7 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
-         import="com.codingquokka.hansungenquete.domain.UserVO" %>
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +58,7 @@
             <div class="col-md-8 offset-md-2">
                 <div class="login-form bg-white mt-4 p-4 rounded">
                     <form action="" method="" class="row g-3">
-                        <span style="font-size: 30px;">투표 개설 및 수정</span>
+                        <span style="font-size: 30px;">투표 관리</span>
 
 
                         <hr class="mt-4">
@@ -73,7 +71,7 @@
 
 
                                 <button onclick="location.href ='/manager/modifyEletion'" class="btn btn-primary"
-                                        type="button" style="margin-bottom: 30px">투표 추가
+                                        type="button" style="margin-bottom: 30px">선거 추가
                                 </button>
 
                             </div>
@@ -95,7 +93,7 @@
                                         style="background-color:hsl(0, 0%, 41%) ; color: white;">종료날짜
                                     </th>
                                     <th class="rounded-end" scope="col"
-                                        style="background-color:hsl(0, 0%, 41%); color: white;">투표수정 및 조회
+                                        style="background-color:hsl(0, 0%, 41%); color: white;">관리
                                     </th>
                                 </tr>
                                 </thead>
@@ -118,6 +116,10 @@
                                             <button onclick="location.href ='/manager/showTurnOutList?electionName=${ElectionVO.electionName}'"
                                                     type="button"
                                                     class="btn btn-outline-primary btn-sm">조회
+                                            </button>
+                                            <button onclick="location.href ='/manager/ballotCount?electionName=${ElectionVO.electionName}'"
+                                                    type="button"
+                                                    class="btn btn-outline-primary btn-sm">개표
                                             </button>
                                         </td>
 

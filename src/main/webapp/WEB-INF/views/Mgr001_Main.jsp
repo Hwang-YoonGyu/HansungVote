@@ -81,7 +81,7 @@
 
             <a href="/manager/viewVote"><img class="rounded float-start" src="/resources/img/voteMgr1.png" style="width: 35%; margin-left: 200px;" onmouseenter="zoomIn(event)"
                 onmouseleave="zoomOut(event)" alt="투표 관리 바로가기"></a>
-            <a href="#"><img class="rounded float-end" src="/resources/img/voteMgr2.png"  style="width: 35%; margin-right: 200px;"onmouseenter="zoomIn(event)"
+            <a href="/manager/viewEnquete"><img class="rounded float-end" src="/resources/img/voteMgr2.png"  style="width: 35%; margin-right: 200px;"onmouseenter="zoomIn(event)"
                 onmouseleave="zoomOut(event)" alt="설문조사 관리 바로가기"></a>
 
         </div>

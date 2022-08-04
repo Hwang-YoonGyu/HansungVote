@@ -122,6 +122,51 @@ public class ManagerController {
             return abnormal(response);
         }
     }
+    @RequestMapping(value = "/ballotCount", method = RequestMethod.GET)
+    public String ballotCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        if (uVo != null) {
+            if (uVo.getStuid().equals("manager")) {
+
+
+                return "Mgr003_showTurnOutList";
+
+            }
+            else {
+                return abnormal(response);
+            }
+        }
+        else {
+            return abnormal(response);
+        }
+    }
+
+    @RequestMapping(value = "/viewEnquete", method = RequestMethod.GET)
+    public String viewEnquete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        if (uVo != null) {
+            if (uVo.getStuid().equals("manager")) {
+                response.setContentType("text/html; charset=euc-kr");
+                PrintWriter out = null;
+                out = response.getWriter();
+                out.println("<script>alert('준비중입니다.');" +
+                        "location.href = \"/manager/main\";" +
+                        "</script>");
+                out.flush();
+
+                return "redirect:/manager/main";
+
+            }
+            else {
+                return abnormal(response);
+            }
+        }
+        else {
+            return abnormal(response);
+        }
+    }
 
 
     //----------------------------------Method------------------------------------------------------------------------//

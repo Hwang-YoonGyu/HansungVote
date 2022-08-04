@@ -81,7 +81,7 @@
 
             <a href="/vote/votehome"><img class="rounded float-start" src="/resources/img/voteimg1.png" style="width: 35%; margin-left: 200px;" onmouseenter="zoomIn(event)"
                 onmouseleave="zoomOut(event)" alt="온라인 투표 바로가기"></a>
-            <a href="#"><img class="rounded float-end" src="/resources/img/voteimg2.png"  style="width: 35%; margin-right: 200px;"onmouseenter="zoomIn(event)"
+            <a href="/enquete/enquetehome"><img class="rounded float-end" src="/resources/img/voteimg2.png"  style="width: 35%; margin-right: 200px;"onmouseenter="zoomIn(event)"
                 onmouseleave="zoomOut(event)" alt="설문조사 바로가기"></a>
 
         </div>

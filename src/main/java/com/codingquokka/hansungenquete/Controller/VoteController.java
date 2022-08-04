@@ -35,7 +35,7 @@ public class VoteController {
 
 
     @RequestMapping(value = "/votehome", method = RequestMethod.GET)
-    public String VoteHome(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String voteHome(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
 
         UserVO user = (UserVO) session.getAttribute("UserVO");
@@ -67,7 +67,7 @@ public class VoteController {
 
 
     @RequestMapping(value = "/voteDetail", method = RequestMethod.GET)
-    public String VoteDetail(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String voteDetail(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO user = (UserVO)session.getAttribute("UserVO");
         if (user == null) {
@@ -110,7 +110,7 @@ public class VoteController {
     }
 
     @RequestMapping(value = "/doVote", method = RequestMethod.POST)
-    public void DoVote(Locale locale, HttpServletRequest request, HttpServletResponse response, @RequestParam("CandidateName") String CandidateName, @RequestParam("ElectionName") String ElectionName) throws Exception {
+    public void doVote(Locale locale, HttpServletRequest request, HttpServletResponse response, @RequestParam("CandidateName") String CandidateName, @RequestParam("ElectionName") String ElectionName) throws Exception {
         HttpSession session = request.getSession();
         UserVO user = (UserVO)session.getAttribute("UserVO");
         if (user == null) {
