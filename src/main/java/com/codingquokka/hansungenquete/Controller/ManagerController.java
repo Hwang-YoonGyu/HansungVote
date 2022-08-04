@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/manager")
 @Controller
@@ -86,11 +87,17 @@ public class ManagerController {
         }
     }
     @RequestMapping(value = "/showTurnOutList", method = RequestMethod.GET)
-    public String showTurnOutList(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String showTurnOutList(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null) {
             if (uVo.getStuid().equals("manager")) {
+                String electionName = request.getParameter("electionName");
+                ElectionVO eVo = eDao.selectSpecipicElection(electionName);
+                List<Map<String, Object>> list = uDao.allUserWhoHaveRight(eVo);
+                request.setAttribute("electionName", electionName);
+                request.setAttribute("List",list);
+
                 return "Mgr003_showTurnOutList";
 
             }

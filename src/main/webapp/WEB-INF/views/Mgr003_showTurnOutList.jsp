@@ -58,37 +58,13 @@
                 <div class="login-form bg-white mt-4 p-4 rounded">
                     <form action="" method="" class="row g-3">
                         <span style="font-size: 30px;">투표 진행 현황</span>
-
-
-                        <hr class="mt-4">
-                        <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
-                            padding-top: 10px; padding-bottom: 10px;">
-                            <label class="form-label">선거 단위</label>
-                            <select onchange="changeList()" class="form-select"
-                                    aria-label="Default select example">
-                                <a href="#">
-                                    <option selected>투표1</option>
-                                </a>
-                                <a href="#">
-                                    <option value="1">투표2</option>
-                                </a>
-                                <a href="#">
-                                    <option value="2">투표3</option>
-                                </a>
-                                <a href="#">
-                                    <option value="3">투표4</option>
-                                </a>
-                            </select>
-                        </div>
-
-
                         <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
                             padding-top: 10px; padding-bottom: 60px;">
 
                             <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
 padding-top: 10px; padding-bottom: 60px;">
                                 <p id="vote_change" style="text-align: center; padding-top: 10px;">
-                                    ------------------------------------------------</p>
+                                    ${electionName}</p>
                                 <hr class="mt-4">
 
                                 <table class="table table-bordered border-white-50 " style="text-align: center;  ">
@@ -112,13 +88,17 @@ padding-top: 10px; padding-bottom: 60px;">
                                     </tr>
                                     </thead>
                                     <tbody id="targetTable">
-                                    <tr>
-                                        <td style="background-color: white;">1971441</td>
-                                        <td style="background-color: white;">임수빈</td>
-                                        <td style="background-color: white;">010-9158-4899</td>
-                                        <td style="background-color: white;">1234</td>
-                                        <td style="background-color: white;">X</td>
-                                    </tr>
+
+                                    <c:forEach items="${List}" var="map" varStatus="status">
+                                        <tr>
+                                            <td style="background-color: white;">${map.stuId}</td>
+                                            <td style="background-color: white;">${map.name}</td>
+                                            <td style="background-color: white;">${map.phoneNumber}</td>
+                                            <td style="background-color: white;">${map.password}</td>
+                                            <td style="background-color: white;">${map.voteName}</td>
+                                        </tr>
+                                    </c:forEach>
+
 
                                     </tbody>
                                 </table>

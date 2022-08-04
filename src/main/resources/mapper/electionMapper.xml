@@ -19,8 +19,13 @@
         select *
         from election;
     </select>
+    <select id="selectSpecipicElection" parameterType="String" resultType="com.codingquokka.hansungenquete.domain.ElectionVO">
+        select *
+        from election
+        where electionName = #{electionName};
+    </select>
 
-    <insert id = "insertElection" parameterType="com.codingquokka.hansungenquete.domain.ElectionvotedVO">
+    <insert id = "insertElection" parameterType="com.codingquokka.hansungenquete.domain.ElectionVO">
         insert into election(electionName, startDate, endDate, explain, department)
         values (#{electionName}, #{startDate}, #{endDate}, #{explain}, #{department});
     </insert>

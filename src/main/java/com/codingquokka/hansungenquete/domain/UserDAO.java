@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class UserDAO {
@@ -25,8 +26,8 @@ public class UserDAO {
 		int num = sqlSession.selectOne(namespace+".totalvoters", department);
 		return num;
 	}
-	public List<UserVO> allUser() throws Exception {
-		return sqlSession.selectList(namespace+".allUser");
+	public List<Map<String,Object>> allUserWhoHaveRight(ElectionVO eVo) throws Exception {
+		return sqlSession.selectList(namespace+".allUserWhoHaveRight", eVo);
 	}
 	public void insertUser(ElectionvotedVO vo) throws Exception {
 		sqlSession.insert(namespace + ".insertUser", vo);

@@ -22,6 +22,9 @@ public class ElectionDAO {
 	public List<ElectionVO> selectElectionAll() throws Exception {
 		return sqlSession.selectList(namespace + ".selectElectionAll");
 	}
+	public ElectionVO selectSpecipicElection(String electionName) throws Exception {
+		return sqlSession.selectOne(namespace + ".selectSpecipicElection", electionName);
+	}
 
 	public void insertUser(ElectionvotedVO vo) throws Exception {
 		sqlSession.insert(namespace + ".insertUser", vo);

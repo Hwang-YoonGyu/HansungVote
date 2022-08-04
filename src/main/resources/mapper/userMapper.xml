@@ -6,7 +6,6 @@
 
  
 <mapper namespace="mapper.userMapper">
-
 	<!-- 로그인  -->
 	<select id="login" parameterType="com.codingquokka.hansungenquete.domain.UserVO" resultType="com.codingquokka.hansungenquete.domain.UserVO">
 		select stuId, name, password, phoneNumber, department
@@ -21,17 +20,23 @@
 		where department like CONCAT('%',#{department},'%');
 	</select>
 
-	<select id="allUser" resultType="com.codingquokka.hansungenquete.domain.UserVO">
+	<select id="allUserWhoHaveRight" parameterType="com.codingquokka.hansungenquete.domain.ElectionVO" resultType="map">
+		alter view temp1 as (
 		select *
-		from user;
-
+		from user
+		where department like CONCAT('%',#{department},'%')
+		);
+		alter view temp2 as (
+		select stuId as stuId, voteName as voteName
+		from electionvoted
+		where electionName=#{electionName}
+		);
+		select temp1.*, temp2.voteName as voteName
+		from temp1 left outer join temp2 on temp1.stuId = temp2.stuId;
 	</select>
-
 
 	<insert id = "insertUser" parameterType="com.codingquokka.hansungenquete.domain.ElectionvotedVO">
 		insert into user(stuId, name, password, phoneNumber, department)
 		values (#{stuId}, #{name}, #{password}, #{phoneNumber}, #{department});
 	</insert>
-	
-	
 </mapper>
