@@ -62,7 +62,7 @@
                         <hr class="mt-4">
 
                         <div class="container mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
-                            padding-top: 10px; padding-bottom: 30px;">
+                            padding-top: 10px; padding-bottom: 30px;" id ="">
                                 <span class="px-3" id="candidate" style="padding-top: 10px; font-size: 30px;">
                                     후보자 목록</span>
 
@@ -98,7 +98,7 @@
                                     <c:when test="${fn:length(candiList) eq 1}">
                                         <div class="form-check form-check-inline ">
                                             <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                   id="${candiList[0].candidateName}" value="option1">
+                                                   id="agree" value="option1">
                                             <p class="agree">찬성</p>
                                         </div>
                                         <div class="form-check form-check-inline" style="padding-left: 150px;">
@@ -108,7 +108,7 @@
                                         </div>
                                         <div class="form-check form-check-inline" style="padding-left: 150px;">
                                             <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                   id="inject" value="option3">
+                                                   id="inject1" value="option3">
                                             <p class="giveup">기권</p>
                                         </div>
                                     </c:when>
@@ -122,7 +122,7 @@
                                         </c:forEach>
                                         <div class="form-check form-check-inline ">
                                             <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                   id="inject" value="option${fn:length(candiList)}">
+                                                   id="inject2" value="option${fn:length(candiList)}">
                                             <p class="agree">기권</p>
                                         </div>
                                     </c:otherwise>
@@ -134,7 +134,7 @@
 
 
                         <div class="d-grid gap-2 col-6 mx-auto">
-                            <a href="#" class="btn btn-primary" tabindex="-1" role="button"
+                            <a id ="votecheckButton" href="#" class="btn btn-primary" tabindex="-1" role="button"
                                aria-disabled="true" onclick="votecheck()">투표하기</a>
                         </div>
                     </form>
@@ -147,12 +147,20 @@
 
 </main>
 <script>
-
+    const electionName='${candiList[0].electionName}';
+    const radioList =document.getElementsByName("inlineRadioOptions");
+    var votecheckbutton = document.getElementById("votecheckButton");
     function votecheck() {
 
         var result = confirm("투표하시겠습니까?")
         if (result == true) {
             alert("투표가 완료되었습니다.")
+            radioList.forEach((node) => {
+                if (node.checked) {
+                    console.log(node.id);
+                    votecheckbutton.href ='/vote/voteDetail?electionName=' +electionName + node.id;
+                }
+            })
         } else {
             alert("취소되었습니다.")
         }
