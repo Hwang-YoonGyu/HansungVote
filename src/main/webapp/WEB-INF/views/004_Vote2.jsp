@@ -93,40 +93,40 @@
                         </div>
 
 
-                        <div class="container" style="text-align: center; padding-top: 10px;">
-                                <c:choose>
-                                    <c:when test="${fn:length(candiList) eq 1}">
-                                        <div class="form-check form-check-inline ">
+                        <div class="container" style="text-align: center; padding-top: 10px;" id="1">
+                            <c:choose>
+                                <c:when test="${fn:length(candiList) eq 1}">
+                                    <div class="form-check form-check-inline " >
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                               id="agree" value="option1">
+                                        <p class="agree">찬성</p>
+                                    </div>
+                                    <div class="form-check form-check-inline" style="padding-left: 150px;">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                               id="disagree" value="option2">
+                                        <p class="disagree">반대</p>
+                                    </div>
+                                    <div class="form-check form-check-inline" style="padding-left: 150px;">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                               id="inject1" value="option3">
+                                        <p class="giveup">기권</p>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:forEach items="${candiList}" var="CandidateVO" varStatus="status">
+                                        <div class="form-check form-check-inline " id="a">
                                             <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                   id="agree" value="option1">
-                                            <p class="agree">찬성</p>
+                                                   id="${status.index}" value="option${status.index}">
+                                            <p class="agree">${candiList[status.index].candidateName}</p>
                                         </div>
-                                        <div class="form-check form-check-inline" style="padding-left: 150px;">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                   id="disagree" value="option2">
-                                            <p class="disagree">반대</p>
-                                        </div>
-                                        <div class="form-check form-check-inline" style="padding-left: 150px;">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                   id="inject1" value="option3">
-                                            <p class="giveup">기권</p>
-                                        </div>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <c:forEach items="${candiList}" var="CandidateVO" varStatus="status">
-                                            <div class="form-check form-check-inline ">
-                                                <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                       id="${status.index}" value="option${status.index}">
-                                                <p class="agree">${candiList[status.index].candidateName}</p>
-                                            </div>
-                                        </c:forEach>
-                                        <div class="form-check form-check-inline ">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                   id="inject2" value="option${fn:length(candiList)}">
-                                            <p class="agree">기권</p>
-                                        </div>
-                                    </c:otherwise>
-                                </c:choose>
+                                    </c:forEach>
+                                    <div class="form-check form-check-inline ">
+                                        <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                               id="inject2" value="option${fn:length(candiList)}">
+                                        <p class="agree">기권</p>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
 
 
 
@@ -148,14 +148,35 @@
 </main>
 <script>
     const electionName='${candiList[0].electionName}';
-    const candidateName= '${candiList[0].candidateName}';
+
+    var candidateName= '${candiList[index].candidateName}';
     const radioList =document.getElementsByName("inlineRadioOptions");
     var votecheckbutton = document.getElementById("votecheckButton");
+
+    var index = document.getElementById("1")
     function votecheck() {
 
-        var result = confirm("투표하시겠습니까?")
+        var result = confirm("투표하시겠습니까?");
         if (result == true) {
-            alert("투표가 완료되었습니다.")
+            alert("투표가 완료되었습니다.");
+            votecheckbutton.href = '/vote/doVote?ElectionName=' + electionName  + "&CandidateName="+ candidateName;
+            //let f = document.createElement('form');
+            //let a = document.createElement('input');
+            // radioList.forEach((node) => {
+            //      if (node.checked) {
+            //          votecheckbutton.href = '/vote/voteDetail?electionName=' + electionName + candidateName;
+            //      }
+            // })
+            // a.setAttribute('ElectionName',electionName);
+            // a.setAttribute('CandidateName',candidateName);
+            //
+            // f.appendChild(a);
+            //
+            // f.setAttribute('method','post');
+            // f.setAttribute('action','/vote/doVote');
+            // document.body.appendChild(f);
+            // f.submit();
+            alert("투표가 완료되었습니다.");
             let f = document.createElement('form');
             f.setAttribute('ElectionName',electionName);
             f.setAttribute('CandidateName',candidateName);
