@@ -148,8 +148,7 @@
 </main>
 <script>
     const electionName='${candiList[0].electionName}';
-    const candidate = document.getElementsByClassName("candidate");
-    const candidateName= '${CandidateVO.candidateName}';
+    const candidateName= '${candiList[0].candidateName}';
     const radioList =document.getElementsByName("inlineRadioOptions");
     var votecheckbutton = document.getElementById("votecheckButton");
     function votecheck() {
@@ -165,12 +164,7 @@
             f.setAttribute('action','/doVote');
             document.body.appendChild(f);
             f.submit();
-            //radioList.forEach((node) => {
-                //if (node.checked) {
-                    //console.log(candidate.innerHTML);
-                    //votecheckbutton.href ='/vote/voteDetail?electionName=' +electionName + node.id;
-            //}
-            //})
+
         } else {
             alert("취소되었습니다.")
 
