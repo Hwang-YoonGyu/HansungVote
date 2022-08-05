@@ -135,8 +135,8 @@ public class VoteController {
         return "004_Vote2";
     }
 
-    @RequestMapping(value = "/doVote", method = RequestMethod.POST)
-    public void doVote(Locale locale, HttpServletRequest request, HttpServletResponse response, @RequestParam("CandidateName") String CandidateName, @RequestParam("ElectionName") String ElectionName) throws Exception {
+    @RequestMapping(value = "/doVote", method = RequestMethod.GET)
+    public void doVote(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO user = (UserVO)session.getAttribute("UserVO");
         if (user == null) {
@@ -144,8 +144,8 @@ public class VoteController {
         }
 
         ElectionvotedVO evVo = new ElectionvotedVO();
-        evVo.setElectionName(ElectionName);
-        evVo.setVotename(CandidateName);
+        evVo.setElectionName(request.getParameter("ElectionName"));
+        evVo.setVotename(request.getParameter("CandidateName"));
         evVo.setStuId(user.getStuid());
         evVo.setName(user.getName());
 

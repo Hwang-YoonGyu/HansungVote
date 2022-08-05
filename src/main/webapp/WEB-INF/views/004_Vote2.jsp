@@ -161,7 +161,7 @@
             f.setAttribute('CandidateName',candidateName);
 
             f.setAttribute('method','post');
-            f.setAttribute('action','/doVote');
+            f.setAttribute('action','/vote/doVote');
             document.body.appendChild(f);
             f.submit();
 
