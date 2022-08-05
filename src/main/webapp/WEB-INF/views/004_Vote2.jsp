@@ -148,6 +148,8 @@
 </main>
 <script>
     const electionName='${candiList[0].electionName}';
+    const candidate = document.getElementsByClassName("candidate");
+    const candidateName= '${CandidateVO.candidateName}';
     const radioList =document.getElementsByName("inlineRadioOptions");
     var votecheckbutton = document.getElementById("votecheckButton");
     function votecheck() {
@@ -155,14 +157,23 @@
         var result = confirm("투표하시겠습니까?")
         if (result == true) {
             alert("투표가 완료되었습니다.")
-            radioList.forEach((node) => {
-                if (node.checked) {
-                    console.log(node.id);
-                    votecheckbutton.href ='/vote/voteDetail?electionName=' +electionName + node.id;
-                }
-            })
+            let f = document.createElement('form');
+            f.setAttribute('ElectionName',electionName);
+            f.setAttribute('CandidateName',candidateName);
+
+            f.setAttribute('method','post');
+            f.setAttribute('action','/doVote');
+            document.body.appendChild(f);
+            f.submit();
+            //radioList.forEach((node) => {
+                //if (node.checked) {
+                    //console.log(candidate.innerHTML);
+                    //votecheckbutton.href ='/vote/voteDetail?electionName=' +electionName + node.id;
+            //}
+            //})
         } else {
             alert("취소되었습니다.")
+
         }
     }
 
