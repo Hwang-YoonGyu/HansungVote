@@ -149,42 +149,15 @@
 <script>
     const electionName='${candiList[0].electionName}';
 
-    var candidateName= '${candiList[index].candidateName}';
+    var candidateName= '${candiList[0].candidateName}';
     const radioList =document.getElementsByName("inlineRadioOptions");
     var votecheckbutton = document.getElementById("votecheckButton");
 
-    var index = document.getElementById("1")
     function votecheck() {
 
         var result = confirm("투표하시겠습니까?");
         if (result == true) {
-            alert("투표가 완료되었습니다.");
             votecheckbutton.href = '/vote/doVote?ElectionName=' + electionName  + "&CandidateName="+ candidateName;
-            //let f = document.createElement('form');
-            //let a = document.createElement('input');
-            // radioList.forEach((node) => {
-            //      if (node.checked) {
-            //          votecheckbutton.href = '/vote/voteDetail?electionName=' + electionName + candidateName;
-            //      }
-            // })
-            // a.setAttribute('ElectionName',electionName);
-            // a.setAttribute('CandidateName',candidateName);
-            //
-            // f.appendChild(a);
-            //
-            // f.setAttribute('method','post');
-            // f.setAttribute('action','/vote/doVote');
-            // document.body.appendChild(f);
-            // f.submit();
-            alert("투표가 완료되었습니다.");
-            let f = document.createElement('form');
-            f.setAttribute('ElectionName',electionName);
-            f.setAttribute('CandidateName',candidateName);
-
-            f.setAttribute('method','post');
-            f.setAttribute('action','/vote/doVote');
-            document.body.appendChild(f);
-            f.submit();
 
         } else {
             alert("취소되었습니다.")

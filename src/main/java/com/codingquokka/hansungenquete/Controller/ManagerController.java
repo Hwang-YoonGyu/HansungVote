@@ -118,7 +118,7 @@ public class ManagerController {
             if (uVo.getStuid().equals("manager")) {
 
 
-                return "Mgr003_showTurnOutList";
+                return "Mgr004_openVote";
 
             }
             else {

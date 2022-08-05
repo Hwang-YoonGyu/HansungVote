@@ -148,6 +148,7 @@ public class VoteController {
         evVo.setVotename(request.getParameter("CandidateName"));
         evVo.setStuId(user.getStuid());
         evVo.setName(user.getName());
+        evVo.setDepartment(user.getDepartment());
 
         evDao.insertVote(evVo);
 
