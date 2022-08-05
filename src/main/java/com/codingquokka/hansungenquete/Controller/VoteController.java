@@ -53,7 +53,7 @@ public class VoteController {
         for(ElectionVO e : electionList) {
             int voteRightCount = uDao.totalVoters(e.getDepartment());
             int votePercentage = evDao.turnout(e.getElectionName());
-            votePercentageList.add((float)votePercentage/voteRightCount);
+            votePercentageList.add(((float)votePercentage/voteRightCount*100));
             voteRightCountList.add(voteRightCount);
         }
 
@@ -73,7 +73,12 @@ public class VoteController {
         if (user == null) {
             sessionIsNull(response);
         }
-        if (LocalTime.now().getHour() < 9 || LocalTime.now().getHour() >  23) {
+        String election = request.getParameter("electionName");
+
+        ElectionVO eVo = eDao.selectSpecipicElection(election);
+
+
+        if (LocalTime.now().getHour() < eVo.getStartDate().getHours() || LocalTime.now().getHour() >  eVo.getEndDate().getHours()) {
             response.setContentType("text/html; charset=euc-kr");
             PrintWriter out = null;
             out = response.getWriter();
@@ -83,7 +88,6 @@ public class VoteController {
             out.flush();
         }
 
-        String election = request.getParameter("electionName");
         ElectionvotedVO evVo = new ElectionvotedVO();
         evVo.setStuId(user.getStuid());
         evVo.setName(user.getName());

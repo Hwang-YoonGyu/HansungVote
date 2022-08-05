@@ -29,7 +29,7 @@
 
         main {
             background-color: hsl(228, 26%, 96%);
-            min-height: 1000px;
+            min-height: 1100px;
             margin-top: 100px;
 
         }
@@ -79,7 +79,7 @@
                         <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
                             padding-top: 10px; padding-bottom: 60px;">
                             <p id="election_name" style="text-align: center; padding-top: 10px;">
-                                ${electionList[0].electionName}
+
                             </p>
                             <hr class="mt-4">
 
@@ -111,15 +111,16 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <c:set var="startset"><fmt:formatDate value="${electionList[0].startDate}" pattern="yyyy-MM-dd HH:mm"/></c:set>
-                                    <c:set var="endset"><fmt:formatDate value="${electionList[0].endDate}" pattern="yyyy-MM-dd HH:mm"/></c:set>
-                                    <td id="startDate" style="background-color: white;">${startset}</td>
-                                    <td id="endDate" style="background-color: white;">${endset}</td>
-
+                                    <td id="startDate" style="background-color: white;"></td>
+                                    <td id="endDate" style="background-color: white;"></td>
                                 </tr>
                                 </tbody>
                             </table>
-
+                            <div style="text-align:center;" id="notice">
+                                <br>
+                                투표 가능시간은 매일 시 부터 시 까지입니다.
+                                <br>
+                            </div>
 
                             <div class="container" style="padding-top: 50px; text-align:center;">
                                 <div class="row">
@@ -147,23 +148,23 @@
                                              style="width: 60px; height: 60px; background-color: transparent;">
                                     </div>
                                 </div>
-
                                 <div class="row" style="padding-top: 10px;">
                                     <div id="person" class="col" style="border-right: 1px solid gray;">
-                                        ${voteRightCountList[0]}
+
                                     </div>
                                     <div id="vote" class="col" style="border-right: 1px solid gray;">
-                                        ${votePercentageList[0]}
+                                        %
                                     </div>
                                     <div id="bomb" class="col">
                                         1일, 2시간
                                     </div>
                                 </div>
+
                             </div>
 
 
                             <div class="d-grid gap-2 col-6 mx-auto" style="padding-top: 50px;">
-                                <a href="/vote/voteDetail?electionName=${electionList[0].electionName}"
+                                <a href="/vote/voteDetail?electionName="
                                    class="btn btn-primary" tabindex="-1" role="button" id="DetailButton"
                                    aria-disabled="true">상세 페이지로</a>
                             </div>
@@ -192,29 +193,48 @@
             },
             </c:forEach>
         ];
-
         function getIndex() {
             var votePercentageList = ${votePercentageList};
             var voteRightCountList = ${voteRightCountList};
 
             var select = document.getElementById("select");
-            var index = select.selectedIndex;
+            index = select.selectedIndex;
 
 
             var vote = document.getElementById("vote");
             var person = document.getElementById("person");
+            var bomb = document.getElementById("bomb");
             var electionName = document.getElementById("election_name");
             var detailButton = document.getElementById("DetailButton");
             var startDate = document.getElementById("startDate");
             var endDate = document.getElementById("endDate");
+            var notice = document.getElementById("notice");
 
+            var now = new Date();
+            var endDateTemp = new Date(list[index].endDate);
+            var startDateTemp = new Date(list[index].startDate);
+
+            if (endDateTemp.getTime() > now.getTime()) {
+                var day = parseInt((endDateTemp.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+                var hour = parseInt((endDateTemp.getTime() - now.getTime()) % (1000 * 60 * 60 *24) / (1000 * 60 * 60)) ;
+                var minute = parseInt((endDateTemp.getTime() - now.getTime()) % (1000 * 60 * 60) / (1000 * 60))
+
+                bomb.innerText = day+"일 " + hour+"시간 " + minute + "분" ;
+            }
+            else {
+                bomb.innerHTML = "종료됨";
+            }
+
+            notice.innerHTML = "<br>투표 가능 시간은 매일 "+startDateTemp.getHours()+"시 부터 "+ endDateTemp.getHours()+"시 까지입니다.<br><br>";
             startDate.innerHTML = list[index].startDate;
             endDate.innerHTML = list[index].endDate;
-            vote.innerHTML = votePercentageList[index];
-            person.innerHTML = voteRightCountList[index];
+            vote.innerHTML = votePercentageList[index].toFixed(2) +"%";
+            person.innerHTML = voteRightCountList[index]+"명";
             electionName.innerHTML = select.options[index].value;
             detailButton.href = "/vote/voteDetail?electionName=" + select.options[index].value;
         }
+        getIndex();
+
 
     </script>
 

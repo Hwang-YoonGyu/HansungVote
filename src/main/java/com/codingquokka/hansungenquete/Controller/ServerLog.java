@@ -1,5 +1,7 @@
 package com.codingquokka.hansungenquete.Controller;
 
+import javax.swing.*;
+import java.awt.*;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -12,17 +14,32 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServerLog {
+public class ServerLog extends JFrame {
 
     public boolean SaveSwitch = false;
     public static ServerLog instance = new ServerLog();
 
     public List<String> list = new ArrayList<String>();
 
+
+    public JTextArea area = new JTextArea(10,20);
     public ServerLog() {
+        setSize(500, 500); //크기 설정
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("서버 GUI");
+
+        setLayout(new FlowLayout()); //배치 관리자 설정
+
+        //컴포넌트 생성 및 추가
+        area.setSize(300,300);
+        this.add(area);
+
+        setVisible(true);
         System.out.println("Manager Thread has started");
         Thread t = new Thread(new ManagerFile());
+        Thread t2 = new Thread(new DisPlayLog());
         t.start();
+        t2.start();
     }
 
     public void WriteLog(String timeStamp, String content) {
@@ -89,6 +106,23 @@ class FileOut implements Runnable {
 
     public FileOut(List<String> list) {
         this.list = list;
+    }
+}
+
+class DisPlayLog implements Runnable {
+    @Override
+    public void run() {
+        while(true) {
+            ServerLog.instance.area.setText("");
+              for(String s : ServerLog.instance.list) {
+                ServerLog.instance.area.append(s+"\n");
+            }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }
 
