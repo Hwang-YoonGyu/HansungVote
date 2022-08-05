@@ -70,7 +70,7 @@
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
 
-                                <button onclick="location.href ='/manager/modifyEletion'" class="btn btn-primary"
+                                <button onclick="location.href ='/manager/modifyElection'" class="btn btn-primary"
                                         type="button" style="margin-bottom: 30px">선거 추가
                                 </button>
 
@@ -109,7 +109,7 @@
                                         <td style="background-color: white;">${start}</td>
                                         <td style="background-color: white;">${end}</td>
                                         <td style="background-color: white;">
-                                            <button onclick="location.href ='/manager/modifyEletion?electionName=${ElectionVO.electionName}'"
+                                            <button onclick="location.href ='/manager/modifyElection?electionName=${ElectionVO.electionName}'"
                                                     type="button"
                                                     class="btn btn-outline-primary btn-sm">수정
                                             </button>

@@ -2,6 +2,7 @@ package com.codingquokka.hansungenquete.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
@@ -83,6 +84,27 @@ public class VoteController {
             PrintWriter out = null;
             out = response.getWriter();
             out.println("<script>alert('투표가능시간이 아닙니다');" +
+                    "location.href = \"/vote/votehome\";" +
+                    "</script>");
+            out.flush();
+        }
+
+        Date now = new Date();
+        if (now.before(eVo.getStartDate())) {
+            response.setContentType("text/html; charset=euc-kr");
+            PrintWriter out = null;
+            out = response.getWriter();
+            out.println("<script>alert('투표 시작 전입니다');" +
+                    "location.href = \"/vote/votehome\";" +
+                    "</script>");
+            out.flush();
+        }
+
+        if (now.after(eVo.getEndDate())) {
+            response.setContentType("text/html; charset=euc-kr");
+            PrintWriter out = null;
+            out = response.getWriter();
+            out.println("<script>alert('투표가 이미 종료되었습니다.');" +
                     "location.href = \"/vote/votehome\";" +
                     "</script>");
             out.flush();

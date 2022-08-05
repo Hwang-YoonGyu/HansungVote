@@ -198,7 +198,7 @@
             var voteRightCountList = ${voteRightCountList};
 
             var select = document.getElementById("select");
-            index = select.selectedIndex;
+            var index = select.selectedIndex;
 
 
             var vote = document.getElementById("vote");

@@ -17,14 +17,14 @@
 	<select id = "totalvoters" parameterType="String" resultType = "int">
 		select COUNT(*)
 		from user
-		where department like CONCAT('%',#{department},'%');
+		where department like CONCAT('%',#{department},'%') and stuId !='manager';
 	</select>
 
 	<select id="allUserWhoHaveRight" parameterType="com.codingquokka.hansungenquete.domain.ElectionVO" resultType="map">
 		alter view temp1 as (
 		select *
 		from user
-		where department like CONCAT('%',#{department},'%')
+		where department like CONCAT('%',#{department},'%') and stuId !='manager'
 		);
 		alter view temp2 as (
 		select stuId as stuId, voteName as voteName

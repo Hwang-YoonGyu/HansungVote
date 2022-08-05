@@ -95,7 +95,7 @@
 
                         <div class="container" style="text-align: center; padding-top: 10px;">
                                 <c:choose>
-                                    <c:when test="${fn:length(candiList) < 2}">
+                                    <c:when test="${fn:length(candiList) eq 1}">
                                         <div class="form-check form-check-inline ">
                                             <input class="form-check-input" type="radio" name="inlineRadioOptions"
                                                    id="${candiList[0].candidateName}" value="option1">
