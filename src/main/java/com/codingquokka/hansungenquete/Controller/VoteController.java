@@ -145,7 +145,7 @@ public class VoteController {
 
         ElectionvotedVO evVo = new ElectionvotedVO();
         evVo.setElectionName(request.getParameter("ElectionName"));
-        evVo.setVotename(request.getParameter("CandidateName"));
+        evVo.setCandidateName(request.getParameter("CandidateName"));
         evVo.setStuId(user.getStuid());
         evVo.setName(user.getName());
         evVo.setDepartment(user.getDepartment());

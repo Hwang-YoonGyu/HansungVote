@@ -16,7 +16,7 @@
    <select id = "votepercentage" resultType = "int">
 		select COUNT(*)
 		from electionvoted
-		where electionName=#{electionName} and voteName=#{voteName}
+		where electionName=#{electionName} and candidateName=#{candidateName}
 	</select>
 	
  <!-- 2.투표율 계산  -->   
@@ -29,8 +29,8 @@
 
 
 	<insert id = "insertVote" parameterType="com.codingquokka.hansungenquete.domain.ElectionvotedVO">
-		insert into electionVoted(stuId, name, department, voteName, electionName)
-		values (#{stuId}, #{name}, #{department}, #{voteName}, #{electionName});
+		insert into electionVoted(stuId, name, department, candidateName, electionName)
+		values (#{stuId}, #{name}, #{department}, #{candidateName}, #{electionName});
 	</insert>
 
 

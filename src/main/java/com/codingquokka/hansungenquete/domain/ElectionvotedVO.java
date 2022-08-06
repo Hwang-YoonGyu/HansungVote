@@ -5,7 +5,7 @@ public class ElectionvotedVO {
     private String stuId;
     private String name;
     private String department;
-    private String voteName;
+    private String candidateName;
     private String electionName;
     
     public String getStuId() {
@@ -26,11 +26,11 @@ public class ElectionvotedVO {
     public void setDepartment(String department) {
         this.department = department;
     }
-    public String getVoteName() {
-        return voteName;
+    public String getCandidateName() {
+        return candidateName;
     }
-    public void setVotename(String voteName) {
-        this.voteName = voteName;
+    public void setCandidateName(String candidateName) {
+        this.candidateName = candidateName;
     }
     public String getElectionName() {
         return electionName;
