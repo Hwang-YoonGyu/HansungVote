@@ -34,35 +34,25 @@ public class ManagerController {
     public String main(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
-        if (uVo != null) {
-            if (uVo.getStuid().equals("manager")) {
-                return "Mgr001_Main";
+        if (uVo != null && uVo.getStuid().equals("manager")) {
+            return "Mgr001_Main";
 
-            }
-            else {
-                return abnormal(response);
-            }
-        }
-        else {
+        } else {
             return abnormal(response);
         }
 
 
     }
+
     @RequestMapping(value = "/vote", method = RequestMethod.GET)
     public String vote(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
-        if (uVo != null) {
-            if (uVo.getStuid().equals("manager")) {
-                return "Mgr003_showTurnOutList";
+        if (uVo != null && uVo.getStuid().equals("manager")) {
+            return "Mgr003_showTurnOutList";
 
-            }
-            else {
-                return abnormal(response);
-            }
-        }
-        else {
+
+        } else {
             return abnormal(response);
         }
     }
@@ -71,80 +61,62 @@ public class ManagerController {
     public String viewVote(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
-        if (uVo != null) {
-            if (uVo.getStuid().equals("manager")) {
-                List<ElectionVO> eList = eDao.selectElectionAll();
-                request.setAttribute("electionList", eList);
-                return "Mgr002_ViewVote";
+        if (uVo != null && uVo.getStuid().equals("manager")) {
+            List<ElectionVO> eList = eDao.selectElectionAll();
+            request.setAttribute("electionList", eList);
+            return "Mgr002_ViewVote";
 
-            }
-            else {
-                return abnormal(response);
-            }
-        }
-        else {
+        } else {
             return abnormal(response);
         }
     }
+
     @RequestMapping(value = "/showTurnOutList", method = RequestMethod.GET)
     public String showTurnOutList(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
-        if (uVo != null) {
-            if (uVo.getStuid().equals("manager")) {
-                String electionName = request.getParameter("electionName");
-                ElectionVO eVo = eDao.selectSpecipicElection(electionName);
-                List<Map<String, Object>> list = uDao.allUserWhoHaveRight(eVo);
-                request.setAttribute("electionName", electionName);
-                request.setAttribute("List",list);
+        if (uVo != null && uVo.getStuid().equals("manager")) {
 
-                return "Mgr003_showTurnOutList";
+            String electionName = request.getParameter("electionName");
+            ElectionVO eVo = eDao.selectSpecipicElection(electionName);
+            List<Map<String, Object>> list = uDao.allUserWhoHaveRight(eVo);
+            request.setAttribute("electionName", electionName);
+            request.setAttribute("List", list);
 
-            }
-            else {
-                return abnormal(response);
-            }
-        }
-        else {
+            return "Mgr003_showTurnOutList";
+
+
+        } else {
             return abnormal(response);
         }
     }
 
     @RequestMapping(value = "/modifyElection", method = RequestMethod.GET)
-    public String modifyElection(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String modifyElection(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
-        if (uVo != null) {
-            if (uVo.getStuid().equals("manager")) {
+        if (uVo != null && uVo.getStuid().equals("manager")) {
+            String electionName = request.getParameter("electionName");
 
+            ElectionVO eVo = eDao.selectSpecipicElection(electionName);
+            List<CandidateVO> cVoList = cDao.selectList(electionName);
 
-                return "Mgr004_openVote";
-
-            }
-            else {
-                return abnormal(response);
-            }
-        }
-        else {
+            request.setAttribute("eVo", eVo);
+            request.setAttribute("cVoList", cVoList);
+            return "Mgr004_openVote";
+        } else {
             return abnormal(response);
         }
     }
+
     @RequestMapping(value = "/ballotCount", method = RequestMethod.GET)
     public String ballotCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
-        if (uVo != null) {
-            if (uVo.getStuid().equals("manager")) {
+        if (uVo != null && uVo.getStuid().equals("manager")) {
 
-
-                return "Mgr003_showTurnOutList";
-
-            }
-            else {
-                return abnormal(response);
-            }
-        }
-        else {
+            return "Mgr003_showTurnOutList";
+        } else {
             return abnormal(response);
         }
     }
@@ -153,24 +125,18 @@ public class ManagerController {
     public String viewEnquete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
-        if (uVo != null) {
-            if (uVo.getStuid().equals("manager")) {
-                response.setContentType("text/html; charset=euc-kr");
-                PrintWriter out = null;
-                out = response.getWriter();
-                out.println("<script>alert('준비중입니다.');" +
-                        "location.href = \"/manager/main\";" +
-                        "</script>");
-                out.flush();
+        if (uVo != null && uVo.getStuid().equals("manager")) {
+            response.setContentType("text/html; charset=euc-kr");
+            PrintWriter out = null;
+            out = response.getWriter();
+            out.println("<script>alert('준비중입니다.');" +
+                    "location.href = \"/manager/main\";" +
+                    "</script>");
+            out.flush();
 
-                return "redirect:/manager/main";
+            return "redirect:/manager/main";
 
-            }
-            else {
-                return abnormal(response);
-            }
-        }
-        else {
+        } else {
             return abnormal(response);
         }
     }
@@ -188,7 +154,8 @@ public class ManagerController {
 
         return "redirect:/login";
     }
-    String abnormal (HttpServletResponse response) throws IOException {
+
+    String abnormal(HttpServletResponse response) throws IOException {
         response.setContentType("text/html; charset=euc-kr");
         PrintWriter out = null;
         out = response.getWriter();
