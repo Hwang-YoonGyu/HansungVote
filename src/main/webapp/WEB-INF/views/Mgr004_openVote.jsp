@@ -59,7 +59,7 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div class="login-form bg-white mt-4 p-4 rounded">
-                    <form action="" method="" class="row g-3">
+                    <form action="/manager/modifyElection" method="post" class="row g-3" id="formId">
                         <span style="font-size: 30px;">투표 개설 및 수정</span>
 
 
@@ -445,17 +445,19 @@
                                 <div class="row">
                                     <div class="col-2" style="border-right: 1px solid gray; text-align: center;">
                                         창의융합대학
+                                        <div style="margin-top:50px;">전체선택
+                                            <input type='checkbox' name="V" value="전체선택"
+                                                   onclick='selectAll(this,"Y")'/>
+                                        </div>
                                     </div>
                                     <div class="col-10">
                                         <div class="btn-group" role="group"
                                              aria-label="Basic checkbox toggle button group">
-                                            <input type="checkbox" class="btn-check" id="Ybtncheck1"
-                                                   autocomplete="off">
+                                            <input type="checkbox" class="btn-check" id="Ybtncheck1" autocomplete="off" name="Y">
                                             <label class="btn btn-outline-primary"
                                                    for="Ybtncheck1">문학문화콘텐츠학과</label>
 
-                                            <input type="checkbox" class="btn-check" id="Ybtncheck2"
-                                                   autocomplete="off">
+                                            <input type="checkbox" class="btn-check" id="Ybtncheck2" autocomplete="off" name="Y">
                                             <label class="btn btn-outline-primary" for="Ybtncheck2">AI응용학과</label>
                                         </div>
                                     </div>
@@ -477,7 +479,7 @@
                                     <hr class="mt-4">
                                 </div>
                                 <div class="d-grid gap-2 col-3 mx-auto">
-                                    <a href="#" class="btn btn-primary" tabindex="-1" role="button" onclick="submitElection()"
+                                    <a class="btn btn-primary" tabindex="-1" role="button" onclick="submitElection()"
                                        aria-disabled="true">투표 개설하기</a>
                                 </div>
                             </div>
@@ -518,12 +520,6 @@
         candidatePicture.innerHTML = "<input type='file' class='real-upload' accept='image/!*' id='candidatePic"+cadidateCount+" name='row_pic' size='10' value='"+ image+"'/>";
     }
 
-    for(var i=0; i< cVoList.length; i++ ) {
-        addRow(cVoList[i].candidateName,cVoList[i].image);
-        cadidateCount++;
-    }
-
-
     function deleteRow() {
         var table = document.getElementById('addrow');
 
@@ -543,15 +539,27 @@
 
     function submitElection() {
         var electionName = document.getElementById("electionName").value;
-        alert(
+        var result = confirm(
             "선거이름 : " + electionName +
             "\n최종 후보수 : " + cadidateCount +
             "\n선거 대상 : " +
             "\n선거 개설을 진행하시겠습니까?"
         );
+        if (result==true) {
+            var form = document.getElementById("formId");
+            form.submit();
+
+        }
+        else {
+            alert("취소 되었습니다.");
+        }
 
     }
 
+    for(var i=0; i< cVoList.length; i++ ) {
+        addRow(cVoList[i].candidateName,cVoList[i].image);
+        cadidateCount++;
+    }
 
 
 

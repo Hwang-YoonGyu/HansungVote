@@ -108,6 +108,11 @@ public class ManagerController {
             return abnormal(response);
         }
     }
+    @RequestMapping(value = "/modifyElection", method = RequestMethod.POST)
+    public String modifyElectionPOST(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        return "redirect:/manager/viewVote";
+    }
+
 
     @RequestMapping(value = "/ballotCount", method = RequestMethod.GET)
     public String ballotCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
