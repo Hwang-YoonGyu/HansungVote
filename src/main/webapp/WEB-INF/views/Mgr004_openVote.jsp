@@ -1,5 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -87,14 +90,13 @@
                                     <div class="col-10">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                <button id="addcandidate" class="btn btn-primary btn-sm"
-                                                        type="button" onclick="addRow()">+
+                                                <button width="100" height="100" id="addcandidate" class="btn btn-primary btn-sm" type="button" onclick="addRow()"> +
                                                 </button>
                                             </div>
-                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                <button id="subcandidate" class="btn btn-primary btn-sm"
-                                                        type="button" onclick="deleteRow()">-
-                                                </button>
+                                            &nbsp
+                                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                <button width="100" height="100" id="subcandidate" class="btn btn-primary btn-sm" type="button" onclick="deleteRow()"> -
+                                                 </button>
                                             </div>
                                         </div>
                                         <table class="table table-bordered border-white-50 "
@@ -112,16 +114,7 @@
                                             </thead>
 
                                             <tbody id="addrow">
-                                            <c:forEach var="CandidateVO" items="${cVoList}" varStatus="status">
-                                                <tr>
-                                                    <td>
-                                                        <input type='text' id='row_name' name='row_name' size='30' value='${CandidateVO.candidateName}'/>
-                                                    </td>
-                                                    <td>
-                                                        <input type='file' class='real-upload' accept='image/*' id='row_pic' name='row_pic' size='10' value='${CandidateVO.image}'/>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
+
                                             </tbody>
                                         </table>
 
@@ -146,71 +139,71 @@
                                         크리에이티브인문예술대학
                                         <div style="margin-top:50px;">전체선택
                                             <input type='checkbox' name="p" value="전체선택"
-                                                   onclick='PselectAll(this)'/>
+                                                   onclick='selectAll(this, "P")'/>
                                         </div>
                                     </div>
                                     <div class="col-10">
 
                                         <div class="btn-group" role="group"
                                              aria-label="Basic checkbox toggle button group">
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck1" name="p"
+                                            <input type="checkbox" class="btn-check" id="Pbtncheck1" name="P"
                                                    autocomplete="off">
                                             <label class="btn btn-outline-primary" for="Pbtncheck1">영미문학문화트랙</label>
 
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck2" name="p"
+                                            <input type="checkbox" class="btn-check" id="Pbtncheck2" name="P"
                                                    autocomplete="off">
                                             <label class="btn btn-outline-primary" for="Pbtncheck2">영미언어정보트랙</label>
 
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck3" name="p"
+                                            <input type="checkbox" class="btn-check" id="Pbtncheck3" name="P"
                                                    autocomplete="off">
                                             <label class="btn btn-outline-primary" for="Pbtncheck3">한국어교육트랙</label>
 
 
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck4" name="p"
+                                            <input type="checkbox" class="btn-check" id="Pbtncheck4" name="P"
                                                    autocomplete="off">
                                             <label class="btn btn-outline-primary"
                                                    for="Pbtncheck4">문학문화콘텐츠트랙</label>
 
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck5" name="p"
+                                            <input type="checkbox" class="btn-check" id="Pbtncheck5" name="P"
                                                    autocomplete="off">
                                             <label class="btn btn-outline-primary" for="Pbtncheck5">글로컬역사트랙</label>
 
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck6" name="p"
+                                            <input type="checkbox" class="btn-check" id="Pbtncheck6" name="P"
                                                    autocomplete="off">
                                             <label class="btn btn-outline-primary"
                                                    for="Pbtncheck6">역사문화콘텐츠트랙</label>
 
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck7" name="p"
+                                            <input type="checkbox" class="btn-check" id="Pbtncheck7" name="P"
                                                    autocomplete="off">
                                             <label class="btn btn-outline-primary"
                                                    for="Pbtncheck7">도서관정보문화트랙</label>
 
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck8" name="p"
+                                            <input type="checkbox" class="btn-check" id="Pbtncheck8" name="P"
                                                    autocomplete="off">
                                             <label class="btn btn-outline-primary"
                                                    for="Pbtncheck8">디지털인문정보학트랙</label>
 
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck9" name="p"
+                                            <input type="checkbox" class="btn-check" id="Pbtncheck9" name="P"
                                                    autocomplete="off">
                                             <label class="btn btn-outline-primary" for="Pbtncheck9">동양화전공</label>
 
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck10" name="p"
+                                            <input type="checkbox" class="btn-check" id="Pbtncheck10" name="P"
                                                    autocomplete="off">
                                             <label class="btn btn-outline-primary" for="Pbtncheck10">서양화전공</label>
 
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck11" name="p"
+                                            <input type="checkbox" class="btn-check" id="Pbtncheck11" name="P"
                                                    autocomplete="off">
                                             <label class="btn btn-outline-primary" for="Pbtncheck11">한국무용전공</label>
 
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck12" name="p"
+                                            <input type="checkbox" class="btn-check" id="Pbtncheck12" name="P"
                                                    autocomplete="off">
                                             <label class="btn btn-outline-primary" for="Pbtncheck12">현대무용전공</label>
 
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck13" name="p"
+                                            <input type="checkbox" class="btn-check" id="Pbtncheck13" name="P"
                                                    autocomplete="off">
                                             <label class="btn btn-outline-primary" for="Pbtncheck13">발레전공</label>
 
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck14" name="p"
+                                            <input type="checkbox" class="btn-check" id="Pbtncheck14" name="P"
                                                    autocomplete="off">
                                             <label class="btn btn-outline-primary"
                                                    for="Pbtncheck14">이민&다문화트랙</label>
@@ -227,7 +220,7 @@
                                         미래융합사회과학대학
                                         <div style="margin-top:50px;">전체선택
                                             <input type='checkbox' name="R" value="전체선택"
-                                                   onclick='RselectAll(this)'/>
+                                                   onclick='selectAll(this, "R")'/>
                                         </div>
                                     </div>
                                     <div class="col-10">
@@ -297,7 +290,7 @@
                                         디자인대학
                                         <div style="margin-top:50px;">전체선택
                                             <input type='checkbox' name="T" value="전체선택"
-                                                   onclick='TselectAll(this)'/>
+                                                   onclick='selectAll(this, "T")'/>
                                         </div>
                                     </div>
                                     <div class="col-10">
@@ -369,7 +362,7 @@
                                         IT공과대학
                                         <div style="margin-top:50px;">전체선택
                                             <input type='checkbox' name="V" value="전체선택"
-                                                   onclick='VselectAll(this)'/>
+                                                   onclick='selectAll(this,"V")'/>
                                         </div>
                                     </div>
                                     <div class="col-10">
@@ -484,7 +477,7 @@
                                     <hr class="mt-4">
                                 </div>
                                 <div class="d-grid gap-2 col-3 mx-auto">
-                                    <a href="#" class="btn btn-primary" tabindex="-1" role="button"
+                                    <a href="#" class="btn btn-primary" tabindex="-1" role="button" onclick="submitElection()"
                                        aria-disabled="true">투표 개설하기</a>
                                 </div>
                             </div>
@@ -502,22 +495,32 @@
 
 
 <script>
-    function addRow() {
 
-        // var addrow= document.getElementById("addrow");
-        // // var row = addrow.insertRow(addrow.rows.length);
+    var cVoList = [
+        <c:forEach var = "cVo" items="${cVoList}" varStatus="status">
+        {
 
+            electionName : "${cVo.electionName}",
+            candidateName : "${cVo.candidateName}",
+            image : "${cVo.image}",
+        },
+        </c:forEach>
+    ];
+    var cadidateCount = 0;
 
+    function addRow(candidate, image) {
         var Row;
         Row = document.all("addrow").insertRow();
 
         var candidateName = Row.insertCell();
-        candidateName.innerHTML = "<input type='text' id='row_name' name='row_name' size='30' value=''/>";
-
-
+        candidateName.innerHTML = "<input type='text' id='candidateName"+cadidateCount+"' name='row_name' size='30' value='"+ candidate+"'/>";
         var candidatePicture = Row.insertCell();
-        candidatePicture.innerHTML = "<input type='file' class='real-upload' accept='image/*' id='row_pic' name='row_pic' size='10' value=''/>";
+        candidatePicture.innerHTML = "<input type='file' class='real-upload' accept='image/!*' id='candidatePic"+cadidateCount+" name='row_pic' size='10' value='"+ image+"'/>";
+    }
 
+    for(var i=0; i< cVoList.length; i++ ) {
+        addRow(cVoList[i].candidateName,cVoList[i].image);
+        cadidateCount++;
     }
 
 
@@ -526,46 +529,30 @@
 
         if (table.rows.length < 1) return;
         table.deleteRow(table.rows.length - 1);
+        cadidateCount--;
 
     }
 
-    function PselectAll(selectAll) {
-        const Pcheckboxes
-            = document.getElementsByName('p');
+    function selectAll(selectAll, departcode) {
+        const checkboxes = document.getElementsByName(departcode);
 
-        Pcheckboxes.forEach((checkbox) => {
+        checkboxes.forEach((checkbox) => {
             checkbox.checked = selectAll.checked;
         })
     }
 
-    function RselectAll(selectAll) {
-        const Rcheckboxes
-            = document.getElementsByName('R');
+    function submitElection() {
+        var electionName = document.getElementById("electionName").value;
+        alert(
+            "선거이름 : " + electionName +
+            "\n최종 후보수 : " + cadidateCount +
+            "\n선거 대상 : " +
+            "\n선거 개설을 진행하시겠습니까?"
+        );
 
-        Rcheckboxes.forEach((checkbox) => {
-            checkbox.checked = selectAll.checked;
-        })
     }
 
 
-    function TselectAll(selectAll) {
-        const Tcheckboxes
-            = document.getElementsByName('T');
-
-        Tcheckboxes.forEach((checkbox) => {
-            checkbox.checked = selectAll.checked;
-        })
-    }
-
-
-    function VselectAll(selectAll) {
-        const Vcheckboxes
-            = document.getElementsByName('V');
-
-        Vcheckboxes.forEach((checkbox) => {
-            checkbox.checked = selectAll.checked;
-        })
-    }
 
 
 </script>
