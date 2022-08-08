@@ -568,6 +568,11 @@
         var pCount = checkDepartment("P");
         var yCount = checkDepartment("Y");
 
+        var std = document.getElementById("startDate");
+        var etd = document.getElementById("endDate");
+        var stt = document.getElementById("startTime");
+        var ett = document.getElementById("endTime");
+
         if (vCount >=16 && tCount >=11 && rCount >=11 && pCount >=14 && yCount >=2) {
             targetDepartment="";
         }
@@ -631,12 +636,17 @@
             }
         }
 
-
+        console.log(std.value);
+        if (std.value == "" || stt.value == "" || etd.value == "" || ett.value == "") {
+            alert("날짜가 올바르게 지정되지 않았습니다");
+            return;
+        }
 
         if (cadidateCount == 0) {
             alert("후보가 존재하지 않습니다.");
             return;
         }
+
 
         var DisplayDepartment = "";
         if (targetDepartment=="") {
