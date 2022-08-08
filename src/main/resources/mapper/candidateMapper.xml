@@ -26,5 +26,10 @@
 		where candidateName= #{candidateName};
 	</select>
 
+	<delete id="deleteCandidate" parameterType="String">
+		delete
+		from candidate
+		where electionName=#{electionName};
+	</delete>
 
 </mapper>

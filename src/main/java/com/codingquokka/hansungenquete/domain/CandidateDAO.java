@@ -27,5 +27,7 @@ public class CandidateDAO {
 	public CandidateVO selectSpecipicCandidate(String candidateName) {
 		return sqlSession.selectOne(namespace+".selectSpecipicCandidate", candidateName);
 	}
-
+	public void deleteCandidate(String electionName) throws Exception {
+		sqlSession.delete(namespace+".deleteCandidate", electionName);
+	}
 }

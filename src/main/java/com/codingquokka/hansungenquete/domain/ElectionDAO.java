@@ -29,5 +29,8 @@ public class ElectionDAO {
 	public void insertElection(ElectionVO vo) throws Exception {
 		sqlSession.insert(namespace + ".insertElection", vo);
 	}
-	
+
+	public void deleteElection(String electionName) throws Exception {
+		sqlSession.delete(namespace+".deleteElection", electionName);
+	}
 }

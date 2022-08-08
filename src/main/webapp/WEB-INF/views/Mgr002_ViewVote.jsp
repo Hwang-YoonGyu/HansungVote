@@ -112,6 +112,10 @@
                                         <td style="background-color: white;">${start}</td>
                                         <td style="background-color: white;">${end}</td>
                                         <td style="background-color: white;">
+                                            <button onclick="deleteAction('${ElectionVO.electionName}')"
+                                                    type="button"
+                                                    class="btn btn-outline-primary btn-sm">삭제
+                                            </button>
                                             <button onclick="location.href ='/manager/showTurnOutList?electionName=${ElectionVO.electionName}'"
                                                     type="button"
                                                     class="btn btn-outline-primary btn-sm">조회
@@ -134,7 +138,14 @@
             </div>
         </div>
     </div>
-
+<script>
+    function deleteAction(electionName) {
+        var result = confirm(electionName+"을 삭제하시겠습니까?");
+        if (result==true) {
+            location.href = '/manager/deleteElection?electionName='+electionName;
+        }
+    }
+</script>
 
 </main>
 

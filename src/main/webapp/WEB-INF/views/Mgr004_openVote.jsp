@@ -59,7 +59,7 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div class="login-form bg-white mt-4 p-4 rounded">
-                    <form action="/manager/modifyElection" method="post" class="row g-3" id="formId">
+                    <form action="/manager/modifyElection" enctype="multipart/form-data" method="post" class="row g-3" id="formId">
                         <span style="font-size: 30px;">투표 개설 및 수정</span>
 
 
@@ -569,7 +569,7 @@
         var yCount = checkDepartment("Y");
 
         if (vCount >=16 && tCount >=11 && rCount >=11 && pCount >=14 && yCount >=2) {
-            targetDepartment="전교생";
+            targetDepartment="";
         }
         else {
             var collegeCount = 0;
@@ -638,10 +638,18 @@
             return;
         }
 
+        var DisplayDepartment = "";
+        if (targetDepartment=="") {
+            DisplayDepartment = "전교생";
+        }
+        else {
+            DisplayDepartment = targetDepartment;
+        }
+
         var result = confirm(
             "선거이름 : " + electionName.value +
             "\n최종 후보수 : " + cadidateCount +
-            "\n선거 대상 : " + targetDepartment +
+            "\n선거 대상 : " + DisplayDepartment +
             "\n선거 개설을 진행하시겠습니까?"
         );
         if (result==true) {

@@ -27,9 +27,15 @@
     </select>
 
     <insert id = "insertElection" parameterType="com.codingquokka.hansungenquete.domain.ElectionVO">
-        insert into election(electionName, startDate, endDate, explain, department)
-        values (#{electionName}, #{startDate}, #{endDate}, #{explain}, #{department});
+        insert into election(electionName, startDate, endDate, department)
+        values (#{electionName}, #{startDate}, #{endDate}, #{department});
     </insert>
+
+    <delete id="deleteElection" parameterType="String">
+        delete
+        from election
+        where electionName= #{electionName};
+    </delete>
 
 
 

@@ -128,6 +128,7 @@ public class ManagerController {
         eVo.setDepartment(request.getParameter("department"));
         eVo.setStartDate(startDate);
         eVo.setEndDate(endDate);
+        eVo.setExplain("");
         eDao.insertElection(eVo);
 
         for (int i=0; i< Integer.parseInt(request.getParameter("candidateCount"));i++) {
@@ -152,10 +153,38 @@ public class ManagerController {
             cDao.insert(cVo);
 
         }
-        
+
         return "redirect:/manager/viewVote";
     }
 
+
+    @RequestMapping(value = "/deleteElection", method = RequestMethod.GET)
+    public String deleteAction(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        HttpSession session = request.getSession();
+        UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        if (uVo != null && uVo.getStuid().equals("manager")) {
+
+            String electionName = request.getParameter("electionName");
+
+            cDao.deleteCandidate(electionName);
+            eDao.deleteElection(electionName);
+
+
+            response.setContentType("text/html; charset=euc-kr");
+            PrintWriter out = null;
+            out = response.getWriter();
+            out.println("<script>alert('삭제가 완료되었습니다.');" +
+                    "location.href = \"/manager/main\";" +
+                    "</script>");
+            out.flush();
+
+            return "redirect:/manager/viewVote";
+
+        } else {
+            return abnormal(response);
+        }
+    }
 
     @RequestMapping(value = "/ballotCount", method = RequestMethod.GET)
     public String ballotCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
