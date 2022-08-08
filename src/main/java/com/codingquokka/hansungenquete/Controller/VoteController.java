@@ -143,12 +143,26 @@ public class VoteController {
             sessionIsNull(response);
         }
 
+
         ElectionvotedVO evVo = new ElectionvotedVO();
         evVo.setElectionName(request.getParameter("ElectionName"));
         evVo.setCandidateName(request.getParameter("CandidateName"));
         evVo.setStuId(user.getStuid());
         evVo.setName(user.getName());
         evVo.setDepartment(user.getDepartment());
+        ElectionvotedVO wasVoted = evDao.wasVoted(evVo);
+
+
+        if (wasVoted != null) {
+            response.setContentType("text/html; charset=euc-kr");
+            PrintWriter out = null;
+            out = response.getWriter();
+            out.println("<script>alert('중복투표는 불가합니다');" +
+                    "location.href = \"/vote/votehome\";" +
+                    "</script>");
+            out.flush();
+            return;
+        }
 
         evDao.insertVote(evVo);
 
