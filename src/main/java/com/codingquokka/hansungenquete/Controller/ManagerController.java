@@ -113,34 +113,46 @@ public class ManagerController {
     }
     @RequestMapping(value = "/modifyElection", method = RequestMethod.POST)
     public String modifyElectionPOST(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request;
-//        byte[] file = null;
-//        try {
-//            file = mhsr.getFile("imgFile").getBytes();
-//            if (file.length == 0) {
-//                return "home";
-//            }
-//
-//        } catch (IOException e1) {
-//            // TODO Auto-generated catch block
-//            System.out.println(e1.getMessage());
-//        }
-//
-        //int candidateCount = Integer.parseInt(request.getParameter("candidateCount"));
-        //System.out.println(candidateCount);
+        MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request;
 
+        ElectionVO eVo = new ElectionVO();
 
-        String startDateString = request.getParameter("startDate") + " " +request.getParameter("startTime");
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String startDateString = request.getParameter("startDate") + " " +request.getParameter("startTime");
         Date startDate = format.parse(startDateString);
-
-
         String endDateString = request.getParameter("endDate") + " " +request.getParameter("endTime");
         Date endDate = format.parse(endDateString);
+        String electionName = request.getParameter("electionName");
 
-        System.out.println(startDate.toString());
-        System.out.println(endDate.toString());
+        eVo.setElectionName(electionName);
+        eVo.setDepartment(request.getParameter("department"));
+        eVo.setStartDate(startDate);
+        eVo.setEndDate(endDate);
+        eDao.insertElection(eVo);
 
+        for (int i=0; i< Integer.parseInt(request.getParameter("candidateCount"));i++) {
+            String candidateName = request.getParameter("candidateName"+i);
+
+            byte[] file = null;
+            try {
+                file = mhsr.getFile("candidatePic"+i).getBytes();
+                if (file.length == 0) {
+                    request.setAttribute("msg","error");
+                    return "home";
+                }
+
+            } catch (IOException e1) {
+                System.out.println(e1.getMessage());
+            }
+
+            CandidateVO cVo = new CandidateVO();
+            cVo.setImage(file);
+            cVo.setCandidateName(candidateName);
+            cVo.setElectionName(electionName);
+            cDao.insert(cVo);
+
+        }
+        
         return "redirect:/manager/viewVote";
     }
 

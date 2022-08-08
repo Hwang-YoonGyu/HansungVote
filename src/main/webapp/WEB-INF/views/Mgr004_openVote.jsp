@@ -503,9 +503,9 @@
         Row = document.all("addrow").insertRow();
 
         var candidateName = Row.insertCell();
-        candidateName.innerHTML = "<input type='text' id='candidateName"+cadidateCount+"' name='row_name' size='30' value='"+ candidate+"'/>";
+        candidateName.innerHTML = "<input type='text' name='candidateName"+cadidateCount+"'  size='30' value='"+ candidate+"'/>";
         var candidatePicture = Row.insertCell();
-        candidatePicture.innerHTML = "<input type='file' class='real-upload' accept='image/!*' id='candidatePic"+cadidateCount+"' name='row_pic' size='10' value='"+ image+"'/>";
+        candidatePicture.innerHTML = "<input type='file' class='real-upload' accept='image/!*' name='candidatePic"+cadidateCount+"'  size='10' value='"+ image+"'/>";
         cadidateCount++;
     }
 

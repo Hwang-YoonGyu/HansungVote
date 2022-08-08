@@ -26,8 +26,8 @@ public class ElectionDAO {
 		return sqlSession.selectOne(namespace + ".selectSpecipicElection", electionName);
 	}
 
-	public void insertUser(ElectionvotedVO vo) throws Exception {
-		sqlSession.insert(namespace + ".insertUser", vo);
+	public void insertElection(ElectionVO vo) throws Exception {
+		sqlSession.insert(namespace + ".insertElection", vo);
 	}
 	
 }
