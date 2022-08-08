@@ -96,9 +96,9 @@
                         <div class="container" style="text-align: center; padding-top: 10px;" id="1">
                             <c:choose>
                                 <c:when test="${fn:length(candiList) eq 1}">
-                                    <div class="form-check form-check-inline " >
+                                    <div class="form-check form-check-inline " id="single">
                                         <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                               id="agree" value="option1">
+                                               id="${candiList[0].candidateName}" value="option1">
                                         <p class="agree">찬성</p>
                                     </div>
                                     <div class="form-check form-check-inline" style="padding-left: 150px;">
@@ -108,21 +108,21 @@
                                     </div>
                                     <div class="form-check form-check-inline" style="padding-left: 150px;">
                                         <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                               id="inject1" value="option3">
+                                               id="inject" value="option3">
                                         <p class="giveup">기권</p>
                                     </div>
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach items="${candiList}" var="CandidateVO" varStatus="status">
-                                        <div class="form-check form-check-inline " id="a">
+                                        <div class="form-check form-check-inline " id="multiples">
                                             <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                                   id="${status.index}" value="option${status.index}">
+                                                   id="${candiList[status.index].candidateName}" value="option${status.index}">
                                             <p class="agree">${candiList[status.index].candidateName}</p>
                                         </div>
                                     </c:forEach>
                                     <div class="form-check form-check-inline ">
                                         <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                               id="inject2" value="option${fn:length(candiList)}">
+                                               id="inject" value="option${fn:length(candiList)}">
                                         <p class="agree">기권</p>
                                     </div>
                                 </c:otherwise>
@@ -147,9 +147,10 @@
 
 </main>
 <script>
-    const electionName='${candiList[0].electionName}';
 
-    var candidateName= '${candiList[0].candidateName}';
+    var index;
+    const electionName='${candiList[0].electionName}';
+    var candidateName= '${candiList[index].candidateName}';
     const radioList =document.getElementsByName("inlineRadioOptions");
     var votecheckbutton = document.getElementById("votecheckButton");
 
@@ -157,7 +158,13 @@
 
         var result = confirm("투표하시겠습니까?");
         if (result == true) {
-            votecheckbutton.href = '/vote/doVote?ElectionName=' + electionName  + "&CandidateName="+ candidateName;
+            radioList.forEach((node) => {
+                 if (node.checked) {
+                    
+                     votecheckbutton.href ='/vote/doVote?ElectionName=' +electionName + "&CandidateName="+ node.id ;
+                 }
+             })
+
 
         } else {
             alert("취소되었습니다.")
