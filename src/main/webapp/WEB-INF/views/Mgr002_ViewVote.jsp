@@ -66,7 +66,8 @@
 
                         <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
                             padding-top: 10px; padding-bottom: 60px;">
-
+                            <div>
+                            </div>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
 
@@ -104,15 +105,13 @@
                                                                            pattern="yyyy-MM-dd HH:mm"/></c:set>
                                         <c:set var="end"><fmt:formatDate value="${ElectionVO.endDate}"
                                                                          pattern="yyyy-MM-dd HH:mm"/></c:set>
+
+
                                         <td style="background-color: white;">${ElectionVO.department}</td>
                                         <td style="background-color: white;">${ElectionVO.electionName}</td>
                                         <td style="background-color: white;">${start}</td>
                                         <td style="background-color: white;">${end}</td>
                                         <td style="background-color: white;">
-                                            <button onclick="location.href ='/manager/modifyElection?electionName=${ElectionVO.electionName}'"
-                                                    type="button"
-                                                    class="btn btn-outline-primary btn-sm">수정
-                                            </button>
                                             <button onclick="location.href ='/manager/showTurnOutList?electionName=${ElectionVO.electionName}'"
                                                     type="button"
                                                     class="btn btn-outline-primary btn-sm">조회

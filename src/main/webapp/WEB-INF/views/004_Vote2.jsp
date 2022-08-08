@@ -72,7 +72,7 @@
                                         <div class="row card-body">
 
                                             <div class="col-sm my-3" style="text-align: start">
-                                                <img src="/getByteImage?number=${status.index}&electionName=${CandidateVO.electionName}"
+                                                <img src="/getByteImage?candidateName=${CandidateVO.candidateName}"
                                                      width="300" height="400">
                                             </div>
 

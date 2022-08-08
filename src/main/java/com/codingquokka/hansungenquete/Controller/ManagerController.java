@@ -4,6 +4,7 @@ import com.codingquokka.hansungenquete.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -110,6 +113,34 @@ public class ManagerController {
     }
     @RequestMapping(value = "/modifyElection", method = RequestMethod.POST)
     public String modifyElectionPOST(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request;
+//        byte[] file = null;
+//        try {
+//            file = mhsr.getFile("imgFile").getBytes();
+//            if (file.length == 0) {
+//                return "home";
+//            }
+//
+//        } catch (IOException e1) {
+//            // TODO Auto-generated catch block
+//            System.out.println(e1.getMessage());
+//        }
+//
+        //int candidateCount = Integer.parseInt(request.getParameter("candidateCount"));
+        //System.out.println(candidateCount);
+
+
+        String startDateString = request.getParameter("startDate") + " " +request.getParameter("startTime");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date startDate = format.parse(startDateString);
+
+
+        String endDateString = request.getParameter("endDate") + " " +request.getParameter("endTime");
+        Date endDate = format.parse(endDateString);
+
+        System.out.println(startDate.toString());
+        System.out.println(endDate.toString());
+
         return "redirect:/manager/viewVote";
     }
 

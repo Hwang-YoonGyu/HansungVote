@@ -17,7 +17,8 @@
 
     <select id="selectElectionAll" parameterType="com.codingquokka.hansungenquete.domain.ElectionVO" resultType="com.codingquokka.hansungenquete.domain.ElectionVO">
         select *
-        from election;
+        from election
+        order by department asc;
     </select>
     <select id="selectSpecipicElection" parameterType="String" resultType="com.codingquokka.hansungenquete.domain.ElectionVO">
         select *

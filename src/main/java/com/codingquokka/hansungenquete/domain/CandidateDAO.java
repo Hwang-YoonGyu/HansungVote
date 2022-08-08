@@ -24,4 +24,8 @@ public class CandidateDAO {
 		
 	}
 
+	public CandidateVO selectSpecipicCandidate(String candidateName) {
+		return sqlSession.selectOne(namespace+".selectSpecipicCandidate", candidateName);
+	}
+
 }

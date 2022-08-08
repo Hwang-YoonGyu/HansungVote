@@ -20,6 +20,11 @@
 		where electionName=#{electionName};
 	</select>
 
+	<select id="selectSpecipicCandidate" parameterType="String" resultType="com.codingquokka.hansungenquete.domain.CandidateVO">
+		select *
+		from candidate
+		where candidateName= #{candidateName};
+	</select>
 
 
 </mapper>
