@@ -27,11 +27,11 @@
 		where department like CONCAT('%',#{department},'%') and stuId !='manager'
 		);
 		alter view temp2 as (
-		select stuId as stuId, voteName as voteName
+		select stuId as stuId, candidateName as candidateName
 		from electionvoted
 		where electionName=#{electionName}
 		);
-		select temp1.*, temp2.voteName as voteName
+		select temp1.*, temp2.candidateName as candidateName
 		from temp1 left outer join temp2 on temp1.stuId = temp2.stuId;
 	</select>
 

@@ -98,7 +98,7 @@ padding-top: 10px; padding-bottom: 60px;">
                                             <td style="background-color: white;">${map.password}</td>
 
                                             <c:choose>
-                                                <c:when test="${fn:length(map.voteName) eq 0}">
+                                                <c:when test="${fn:length(map.candidateName) eq 0}">
                                                     <td style="background-color: white;">X</td>
                                                 </c:when>
                                                 <c:otherwise>
