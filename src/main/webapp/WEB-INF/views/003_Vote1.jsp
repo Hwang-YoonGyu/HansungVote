@@ -183,8 +183,8 @@
         var list = [
             <c:forEach var = "ElectionVO" items="${electionList}" varStatus="status">
             {
-                <c:set var="start"><fmt:formatDate value="${ElectionVO.startDate}" pattern="yyyy-MM-dd HH:mm"/></c:set>
-                <c:set var="end"><fmt:formatDate value="${ElectionVO.endDate}" pattern="yyyy-MM-dd HH:mm"/></c:set>
+                <c:set var="start"><fmt:formatDate value="${ElectionVO.startDate}" pattern="yyyy/MM/dd HH:mm"/></c:set>
+                <c:set var="end"><fmt:formatDate value="${ElectionVO.endDate}" pattern="yyyy/MM/dd HH:mm"/></c:set>
                 electionName : "${ElectionVO.electionName}",
                 startDate : "${start}",
                 endDate : "${end}",
