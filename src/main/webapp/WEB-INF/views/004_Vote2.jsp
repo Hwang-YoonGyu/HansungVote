@@ -28,7 +28,7 @@
 
         main {
             background-color: hsl(228, 26%, 96%);
-            min-height: ${1000 +(fn:length(candiList)-1)*500}px;
+            min-height: ${1300 +(fn:length(candiList)-1)*800}px;
             margin-top: 100px;
 
         }
@@ -67,25 +67,19 @@
                                     후보자 목록</span>
 
                             <c:forEach items="${candiList}" var="CandidateVO" varStatus="status">
-                                <div class="my-3" style="padding-top: 10px">
+                                <div class="my-3" style="padding-top: 10px; text-align: center;"  >
                                     <div class="card background-color white">
                                         <div class="row card-body">
-
                                             <div class="col-sm my-3" style="text-align: start">
+                                                <center>
+                                                    <div style =' font-size : 30px ;' >
+                                                        <b>${CandidateVO.candidateName}</b>
+                                                    </div>
+                                                <br><br>
                                                 <img src="/getByteImage?candidateName=${CandidateVO.candidateName}"
-                                                     width="300" height="400">
+                                                     width="450" height="600">
+                                                </center>
                                             </div>
-
-                                            <div class="col-sm my-3">
-
-                                                <h3 class="candidate"><b>${CandidateVO.candidateName}</b></h3>
-                                                <p>
-                                                    <br>
-                                                    ----------------후보자 설명-----------------
-                                                    <br>
-                                                </p>
-                                            </div>
-
                                         </div>
                                     </div>
                                 </div>
