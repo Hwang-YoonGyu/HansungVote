@@ -135,7 +135,7 @@ public class VoteController {
         return "004_Vote2";
     }
 
-    @RequestMapping(value = "/doVote", method = RequestMethod.GET)
+    @RequestMapping(value = "/doVote", method = RequestMethod.POST)
     public void doVote(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO user = (UserVO)session.getAttribute("UserVO");
@@ -166,6 +166,8 @@ public class VoteController {
 
         evDao.insertVote(evVo);
 
+        System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +user.getStuid() + " " + user.getName()+" voted to"+ evVo.getElectionName());
+        //logger.WriteLog(LocalDate.now()+" "+LocalTime.now()+": " +user.getStuid() + " " + user.getName()+" voted to"+ evVo.getElectionName());
         response.setContentType("text/html; charset=euc-kr");
         PrintWriter out = null;
         out = response.getWriter();

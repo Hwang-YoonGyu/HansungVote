@@ -71,7 +71,7 @@
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
                                 <button onclick="location.href ='/manager/modifyElection'" class="btn btn-success"
-                                type="button" style="margin-bottom: 30px">유저 DB추가
+                                type="button" style="margin-bottom: 30px">유권자 DB 추가
                         </button>
 
                                 <button onclick="location.href ='/manager/modifyElection'" class="btn btn-primary"

@@ -108,7 +108,7 @@
                                     </div>
                                     <div class="form-check form-check-inline" style="padding-left: 150px;">
                                         <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                               id="inject" value="option3">
+                                               id="reject" value="option3">
                                         <p class="giveup">기권</p>
                                     </div>
                                 </c:when>
@@ -122,7 +122,7 @@
                                     </c:forEach>
                                     <div class="form-check form-check-inline ">
                                         <input class="form-check-input" type="radio" name="inlineRadioOptions"
-                                               id="inject" value="option${fn:length(candiList)}">
+                                               id="reject" value="option${fn:length(candiList)}">
                                         <p class="agree">기권</p>
                                     </div>
                                 </c:otherwise>
@@ -160,8 +160,27 @@
         if (result == true) {
             radioList.forEach((node) => {
                  if (node.checked) {
-                    
-                     votecheckbutton.href ='/vote/doVote?ElectionName=' +electionName + "&CandidateName="+ node.id ;
+
+                     var form = document.createElement("form");
+                     form.setAttribute("charset", "UTF-8");
+                     form.setAttribute("method", "Post");  //Post 방식
+                     form.setAttribute("action", "/vote/doVote"); //요청 보낼 주소
+
+                     var input1 = document.createElement('input');
+                     input1.type = 'hidden';
+                     input1.name = 'ElectionName';
+                     input1.value = electionName;
+                     var input2 = document.createElement('input');
+                     input2.type = 'hidden';
+                     input2.name = 'CandidateName';
+                     input2.value = node.id;
+
+                     form.appendChild(input1);
+                     form.appendChild(input2);
+
+                     document.body.appendChild(form);
+                     form.submit();
+                     //votecheckbutton.href ='/vote/doVote?ElectionName=' +electionName + "&CandidateName="+ node.id ;
                  }
              })
 

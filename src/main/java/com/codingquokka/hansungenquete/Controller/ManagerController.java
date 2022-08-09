@@ -1,6 +1,10 @@
 package com.codingquokka.hansungenquete.Controller;
 
 import com.codingquokka.hansungenquete.domain.*;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,8 +14,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -216,6 +219,76 @@ public class ManagerController {
         } else {
             return abnormal(response);
         }
+    }
+
+    @RequestMapping(value = "/excel", method = RequestMethod.POST)
+    public String excelRead(HttpServletRequest request, HttpServletResponse response) {
+
+
+        MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request;
+        byte[] bytesFile = null;
+
+        try {
+            bytesFile = mhsr.getFile("excelFile").getBytes();
+            if (bytesFile.length == 0) {
+                response.setContentType("text/html; charset=euc-kr");
+                PrintWriter out = null;
+                out = response.getWriter();
+                out.println("<script>alert(error : 파일업로드 에러.\n 관리자에게 문의하세요.');" +
+                        "location.href = \"/manager/main\";" +
+                        "</script>");
+                out.flush();
+
+                return "redirect:/manager/main";
+            }
+
+            InputStream in = new ByteArrayInputStream(bytesFile);
+            XSSFWorkbook workbook = new XSSFWorkbook(in);
+
+            int rowNo = 0;
+            int cellIndex = 0;
+
+            XSSFSheet sheet = workbook.getSheetAt(0); // 0 번째 시트를 가져온다
+            // 만약 시트가 여러개 인 경우 for 문을 이용하여 각각의 시트를 가져온다
+            int rows = sheet.getPhysicalNumberOfRows(); // 사용자가 입력한 엑셀 Row수를 가져온다
+            for (rowNo = 0; rowNo < rows; rowNo++) {
+                XSSFRow row = sheet.getRow(rowNo);
+                if (row != null) {
+                    int cells = row.getPhysicalNumberOfCells(); // 해당 Row에 사용자가 입력한 셀의 수를 가져온다
+                    for (cellIndex = 0; cellIndex <= cells; cellIndex++) {
+                        XSSFCell cell = row.getCell(cellIndex); // 셀의 값을 가져온다
+                        String value = "";
+                        if (cell == null) { // 빈 셀 체크
+                            continue;
+                        } else {
+                            // 타입 별로 내용을 읽는다
+                            switch (cell.getCellType()) {
+                                case XSSFCell.CELL_TYPE_FORMULA:
+                                    value = cell.getCellFormula();
+                                    break;
+                                case XSSFCell.CELL_TYPE_NUMERIC:
+                                    value = cell.getNumericCellValue() + "";
+                                    break;
+                                case XSSFCell.CELL_TYPE_STRING:
+                                    value = cell.getStringCellValue() + "";
+                                    break;
+                                case XSSFCell.CELL_TYPE_BLANK:
+                                    value = cell.getBooleanCellValue() + "";
+                                    break;
+                                case XSSFCell.CELL_TYPE_ERROR:
+                                    value = cell.getErrorCellValue() + "";
+                                    break;
+                            }
+                        }
+                        System.out.println(rowNo + "번 행 : " + cellIndex + "번 열 값은: " + value);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "redirect:/manager/viewVote";
     }
 
 

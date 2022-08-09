@@ -22,17 +22,27 @@ public class ServerLog extends JFrame {
     public List<String> list = new ArrayList<String>();
 
 
+
+    public JButton twoBtn = new JButton("2분");
+    public JButton threeBtn = new JButton("3분");
+    public JButton fiveBtn = new JButton("5분");
     public JTextArea area = new JTextArea(10,20);
     public ServerLog() {
         setSize(500, 500); //크기 설정
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Container c = getContentPane();
         setTitle("서버 GUI");
 
-        setLayout(new FlowLayout()); //배치 관리자 설정
+        setLayout(new BorderLayout()); //배치 관리자 설정
 
         //컴포넌트 생성 및 추가
         area.setSize(300,300);
-        this.add(area);
+
+        c.add(area, BorderLayout.CENTER);
+        c.add(twoBtn, BorderLayout.NORTH);
+        c.add(threeBtn, BorderLayout.NORTH);
+        c.add(fiveBtn, BorderLayout.NORTH);
+
 
         setVisible(true);
         System.out.println("Manager Thread has started");
