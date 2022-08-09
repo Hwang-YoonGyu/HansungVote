@@ -12,11 +12,14 @@
 		where stuId=#{stuId} and electionName=#{electionName}
 	</select> 
 	
-<!-- 1.득표율 계산  -->
-   <select id = "votepercentage" resultType = "int">
-		select COUNT(*)
+<!-- 1.득표율 계산 (찬성, 반대, 기권) -->
+   <select id = "votepercentage" parameterType="String" resultType = "map">
+		select candidateName,
+		count(*) as cnt
 		from electionvoted
-		where electionName=#{electionName} and candidateName=#{candidateName}
+		where electionName =#{electionName}
+  		group by candidateName
+
 	</select>
 	
  <!-- 2.투표율 계산  -->   

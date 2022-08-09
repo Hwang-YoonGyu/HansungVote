@@ -1,6 +1,7 @@
 package com.codingquokka.hansungenquete.domain;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -21,9 +22,10 @@ public class ElectionvotedDAO {
 	}
 	
 	//득표율 계산 
-	public int votePercentage(ElectionvotedVO vo) throws Exception{
-		int num = sqlSession.selectOne(namespace+".votepercentage",vo);
-		return num;
+	public List<Map> votepercentage() throws Exception{
+		List<Map> vote = sqlSession.selectOne(namespace+".votepercentage");
+		return vote;
+		
 	}
 	
 	//투표율 계산 
