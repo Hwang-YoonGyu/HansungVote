@@ -190,10 +190,12 @@ public class ManagerController {
     }
 
     @RequestMapping(value = "/ballotCount", method = RequestMethod.GET)
-    public String ballotCount(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String ballotCount(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
+            List<Map> mapList = evDao.votepercentage(request.getParameter("electionName"));
+            request.setAttribute("mapList", mapList);
 
             return "Mgr003_showTurnOutList";
         } else {
@@ -242,48 +244,8 @@ public class ManagerController {
                 return "redirect:/manager/main";
             }
 
-            InputStream in = new ByteArrayInputStream(bytesFile);
-            XSSFWorkbook workbook = new XSSFWorkbook(in);
-
-            int rowNo = 0;
-            int cellIndex = 0;
-
-            XSSFSheet sheet = workbook.getSheetAt(0); // 0 번째 시트를 가져온다
-            // 만약 시트가 여러개 인 경우 for 문을 이용하여 각각의 시트를 가져온다
-            int rows = sheet.getPhysicalNumberOfRows(); // 사용자가 입력한 엑셀 Row수를 가져온다
-            for (rowNo = 0; rowNo < rows; rowNo++) {
-                XSSFRow row = sheet.getRow(rowNo);
-                if (row != null) {
-                    int cells = row.getPhysicalNumberOfCells(); // 해당 Row에 사용자가 입력한 셀의 수를 가져온다
-                    for (cellIndex = 0; cellIndex <= cells; cellIndex++) {
-                        XSSFCell cell = row.getCell(cellIndex); // 셀의 값을 가져온다
-                        String value = "";
-                        if (cell == null) { // 빈 셀 체크
-                            continue;
-                        } else {
-                            // 타입 별로 내용을 읽는다
-                            switch (cell.getCellType()) {
-                                case XSSFCell.CELL_TYPE_FORMULA:
-                                    value = cell.getCellFormula();
-                                    break;
-                                case XSSFCell.CELL_TYPE_NUMERIC:
-                                    value = cell.getNumericCellValue() + "";
-                                    break;
-                                case XSSFCell.CELL_TYPE_STRING:
-                                    value = cell.getStringCellValue() + "";
-                                    break;
-                                case XSSFCell.CELL_TYPE_BLANK:
-                                    value = cell.getBooleanCellValue() + "";
-                                    break;
-                                case XSSFCell.CELL_TYPE_ERROR:
-                                    value = cell.getErrorCellValue() + "";
-                                    break;
-                            }
-                        }
-                        System.out.println(rowNo + "번 행 : " + cellIndex + "번 열 값은: " + value);
-                    }
-                }
-            }
+            Thread thread = new Thread(new InputThread(bytesFile));
+            thread.start();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -314,5 +276,69 @@ public class ManagerController {
                 "</script>");
         out.flush();
         return "redirect:/login";
+    }
+}
+
+class InputThread implements Runnable {
+    private byte [] bytesFile;
+    public InputThread(byte [] file) {
+        this.bytesFile = file;
+    }
+
+    @Override
+    public void run() {
+        InputStream in = new ByteArrayInputStream(bytesFile);
+        XSSFWorkbook workbook = null;
+        try {
+            workbook = new XSSFWorkbook(in);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        int rowNo = 0;
+        int cellIndex = 0;
+
+        XSSFSheet sheet = workbook.getSheetAt(0); // 0 번째 시트를 가져온다
+        // 만약 시트가 여러개 인 경우 for 문을 이용하여 각각의 시트를 가져온다
+        int rows = sheet.getPhysicalNumberOfRows(); // 사용자가 입력한 엑셀 Row수를 가져온다
+        for (rowNo = 1; rowNo < rows; rowNo++) {
+
+            XSSFRow row = sheet.getRow(rowNo);
+
+            if (row != null) {
+
+                int cells = row.getPhysicalNumberOfCells(); // 해당 Row에 사용자가 입력한 셀의 수를 가져온다
+                String [] temp = new String[5];
+
+                for (cellIndex = 0; cellIndex <= cells; cellIndex++) {
+                    XSSFCell cell = row.getCell(cellIndex); // 셀의 값을 가져온다
+                    String value = "";
+                    if (cell == null) { // 빈 셀 체크
+                        continue;
+                    } else {
+                        // 타입 별로 내용을 읽는다
+                        switch (cell.getCellType()) {
+                            case XSSFCell.CELL_TYPE_FORMULA:
+                                value = cell.getCellFormula();
+                                break;
+                            case XSSFCell.CELL_TYPE_NUMERIC:
+                                value = cell.getNumericCellValue() + "";
+                                break;
+                            case XSSFCell.CELL_TYPE_STRING:
+                                value = cell.getStringCellValue() + "";
+                                break;
+                            case XSSFCell.CELL_TYPE_BLANK:
+                                value = cell.getBooleanCellValue() + "";
+                                break;
+                            case XSSFCell.CELL_TYPE_ERROR:
+                                value = cell.getErrorCellValue() + "";
+                                break;
+                        }
+                    }
+                    temp[cellIndex] = value;
+                }
+                System.out.println(temp[0] + " " + temp[1] + " "+ temp[2] + " "+ temp[3] + " "+ temp[4]);
+            }
+        }
     }
 }

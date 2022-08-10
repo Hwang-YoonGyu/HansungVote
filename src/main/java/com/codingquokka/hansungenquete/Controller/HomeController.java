@@ -64,6 +64,11 @@ public class HomeController {
         return "001_Login";
     }
 
+    @RequestMapping(value = "/excel", method = RequestMethod.GET)
+    public String excel(HttpServletRequest request) {
+        return "imgsubmitTest";
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam("stu_id") String stu_id, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
