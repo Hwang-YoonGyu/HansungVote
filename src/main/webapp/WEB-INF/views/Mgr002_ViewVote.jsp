@@ -58,7 +58,7 @@
             <div class="col-md-8 offset-md-2">
                 <div class="login-form bg-white mt-4 p-4 rounded">
                     <form action="" method="" class="row g-3">
-                        <span style="font-size: 30px;">투표 관리</span>
+                        <span style="font-size: 30px;">선거 관리</span>
 
 
                         <hr class="mt-4">
@@ -71,11 +71,11 @@
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
                                 <button onclick="location.href ='/manager/modifyElection'" class="btn btn-success"
-                                type="button" style="margin-bottom: 30px">유권자 DB 추가
-                        </button>
+                                        type="button" style="margin-bottom: 30px">유권자 DB 추가
+                                </button>
 
                                 <button onclick="location.href ='/manager/modifyElection'" class="btn btn-primary"
-                                        type="button" style="margin-bottom: 30px">선거 추가
+                                        type="button" style="margin-bottom: 30px">선거,후보 추가
                                 </button>
 
                             </div>
@@ -134,21 +134,28 @@
                                 </tbody>
                             </table>
 
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button onclick="location.href ='/manager/modifyElection'" class="btn btn-danger"
+                                        type="button" style="margin-bottom: 30px">유권자 DB 전체삭제
+                                </button>
+                                <button onclick="location.href ='/manager/modifyElection'" class="btn btn-danger"
+                                        type="button" style="margin-bottom: 30px">선거 DB 전체삭제
+                                </button>
+                            </div>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
     </div>
-<script>
-    function deleteAction(electionName) {
-        var result = confirm(electionName+"을 삭제하시겠습니까?");
-        if (result==true) {
-            location.href = '/manager/deleteElection?electionName='+electionName;
+    <script>
+        function deleteAction(electionName) {
+            var result = confirm(electionName + "을 삭제하시겠습니까?");
+            if (result == true) {
+                location.href = '/manager/deleteElection?electionName=' + electionName;
+            }
         }
-    }
-</script>
+    </script>
 
 </main>
 
