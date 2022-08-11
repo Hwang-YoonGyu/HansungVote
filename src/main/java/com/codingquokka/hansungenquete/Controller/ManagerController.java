@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -56,7 +57,6 @@ public class ManagerController {
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
             return "Mgr003_showTurnOutList";
-
 
         } else {
             return abnormal(response);
@@ -114,6 +114,7 @@ public class ManagerController {
             return abnormal(response);
         }
     }
+
     @RequestMapping(value = "/modifyElection", method = RequestMethod.POST)
     public String modifyElectionPOST(HttpServletRequest request, HttpServletResponse response) throws Exception {
         MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request;
@@ -121,9 +122,9 @@ public class ManagerController {
         ElectionVO eVo = new ElectionVO();
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        String startDateString = request.getParameter("startDate") + " " +request.getParameter("startTime");
+        String startDateString = request.getParameter("startDate") + " " + request.getParameter("startTime");
         Date startDate = format.parse(startDateString);
-        String endDateString = request.getParameter("endDate") + " " +request.getParameter("endTime");
+        String endDateString = request.getParameter("endDate") + " " + request.getParameter("endTime");
         Date endDate = format.parse(endDateString);
         String electionName = request.getParameter("electionName");
 
@@ -134,14 +135,14 @@ public class ManagerController {
         eVo.setExplain("");
         eDao.insertElection(eVo);
 
-        for (int i=0; i< Integer.parseInt(request.getParameter("candidateCount"));i++) {
-            String candidateName = request.getParameter("candidateName"+i);
+        for (int i = 0; i < Integer.parseInt(request.getParameter("candidateCount")); i++) {
+            String candidateName = request.getParameter("candidateName" + i);
 
             byte[] file = null;
             try {
-                file = mhsr.getFile("candidatePic"+i).getBytes();
+                file = mhsr.getFile("candidatePic" + i).getBytes();
                 if (file.length == 0) {
-                    request.setAttribute("msg","error");
+                    request.setAttribute("msg", "error");
                     return "home";
                 }
 
@@ -182,7 +183,7 @@ public class ManagerController {
                     "</script>");
             out.flush();
 
-            return "redirect:/manager/viewVote";
+            return null;
 
         } else {
             return abnormal(response);
@@ -194,6 +195,18 @@ public class ManagerController {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
+            ElectionVO eVo = eDao.selectSpecipicElection(request.getParameter("electionName"));
+
+            if (LocalTime.now().getHour() < eVo.getEndDate().getHours()) {
+                response.setContentType("text/html; charset=euc-kr");
+                PrintWriter out = null;
+                out = response.getWriter();
+                out.println("<script>alert('선거가 아직 종료되지 않았습니다.');" +
+                        "location.href = \"/manager/viewVote\";" +
+                        "</script>");
+                out.flush();
+                return null;
+            }
             List<Map> mapList = evDao.votepercentage(request.getParameter("electionName"));
             request.setAttribute("mapList", mapList);
 
@@ -264,7 +277,7 @@ public class ManagerController {
                 "</script>");
         out.flush();
 
-        return "redirect:/login";
+        return null;
     }
 
     String abnormal(HttpServletResponse response) throws IOException {
@@ -275,13 +288,14 @@ public class ManagerController {
                 "location.href = \"/login\";" +
                 "</script>");
         out.flush();
-        return "redirect:/login";
+        return null;
     }
 }
 
 class InputThread implements Runnable {
-    private byte [] bytesFile;
-    public InputThread(byte [] file) {
+    private byte[] bytesFile;
+
+    public InputThread(byte[] file) {
         this.bytesFile = file;
     }
 
@@ -308,7 +322,7 @@ class InputThread implements Runnable {
             if (row != null) {
 
                 int cells = row.getPhysicalNumberOfCells(); // 해당 Row에 사용자가 입력한 셀의 수를 가져온다
-                String [] temp = new String[5];
+                String[] temp = new String[5];
 
                 for (cellIndex = 0; cellIndex <= cells; cellIndex++) {
                     XSSFCell cell = row.getCell(cellIndex); // 셀의 값을 가져온다
@@ -337,7 +351,7 @@ class InputThread implements Runnable {
                     }
                     temp[cellIndex] = value;
                 }
-                System.out.println(temp[0] + " " + temp[1] + " "+ temp[2] + " "+ temp[3] + " "+ temp[4]);
+                System.out.println(temp[0] + " " + temp[1] + " " + temp[2] + " " + temp[3] + " " + temp[4]);
             }
         }
     }
