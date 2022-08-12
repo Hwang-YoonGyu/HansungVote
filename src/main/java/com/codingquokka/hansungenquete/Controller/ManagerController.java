@@ -241,6 +241,19 @@ public class ManagerController {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
+
+            return "Mgr007_offLineVote";
+
+        } else {
+            return abnormal(response);
+        }
+    }
+
+    @RequestMapping(value = "/addVoted", method = RequestMethod.GET)
+    public String addVotedPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        if (uVo != null && uVo.getStuid().equals("manager")) {
             System.out.println(request.getParameter("stuId"));
             System.out.println(request.getParameter("name"));
 
@@ -250,13 +263,12 @@ public class ManagerController {
             out.println("<script>alert('오프라인 투표 완료했습니다');</script>");
             out.flush();
 
-            return "redirect:/manager/main";
+            return "redirect:/manager/addVoted";
 
         } else {
             return abnormal(response);
         }
     }
-
     @RequestMapping(value = "/excel", method = RequestMethod.POST)
     public String excelRead(HttpServletRequest request, HttpServletResponse response) {
 
