@@ -81,6 +81,11 @@
                                         type="button" style="margin-bottom: 30px">선거,후보 추가
                                 </button>
 
+                                <button onclick="location.href ='/manager/addVoted'" class="btn btn-warning"
+                                        type="button" style="margin-bottom: 30px">오프라인 투표 추가
+                                </button>
+
+
                             </div>
 
 
