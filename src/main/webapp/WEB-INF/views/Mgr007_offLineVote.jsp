@@ -48,63 +48,65 @@
 
 <body>
 
-    <header class="fixed-top" style="border-bottom: 1px solid hsl(0, 0%, 56%);">
-        <img src="/resources/img/Logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
+<header class="fixed-top" style="border-bottom: 1px solid hsl(0, 0%, 56%);">
+    <img src="/resources/img/Logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
 
-    </header>
+</header>
 
-    <main>
+<main>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <div class="login-form bg-white mt-4 p-4 rounded">
-                        <form action="" method="" class="row g-3">
-                            <span style="font-size: 30px;">오프라인 투표 업데이트</span>
-
-
-                            <hr class="mt-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="login-form bg-white mt-4 p-4 rounded">
+                    <form action="/manager/addVoted" method="POST" class="row g-3">
+                        <span style="font-size: 30px;">오프라인 투표 업데이트</span>
 
 
-                            <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
+                        <hr class="mt-4">
+
+
+                        <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
                             padding-top: 10px; padding-bottom: 60px;">
 
-                                <div class="input-group flex-nowrap">
-                                    <span class="input-group-text" id="stdId">학번</span>
-                                    <input type="text" class="form-control" placeholder="ex) 1971123" aria-label="stdId"
-                                        aria-describedby="addon-wrapping">
-                                </div>
-
-                                <div class="input-group flex-nowrap" style="padding-top: 20px;">
-                                    <span class="input-group-text" id="name">이름</span>
-                                    <input type="text" class="form-control" placeholder="ex) 홍길동" aria-label="name"
-                                        aria-describedby="addon-wrapping">
-                                </div>
-
+                            <div class="input-group flex-nowrap">
+                                <span class="input-group-text" id="stdId">학번</span>
+                                <input name="stuId" type="text" class="form-control" placeholder="ex) 1971123"
+                                       aria-label="stdId"
+                                       aria-describedby="addon-wrapping">
                             </div>
 
+                            <div class="input-group flex-nowrap" style="padding-top: 20px;">
+                                <span class="input-group-text" id="name">이름</span>
+                                <input name="name" type="text" class="form-control" placeholder="ex) 홍길동"
+                                       aria-label="name"
+                                       aria-describedby="addon-wrapping">
+                            </div>
 
-                        </form>
-                        <div class="d-grid gap-2 col-3 mx-auto">
-                            <a href="#" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">업로드
-                                하기</a>
                         </div>
-                    </div>
+                        <div class="d-grid gap-2 col-3 mx-auto">
+
+                            <input type="submit" class="btn btn-primary float-end" value="업로드 하기"/>
+                        </div>
+
+                    </form>
 
                 </div>
-            </div>
 
+            </div>
         </div>
 
-
-    </main>
-
-    <div class="fixed-bottom">
-        <footer>
-            <div>
-                <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 1rem;">@2022 Team Coding Quokka All Rights
-                    Reserved</p>
-            </div>
-        </footer>
     </div>
+
+
+</main>
+
+<div class="fixed-bottom">
+    <footer>
+        <div>
+            <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 1rem;">@2022 Team Coding Quokka All Rights
+                Reserved</p>
+        </div>
+    </footer>
+</div>
 </body>

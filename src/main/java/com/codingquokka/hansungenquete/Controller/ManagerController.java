@@ -249,7 +249,7 @@ public class ManagerController {
         }
     }
 
-    @RequestMapping(value = "/addVoted", method = RequestMethod.GET)
+    @RequestMapping(value = "/addVoted", method = RequestMethod.POST)
     public String addVotedPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
