@@ -1,7 +1,11 @@
 package com.codingquokka.hansungenquete.Controller;
 
+import org.apache.poi.hssf.record.formula.functions.T;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -38,18 +42,79 @@ public class ServerLog extends JFrame {
         //컴포넌트 생성 및 추가
         area.setSize(300,300);
 
+        JPanel northPanel = new JPanel();
+        northPanel.setLayout(new FlowLayout());
+        northPanel.add(twoBtn);
+        northPanel.add(threeBtn);
+        northPanel.add(fiveBtn);
+
         c.add(area, BorderLayout.CENTER);
-        c.add(twoBtn, BorderLayout.NORTH);
-        c.add(threeBtn, BorderLayout.NORTH);
-        c.add(fiveBtn, BorderLayout.NORTH);
+        c.add(northPanel, BorderLayout.NORTH);
 
-
-        setVisible(true);
         System.out.println("Manager Thread has started");
+
         Thread t = new Thread(new ManagerFile());
         Thread t2 = new Thread(new DisPlayLog());
+        Thread tTwo = null;
+        Thread tThree = null;
+        Thread tFive = null;
+        twoBtn.addActionListener(new ActionListener() {
+            Thread t = null;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if (t == null) {
+                    System.out.println("tTwo 살림");
+                    t = new Thread(new twoCheck());
+                    t.start();
+                }
+                else if (t != null){
+                    System.out.println("tTwo 죽임");
+                    t.interrupt();
+                    t = null;
+                }
+            }
+        });
+
+        threeBtn.addActionListener(new ActionListener() {
+            Thread t = null;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (t == null) {
+                    System.out.println("tThree 살림");
+                    t = new Thread(new threeCheck());
+                    t.start();
+                }
+                else if (t != null){
+                    System.out.println("tThree 죽임");
+                    t.interrupt();
+                    t = null;
+                }
+            }
+        });
+
+        fiveBtn.addActionListener(new ActionListener() {
+            Thread t = null;
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (t == null) {
+                    System.out.println("tFive 살림");
+                    t = new Thread(new fiveCheck());
+                    t.start();
+                }
+                else if (t != null){
+                    System.out.println("tFive 죽임");
+                    t.interrupt();
+                    t = null;
+                }
+            }
+        });
+
         t.start();
         t2.start();
+
+        setVisible(true);
+
     }
 
     public void WriteLog(String timeStamp, String content) {
@@ -124,15 +189,100 @@ class DisPlayLog implements Runnable {
     public void run() {
         while(true) {
             ServerLog.instance.area.setText("");
-              for(String s : ServerLog.instance.list) {
-                ServerLog.instance.area.append(s+"\n");
+            synchronized (ServerLog.instance.list) {
+                for (String s : ServerLog.instance.list) {
+                    ServerLog.instance.area.append(s + "\n");
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        }
+    }
+}
+
+class twoCheck implements Runnable {
+    boolean flag = false;
+    @Override
+    public void run() {
+        while(true) {
+            if (LocalTime.now().getSecond() %2 == 0) {
+                if (!flag) {
+                    LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+                    String nowString = formatter.format(now);
+                    synchronized (ServerLog.instance.list) {
+                        ServerLog.instance.list.add("지금은 " + nowString + ", 2의 배수 초입니다");
+                    }
+                    flag = true;
+                }
+            }
+            else {
+                flag = false;
+            }
+
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+    }
+}
+class threeCheck implements Runnable {
+    boolean flag = false;
+    @Override
+    public void run() {
+        while(true) {
+            if (LocalTime.now().getSecond() %3 == 0) {
+                if (!flag) {
+                    LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+                    String nowString = formatter.format(now);
+                    synchronized (ServerLog.instance.list) {
+                        ServerLog.instance.list.add("지금은 " + nowString + ", 3의 배수 초입니다");
+                    }
+                    flag = true;
+                }
+            }
+            else {
+                flag = false;
             }
             try {
-                Thread.sleep(1000);
+                Thread.sleep(1);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
         }
     }
 }
-
+class fiveCheck implements Runnable {
+    boolean flag = false;
+    @Override
+    public void run() {
+        while(true) {
+            if (LocalTime.now().getSecond() %5 == 0) {
+                if (!flag) {
+                    LocalDateTime now = LocalDateTime.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+                    String nowString = formatter.format(now);
+                    synchronized (ServerLog.instance.list) {
+                        ServerLog.instance.list.add("지금은 " + nowString + ", 5의 배수 초입니다");
+                    }
+                    flag = true;
+                }
+            }
+            else {
+                flag = false;
+            }
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}

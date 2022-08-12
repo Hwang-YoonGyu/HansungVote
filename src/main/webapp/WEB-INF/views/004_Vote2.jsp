@@ -28,8 +28,9 @@
 
         main {
             background-color: hsl(228, 26%, 96%);
-            min-height: ${1300 +(fn:length(candiList)-1)*800}px;
+            height: 100%;
             margin-top: 100px;
+            margin-bottom: 100px;
 
         }
 
@@ -77,7 +78,7 @@
                                                     </div>
                                                 <br><br>
                                                 <img src="/getByteImage?candidateName=${CandidateVO.candidateName}"
-                                                     width="450" height="600">
+                                                     style="max-width:80%; height:auto;">
                                                 </center>
                                             </div>
                                         </div>
