@@ -197,20 +197,20 @@ public class ManagerController {
         if (uVo != null && uVo.getStuid().equals("manager")) {
             ElectionVO eVo = eDao.selectSpecipicElection(request.getParameter("electionName"));
 
-            if (LocalTime.now().getHour() < eVo.getEndDate().getHours()) {
-                response.setContentType("text/html; charset=euc-kr");
-                PrintWriter out = null;
-                out = response.getWriter();
-                out.println("<script>alert('선거가 아직 종료되지 않았습니다.');" +
-                        "location.href = \"/manager/viewVote\";" +
-                        "</script>");
-                out.flush();
-                return null;
-            }
+//            if (LocalTime.now().getHour() < eVo.getEndDate().getHours()) {
+//                response.setContentType("text/html; charset=euc-kr");
+//                PrintWriter out = null;
+//                out = response.getWriter();
+//                out.println("<script>alert('선거가 아직 종료되지 않았습니다.');" +
+//                        "location.href = \"/manager/viewVote\";" +
+//                        "</script>");
+//                out.flush();
+//                return null;
+//            }
             List<Map> mapList = evDao.votepercentage(request.getParameter("electionName"));
             request.setAttribute("mapList", mapList);
 
-            return "Mgr003_showTurnOutList";
+            return "Mgr005_countVote";
         } else {
             return abnormal(response);
         }
