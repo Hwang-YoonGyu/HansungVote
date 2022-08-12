@@ -59,7 +59,7 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <div class="login-form bg-white mt-4 p-4 rounded">
-                        <form action="" method="" class="row g-3">
+                        <form action="/manager/addUserDb" method="POST" class="row g-3">
                             <span style="font-size: 30px;">유저 DB 업데이트</span>
 
 
@@ -77,12 +77,12 @@
 
                             </div>
 
+                            <div class="d-grid gap-2 col-3 mx-auto">
+                                <input type="submit" class="btn btn-primary float-end" value="업로드 하기"/>
+                            </div>
 
                         </form>
-                        <div class="d-grid gap-2 col-3 mx-auto">
-                            <a href="#" class="btn btn-primary" tabindex="-1" role="button" aria-disabled="true">업로드
-                                하기</a>
-                        </div>
+
                     </div>
 
                 </div>
