@@ -96,12 +96,12 @@
                                                id="${candiList[0].candidateName}" value="option1">
                                         <p class="agree">찬성</p>
                                     </div>
-                                    <div class="form-check form-check-inline" style="padding-left: 150px;">
+                                    <div class="form-check form-check-inline" style="padding-left: 50px;">
                                         <input class="form-check-input" type="radio" name="inlineRadioOptions"
                                                id="disagree" value="option2">
                                         <p class="disagree">반대</p>
                                     </div>
-                                    <div class="form-check form-check-inline" style="padding-left: 150px;">
+                                    <div class="form-check form-check-inline" style="padding-left: 50px;">
                                         <input class="form-check-input" type="radio" name="inlineRadioOptions"
                                                id="reject" value="option3">
                                         <p class="giveup">기권</p>
