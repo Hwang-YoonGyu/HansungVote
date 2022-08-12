@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -196,6 +195,7 @@ public class ManagerController {
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
             ElectionVO eVo = eDao.selectSpecipicElection(request.getParameter("electionName"));
+            System.out.println(request.getParameter("electionName"));
 
 //            if (LocalTime.now().getHour() < eVo.getEndDate().getHours()) {
 //                response.setContentType("text/html; charset=euc-kr");
@@ -207,8 +207,9 @@ public class ManagerController {
 //                out.flush();
 //                return null;
 //            }
-            List<Map> mapList = evDao.votepercentage(request.getParameter("electionName"));
-            request.setAttribute("mapList", mapList);
+            List<Map<String, String>> map = evDao.votepercentage(request.getParameter("electionName"));
+            System.out.println(map);
+            request.setAttribute("mapList", map);
 
             return "Mgr005_countVote";
         } else {

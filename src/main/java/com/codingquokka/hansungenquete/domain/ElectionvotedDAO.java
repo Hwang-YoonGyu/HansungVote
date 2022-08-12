@@ -22,10 +22,8 @@ public class ElectionvotedDAO {
 	}
 	
 	//득표율 계산 
-	public List<Map> votepercentage(String electionName) throws Exception{
-		List<Map> vote = sqlSession.selectOne(namespace+".votepercentage", electionName);
-		return vote;
-		
+	public List<Map<String, String>> votepercentage(String electionName) throws Exception{
+		return sqlSession.selectList(namespace+".votepercentage", electionName);
 	}
 	
 	//투표율 계산 
