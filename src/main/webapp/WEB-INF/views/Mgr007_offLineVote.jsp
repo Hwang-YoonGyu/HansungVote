@@ -86,7 +86,7 @@
                         </div>
                         <div class="d-grid gap-2 col-3 mx-auto">
 
-                            <input type="submit" class="btn btn-primary float-end" value="업로드 하기"/>
+                            <input type="submit" class="btn btn-primary float-end" onclick="check()" value="업로드 하기"/>
                         </div>
 
                     </form>
@@ -100,6 +100,22 @@
 
 
 </main>
+
+<script>
+    function check() {
+
+        var result = confirm("(정보를 정확히 확인해주세요) 업로드 하시겠습니까? ");
+        if (result == true) {
+            alert("투표학생 정보가 업로드 되었습니다.")
+
+        } else {
+            alert("취소되었습니다.")
+
+        }
+    }
+
+</script>
+
 
 <div class="fixed-bottom">
     <footer>
