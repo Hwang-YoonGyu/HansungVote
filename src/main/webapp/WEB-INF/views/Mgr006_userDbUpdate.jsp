@@ -59,7 +59,7 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <div class="login-form bg-white mt-4 p-4 rounded">
-                        <form action="/manager/addUserDB" method="POST" class="row g-3">
+                        <form action="/manager/addUserDB" enctype="multipart/form-data" method="POST" class="row g-3">
                             <span style="font-size: 30px;">유저 DB 업데이트</span>
 
 
@@ -72,7 +72,7 @@
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">유저 DB 업로드 (.xls,.xlsx 파일만 업로드
                                         가능합니다.)</label>
-                                    <input class="form-control" type="file" name="file_name" accept=".xls,.xlsx">
+                                    <input class="form-control" type="file" id="excelFile"  name="excelFile" accept=".xls,.xlsx">
                                 </div>
 
                             </div>

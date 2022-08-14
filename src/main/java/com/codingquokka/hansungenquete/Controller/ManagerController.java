@@ -259,7 +259,7 @@ public class ManagerController {
             System.out.println(request.getParameter("name"));
 
             ElectionvotedVO evVo = new ElectionvotedVO();
-            
+
 
 
 
@@ -277,8 +277,24 @@ public class ManagerController {
             return abnormal(response);
         }
     }
-    @RequestMapping(value = "/excel", method = RequestMethod.POST)
-    public String excelRead(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "/addUserDB", method = RequestMethod.GET)
+    public String excelRead(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        HttpSession session = request.getSession();
+        UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        if (uVo != null && uVo.getStuid().equals("manager")) {
+
+            return "Mgr006_userDbUpdate";
+
+        } else {
+            return abnormal(response);
+        }
+
+    }
+
+
+    @RequestMapping(value = "/addUserDB", method = RequestMethod.POST)
+    public String excelReadPOST(HttpServletRequest request, HttpServletResponse response) {
 
 
         MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request;
@@ -298,7 +314,7 @@ public class ManagerController {
                 return "redirect:/manager/main";
             }
 
-            Thread thread = new Thread(new InputThread(bytesFile));
+            Thread thread = new Thread(new InputThread(bytesFile, uDao));
             thread.start();
         } catch (Exception e) {
             e.printStackTrace();
@@ -336,7 +352,10 @@ public class ManagerController {
 class InputThread implements Runnable {
     private byte[] bytesFile;
 
-    public InputThread(byte[] file) {
+    private UserDAO uDao;
+
+    public InputThread(byte[] file, UserDAO uDao) {
+        this.uDao = uDao;
         this.bytesFile = file;
     }
 
@@ -392,7 +411,18 @@ class InputThread implements Runnable {
                     }
                     temp[cellIndex] = value;
                 }
-                System.out.println(temp[0] + " " + temp[1] + " " + temp[2] + " " + temp[3] + " " + temp[4]);
+                UserVO uVo = new UserVO();
+                uVo.setStuid(temp[0]);
+                uVo.setName(temp[1]);
+                uVo.setPassword(temp[2]);
+                uVo.setPhoneNumber(temp[3]);
+                uVo.setDepartment(temp[4]);
+
+                try {
+                    uDao.insertUser(uVo);
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }

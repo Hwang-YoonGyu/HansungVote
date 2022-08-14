@@ -29,7 +29,7 @@ public class UserDAO {
 	public List<Map<String,Object>> allUserWhoHaveRight(ElectionVO eVo) throws Exception {
 		return sqlSession.selectList(namespace+".allUserWhoHaveRight", eVo);
 	}
-	public void insertUser(ElectionvotedVO vo) throws Exception {
+	public void insertUser(UserVO vo) throws Exception {
 		sqlSession.insert(namespace + ".insertUser", vo);
 	}
 }
