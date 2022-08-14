@@ -24,10 +24,10 @@
 		alter view temp1 as (
 		select *
 		from user
-		where (department like CONCAT('%',#{department},'%') and stuId !='manager') or department = substring(#{department} from 1 for 3);
+		where (department like CONCAT('%',#{department},'%') and stuId !='manager') or department = substring(#{department} from 1 for 3)
 		);
 		alter view temp2 as (
-		select stuId as stuId, candidateName as candidateName
+		select stuId, candidateName
 		from electionvoted
 		where electionName=#{electionName}
 		);

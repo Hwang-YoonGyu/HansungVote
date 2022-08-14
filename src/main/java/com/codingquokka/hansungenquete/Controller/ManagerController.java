@@ -258,13 +258,20 @@ public class ManagerController {
             System.out.println(request.getParameter("stuId"));
             System.out.println(request.getParameter("name"));
 
+            ElectionvotedVO evVo = new ElectionvotedVO();
+            
+
+
+
             response.setContentType("text/html; charset=euc-kr");
             PrintWriter out = null;
             out = response.getWriter();
-            out.println("<script>alert('오프라인 투표 완료했습니다');</script>");
+            out.println("<script>alert('오프라인 투표 완료 처리 되었습니다..');" +
+                    "location.href = \"/manager/addVoted\";" +
+                    "</script>");
             out.flush();
 
-            return "redirect:/manager/addVoted";
+            return null;
 
         } else {
             return abnormal(response);
