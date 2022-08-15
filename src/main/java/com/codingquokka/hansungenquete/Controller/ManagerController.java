@@ -259,6 +259,26 @@ public class ManagerController {
             UserVO user = uDao.findDepartmentOfUser(request.getParameter("stuId"));
             List<String> electionNameList = uDao.voteCan(user.getDepartment());
 
+
+            for (String s :electionNameList) {
+
+
+                ElectionvotedVO evVo = new ElectionvotedVO();
+                evVo.setStuId(request.getParameter("stuId"));
+                evVo.setElectionName(s);
+                ElectionvotedVO result = evDao.wasVoted(evVo);
+
+                if (result != null) {
+                    response.setContentType("text/html; charset=euc-kr");
+                    PrintWriter out = null;
+                    out = response.getWriter();
+                    out.println("<script>alert('온라인투표를 완료한 유권자입니다.');" +
+                            "location.href = \"/manager/addVoted\";" +
+                            "</script>");
+                    out.flush();
+                }
+            }
+
 //            for (String s : electionNameList) {
 //                ElectionvotedVO evVo = new ElectionvotedVO();
 //                evVo.setStuId(user.getStuid());
