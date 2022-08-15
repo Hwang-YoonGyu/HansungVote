@@ -33,8 +33,8 @@ public class UserDAO {
 		sqlSession.insert(namespace + ".insertUser", vo);
 	}
 
-	public List<String> voteCan(String departement) throws Exception{
-		return sqlSession.selectList(namespace+".voteCan", departement);
+	public List<String> voteCan(String department) throws Exception{
+		return sqlSession.selectList(namespace+".voteCan", department);
 	}
 }
 
