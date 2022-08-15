@@ -20,6 +20,10 @@ public class UserDAO {
 	public UserVO login(UserVO vo) throws Exception {
 		return sqlSession.selectOne(namespace+".login", vo);	
 	}
+
+	public UserVO findDepartmentOfUser(String stuId) throws Exception {
+		return sqlSession.selectOne(namespace+".findDepartmentOfUser",stuId);
+	}
 	
 	//총유권자수 계산
 	public int totalVoters(String department) throws Exception {

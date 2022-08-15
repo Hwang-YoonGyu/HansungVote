@@ -255,24 +255,33 @@ public class ManagerController {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
-            System.out.println(request.getParameter("stuId"));
-            System.out.println(request.getParameter("name"));
 
-            ElectionvotedVO evVo = new ElectionvotedVO();
+            UserVO user = uDao.findDepartmentOfUser(request.getParameter("stuId"));
+            List<String> electionNameList = uDao.voteCan(user.getDepartment());
 
-
-            List<String> electionNameList = uDao.voteCan(request.getParameter("name"));
-
-            System.out.println(electionNameList);
+//            for (String s : electionNameList) {
+//                ElectionvotedVO evVo = new ElectionvotedVO();
+//                evVo.setStuId(user.getStuid());
+//                evVo.setDepartment(user.getDepartment());
+//                evVo.setName(user.getName());
+//                evVo.setElectionName(s);
+//                evVo.setCandidateName("오프라인");
+//
+//                evDao.insertVote(evVo);
+//            }
 
 
             response.setContentType("text/html; charset=euc-kr");
             PrintWriter out = null;
             out = response.getWriter();
-            out.println("<script>alert('오프라인 투표 완료 처리 되었습니다..');" +
+            out.println("<script>alert('오프라인 투표 처리 되었습니다.');" +
                     "location.href = \"/manager/addVoted\";" +
                     "</script>");
             out.flush();
+
+
+            System.out.println(electionNameList);
+
 
             return null;
 

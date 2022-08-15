@@ -12,6 +12,12 @@
 		from user
 		where stuId=#{stuId} and password=#{password}
 	</select>
+
+	<select id="findDepartmentOfUser" parameterType="String" resultType="com.codingquokka.hansungenquete.domain.UserVO">
+		select department
+		from user
+		where stuId=#{stuId}
+	</select>
 	
 	 <!-- 총유권자수 계산  -->
 	<select id = "totalvoters" parameterType="String" resultType = "int">

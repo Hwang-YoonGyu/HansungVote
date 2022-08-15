@@ -8,7 +8,8 @@
 <html lang="en">
 
 <head>
-    <title>voteSearchMgr</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/resources/img/codingquokka.png">
+    <title>한성대학교 온라인 투표 시스템</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -59,7 +60,6 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div class="login-form bg-white mt-4 p-4 rounded">
-                    <form action="/manager/addVoted" method="POST" class="row g-3">
                         <span style="font-size: 30px;">오프라인 투표 업데이트</span>
 
 
@@ -70,27 +70,23 @@
                             padding-top: 10px; padding-bottom: 60px;">
 
                             <div class="input-group flex-nowrap">
-                                <span class="input-group-text" id="stdId">학번</span>
-                                <input name="stuId" type="text" class="form-control" placeholder="ex) 1971123"
+                                <span class="input-group-text">학번</span>
+                                <input name="stuId" id="stdId" type="text" class="form-control" placeholder="ex) 1971123"
                                        aria-label="stdId"
                                        aria-describedby="addon-wrapping">
                             </div>
 
                             <div class="input-group flex-nowrap" style="padding-top: 20px;">
-                                <span class="input-group-text" id="name">이름</span>
-                                <input name="name" type="text" class="form-control" placeholder="ex) 홍길동"
+                                <span class="input-group-text">이름</span>
+                                <input name="name" id="name" type="text" class="form-control" placeholder="ex) 홍길동"
                                        aria-label="name"
                                        aria-describedby="addon-wrapping">
                             </div>
 
                         </div>
                         <div class="d-grid gap-2 col-3 mx-auto">
-
-                            <input type="submit" class="btn btn-primary float-end" onclick="check()" value="업로드 하기"/>
+                            <button class="btn btn-primary float-end" onclick="check()">업로드 하기</button>
                         </div>
-
-                    </form>
-
                 </div>
 
             </div>
@@ -103,14 +99,37 @@
 
 <script>
     function check() {
+        var stuId = document.getElementById("stdId").value;
+        var name = document.getElementById("name").value;
 
-        var result = confirm("(정보를 정확히 확인해주세요) 업로드 하시겠습니까? ");
+        var result = confirm(
+            "(정보를 정확히 확인해주세요)\n" +
+
+            "오프라인 투표 완료 처리 하시겠습니까? ");
         if (result == true) {
-            alert("투표학생 정보가 업로드 되었습니다.")
+            var form = document.createElement("form");
+            form.setAttribute("charset", "UTF-8");
+            form.setAttribute("method", "Post");  //Post 방식
+            form.setAttribute("action", "/manager/addVoted"); //요청 보낼 주소
 
-        } else {
-            alert("취소되었습니다.")
+            var input1 = document.createElement('input');
+            input1.type = 'hidden';
+            input1.name = 'stuId';
+            input1.value = stuId;
+            var input2 = document.createElement('input');
+            input2.type = 'hidden';
+            input2.name = 'name';
+            input2.value = name;
 
+            form.appendChild(input1);
+            form.appendChild(input2);
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+        else {
+            alert("취소되었습니다.");
+            return;
         }
     }
 
