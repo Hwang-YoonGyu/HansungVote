@@ -32,5 +32,9 @@ public class UserDAO {
 	public void insertUser(UserVO vo) throws Exception {
 		sqlSession.insert(namespace + ".insertUser", vo);
 	}
+
+	public List<String> voteCan(String departement) throws Exception{
+		return sqlSession.selectList(namespace+".voteCan", departement);
+	}
 }
 

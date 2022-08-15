@@ -39,4 +39,23 @@
 		insert into user(stuId, name, password, phoneNumber, department)
 		values (#{stuId}, #{name}, #{password}, #{phoneNumber}, #{department});
 	</insert>
+
+
+	<select id="voteCan" parameterType="String" resultType="String">
+		alter view temp3 as (
+            select department,electionName
+            from election
+            where department like CONCAT('%',#{department},'%')
+			or department = substring(#{department} from 1 for 1)
+			or department = ""
+		);
+		alter view temp4 as(
+            select *
+            from user
+            where department like CONCAT('%',#{department},'%')
+		);
+		select temp3.electionName
+		from temp3 left outer join temp4 on temp3.department = temp4.department;
+	</select>
+
 </mapper>

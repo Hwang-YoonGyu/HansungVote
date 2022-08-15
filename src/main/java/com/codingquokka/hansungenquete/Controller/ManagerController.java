@@ -251,7 +251,7 @@ public class ManagerController {
     }
 
     @RequestMapping(value = "/addVoted", method = RequestMethod.POST)
-    public String addVotedPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String addVotedPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
@@ -261,6 +261,9 @@ public class ManagerController {
             ElectionvotedVO evVo = new ElectionvotedVO();
 
 
+            List<String> electionNameList = uDao.voteCan(request.getParameter("name"));
+
+            System.out.println(electionNameList);
 
 
             response.setContentType("text/html; charset=euc-kr");
