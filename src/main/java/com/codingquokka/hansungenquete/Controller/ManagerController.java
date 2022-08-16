@@ -270,10 +270,11 @@ public class ManagerController {
                     response.setContentType("text/html; charset=euc-kr");
                     PrintWriter out = null;
                     out = response.getWriter();
-                    out.println("<script>alert('온라인투표를 완료한 유권자입니다.');" +
+                    out.println("<script>alert('이미 하나 이상의 선거에 투표를 완료한 유권자입니다.');" +
                             "location.href = \"/manager/addVoted\";" +
                             "</script>");
                     out.flush();
+                    return null;
                 }
             }
 
@@ -284,8 +285,6 @@ public class ManagerController {
                 evVo.setName(user.getName());
                 evVo.setElectionName(s);
                 evVo.setCandidateName("오프라인");
-
-                System.out.println(evVo.getStuId());
                 evDao.insertVote(evVo);
             }
             response.setContentType("text/html; charset=euc-kr");
