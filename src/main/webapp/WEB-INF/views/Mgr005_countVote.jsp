@@ -48,77 +48,60 @@
 
 <body>
 
-    <header class="fixed-top" style="border-bottom: 1px solid hsl(0, 0%, 56%);">
-        <img src="/resources/img/Logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
+<header class="fixed-top" style="border-bottom: 1px solid hsl(0, 0%, 56%);">
+    <img src="/resources/img/Logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
 
-    </header>
+</header>
 
-    <main>
+<main>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <div class="login-form bg-white mt-4 p-4 rounded">
-                        <form action="" method="" class="row g-3">
-                            <span style="font-size: 30px;">개표 현황</span>
-
-
-                            <hr class="mt-4">
-
-
-
-                            <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="login-form bg-white mt-4 p-4 rounded">
+                    <span style="font-size: 30px;">개표 현황</span>
+                    <hr class="mt-4">
+                    <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
                             padding-top: 10px; padding-bottom: 60px;">
 
-                                <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
+                        <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
 padding-top: 10px; padding-bottom: 60px;">
 
-                                    <table class="table table-bordered border-white-50 " style="text-align: center;  ">
-                                        <thead>
-                                            <tr>
-                                                <th class="rounded-start" scope="col"
-                                                    style="background-color:hsl(0, 0%, 41%) ; color: white;">이름</th>
-                                                <th class="rounded-end" scope="col"
-                                                    style="background-color:hsl(0, 0%, 41%); color: white;">찬성표</th>
-                                                <th class="rounded-start" scope="col"
-                                                    style="background-color:hsl(0, 0%, 41%) ; color: white;">반대표</th>
-                                                <th class="rounded-end" scope="col"
-                                                    style="background-color:hsl(0, 0%, 41%); color: white;">기권표</th>
-                                                    <th class="rounded-end" scope="col"
-                                                    style="background-color:hsl(0, 0%, 41%); color: white;">전체 투표수</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style="background-color: white;">기호 1번 양종욱</td>
-                                                <td style="background-color: white;">80표</td>
-                                                <td style="background-color: white;">2표</td>
-                                                <td style="background-color: white;">8표</td>
-                                                <td style="background-color: white;">90표</td>
-
-
-                                            </tr>
-
-                                        </tbody>
-                                    </table>
-                                    </div>
-                        </form>
-
+                            <table class="table table-bordered border-white-50 " style="text-align: center;  ">
+                                <thead>
+                                <tr>
+                                    <th class="rounded-start" scope="col"
+                                        style="background-color:hsl(0, 0%, 41%) ; color: white;">후보자
+                                    </th>
+                                    <th class="rounded-end" scope="col"
+                                        style="background-color:hsl(0, 0%, 41%); color: white;">득표
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="map" items="${mapList}" varStatus="status">
+                                    <tr>
+                                        <td>${map.candidateName}</td>
+                                        <td>${map.cnt}</td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-
-    </main>
-
-    <div class="fixed-bottom">
-        <footer>
-            <div>
-                <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 1rem;">@2022 Team Coding Quokka All Rights
-                    Reserved</p>
-            </div>
-        </footer>
     </div>
+</main>
+
+<div class="fixed-bottom">
+    <footer>
+        <div>
+            <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 1rem;">@2022 Team Coding Quokka All Rights
+                Reserved</p>
+        </div>
+    </footer>
+</div>
 </body>

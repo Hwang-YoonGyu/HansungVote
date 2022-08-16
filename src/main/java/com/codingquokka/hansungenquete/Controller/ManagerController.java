@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -197,16 +198,16 @@ public class ManagerController {
             ElectionVO eVo = eDao.selectSpecipicElection(request.getParameter("electionName"));
             System.out.println(request.getParameter("electionName"));
 
-//            if (LocalTime.now().getHour() < eVo.getEndDate().getHours()) {
-//                response.setContentType("text/html; charset=euc-kr");
-//                PrintWriter out = null;
-//                out = response.getWriter();
-//                out.println("<script>alert('선거가 아직 종료되지 않았습니다.');" +
-//                        "location.href = \"/manager/viewVote\";" +
-//                        "</script>");
-//                out.flush();
-//                return null;
-//            }
+            if (LocalTime.now().getHour() < eVo.getEndDate().getHours()) {
+                response.setContentType("text/html; charset=euc-kr");
+                PrintWriter out = null;
+                out = response.getWriter();
+                out.println("<script>alert('선거가 아직 종료되지 않았습니다.');" +
+                        "location.href = \"/manager/viewVote\";" +
+                        "</script>");
+                out.flush();
+                return null;
+            }
             List<Map<String, String>> map = evDao.votepercentage(request.getParameter("electionName"));
             System.out.println(map);
             request.setAttribute("mapList", map);

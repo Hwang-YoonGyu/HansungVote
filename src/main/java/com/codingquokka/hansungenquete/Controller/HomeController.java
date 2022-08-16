@@ -46,27 +46,19 @@ public class HomeController {
     public String main(HttpServletRequest request) {
         return "002_Main";
     }
-
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(HttpServletRequest request) {
         return "001_Login";
     }
     @RequestMapping(value = "/login/accessDenied.do", method = RequestMethod.POST)
     public String loginDenied(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
         response.setContentType("text/html; charset=euc-kr");
         PrintWriter out = response.getWriter();
-        out.println("<script>alert('asdasdasd로그인 정보를 다시 확인해주세요');" +
+        out.println("<script>alert('로그인 정보를 다시 확인해주세요 :(');" +
                 "</script>");
         out.flush();
         return "001_Login";
     }
-
-    @RequestMapping(value = "/excel", method = RequestMethod.GET)
-    public String excel(HttpServletRequest request) {
-        return "imgsubmitTest";
-    }
-
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam("stu_id") String stu_id, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
