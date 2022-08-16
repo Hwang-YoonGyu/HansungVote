@@ -261,8 +261,6 @@ public class ManagerController {
 
 
             for (String s :electionNameList) {
-
-
                 ElectionvotedVO evVo = new ElectionvotedVO();
                 evVo.setStuId(request.getParameter("stuId"));
                 evVo.setElectionName(s);
@@ -279,18 +277,17 @@ public class ManagerController {
                 }
             }
 
-//            for (String s : electionNameList) {
-//                ElectionvotedVO evVo = new ElectionvotedVO();
-//                evVo.setStuId(user.getStuid());
-//                evVo.setDepartment(user.getDepartment());
-//                evVo.setName(user.getName());
-//                evVo.setElectionName(s);
-//                evVo.setCandidateName("오프라인");
-//
-//                evDao.insertVote(evVo);
-//            }
+            for (String s : electionNameList) {
+                ElectionvotedVO evVo = new ElectionvotedVO();
+                evVo.setStuId(user.getStuid());
+                evVo.setDepartment(user.getDepartment());
+                evVo.setName(user.getName());
+                evVo.setElectionName(s);
+                evVo.setCandidateName("오프라인");
 
-
+                System.out.println(evVo.getStuId());
+                evDao.insertVote(evVo);
+            }
             response.setContentType("text/html; charset=euc-kr");
             PrintWriter out = null;
             out = response.getWriter();
@@ -298,13 +295,7 @@ public class ManagerController {
                     "location.href = \"/manager/addVoted\";" +
                     "</script>");
             out.flush();
-
-
-            System.out.println(electionNameList);
-
-
             return null;
-
         } else {
             return abnormal(response);
         }

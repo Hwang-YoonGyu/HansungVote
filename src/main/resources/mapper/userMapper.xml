@@ -14,7 +14,7 @@
 	</select>
 
 	<select id="findDepartmentOfUser" parameterType="String" resultType="com.codingquokka.hansungenquete.domain.UserVO">
-		select department
+		select *
 		from user
 		where stuId=#{stuId}
 	</select>
