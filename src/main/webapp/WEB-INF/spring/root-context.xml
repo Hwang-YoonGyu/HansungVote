@@ -41,9 +41,9 @@
     </bean>
 
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" >
-        <constructor-arg name="sqlSessionFactory" index="0" ref="sqlSessionFactory"></constructor-arg>
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
     </bean>
 
-    <context:component-scan base-package="/domain"></context:component-scan>
+    <context:component-scan base-package="com.codingquokka.hansungenquete"></context:component-scan>
     	
 </beans>
