@@ -1,5 +1,6 @@
 package com.codingquokka.hansungenquete.Controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -48,6 +49,16 @@ public class HomeController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(HttpServletRequest request) {
+        return "001_Login";
+    }
+    @RequestMapping(value = "/login/accessDenied.do", method = RequestMethod.POST)
+    public String loginDenied(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        response.setContentType("text/html; charset=euc-kr");
+        PrintWriter out = response.getWriter();
+        out.println("<script>alert('asdasdasd로그인 정보를 다시 확인해주세요');" +
+                "</script>");
+        out.flush();
         return "001_Login";
     }
 

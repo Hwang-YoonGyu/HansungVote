@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="col-12">
-
+                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                             <input type="submit" class="btn btn-primary float-end" value="log in"/>
 
                         </div>
