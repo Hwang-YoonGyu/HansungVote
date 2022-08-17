@@ -25,12 +25,12 @@ public class ServerLog extends JFrame {
 
     public List<String> list = new ArrayList<String>();
 
-
-
-    public JButton twoBtn = new JButton("2분");
-    public JButton threeBtn = new JButton("3분");
-    public JButton fiveBtn = new JButton("5분");
+    public JButton makeBtn = new JButton("쓰레드 만들기");
+    public JTextField textField = new JTextField(3);
+    public JPanel westPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
     public JTextArea area = new JTextArea(10,20);
+    public List<Thread> threadList = new ArrayList<>();
+
     public ServerLog() {
         setSize(500, 500); //크기 설정
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -44,69 +44,39 @@ public class ServerLog extends JFrame {
 
         JPanel northPanel = new JPanel();
         northPanel.setLayout(new FlowLayout());
-        northPanel.add(twoBtn);
-        northPanel.add(threeBtn);
-        northPanel.add(fiveBtn);
+        northPanel.add(makeBtn);
+        northPanel.add(textField);
+        westPanel.add(new JLabel("쓰레드 목록"));
+        westPanel.setSize(500,30);
 
         c.add(area, BorderLayout.CENTER);
+
+
         c.add(northPanel, BorderLayout.NORTH);
+        c.add(westPanel, BorderLayout.SOUTH);
 
         System.out.println("Manager Thread has started");
 
         Thread t = new Thread(new ManagerFile());
         Thread t2 = new Thread(new DisPlayLog());
-        Thread tTwo = null;
-        Thread tThree = null;
-        Thread tFive = null;
-        twoBtn.addActionListener(new ActionListener() {
-            Thread t = null;
+
+        makeBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                if (t == null) {
-                    System.out.println("tTwo 살림");
-                    t = new Thread(new twoCheck());
-                    t.start();
-                }
-                else if (t != null){
-                    System.out.println("tTwo 죽임");
-                    t.interrupt();
-                    t = null;
-                }
-            }
-        });
-
-        threeBtn.addActionListener(new ActionListener() {
-            Thread t = null;
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (t == null) {
-                    System.out.println("tThree 살림");
-                    t = new Thread(new threeCheck());
-                    t.start();
-                }
-                else if (t != null){
-                    System.out.println("tThree 죽임");
-                    t.interrupt();
-                    t = null;
-                }
-            }
-        });
-
-        fiveBtn.addActionListener(new ActionListener() {
-            Thread t = null;
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (t == null) {
-                    System.out.println("tFive 살림");
-                    t = new Thread(new fiveCheck());
-                    t.start();
-                }
-                else if (t != null){
-                    System.out.println("tFive 죽임");
-                    t.interrupt();
-                    t = null;
-                }
+                Thread t = new Thread(new CheckThread(Integer.parseInt(textField.getText())));
+                threadList.add(t);
+                t.start();
+                JButton b = new JButton(textField.getText());
+                b.setSize(50,20);
+                b.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        t.interrupt();
+                        westPanel.remove(b);
+                        threadList.remove(t);
+                    }
+                });
+                westPanel.add(b);
             }
         });
 
@@ -203,18 +173,22 @@ class DisPlayLog implements Runnable {
     }
 }
 
-class twoCheck implements Runnable {
+class CheckThread implements Runnable {
+    private int checkTime;
+    public CheckThread(int checkTime) {
+        this.checkTime = checkTime;
+    }
     boolean flag = false;
     @Override
     public void run() {
         while(true) {
-            if (LocalTime.now().getSecond() %2 == 0) {
+            if (LocalTime.now().getSecond() %checkTime == 0) {
                 if (!flag) {
                     LocalDateTime now = LocalDateTime.now();
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
                     String nowString = formatter.format(now);
                     synchronized (ServerLog.instance.list) {
-                        ServerLog.instance.list.add("지금은 " + nowString + ", 2의 배수 초입니다");
+                        ServerLog.instance.list.add("지금은 " + nowString + ", "+checkTime+"의 배수 초입니다");
                     }
                     flag = true;
                 }
@@ -229,60 +203,6 @@ class twoCheck implements Runnable {
                 throw new RuntimeException(e);
             }
 
-        }
-    }
-}
-class threeCheck implements Runnable {
-    boolean flag = false;
-    @Override
-    public void run() {
-        while(true) {
-            if (LocalTime.now().getSecond() %3 == 0) {
-                if (!flag) {
-                    LocalDateTime now = LocalDateTime.now();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
-                    String nowString = formatter.format(now);
-                    synchronized (ServerLog.instance.list) {
-                        ServerLog.instance.list.add("지금은 " + nowString + ", 3의 배수 초입니다");
-                    }
-                    flag = true;
-                }
-            }
-            else {
-                flag = false;
-            }
-            try {
-                Thread.sleep(1);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-}
-class fiveCheck implements Runnable {
-    boolean flag = false;
-    @Override
-    public void run() {
-        while(true) {
-            if (LocalTime.now().getSecond() %5 == 0) {
-                if (!flag) {
-                    LocalDateTime now = LocalDateTime.now();
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
-                    String nowString = formatter.format(now);
-                    synchronized (ServerLog.instance.list) {
-                        ServerLog.instance.list.add("지금은 " + nowString + ", 5의 배수 초입니다");
-                    }
-                    flag = true;
-                }
-            }
-            else {
-                flag = false;
-            }
-            try {
-                Thread.sleep(1);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 }
