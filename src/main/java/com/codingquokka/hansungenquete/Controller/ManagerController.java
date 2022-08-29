@@ -45,7 +45,7 @@ public class ManagerController {
             return "Mgr001_Main";
 
         } else {
-            return abnormal(response);
+            return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
 
 
@@ -59,7 +59,7 @@ public class ManagerController {
             return "Mgr003_showTurnOutList";
 
         } else {
-            return abnormal(response);
+            return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
     }
 
@@ -73,7 +73,7 @@ public class ManagerController {
             return "Mgr002_ViewVote";
 
         } else {
-            return abnormal(response);
+            return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
     }
 
@@ -93,7 +93,7 @@ public class ManagerController {
 
 
         } else {
-            return abnormal(response);
+            return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
     }
 
@@ -111,7 +111,7 @@ public class ManagerController {
             request.setAttribute("cVoList", cVoList);
             return "Mgr004_openVote";
         } else {
-            return abnormal(response);
+            return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
     }
 
@@ -174,19 +174,10 @@ public class ManagerController {
             cDao.deleteCandidate(electionName);
             eDao.deleteElection(electionName);
 
-
-            response.setContentType("text/html; charset=euc-kr");
-            PrintWriter out = null;
-            out = response.getWriter();
-            out.println("<script>alert('삭제가 완료되었습니다.');" +
-                    "location.href = \"/manager/main\";" +
-                    "</script>");
-            out.flush();
-
-            return null;
+            return customResponse(response,"삭제가 완료되었습니다","\"/manager/main\"");
 
         } else {
-            return abnormal(response);
+            return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
     }
 
@@ -199,14 +190,7 @@ public class ManagerController {
             System.out.println(request.getParameter("electionName"));
 
             if (LocalTime.now().getHour() < eVo.getEndDate().getHours()) {
-                response.setContentType("text/html; charset=euc-kr");
-                PrintWriter out = null;
-                out = response.getWriter();
-                out.println("<script>alert('선거가 아직 종료되지 않았습니다.');" +
-                        "location.href = \"/manager/viewVote\";" +
-                        "</script>");
-                out.flush();
-                return null;
+                return customResponse(response,"선거가 아직 종료되지 않았습니다.","\"/manager/viewVote\"");
             }
             List<Map<String, String>> map = evDao.votepercentage(request.getParameter("electionName"));
             System.out.println(map);
@@ -214,7 +198,7 @@ public class ManagerController {
 
             return "Mgr005_countVote";
         } else {
-            return abnormal(response);
+            return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
     }
 
@@ -223,18 +207,9 @@ public class ManagerController {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
-            response.setContentType("text/html; charset=euc-kr");
-            PrintWriter out = null;
-            out = response.getWriter();
-            out.println("<script>alert('준비중입니다.');" +
-                    "location.href = \"/manager/main\";" +
-                    "</script>");
-            out.flush();
-
-            return "redirect:/manager/main";
-
+            return customResponse(response,"준비중입니다.","\"/manager/main\"");
         } else {
-            return abnormal(response);
+            return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
     }
 
@@ -247,7 +222,7 @@ public class ManagerController {
             return "Mgr007_offLineVote";
 
         } else {
-            return abnormal(response);
+            return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
     }
 
@@ -258,6 +233,10 @@ public class ManagerController {
         if (uVo != null && uVo.getStuid().equals("manager")) {
 
             UserVO user = uDao.findDepartmentOfUser(request.getParameter("stuId"));
+
+            if (user == null) {
+                return customResponse(response,"입력 정보가 유효하지 않습니다.","\"/manager/addVoted\"");
+            }
             List<String> electionNameList = uDao.voteCan(user.getDepartment());
 
 
@@ -268,14 +247,7 @@ public class ManagerController {
                 ElectionvotedVO result = evDao.wasVoted(evVo);
 
                 if (result != null) {
-                    response.setContentType("text/html; charset=euc-kr");
-                    PrintWriter out = null;
-                    out = response.getWriter();
-                    out.println("<script>alert('이미 하나 이상의 선거에 투표를 완료한 유권자입니다.');" +
-                            "location.href = \"/manager/addVoted\";" +
-                            "</script>");
-                    out.flush();
-                    return null;
+                    return customResponse(response,"이미 하나 이상의 선거에 투표를 완료한 유권자입니다.","\"/manager/addVoted\"");
                 }
             }
 
@@ -288,16 +260,9 @@ public class ManagerController {
                 evVo.setCandidateName("오프라인");
                 evDao.insertVote(evVo);
             }
-            response.setContentType("text/html; charset=euc-kr");
-            PrintWriter out = null;
-            out = response.getWriter();
-            out.println("<script>alert('오프라인 투표 처리 되었습니다.');" +
-                    "location.href = \"/manager/addVoted\";" +
-                    "</script>");
-            out.flush();
-            return null;
+            return customResponse(response,"오프라인 투표 처리 되었습니다.","\"/manager/addVoted\"");
         } else {
-            return abnormal(response);
+            return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
     }
     @RequestMapping(value = "/addUserDB", method = RequestMethod.GET)
@@ -310,7 +275,7 @@ public class ManagerController {
             return "Mgr006_userDbUpdate";
 
         } else {
-            return abnormal(response);
+            return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
 
     }
@@ -326,15 +291,7 @@ public class ManagerController {
         try {
             bytesFile = mhsr.getFile("excelFile").getBytes();
             if (bytesFile.length == 0) {
-                response.setContentType("text/html; charset=euc-kr");
-                PrintWriter out = null;
-                out = response.getWriter();
-                out.println("<script>alert(error : 파일업로드 에러.\n 관리자에게 문의하세요.');" +
-                        "location.href = \"/manager/main\";" +
-                        "</script>");
-                out.flush();
-
-                return "redirect:/manager/main";
+                return customResponse(response,"파일 업로드 에러.\n관리자에게 문의하세요."," \"/manager/main\"");
             }
 
             Thread thread = new Thread(new InputThread(bytesFile, uDao));
@@ -348,24 +305,12 @@ public class ManagerController {
 
 
     //----------------------------------Method------------------------------------------------------------------------//
-    String sessionIsNull(HttpServletResponse response) throws IOException {
+    String customResponse(HttpServletResponse response, String msg, String link) throws IOException {
         response.setContentType("text/html; charset=euc-kr");
         PrintWriter out = null;
         out = response.getWriter();
-        out.println("<script>alert('세션이 만료되었습니다. 다시 로그인해 주세요 :(');" +
-                "location.href = \"/login\";" +
-                "</script>");
-        out.flush();
-
-        return null;
-    }
-
-    String abnormal(HttpServletResponse response) throws IOException {
-        response.setContentType("text/html; charset=euc-kr");
-        PrintWriter out = null;
-        out = response.getWriter();
-        out.println("<script>alert('비정상적인 접근입니다.');" +
-                "location.href = \"/login\";" +
+        out.println("<script>alert('" + msg + "');" +
+                "location.href = " + link + ";" +
                 "</script>");
         out.flush();
         return null;

@@ -40,7 +40,7 @@ public class VoteController {
 
         UserVO user = (UserVO) session.getAttribute("UserVO");
         if (user == null) {
-            sessionIsNull(response);
+            return customResponse(response,"세션이 만료되었습니다. \n다시 로그인 해주세요. :(", "\"/login\"");
         }
         String department = user.getDepartment();
 
@@ -71,7 +71,7 @@ public class VoteController {
         HttpSession session = request.getSession();
         UserVO user = (UserVO)session.getAttribute("UserVO");
         if (user == null) {
-            sessionIsNull(response);
+            return customResponse(response,"세션이 만료되었습니다. \n다시 로그인 해주세요. :(", "\"/login\"");
         }
         String election = request.getParameter("electionName");
 
@@ -79,34 +79,19 @@ public class VoteController {
 
 
         if (LocalTime.now().getHour() < eVo.getStartDate().getHours() || LocalTime.now().getHour() >  eVo.getEndDate().getHours()) {
-            response.setContentType("text/html; charset=euc-kr");
-            PrintWriter out = null;
-            out = response.getWriter();
-            out.println("<script>alert('투표가능시간이 아닙니다');" +
-                    "location.href = \"/vote/votehome\";" +
-                    "</script>");
-            out.flush();
+            customResponse(response,"투표 가능 시간이 아닙니다. :(", "\"/vote/votehome\"");
+
         }
 
         Date now = new Date();
         if (now.before(eVo.getStartDate())) {
-            response.setContentType("text/html; charset=euc-kr");
-            PrintWriter out = null;
-            out = response.getWriter();
-            out.println("<script>alert('투표 시작 전입니다');" +
-                    "location.href = \"/vote/votehome\";" +
-                    "</script>");
-            out.flush();
+            return customResponse(response,"선거 시작 전입니다. :(", "\"/vote/votehome\"");
+
         }
 
         if (now.after(eVo.getEndDate())) {
-            response.setContentType("text/html; charset=euc-kr");
-            PrintWriter out = null;
-            out = response.getWriter();
-            out.println("<script>alert('투표가 이미 종료되었습니다.');" +
-                    "location.href = \"/vote/votehome\";" +
-                    "</script>");
-            out.flush();
+            return customResponse(response,"선거가 이미 종료되었습니다. :(", "\"/vote/votehome\"");
+
         }
 
         ElectionvotedVO evVo = new ElectionvotedVO();
@@ -118,13 +103,7 @@ public class VoteController {
 
 
         if (wasVoted != null) {
-            response.setContentType("text/html; charset=euc-kr");
-            PrintWriter out = null;
-            out = response.getWriter();
-            out.println("<script>alert('중복투표는 불가합니다');" +
-                    "location.href = \"/vote/votehome\";" +
-                    "</script>");
-            out.flush();
+            return customResponse(response,"중복투표는 불가합니다. :(", "\"/vote/votehome\"");
         }
 
         List<CandidateVO> candiList = cDao.selectList(election);
@@ -135,11 +114,11 @@ public class VoteController {
     }
 
     @RequestMapping(value = "/doVote", method = RequestMethod.POST)
-    public void doVote(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String doVote(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO user = (UserVO)session.getAttribute("UserVO");
         if (user == null) {
-            sessionIsNull(response);
+            return customResponse(response,"세션이 만료되었습니다. \n다시 로그인 해주세요. :(", "\"/login\"");
         }
 
 
@@ -153,37 +132,24 @@ public class VoteController {
 
 
         if (wasVoted != null) {
-            response.setContentType("text/html; charset=euc-kr");
-            PrintWriter out = null;
-            out = response.getWriter();
-            out.println("<script>alert('중복투표는 불가합니다');" +
-                    "location.href = \"/vote/votehome\";" +
-                    "</script>");
-            out.flush();
-            return;
+            return customResponse(response,"중복투표는 불가합니다. :(", "\"/vote/votehome\"");
         }
 
         evDao.insertVote(evVo);
 
         System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +user.getStuid() + " " + user.getName()+" voted to"+ evVo.getElectionName());
         //logger.WriteLog(LocalDate.now()+" "+LocalTime.now()+": " +user.getStuid() + " " + user.getName()+" voted to"+ evVo.getElectionName());
-        response.setContentType("text/html; charset=euc-kr");
-        PrintWriter out = null;
-        out = response.getWriter();
-        out.println("<script>alert('투표가 완료되었습니다. 감사합니다 :)');" +
-                "location.href = \"/vote/votehome\";" +
-                "</script>");
-        out.flush();
+        return customResponse(response,"투표가 완료되었습니다. 감사합니다 :)", "\"/vote/votehome\"");
     }
     //----------------------------------Method------------------------------------------------------------------------//
-    void sessionIsNull(HttpServletResponse response) throws IOException {
+    String customResponse(HttpServletResponse response, String msg, String link) throws IOException {
         response.setContentType("text/html; charset=euc-kr");
         PrintWriter out = null;
         out = response.getWriter();
-        out.println("<script>alert('세션이 만료되었습니다. 다시 로그인해 주세요 :(');" +
-                "location.href = \"/login\";" +
+        out.println("<script>alert('" + msg + "');" +
+                "location.href = " + link + ";" +
                 "</script>");
         out.flush();
+        return null;
     }
-
 }
