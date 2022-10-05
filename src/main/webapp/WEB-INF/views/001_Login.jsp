@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css">
-
+    <script src="/resources/js/ec.js"></script>
 
     <style>
         header {
@@ -57,6 +57,9 @@
 </header>
 
 <main>
+<%--    <script>
+        a();
+    </script>--%>
     <div class="container-fulid" style="margin-top: 100px;">
         <div class="row">
             <div class="col-md-4 offset-md-4">
