@@ -95,7 +95,7 @@ public class HomeController {
         String candidateName = request.getParameter("candidateName");
 
         CandidateVO cVo = cDao.selectSpecipicCandidate(candidateName);
-        System.out.println(cVo.getCandidateName());
+        //System.out.println(cVo.getCandidateName());
 
         byte[] imageContent = cVo.getImage();
         final HttpHeaders headers = new HttpHeaders();
