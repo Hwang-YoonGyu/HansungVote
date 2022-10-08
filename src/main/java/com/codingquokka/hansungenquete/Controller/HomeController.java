@@ -58,7 +58,14 @@ public class HomeController {
     public String login(@RequestParam("stu_id") String stu_id, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         UserVO uVo = new UserVO();
-        uVo.setStuid(AES256.encrypt(stu_id));
+
+        try {
+            uVo.setStuid(AES256.decrypt(stu_id));
+        }
+        catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
         uVo.setPassword(password);
         System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +uVo.getStuid() + " " + uVo.getPassword()+" try login");
 

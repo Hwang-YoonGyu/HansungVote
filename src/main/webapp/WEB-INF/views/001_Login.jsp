@@ -11,8 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css">
-    <script src="/resources/js/encryption.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
     <style>
         header {
             position: fixed;
@@ -57,30 +56,25 @@
 </header>
 
 <main>
-    <script>
-        a();
-    </script>
     <div class="container-fulid" style="margin-top: 100px;">
         <div class="row">
             <div class="col-md-4 offset-md-4">
                 <div class="login-form bg-light mt-4 p-4">
-                    <form action="/login" method="post" class="row g-3">
                         <h4>한성대학교 온라인 투표 시스템</h4>
                         <div class="col-12">
                             <label>Student ID</label>
-                            <input id="userId" name="stu_id" type="text" class="form-control" placeholder="학번">
+                            <input id="userId" name="stu_id" value="" type="text" class="form-control" placeholder="학번">
                         </div>
                         <div class="col-12">
                             <label>Password</label>
-                            <input id="password" name="password" type="password" class="form-control" placeholder="비밀번호">
+                            <input id="password" name="password" value="" type="password" class="form-control" placeholder="비밀번호">
                         </div>
 
                         <div class="col-12">
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                            <input type="submit" class="btn btn-primary float-end" value="log in"/>
-
+                            <form id="formId" action="/login" method="post" class="row g-3">
+                            <input type="button" onclick=sendPostRequest() class="btn btn-primary float-end" value="log in"/>
+                            </form>
                         </div>
-                    </form>
                     <hr class="mt-4">
 
                 </div>
@@ -89,9 +83,30 @@
     </div>
 </main>
 <script>
+function sendPostRequest() {
+    let iv = "gkstjdwkdwkd0000";
+    let key = "ghkddbsrbqkrtjdwodlcksghdlatnqls";
 
+    var form = document.getElementById('formId')
+;
+    var input1 = document.createElement('input');
+    input1.type = 'hidden';
+    input1.name = 'stu_id';
+    input1.value = CryptoJS.AES.encrypt(document.getElementById('userId').value,
+        CryptoJS.enc.Utf8.parse(key),
+        {iv:CryptoJS.enc.Utf8.parse(iv),
+            padding: CryptoJS.pad.Pkcs7,
+            mode: CryptoJS.mode.CBC}
+    );
+    var input2 = document.createElement('input');
+    input2.type = 'hidden';
+    input2.name = 'password';
+    input2.value = document.getElementById('password').value;
 
-
+    form.appendChild(input1);
+    form.appendChild(input2);
+    form.submit();
+}
 </script>
 
 
