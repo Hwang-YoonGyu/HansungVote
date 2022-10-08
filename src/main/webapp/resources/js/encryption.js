@@ -5,8 +5,6 @@ const Iv ="gkstjdqhxmwkdwkd"
 
 
 function aes256Encode(data){
-    const key ="ghkddbsrbqkrtjdwodlcksghdlatnqls";
-    const Iv ="gkstjdqhxmwkdwkd"
     // [aes 인코딩 수행 실시 : cbc 모드]
     const cipher = CryptoJS.AES.encrypt(data, CryptoJS.enc.Utf8.parse(key), {
         iv: CryptoJS.enc.Utf8.parse(Iv), // [Enter IV (Optional) 지정 방식]
@@ -21,9 +19,6 @@ function aes256Encode(data){
 
 
 function aes256Decode(data){
-    const key ="ghkddbsrbqkrtjdwodlcksghdlatnqls";
-    const Iv ="gkstjdqhxmwkdwkd"
-
     // [aes 디코딩 수행 실시 : cbc 모드]
     const cipher = CryptoJS.AES.decrypt(data, CryptoJS.enc.Utf8.parse(key), {
         iv: CryptoJS.enc.Utf8.parse(Iv), // [Enter IV (Optional) 지정 방식]
