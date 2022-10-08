@@ -42,6 +42,7 @@ public class VoteController {
         if (user == null) {
             return customResponse(response,"세션이 만료되었습니다. \n다시 로그인 해주세요. :(", "\"/login\"");
         }
+        System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +user.getStuid() + " " + user.getName()+" votehome");
         String department = user.getDepartment();
 
 
