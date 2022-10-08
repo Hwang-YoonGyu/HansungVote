@@ -33,11 +33,6 @@ public class HomeController {
     @Inject
     private UserDAO uDao;
 
-    @Inject
-    private  ElectionvotedDAO evDao;
-
-
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcome(HttpServletRequest request) {
         return "redirect:/login";

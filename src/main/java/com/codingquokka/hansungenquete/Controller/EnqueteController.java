@@ -21,19 +21,6 @@ import com.codingquokka.hansungenquete.domain.*;
 @Controller
 public class EnqueteController {
 
-    @Inject
-    private CandidateDAO cDao;
-
-    @Inject
-    private ElectionDAO eDao;
-
-    @Inject
-    private ElectionvotedDAO evDao;
-
-    @Inject
-    private UserDAO uDao;
-
-
     @RequestMapping(value = "/enquetehome", method = RequestMethod.GET)
     public String enqueteHome(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();

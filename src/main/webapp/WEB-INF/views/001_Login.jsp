@@ -57,9 +57,9 @@
 </header>
 
 <main>
-<%--    <script>
+    <script>
         a();
-    </script>--%>
+    </script>
     <div class="container-fulid" style="margin-top: 100px;">
         <div class="row">
             <div class="col-md-4 offset-md-4">
@@ -88,7 +88,11 @@
         </div>
     </div>
 </main>
+<script>
 
+
+
+</script>
 
 
     <div class="fixed-bottom">
