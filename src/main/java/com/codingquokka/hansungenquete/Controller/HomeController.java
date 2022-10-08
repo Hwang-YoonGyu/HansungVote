@@ -61,14 +61,18 @@ public class HomeController {
         uVo.setStuid(stu_id);
         uVo.setPassword(password);
 
-        System.out.println("AES256");
-        System.out.println(stu_id);
-        System.out.println("암호화");
-        String en = AES256.encrypt(stu_id);
-        System.out.println(en);
-        System.out.println("복호화");
-        String de = AES256.decrypt(en);
-        System.out.println(de);
+//        System.out.println("AES256");
+//        System.out.println(stu_id);
+//
+//
+//        System.out.println("암호화");
+//        String en = AES256.encrypt(stu_id);
+//        System.out.println(en);
+//
+//
+//        System.out.println("복호화");
+//        String de = AES256.decrypt(en);
+//        System.out.println(de);
 
 
 
