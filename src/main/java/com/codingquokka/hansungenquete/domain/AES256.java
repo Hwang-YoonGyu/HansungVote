@@ -8,10 +8,10 @@ import javax.crypto.spec.SecretKeySpec;
 public class AES256 {
 
     public static String alg = "AES/CBC/PKCS5Padding";
-    private final String key = "ghkddbsrbqkrtjdwodlcksghdlatnqls"; //황윤규박성재이찬호임수빈
-    private final String iv = key.substring(0, 16); // 16byte
+    private static final String key = "ghkddbsrbqkrtjdwodlcksghdlatnqls"; //황윤규박성재이찬호임수빈
+    private static final String iv = key.substring(0, 16); // 16byte
 
-    public String encrypt(String text) throws Exception {
+    public static String encrypt(String text) throws Exception {
         Cipher cipher = Cipher.getInstance(alg);
         SecretKeySpec keySpec = new SecretKeySpec(key.getBytes(), "AES");
         IvParameterSpec ivParamSpec = new IvParameterSpec(iv.getBytes());
@@ -21,7 +21,7 @@ public class AES256 {
         return Base64.getEncoder().encodeToString(encrypted);
     }
 
-    public String decrypt(String cipherText) throws Exception {
+    public static String decrypt(String cipherText) throws Exception {
         Cipher cipher = Cipher.getInstance(alg);
         SecretKeySpec keySpec = new SecretKeySpec(key.getBytes(), "AES");
         IvParameterSpec ivParamSpec = new IvParameterSpec(iv.getBytes());
