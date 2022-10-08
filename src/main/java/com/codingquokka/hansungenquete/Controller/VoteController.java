@@ -109,7 +109,7 @@ public class VoteController {
 
         List<CandidateVO> candiList = cDao.selectList(election);
         request.setAttribute("candiList", candiList);
-
+        System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +user.getStuid() + " " + user.getName()+" visit "+ evVo.getElectionName());
 
         return "004_Vote2";
     }
@@ -138,7 +138,7 @@ public class VoteController {
 
         evDao.insertVote(evVo);
 
-        System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +user.getStuid() + " " + user.getName()+" voted to"+ evVo.getElectionName());
+        System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +user.getStuid() + " " + user.getName()+" voted to "+ evVo.getElectionName());
         //logger.WriteLog(LocalDate.now()+" "+LocalTime.now()+": " +user.getStuid() + " " + user.getName()+" voted to"+ evVo.getElectionName());
         return customResponse(response,"투표가 완료되었습니다. 감사합니다 :)", "\"/vote/votehome\"");
     }
