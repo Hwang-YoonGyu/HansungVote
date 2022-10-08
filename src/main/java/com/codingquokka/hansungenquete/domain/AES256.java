@@ -9,7 +9,7 @@ public class AES256 {
 
     public static String alg = "AES/CBC/PKCS5Padding";
     private static final String key = "ghkddbsrbqkrtjdwodlcksghdlatnqls"; //황윤규박성재이찬호임수빈
-    private static final String iv = key.substring(0, 16); // 16byte
+    private static final String iv = "gkstjdwkdwkd"; // 16byte
 
     public static String encrypt(String text) throws Exception {
         Cipher cipher = Cipher.getInstance(alg);

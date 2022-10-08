@@ -58,27 +58,11 @@ public class HomeController {
     public String login(@RequestParam("stu_id") String stu_id, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         UserVO uVo = new UserVO();
-        uVo.setStuid(stu_id);
+        uVo.setStuid(AES256.encrypt(stu_id));
         uVo.setPassword(password);
-
-//        System.out.println("AES256");
-//        System.out.println(stu_id);
-//
-//
-//        System.out.println("암호화");
-//        String en = AES256.encrypt(stu_id);
-//        System.out.println(en);
-//
-//
-//        System.out.println("복호화");
-//        String de = AES256.decrypt(en);
-//        System.out.println(de);
-
-
+        System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +uVo.getStuid() + " " + uVo.getPassword()+" try login");
 
         UserVO result = uDao.login(uVo);
-
-
 
         if (result != null) {
 
@@ -86,12 +70,12 @@ public class HomeController {
             session.setAttribute("UserVO", result);
 
             if ("manager".equals(result.getStuid())) {
-                System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login");
+                System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login success");
                 //logger.WriteLog(LocalDateTime.now().toString(), result.getStuid() + " " + result.getName()+" login");
                 return "redirect:/manager/main";
 
             }
-            System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login");
+            System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login success");
             //logger.WriteLog(LocalDateTime.now().toString(), result.getStuid() + " " + result.getName()+" login");
             return "redirect:/main";
         }
