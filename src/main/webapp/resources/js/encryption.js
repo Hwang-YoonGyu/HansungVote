@@ -4,8 +4,14 @@
 // var passphrase = "1234";
 // var encrypt = CryptoJS.AES.encrypt(message, passphrase);
 // var decrypted = CryptoJS.AES.decrypt(encrypt, passphrase);
+
 function a()
 {
+    var message = "Led Zeppelin- Stairway to Heaven";
+    var passphrase = "1234";
+    var encrypt = CryptoJS.AES.encrypt(message, passphrase);
+    var decrypted = CryptoJS.AES.decrypt(encrypt, passphrase);
+    console.log(message,encrypt,decrypted);
     alert("ㅎㅇ");
 }
 
