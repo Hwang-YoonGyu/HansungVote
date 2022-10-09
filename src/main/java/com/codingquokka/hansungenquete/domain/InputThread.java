@@ -1,7 +1,5 @@
 package com.codingquokka.hansungenquete.domain;
 
-import com.codingquokka.hansungenquete.domain.UserDAO;
-import com.codingquokka.hansungenquete.domain.UserVO;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -73,14 +71,13 @@ public class InputThread implements Runnable {
                     }
                     temp[cellIndex] = value;
                 }
-                UserVO uVo = new UserVO();
-                uVo.setStuid(temp[0]);
-                uVo.setName(temp[1]);
-                uVo.setPassword(temp[2]);
-                uVo.setPhoneNumber(temp[3]);
-                uVo.setDepartment(temp[4]);
-
                 try {
+                    UserVO uVo = new UserVO();
+                    uVo.setStuid(temp[0]);
+                    uVo.setName(temp[1]);
+                    uVo.setPassword(SHA256.encrypt(temp[2]));
+                    uVo.setPhoneNumber(temp[3]);
+                    uVo.setDepartment(temp[4]);
                     uDao.insertUser(uVo);
                 } catch (Exception e) {
                     throw new RuntimeException(e);

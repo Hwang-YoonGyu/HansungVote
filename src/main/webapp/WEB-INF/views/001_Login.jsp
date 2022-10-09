@@ -97,11 +97,11 @@ function sendPostRequest() {
         {iv:CryptoJS.enc.Utf8.parse(iv),
             padding: CryptoJS.pad.Pkcs7,
             mode: CryptoJS.mode.CBC}
-    );
+    ).toString();
     var input2 = document.createElement('input');
     input2.type = 'hidden';
     input2.name = 'password';
-    input2.value = document.getElementById('password').value;
+    input2.value = CryptoJS.SHA256(document.getElementById('password').value).toString();
 
     form.appendChild(input1);
     form.appendChild(input2);
