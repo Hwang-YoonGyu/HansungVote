@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.codingquokka.hansungenquete.domain.*;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RequestMapping("/vote")
 @Controller
@@ -115,7 +116,7 @@ public class VoteController {
     }
 
     @RequestMapping(value = "/doVote", method = RequestMethod.POST)
-    public String doVote(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String doVote(Locale locale, HttpServletRequest request, HttpServletResponse response, @RequestParam("ElectionName") String eName, @RequestParam("CandidateName") String cName) throws Exception {
         HttpSession session = request.getSession();
         UserVO user = (UserVO)session.getAttribute("UserVO");
         if (user == null) {
@@ -124,8 +125,8 @@ public class VoteController {
 
 
         ElectionvotedVO evVo = new ElectionvotedVO();
-        evVo.setElectionName(request.getParameter("ElectionName"));
-        evVo.setCandidateName(request.getParameter("CandidateName"));
+        evVo.setElectionName(AES256.decrypt(eName));
+        evVo.setCandidateName(AES256.decrypt(cName));
         evVo.setStuId(user.getStuid());
         evVo.setName(user.getName());
         evVo.setDepartment(user.getDepartment());
