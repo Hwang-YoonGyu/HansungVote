@@ -228,7 +228,9 @@ public class ManagerController {
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
 
-            UserVO user = uDao.findDepartmentOfUser(request.getParameter("stuId"));
+            String deStuId = AES256.decrypt(request.getParameter("stuId"));
+
+            UserVO user = uDao.findDepartmentOfUser(deStuId);
 
             if (user == null) {
                 return customResponse(response,"입력 정보가 유효하지 않습니다.","\"/manager/addVoted\"");
@@ -238,7 +240,7 @@ public class ManagerController {
 
             for (String s :electionNameList) {
                 ElectionvotedVO evVo = new ElectionvotedVO();
-                evVo.setStuId(request.getParameter("stuId"));
+                evVo.setStuId(deStuId);
                 evVo.setElectionName(s);
                 ElectionvotedVO result = evDao.wasVoted(evVo);
 
