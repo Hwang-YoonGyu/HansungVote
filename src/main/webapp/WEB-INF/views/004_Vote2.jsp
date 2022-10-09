@@ -150,7 +150,8 @@
     var votecheckbutton = document.getElementById("votecheckButton");
 
     function votecheck() {
-
+        let iv = "gkstjdwkdwkd0000";
+        let key = "ghkddbsrbqkrtjdwodlcksghdlatnqls";
         var result = confirm("투표하시겠습니까?");
         if (result == true) {
             radioList.forEach((node) => {
@@ -164,11 +165,22 @@
                      var input1 = document.createElement('input');
                      input1.type = 'hidden';
                      input1.name = 'ElectionName';
-                     input1.value = electionName;
+                     input1.value = CryptoJS.AES.encrypt(document.getElementById('ElectionName').value,
+                         CryptoJS.enc.Utf8.parse(key),
+                         {iv:CryptoJS.enc.Utf8.parse(iv),
+                             padding: CryptoJS.pad.Pkcs7,
+                             mode: CryptoJS.mode.CBC}
+                     ).toString();
+
                      var input2 = document.createElement('input');
                      input2.type = 'hidden';
                      input2.name = 'CandidateName';
-                     input2.value = node.id;
+                     input2.value = CryptoJS.AES.encrypt(document.getElementById('CandidateName').value,
+                         CryptoJS.enc.Utf8.parse(key),
+                         {iv:CryptoJS.enc.Utf8.parse(iv),
+                             padding: CryptoJS.pad.Pkcs7,
+                             mode: CryptoJS.mode.CBC}
+                     ).toString();
 
                      form.appendChild(input1);
                      form.appendChild(input2);
