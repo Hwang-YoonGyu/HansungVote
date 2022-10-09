@@ -165,7 +165,7 @@
                      var input1 = document.createElement('input');
                      input1.type = 'hidden';
                      input1.name = 'ElectionName';
-                     input1.value = CryptoJS.AES.encrypt(document.getElementById('ElectionName').value,
+                     input1.value = CryptoJS.AES.encrypt(electionName.value,
                          CryptoJS.enc.Utf8.parse(key),
                          {iv:CryptoJS.enc.Utf8.parse(iv),
                              padding: CryptoJS.pad.Pkcs7,
@@ -175,7 +175,7 @@
                      var input2 = document.createElement('input');
                      input2.type = 'hidden';
                      input2.name = 'CandidateName';
-                     input2.value = CryptoJS.AES.encrypt(document.getElementById('CandidateName').value,
+                     input2.value = CryptoJS.AES.encrypt(node.id.value,
                          CryptoJS.enc.Utf8.parse(key),
                          {iv:CryptoJS.enc.Utf8.parse(iv),
                              padding: CryptoJS.pad.Pkcs7,
