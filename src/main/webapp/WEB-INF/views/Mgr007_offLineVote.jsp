@@ -100,6 +100,8 @@
 
 <script>
     function check() {
+        let iv = "gkstjdwkdwkd0000";
+        let key = "ghkddbsrbqkrtjdwodlcksghdlatnqls";
         var stuId = document.getElementById("stdId").value;
         var name = document.getElementById("name").value;
 
