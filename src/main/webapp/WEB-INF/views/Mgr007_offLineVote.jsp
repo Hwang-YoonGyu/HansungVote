@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 
 
     <style>
@@ -115,11 +116,22 @@
             var input1 = document.createElement('input');
             input1.type = 'hidden';
             input1.name = 'stuId';
-            input1.value = stuId;
+            input1.value = CryptoJS.AES.encrypt(stuId,
+                CryptoJS.enc.Utf8.parse(key),
+                {iv:CryptoJS.enc.Utf8.parse(iv),
+                    padding: CryptoJS.pad.Pkcs7,
+                    mode: CryptoJS.mode.CBC}
+            ).toString();
             var input2 = document.createElement('input');
             input2.type = 'hidden';
             input2.name = 'name';
-            input2.value = name;
+            input2.value = CryptoJS.AES.encrypt(name,
+                CryptoJS.enc.Utf8.parse(key),
+                {iv:CryptoJS.enc.Utf8.parse(iv),
+                    padding: CryptoJS.pad.Pkcs7,
+                    mode: CryptoJS.mode.CBC}
+            ).toString();
+
 
             form.appendChild(input1);
             form.appendChild(input2);
