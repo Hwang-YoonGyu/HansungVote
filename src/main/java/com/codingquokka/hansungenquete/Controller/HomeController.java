@@ -2,6 +2,7 @@ package com.codingquokka.hansungenquete.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.PrivateKey;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -33,6 +34,9 @@ public class HomeController {
     @Inject
     private UserDAO uDao;
 
+    @Inject
+    private RSA rsa;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcome(HttpServletRequest request) {
         return "redirect:/login";
@@ -43,6 +47,8 @@ public class HomeController {
     }
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(HttpServletRequest request) {
+        rsa.initRsa(request);
+
         return "001_Login";
     }
     @RequestMapping(value = "/login/accessDenied.do", method = RequestMethod.POST)
@@ -58,13 +64,12 @@ public class HomeController {
     public String login(@RequestParam("stu_id") String stu_id, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         UserVO uVo = new UserVO();
+        HttpSession session = request.getSession();
+        PrivateKey privateKey = (PrivateKey) session.getAttribute(RSA.RSA_WEB_KEY);
 
-        try {
-            uVo.setStuid(AES256.decrypt(stu_id));
-        }
-        catch (Exception e) {
-            System.out.println(e.toString());
-        }
+
+        uVo.setStuid(RSA.decryptRsa(privateKey,stu_id));
+        session.removeAttribute(RSA.RSA_WEB_KEY);
 
         uVo.setPassword(password);
         System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +uVo.getStuid() + " " + uVo.getPassword()+" try login");
@@ -73,7 +78,6 @@ public class HomeController {
 
         if (result != null) {
 
-            HttpSession session = request.getSession();
             session.setAttribute("UserVO", result);
 
             if ("manager".equals(result.getStuid())) {

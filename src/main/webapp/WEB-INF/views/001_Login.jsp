@@ -12,6 +12,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script type="text/javascript" src="/resources/js/rsa.js"></script>
+    <script type="text/javascript" src="/resources/js/jsbn.js"></script>
+    <script type="text/javascript" src="/resources/js/prng4.js"></script>
+    <script type="text/javascript" src="/resources/js/rng.js"></script>
     <style>
         header {
             position: fixed;
@@ -77,7 +81,8 @@
                         </form>
                     </div>
                     <hr class="mt-4">
-
+                    <input type="hidden" id="RSAModulus" value="${RSAModulus}"/>
+                    <input type="hidden" id="RSAExponent" value="${RSAExponent}"/>
                 </div>
             </div>
         </div>
@@ -91,24 +96,28 @@
     }
 
     function sendPostRequest() {
-        let iv = "gkstjdwkdwkd0000";
-        let key = "ghkddbsrbqkrtjdwodlcksghdlatnqls";
+
+        var rsa = new RSAKey();
+        rsa.setPublic(document.getElementById('RSAModulus').value,document.getElementById('RSAExponent').value);
 
         var form = document.getElementById('formId');
         var input1 = document.createElement('input');
         input1.type = 'hidden';
         input1.name = 'stu_id';
-        input1.value = CryptoJS.AES.encrypt(document.getElementById('userId').value,
-            CryptoJS.enc.Utf8.parse(key),
-            {
-                iv: CryptoJS.enc.Utf8.parse(iv),
-                padding: CryptoJS.pad.Pkcs7,
-                mode: CryptoJS.mode.CBC
-            }
-        ).toString();
+        // input1.value = CryptoJS.AES.encrypt(document.getElementById('userId').value,
+        //     CryptoJS.enc.Utf8.parse(key),
+        //     {
+        //         iv: CryptoJS.enc.Utf8.parse(iv),
+        //         padding: CryptoJS.pad.Pkcs7,
+        //         mode: CryptoJS.mode.CBC
+        //     }
+        // ).toString();
+        input1.value = rsa.encrypt(document.getElementById('userId').value);
+
         var input2 = document.createElement('input');
         input2.type = 'hidden';
         input2.name = 'password';
+        // input2.value = CryptoJS.SHA256(document.getElementById('password').value).toString();
         input2.value = CryptoJS.SHA256(document.getElementById('password').value).toString();
 
         form.appendChild(input1);
