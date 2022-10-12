@@ -13,6 +13,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script type="text/javascript" src="/resources/js/rsa.js"></script>
+    <script type="text/javascript" src="/resources/js/jsbn.js"></script>
+    <script type="text/javascript" src="/resources/js/prng4.js"></script>
+    <script type="text/javascript" src="/resources/js/rng.js"></script>
 
 
     <style>
@@ -134,6 +138,8 @@
                                aria-disabled="true" onclick="votecheck()">투표하기</a>
                         </div>
                     </form>
+                    <input type="hidden" id="RSAModulus" value="${RSAModulus}"/>
+                    <input type="hidden" id="RSAExponent" value="${RSAExponent}"/>
                 </div>
             </div>
         </div>
@@ -151,8 +157,9 @@
     var votecheckbutton = document.getElementById("votecheckButton");
 
     function votecheck() {
-        let iv = "gkstjdwkdwkd0000";
-        let key = "ghkddbsrbqkrtjdwodlcksghdlatnqls";
+        var rsa = new RSAKey();
+        rsa.setPublic(document.getElementById('RSAModulus').value,document.getElementById('RSAExponent').value);
+
         var result = confirm("투표하시겠습니까?");
         if (result == true) {
             radioList.forEach((node) => {
@@ -166,22 +173,24 @@
                      var input1 = document.createElement('input');
                      input1.type = 'hidden';
                      input1.name = 'ElectionName';
-                     input1.value = CryptoJS.AES.encrypt(electionName,
-                         CryptoJS.enc.Utf8.parse(key),
-                         {iv:CryptoJS.enc.Utf8.parse(iv),
-                             padding: CryptoJS.pad.Pkcs7,
-                             mode: CryptoJS.mode.CBC}
-                     ).toString();
+                     // input1.value = CryptoJS.AES.encrypt(electionName,
+                     //     CryptoJS.enc.Utf8.parse(key),
+                     //     {iv:CryptoJS.enc.Utf8.parse(iv),
+                     //         padding: CryptoJS.pad.Pkcs7,
+                     //         mode: CryptoJS.mode.CBC}
+                     // ).toString();
+                     input1.value = rsa.encrypt(electionName);
 
                      var input2 = document.createElement('input');
                      input2.type = 'hidden';
                      input2.name = 'CandidateName';
-                     input2.value = CryptoJS.AES.encrypt(node.id,
-                         CryptoJS.enc.Utf8.parse(key),
-                         {iv:CryptoJS.enc.Utf8.parse(iv),
-                             padding: CryptoJS.pad.Pkcs7,
-                             mode: CryptoJS.mode.CBC}
-                     ).toString();
+                     // input2.value = CryptoJS.AES.encrypt(node.id,
+                     //     CryptoJS.enc.Utf8.parse(key),
+                     //     {iv:CryptoJS.enc.Utf8.parse(iv),
+                     //         padding: CryptoJS.pad.Pkcs7,
+                     //         mode: CryptoJS.mode.CBC}
+                     // ).toString();
+                     input2.value = rsa.encrypt(node.id);
 
                      form.appendChild(input1);
                      form.appendChild(input2);

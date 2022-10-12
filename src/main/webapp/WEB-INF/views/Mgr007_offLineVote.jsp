@@ -16,6 +16,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script type="text/javascript" src="/resources/js/rsa.js"></script>
+    <script type="text/javascript" src="/resources/js/jsbn.js"></script>
+    <script type="text/javascript" src="/resources/js/prng4.js"></script>
+    <script type="text/javascript" src="/resources/js/rng.js"></script>
 
 
     <style>
@@ -88,6 +92,8 @@
                         <div class="d-grid gap-2 col-3 mx-auto">
                             <button class="btn btn-primary float-end" onclick="check()">업로드 하기</button>
                         </div>
+                    <input type="hidden" id="RSAModulus" value="${RSAModulus}"/>
+                    <input type="hidden" id="RSAExponent" value="${RSAExponent}"/>
                 </div>
 
             </div>
@@ -100,8 +106,8 @@
 
 <script>
     function check() {
-        let iv = "gkstjdwkdwkd0000";
-        let key = "ghkddbsrbqkrtjdwodlcksghdlatnqls";
+        var rsa = new RSAKey();
+        rsa.setPublic(document.getElementById('RSAModulus').value,document.getElementById('RSAExponent').value);
         var stuId = document.getElementById("stdId").value;
         var name = document.getElementById("name").value;
 
@@ -118,21 +124,23 @@
             var input1 = document.createElement('input');
             input1.type = 'hidden';
             input1.name = 'stuId';
-            input1.value = CryptoJS.AES.encrypt(stuId,
-                CryptoJS.enc.Utf8.parse(key),
-                {iv:CryptoJS.enc.Utf8.parse(iv),
-                    padding: CryptoJS.pad.Pkcs7,
-                    mode: CryptoJS.mode.CBC}
-            ).toString();
+            // input1.value = CryptoJS.AES.encrypt(stuId,
+            //     CryptoJS.enc.Utf8.parse(key),
+            //     {iv:CryptoJS.enc.Utf8.parse(iv),
+            //         padding: CryptoJS.pad.Pkcs7,
+            //         mode: CryptoJS.mode.CBC}
+            // ).toString();
+            input1.value = rsa.encrypt(stuId);
             var input2 = document.createElement('input');
             input2.type = 'hidden';
             input2.name = 'name';
-            input2.value = CryptoJS.AES.encrypt(name,
-                CryptoJS.enc.Utf8.parse(key),
-                {iv:CryptoJS.enc.Utf8.parse(iv),
-                    padding: CryptoJS.pad.Pkcs7,
-                    mode: CryptoJS.mode.CBC}
-            ).toString();
+            // input2.value = CryptoJS.AES.encrypt(name,
+            //     CryptoJS.enc.Utf8.parse(key),
+            //     {iv:CryptoJS.enc.Utf8.parse(iv),
+            //         padding: CryptoJS.pad.Pkcs7,
+            //         mode: CryptoJS.mode.CBC}
+            // ).toString();
+            input2.value = rsa.encrypt(name);
 
 
             form.appendChild(input1);
