@@ -2,6 +2,7 @@ package com.codingquokka.hansungenquete.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.PrivateKey;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
@@ -34,6 +35,8 @@ public class VoteController {
     @Inject
     private UserDAO uDao;
 
+    @Inject
+    private RSA rsa;
 
     @RequestMapping(value = "/votehome", method = RequestMethod.GET)
     public String voteHome(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -72,6 +75,8 @@ public class VoteController {
     public String voteDetail(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO user = (UserVO)session.getAttribute("UserVO");
+        rsa.initRsa(request);
+
         if (user == null) {
             return customResponse(response,"세션이 만료되었습니다. \n다시 로그인 해주세요. :(", "\"/login\"");
         }
@@ -112,24 +117,30 @@ public class VoteController {
         request.setAttribute("candiList", candiList);
         System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +user.getStuid() + " " + user.getName()+" visit "+ evVo.getElectionName());
 
+
         return "004_Vote2";
     }
 
     @RequestMapping(value = "/doVote", method = RequestMethod.POST)
     public String doVote(Locale locale, HttpServletRequest request, HttpServletResponse response, @RequestParam("ElectionName") String eName, @RequestParam("CandidateName") String cName) throws Exception {
+
         HttpSession session = request.getSession();
         UserVO user = (UserVO)session.getAttribute("UserVO");
+        PrivateKey privateKey = (PrivateKey) session.getAttribute(RSA.RSA_WEB_KEY);
+
         if (user == null) {
             return customResponse(response,"세션이 만료되었습니다. \n다시 로그인 해주세요. :(", "\"/login\"");
         }
 
 
         ElectionvotedVO evVo = new ElectionvotedVO();
-        evVo.setElectionName(AES256.decrypt(eName));
-        evVo.setCandidateName(AES256.decrypt(cName));
+        evVo.setElectionName(RSA.decryptRsa(privateKey,eName));
+        evVo.setCandidateName(RSA.decryptRsa(privateKey,cName));
         evVo.setStuId(user.getStuid());
         evVo.setName(user.getName());
         evVo.setDepartment(user.getDepartment());
+        session.removeAttribute(RSA.RSA_WEB_KEY);
+
         ElectionvotedVO wasVoted = evDao.wasVoted(evVo);
 
 
