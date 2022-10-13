@@ -5,9 +5,10 @@
 </head>
 <body>
 <h1>
-	Hello world!  
+	이런!
 </h1>
 
-<P>  ${msg}. </P>
+<P>과다한 접속 요청으로 인해 IP가 차단되었습니다. </P>
+<P>자세한 내용은 1771357@hansung.ac.kr로 문의하세요"</P>
 </body>
 </html>

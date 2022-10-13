@@ -5,6 +5,9 @@ import java.io.PrintWriter;
 import java.security.PrivateKey;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -37,16 +40,26 @@ public class HomeController {
     @Inject
     private RSA rsa;
 
+    @Inject
+    private BlockMap blockMap;
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcome(HttpServletRequest request) {
+
         return "redirect:/login";
     }
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String main(HttpServletRequest request) {
+        if (checkLastTime(request)) {
+            return "home";
+        }
         return "002_Main";
     }
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(HttpServletRequest request) {
+        if (checkLastTime(request)) {
+            return "home";
+        }
         rsa.initRsa(request);
 
         return "001_Login";
@@ -114,5 +127,27 @@ public class HomeController {
         headers.setContentType(MediaType.IMAGE_PNG); // 미디어 타입을 나타내기 위한 헤더(헤더는 클라이언트와 서버가 요청 또는 응답으로 부가적인 정보를 전송할 수 있게
         // 해줌)
         return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
+    }
+
+    boolean checkLastTime(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+
+        if(blockMap.isBlock(request.getRemoteAddr())) {
+            return true;
+        }
+
+        Date now = new Date();
+        Date lastConnect = (Date) session.getAttribute("date");
+        session.removeAttribute("date");
+        session.setAttribute("date", now);
+
+        if (now.getTime() - lastConnect.getTime() < 500) {
+            blockMap.add(request.getRemoteAddr());
+            return true;
+        }
+        else {
+            return false;
+        }
+
     }
 }

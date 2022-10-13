@@ -166,4 +166,19 @@ public class VoteController {
         return null;
     }
 
+    boolean checkLastTime(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Date now = new Date();
+        Date lastConnect = (Date) session.getAttribute("date");
+        session.removeAttribute("date");
+        session.setAttribute("date", now);
+
+        if (now.getTime() - lastConnect.getTime() < 100) {
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
 }
