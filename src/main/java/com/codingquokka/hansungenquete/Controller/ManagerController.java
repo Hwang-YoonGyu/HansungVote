@@ -16,6 +16,7 @@ import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.security.PrivateKey;
 
 @RequestMapping("/manager")
 @Controller
@@ -33,6 +34,8 @@ public class ManagerController {
     @Inject
     private UserDAO uDao;
 
+    @Inject
+    private RSA rsa;
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String main(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
@@ -214,7 +217,7 @@ public class ManagerController {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
-
+            rsa.initRsa(request);
             return "Mgr007_offLineVote";
 
         } else {
@@ -226,10 +229,10 @@ public class ManagerController {
     public String addVotedPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        PrivateKey privateKey = (PrivateKey) session.getAttribute(RSA.RSA_WEB_KEY);
         if (uVo != null && uVo.getStuid().equals("manager")) {
 
-            String deStuId = AES256.decrypt(request.getParameter("stuId"));
-
+            String deStuId = RSA.decryptRsa(privateKey,request.getParameter("stuId"));
             UserVO user = uDao.findDepartmentOfUser(deStuId);
 
             if (user == null) {
@@ -240,7 +243,7 @@ public class ManagerController {
 
             for (String s :electionNameList) {
                 ElectionvotedVO evVo = new ElectionvotedVO();
-                evVo.setStuId(deStuId);
+                evVo.setStuId(request.getParameter("stuId"));
                 evVo.setElectionName(s);
                 ElectionvotedVO result = evDao.wasVoted(evVo);
 
