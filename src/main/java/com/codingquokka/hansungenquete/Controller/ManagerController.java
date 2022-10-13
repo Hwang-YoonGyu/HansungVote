@@ -243,7 +243,7 @@ public class ManagerController {
 
             for (String s :electionNameList) {
                 ElectionvotedVO evVo = new ElectionvotedVO();
-                evVo.setStuId(request.getParameter("stuId"));
+                evVo.setStuId(deStuId);
                 evVo.setElectionName(s);
                 ElectionvotedVO result = evDao.wasVoted(evVo);
 
