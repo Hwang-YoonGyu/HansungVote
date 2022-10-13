@@ -6,8 +6,6 @@ import java.security.PrivateKey;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,23 +38,24 @@ public class HomeController {
     private RSA rsa;
 
     @Inject
-    private BlockMap blockMap;
+    private Defender defender;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+/*    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcome(HttpServletRequest request) {
 
         return "redirect:/login";
-    }
+    }*/
+
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String main(HttpServletRequest request) {
-        if (checkLastTime(request)) {
+        if (defender.checkLastTime(request)) {
             return "home";
         }
         return "002_Main";
     }
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(HttpServletRequest request) {
-        if (checkLastTime(request)) {
+        if (defender.checkLastTime(request)) {
             return "home";
         }
         rsa.initRsa(request);
@@ -75,6 +73,9 @@ public class HomeController {
     }
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam("stu_id") String stu_id, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        if (defender.checkLastTime(request)) {
+            return "home";
+        }
 
         UserVO uVo = new UserVO();
         HttpSession session = request.getSession();
@@ -129,25 +130,5 @@ public class HomeController {
         return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
     }
 
-    boolean checkLastTime(HttpServletRequest request) {
-        HttpSession session = request.getSession();
 
-        if(blockMap.isBlock(request.getRemoteAddr())) {
-            return true;
-        }
-
-        Date now = new Date();
-        Date lastConnect = (Date) session.getAttribute("date");
-        session.removeAttribute("date");
-        session.setAttribute("date", now);
-
-        if (now.getTime() - lastConnect.getTime() < 500) {
-            blockMap.add(request.getRemoteAddr());
-            return true;
-        }
-        else {
-            return false;
-        }
-
-    }
 }

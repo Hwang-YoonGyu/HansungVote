@@ -38,8 +38,15 @@ public class VoteController {
     @Inject
     private RSA rsa;
 
+    @Inject
+    private Defender defender;
+
     @RequestMapping(value = "/votehome", method = RequestMethod.GET)
     public String voteHome(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        if (defender.checkLastTime(request)) {
+            return "home";
+        }
+
         HttpSession session = request.getSession();
 
         UserVO user = (UserVO) session.getAttribute("UserVO");
@@ -73,6 +80,10 @@ public class VoteController {
 
     @RequestMapping(value = "/voteDetail", method = RequestMethod.GET)
     public String voteDetail(Locale locale, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        if (defender.checkLastTime(request)) {
+            return "home";
+        }
+
         HttpSession session = request.getSession();
         UserVO user = (UserVO)session.getAttribute("UserVO");
         rsa.initRsa(request);
@@ -123,6 +134,10 @@ public class VoteController {
 
     @RequestMapping(value = "/doVote", method = RequestMethod.POST)
     public String doVote(Locale locale, HttpServletRequest request, HttpServletResponse response, @RequestParam("ElectionName") String eName, @RequestParam("CandidateName") String cName) throws Exception {
+        if (defender.checkLastTime(request)) {
+            return "home";
+        }
+
 
         HttpSession session = request.getSession();
         UserVO user = (UserVO)session.getAttribute("UserVO");
@@ -164,21 +179,5 @@ public class VoteController {
                 "</script>");
         out.flush();
         return null;
-    }
-
-    boolean checkLastTime(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        Date now = new Date();
-        Date lastConnect = (Date) session.getAttribute("date");
-        session.removeAttribute("date");
-        session.setAttribute("date", now);
-
-        if (now.getTime() - lastConnect.getTime() < 100) {
-            return true;
-        }
-        else {
-            return false;
-        }
-
     }
 }
