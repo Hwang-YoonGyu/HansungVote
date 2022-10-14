@@ -93,7 +93,7 @@ public class HomeController {
         if (result != null) {
 
             session.setAttribute("UserVO", result);
-
+            
             if ("manager".equals(result.getStuid())) {
                 System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login success");
                 //logger.WriteLog(LocalDateTime.now().toString(), result.getStuid() + " " + result.getName()+" login");

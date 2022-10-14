@@ -7,6 +7,7 @@ public class UserVO {
     private String phoneNumber;
     private String department;
 
+    private int agree;
 
  
    
