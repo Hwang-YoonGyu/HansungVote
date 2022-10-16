@@ -42,5 +42,12 @@ public class UserVO {
         this.department = department;
     }
 
+    public int getAgree(){
+        return agree;
+    }
+    public void setAgree(){
+        this.agree = agree;
+    }
+
 
 }

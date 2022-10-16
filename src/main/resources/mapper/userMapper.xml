@@ -65,4 +65,13 @@
 		from temp3 left outer join temp4 on temp3.department = temp4.department
 	</select>
 
+	<update id="agreeCount" parameterType="com.codingquokka.hansungenquete.domain.UserVO">
+		update user
+		set agree = 1
+		where stuId=#{stuId}
+	</update>
+
+
+
+
 </mapper>

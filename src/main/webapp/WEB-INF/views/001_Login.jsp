@@ -16,6 +16,7 @@
     <script type="text/javascript" src="/resources/js/jsbn.js"></script>
     <script type="text/javascript" src="/resources/js/prng4.js"></script>
     <script type="text/javascript" src="/resources/js/rng.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <style>
         header {
             position: fixed;
@@ -77,7 +78,7 @@
                     <div class="col-12">
                         <form id="formId" action="/login" method="post" class="row g-3">
                             <input type="button" onclick=sendPostRequest() class="btn btn-primary float-end"
-                                   value="log in"/>
+                                    value="log in" id="loginId"/>
                         </form>
                     </div>
                     <hr class="mt-4">
@@ -88,7 +89,16 @@
         </div>
     </div>
 </main>
+
 <script>
+    $('#formId').on("click",function(e) {
+        e.preventDefault();
+        let popUrl = "/agreePop";
+        let popOption = "width = 650px, height=550px, top=300px, left=300px, scrollbars=yes";
+        window.open(popUrl, "loginId", popOption);
+
+    });
+
     window.onpageshow = function(event){
         if(event.persisted || (window.performance && window.performance.navigation.type == 2)){
             location.href = "/";

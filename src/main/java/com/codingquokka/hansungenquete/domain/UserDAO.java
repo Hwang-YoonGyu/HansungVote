@@ -40,5 +40,9 @@ public class UserDAO {
 	public List<String> voteCan(String department) throws Exception{
 		return sqlSession.selectList(namespace+".voteCan", department);
 	}
+
+	public void agreeCount(UserVO vo){
+		sqlSession.update(namespace + ".agreeCount",vo);
+	}
 }
 

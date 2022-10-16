@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.security.PrivateKey;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -51,8 +50,11 @@ public class HomeController {
         if (defender.checkLastTime(request)) {
             return "home";
         }
+
         return "002_Main";
     }
+
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(HttpServletRequest request) {
         if (defender.checkLastTime(request)) {
@@ -71,11 +73,19 @@ public class HomeController {
         out.flush();
         return "001_Login";
     }
+
+    @RequestMapping(value = "/agreePop", method = RequestMethod.GET)
+    public String agreePop(HttpServletRequest request) throws Exception{
+        return "agreePop";
+    }
+
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@RequestParam("stu_id") String stu_id, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
         if (defender.checkLastTime(request)) {
             return "home";
         }
+
 
         UserVO uVo = new UserVO();
         HttpSession session = request.getSession();
@@ -102,6 +112,7 @@ public class HomeController {
             }
             System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login success");
             //logger.WriteLog(LocalDateTime.now().toString(), result.getStuid() + " " + result.getName()+" login");
+
             return "redirect:/main";
         }
         else {
