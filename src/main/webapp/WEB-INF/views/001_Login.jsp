@@ -74,7 +74,7 @@
                         <input id="password" name="password" value="" type="password" class="form-control"
                                placeholder="비밀번호">
                     </div>
-
+                    <br>
                     <div class="col-12">
                         <form id="formId" action="/login" method="post" class="row g-3">
                             <input type="button" onclick=sendPostRequest() class="btn btn-primary float-end"

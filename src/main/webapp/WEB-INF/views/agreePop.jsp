@@ -31,6 +31,6 @@
 개인정보법 등 관련 법규에 의거하여 상기 본인은
 위와 같이 개인정보와 고유식별정보 수집 및 이용에 동의합니다.'
 <input type="checkbox" id="check"/> 위의 약관에 동의 합니다.<br />
-<input type="button" id="nextBtn" value="한성보트 투표하러가기"/>
+<input type="button" id="nextBtn" onclick="/main" value="한성보트 투표하러가기"/>
 </body>
 </html>
