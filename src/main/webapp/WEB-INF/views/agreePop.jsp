@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <title>팝업 개'시발련</title>
     <style>
 
@@ -30,7 +31,48 @@
 
 개인정보법 등 관련 법규에 의거하여 상기 본인은
 위와 같이 개인정보와 고유식별정보 수집 및 이용에 동의합니다.'
-<input type="checkbox" id="check"/> 위의 약관에 동의 합니다.<br />
-<input type="button" id="nextBtn" onclick="/main" value="한성보트 투표하러가기"/>
+<div class = "checkT">
+    <p>
+        <input type="checkbox" id="check" name ="checkbox_check" class="checks"/> 위의 약관에 동의 합니다.<br />
+    </p>
+</div>
+
+<div class = "btn">
+    <p>
+        <button type ="button" class="vote_button" disabled = "disabled" onclick="location.href ='main'">한성보트 투표하러가기</button>
+    </p>
+</div>
+
+<script>
+    $(function (){
+        console.log("왔니?")
+        $("#check").click(function (){
+            let Check = $("#check").prop("checked");
+
+            if(Check){
+                $(".checks").prop("checked",true);
+                console.log("왔니?")
+            }
+            else {
+                $(".checks").prop("checked",false);
+                console.log("왔니?")
+            }
+        });
+
+        $('.checkT input[type="checkbox"]').click(function (){
+            let tmp =$(this).prop('checked');
+            let tt =$("[name='checkbox_check']:checked").length;
+
+            if(tmp==true || tt>0){
+                $(".btn button").css({"backgroundColor":"#0000FF","color":"#fff"}).prop("disabled",false);
+            }
+            else{
+                $(".btn button").css({"backgroundColor":"#cbcbcb","color":"#303033"}).prop("disabled",true);
+
+            }
+        })
+    });
+</script>
+
 </body>
 </html>

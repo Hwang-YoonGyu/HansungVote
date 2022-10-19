@@ -113,7 +113,7 @@ public class HomeController {
             System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login success");
             //logger.WriteLog(LocalDateTime.now().toString(), result.getStuid() + " " + result.getName()+" login");
 
-            return "redirect:/main";
+            return "agreePop";
         }
         else {
             response.setContentType("text/html; charset=euc-kr");
