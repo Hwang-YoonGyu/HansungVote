@@ -18,6 +18,14 @@ public class ElectionDAO {
 	public List<ElectionVO> selectElection(ElectionVO vo) throws Exception {
 		return sqlSession.selectList(namespace + ".selectElection", vo);
 	}
+	public ElectionVO selectD(ElectionVO vo) throws Exception {
+		return sqlSession.selectOne(namespace + ".selectD", vo);
+	}
+
+	public ElectionVO selectY(ElectionVO vo) throws Exception {
+		return sqlSession.selectOne(namespace + ".selectY", vo);
+	}
+
 
 	public List<ElectionVO> selectElectionAll() throws Exception {
 		return sqlSession.selectList(namespace + ".selectElectionAll");

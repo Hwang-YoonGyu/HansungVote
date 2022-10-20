@@ -8,9 +8,14 @@ public class UserVO {
     private String department;
 
     private int agree;
+    private int Y;
+    private int D;
 
- 
-   
+
+
+
+
+
     public String getStuid() {
         return stuId;
     }
@@ -48,6 +53,16 @@ public class UserVO {
     public void setAgree(){
         this.agree = agree;
     }
+
+    public int getY() {return Y;}
+    public int getD() {return D;}
+    public void setY(){
+        this.Y = Y;
+    }
+    public void setD(){
+        this.D = D;
+    }
+
 
 
 }
