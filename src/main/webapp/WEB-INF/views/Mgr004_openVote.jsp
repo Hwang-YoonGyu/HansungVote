@@ -30,7 +30,7 @@
 
         main {
             background-color: hsl(228, 26%, 96%);
-            min-height: 2000px;
+            min-height: 2900px;
             margin-top: 100px;
 
         }
@@ -134,84 +134,42 @@
                                     </div>
                                 </div>
 
+
+                                <hr class="mt-4">
+                                <div class="row">
+                                    <pre style="text-align: center";  >
+선택방법 - window[단일선택 : control 전체선택 : shift]     Mac os[단일선택 : command 전체선택 : shift]
+                                    </pre>
+                                </div>
+
                                 <hr class="mt-4">
                                 <div class="row">
                                     <div class="col-2" style="border-right: 1px solid gray; text-align: center;">
                                         크리에이티브인문예술대학
-                                        <div style="margin-top:50px;">전체선택
-                                            <input type='checkbox' name="Pbox" value="전체선택"
-                                                   onclick='selectAll(this, "P")'/>
-                                        </div>
                                     </div>
                                     <div class="col-10">
 
-                                        <div class="btn-group" role="group"
-                                             aria-label="Basic checkbox toggle button group">
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck1" name="P" value="P011"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Pbtncheck1">영미문학문화트랙</label>
+                                            <select class="form-select" multiple aria-label="multiple select example" style="height: 340px">
+                                                <option value="1" id="P" style="color: midnightblue;">크리에이티브인문예술대학</option>
+                                                <option value="2" id="P01" style="color: royalblue;">크리에이티브인문학부</option>
+                                                <option value="3" id="P011">영미문학문화트랙</option>
+                                                <option value="4" id="P012">영미언어정보트랙</option>
+                                                <option value="5" id="P013">한국어교육트랙</option>
+                                                <option value="6" id="P014">문학문화콘텐츠트랙</option>
+                                                <option value="7" id="P015">글로컬역사트랙</option>
+                                                <option value="8" id="P016">역사문화콘텐츠트랙</option>
+                                                <option value="9" id="P017">도서관정보문화트랙</option>
+                                                <option value="10" id="P018">디지털인문정보학트랙</option>
+                                                <option value="11" id="P02" style="color: royalblue;">예술학부</option>
+                                                <option value="12" id="P021">동양화전공</option>
+                                                <option value="13" id="P022">서양화전공</option>
+                                                <option value="14" id="P023">한국무용전공</option>
+                                                <option value="15" id="P024">현대무용전공</option>
+                                                <option value="16" id="P025">발레전공</option>
+                                                <option value="17" id="P026">이민&다문화트랙</option>
 
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck2" name="P" value="P012"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Pbtncheck2">영미언어정보트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck3" name="P" value="P013"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Pbtncheck3">한국어교육트랙</label>
-
-
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck4" name="P" value="P014"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Pbtncheck4">문학문화콘텐츠트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck5" name="P" value="P015"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Pbtncheck5">글로컬역사트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck6" name="P" value="P016"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Pbtncheck6">역사문화콘텐츠트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck7" name="P" value="P017"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Pbtncheck7">도서관정보문화트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck8" name="P" value="P018"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Pbtncheck8">디지털인문정보학트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck9" name="P" value="P021"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Pbtncheck9">동양화전공</label>
-
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck10" name="P" value="P022"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Pbtncheck10">서양화전공</label>
-
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck11" name="P" value="P023"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Pbtncheck11">한국무용전공</label>
-
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck12" name="P" value="P024"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Pbtncheck12">현대무용전공</label>
-
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck13" name="P" value="P025"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Pbtncheck13">발레전공</label>
-
-                                            <input type="checkbox" class="btn-check" id="Pbtncheck14" name="P" value="P026"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Pbtncheck14">이민&다문화트랙</label>
-
+                                            </select>
                                         </div>
-                                    </div>
-
                                 </div>
 
 
@@ -219,141 +177,55 @@
                                 <div class="row">
                                     <div class="col-2" style="border-right: 1px solid gray; text-align: center;">
                                         미래융합사회과학대학
-                                        <div style="margin-top:50px;">전체선택
-                                            <input type='checkbox' name="Rbox" value="전체선택"
-                                                   onclick='selectAll(this, "R")'/>
-                                        </div>
                                     </div>
                                     <div class="col-10">
 
-                                        <div class="btn-group" role="group"
-                                             aria-label="Basic checkbox toggle button group">
-                                            <input type="checkbox" class="btn-check" id="Rbtncheck1" name="R" value="R011"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Rbtncheck1">국제무역트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Rbtncheck2" name="R" value="R012"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Rbtncheck2">글로벌비즈니스트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Rbtncheck3" name="R" value="R013"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Rbtncheck3">기업&경제분석트랙</label>
-
-
-                                            <input type="checkbox" class="btn-check" id="Rbtncheck4" name="R" value="R014"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Rbtncheck4">금융&데이터분석트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Rbtncheck5" name="R" value="R015"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Rbtncheck5">공공행정트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Rbtncheck6" name="R" value="R016"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Rbtncheck6">법&정책트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Rbtncheck7" name="R" value="R017"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Rbtncheck7">부동산트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Rbtncheck8" name="R" value="R018"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Rbtncheck8">스마트도시&교통계획트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Rbtncheck9" name="R" value="R019"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Rbtncheck9">기업경영트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Rbtncheck10" name="R" value="R01A"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Rbtncheck10">벤처경영트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Rbtncheck11" name="R" value="R01B"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Rbtncheck11">회계&재무경영트랙</label>
-
-
-                                        </div>
+                                        <select class="form-select" multiple aria-label="multiple select example" style="height: 270px" >
+                                            <option value="1" id="R" style="color: midnightblue;">미래융합사회과학대학</option>
+                                            <option value="2" id="R01" style="color: royalblue;">사회과학부</option>
+                                            <option value="3" id="R011">국제무역트랙</option>
+                                            <option value="4" id="R012">글로벌비즈니스트랙</option>
+                                            <option value="5" id="R013">기업&경제분석트랙</option>
+                                            <option value="6" id="R014">금융&데이터분석트랙</option>
+                                            <option value="7" id="R015">공공행정트랙</option>
+                                            <option value="8" id="R016">법&정책트랙</option>
+                                            <option value="9" id="R017">부동산트랙</option>
+                                            <option value="10" id="R018">스마트도시&교통계획트랙</option>
+                                            <option value="11" id="R019">기업경영트랙</option>
+                                            <option value="12" id="R01A">벤처경영트랙</option>
+                                            <option value="13" id="R01B">회계&재무경영트랙</option>
+                                        </select>
                                     </div>
 
                                 </div>
 
 
                                 <hr class="mt-4">
+
                                 <div class="row">
                                     <div class="col-2" style="border-right: 1px solid gray; text-align: center;">
                                         디자인대학
-                                        <div style="margin-top:50px;">전체선택
-                                            <input type='checkbox' name="Tbox" value="전체선택"
-                                                   onclick='selectAll(this, "T")'/>
-                                        </div>
                                     </div>
                                     <div class="col-10">
+                                        <select class="form-select" multiple aria-label="multiple select example" style="height: 270px">
+                                            <option value="1" id="T" style="color: midnightblue;">디자인대학</option>
+                                            <option value="2" id="T01" style="color: royalblue;">글로벌패션산업학부</option>
+                                            <option value="3" id="T011">패션마케팅트랙</option>
+                                            <option value="4" id="T012">패션디자인트랙</option>
+                                            <option value="5" id="T013">기업&패션크리에이티브디렉션트랙</option>
+                                            <option value="6" id="T02"style="color: royalblue;">ICT디자인학부</option>
+                                            <option value="7" id="T021">뉴미디어광고&커뮤니케이션디자인트랙</option>
+                                            <option value="8" id="T022">영상&애니메이션디자인트랙</option>
+                                            <option value="9" id="T023">제품&서비스디자인트랙</option>
+                                            <option value="10" id="T024">브랜드&패키지디자인트랙</option>
+                                            <option value="11" id="T025">인테리어디자인트랙</option>
+                                            <option value="12" id="T026">VMD&전시디자인트랙</option>
+                                            <option value="13" id="T027">게임그래픽디자인트랙</option>
+                                            <option value="14" id="T030"style="color: royalblue;">뷰티디자인매니지먼트학과</option>
+                                            <option value="15" id="T040"style="color: royalblue;">뷰티매니지먼트계약학과</option>
+                                        </select>
 
-                                        <div class="btn-group" role="group"
-                                             aria-label="Basic checkbox toggle button group">
-                                            <input type="checkbox" class="btn-check" id="Tbtncheck1" name="T" value="T011"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Tbtncheck1">패션마케팅트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Tbtncheck2" name="T" value="T012"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Tbtncheck2">패션디자인트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Tbtncheck3" name="T" value="T013"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Tbtncheck3">패션크리에이티브디렉션트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Tbtncheck4" name="T" value="T021"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Tbtncheck4">뉴미디어광고&커뮤니케이션디자인트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Tbtncheck5" name="T" value="T022"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Tbtncheck5">영상&애니메이션디자인트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Tbtncheck6" name="T" value="T023"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Tbtncheck6">제품&서비스디자인트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Tbtncheck7" name="T" value="T024"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Tbtncheck7">브랜드&패키지디자인트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Tbtncheck8" name="T" value="T025"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Tbtncheck8">인테리어디자인트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Tbtncheck9" name="T" value="T026"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Tbtncheck9">VMD&전시디자인트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Tbtncheck10" name="T" value="T027"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Tbtncheck10">게임그래픽디자인트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Tbtncheck11" name="T" value="T030"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Tbtncheck11">뷰티디자인매니지먼트학과</label>
-
-                                        </div>
-                                    </div>
-
+                                </div>
                                 </div>
 
 
@@ -361,121 +233,71 @@
                                 <div class="row">
                                     <div class="col-2" style="border-right: 1px solid gray; text-align: center;">
                                         IT공과대학
-                                        <div style="margin-top:50px;">전체선택
-                                            <input type='checkbox' name="Vbox" value="전체선택"
-                                                   onclick='selectAll(this,"V")'/>
-                                        </div>
                                     </div>
                                     <div class="col-10">
-
-                                        <div class="btn-group" role="group"
-                                             aria-label="Basic checkbox toggle button group">
-                                            <input type="checkbox" class="btn-check" id="Vbtncheck1" name="V" value="V021"
-                                                   autocomplete="off" >
-                                            <label class="btn btn-outline-primary"
-                                                   for="Vbtncheck1">모바일소프트웨어트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Vbtncheck2" name="V" value="V022"
-                                                   autocomplete="off" >
-                                            <label class="btn btn-outline-primary" for="Vbtncheck2">빅데이터트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Vbtncheck3" name="V" value="V023"
-                                                   autocomplete="off" >
-                                            <label class="btn btn-outline-primary"
-                                                   for="Vbtncheck3">디지털콘텐츠&가상현실트랙</label>
-
-
-                                            <input type="checkbox" class="btn-check" id="Vbtncheck4" name="V" value="V024"
-                                                   autocomplete="off" >
-                                            <label class="btn btn-outline-primary" for="Vbtncheck4">웹공학트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Vbtncheck5" name="V" value="V031"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Vbtncheck5">전자트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Vbtncheck6" name="V" value="V032"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Vbtncheck6">정보시스템트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Vbtncheck7" name="V" value="V033"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Vbtncheck7">기계설계트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Vbtncheck8" name="V" value="V034"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Vbtncheck8">기계자동화트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Vbtncheck9" name="V" value="V041"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Vbtncheck9">지능시스템트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Vbtncheck10" name="V" value="V042"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Vbtncheck10">사물인터넷트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Vbtncheck11" name="V" value="V043"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Vbtncheck11">사이버보언트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Vbtncheck12" name="V" value="V044"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Vbtncheck12">ICT융합엔터테인먼트트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Vbtncheck13" name="V" value="V051"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Vbtncheck13">시스템경영공학트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Vbtncheck14" name="V" value="V052"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary"
-                                                   for="Vbtncheck14">생산물류시스템트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Vbtncheck15" name="V" value="V053"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Vbtncheck15">컨설팅트랙</label>
-
-                                            <input type="checkbox" class="btn-check" id="Vbtncheck16" name="V" value="V054"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="Vbtncheck16">산업공학트랙</label>
-                                        </div>
-                                    </div>
+                                        <select class="form-select" multiple aria-label="multiple select example" style="height: 480px;">
+                                            <option value="1" id="V" style="color: midnightblue;">IT공과대학</option>
+                                            <option value="2" id="V02" style="color: royalblue;">컴퓨터공학부</option>
+                                            <option value="3" id="V021">모바일소프트웨어트랙</option>
+                                            <option value="4" id="V022">빅데이터트랙</option>
+                                            <option value="5" id="V023">디지털콘텐츠&가상현실트랙</option>
+                                            <option value="6" id="V024">웹공학트랙</option>
+                                            <option value="7" id="V03" style="color: royalblue;">기계전자공학부</option>
+                                            <option value="8" id="V031">전자트랙</option>
+                                            <option value="9" id="V032">정보시스템트랙</option>
+                                            <option value="10" id="V033">기계설계트랙</option>
+                                            <option value="11" id="V034">기계자동화트랙</option>
+                                            <option value="12" id="V035">시스템반도체트랙</option>
+                                            <option value="13" id="V04" style="color: royalblue;">IT융합공학부</option>
+                                            <option value="14" id="V041">지능시스템트랙</option>
+                                            <option value="15" id="V042">사물인터넷트랙</option>
+                                            <option value="16" id="V043">사이버보언트랙</option>
+                                            <option value="17" id="V044">ICT융합엔터테인먼트트랙</option>
+                                            <option value="18" id="V05" style="color: royalblue;">스마트경영공학부</option>
+                                            <option value="19" id="V051">시스템경영공학트랙</option>
+                                            <option value="20" id="V052">생산물류시스템트랙</option>
+                                            <option value="21" id="V053">컨설팅트랙</option>
+                                            <option value="22" id="V054">산업공학트랙</option>
+                                            <option value="23" id="V055">지능형제조시스템트랙</option>
+                                            <option value="24" id="V060" style="color: royalblue;">스마트팩토리컨설팅학과</option>
+                                        </select>
                                 </div>
+                                </div>
+
+
                                 <hr class="mt-4">
                                 <div class="row">
                                     <div class="col-2" style="border-right: 1px solid gray; text-align: center;">
                                         창의융합대학
-                                        <div style="margin-top:50px;">전체선택
-                                            <input type='checkbox' name="Ybox" value="전체선택"
-                                                   onclick='selectAll(this,"Y")'/>
-                                        </div>
+
                                     </div>
                                     <div class="col-10">
-                                        <div class="btn-group" role="group"
-                                             aria-label="Basic checkbox toggle button group">
-                                            <input type="checkbox" class="btn-check" id="Ybtncheck1" autocomplete="off" name="Y" value="Y021" >
-                                            <label class="btn btn-outline-primary"
-                                                   for="Ybtncheck1">문학문화콘텐츠학과</label>
-
-                                            <input type="checkbox" class="btn-check" id="Ybtncheck2" autocomplete="off" name="Y" value="Y031">
-                                            <label class="btn btn-outline-primary" for="Ybtncheck2">AI응용학과</label>
-                                        </div>
-                                    </div>
+                                        <select class="form-select" multiple aria-label="multiple select example" style="height: 130px;">
+                                            <option value="1" id="Y" style="color: midnightblue;">창의융합대학</option>
+                                            <option value="2" id="Y010" style="color: royalblue;">상상력인재학부</option>
+                                            <option value="3" id="Y021" style="color: royalblue;">문학문화콘텐츠학과</option>
+                                            <option value="4" id="Y031" style="color: royalblue;">AI응용학과</option>
+                                            <option value="5" id="Y041" style="color: royalblue;">융합보안학과</option>
+                                        </select>
                                 </div>
+                                </div>
+
+
                                 <hr class="mt-4">
                                 <div class="row">
                                     <div class="col-2" style="border-right: 1px solid gray; text-align: center;">
-                                        모든 트랙 선택
+                                        미래플러스대학
                                     </div>
                                     <div class="col-10">
+                                        <select class="form-select" multiple aria-label="multiple select example" style="height: 150px;">
+                                            <option value="1" id="Z" style="color: midnightblue;">미래플러스대학</option>
+                                            <option value="2" id="Z010" style="color: royalblue;">융합행정학과</option>
+                                            <option value="3" id="Z020" style="color: royalblue;">호텔외식경영학과</option>
+                                            <option value="4" id="Z030" style="color: royalblue;">뷰티디자인학과</option>
+                                            <option value="5" id="Z040" style="color: royalblue;">비즈니스컨설팅학과</option>
+                                            <option value="6" id="Z050" style="color: royalblue;">ICT융합디자인학과</option>
 
-                                        <div class="btn-group" role="group"
-                                             aria-label="Basic checkbox toggle button group">
-                                            <input type="checkbox" class="btn-check" id="btncheck1"  onclick="selectAllTrack(this)"
-                                                   autocomplete="off">
-                                            <label class="btn btn-outline-primary" for="btncheck1">모든 트랙 선택</label>
-                                        </div>
+                                        </select>
                                     </div>
                                     <hr class="mt-4">
                                 </div>
