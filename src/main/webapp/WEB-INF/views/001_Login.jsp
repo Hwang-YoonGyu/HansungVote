@@ -91,13 +91,13 @@
 </main>
 
 <script>
-    $('#formId').on("click",function(e) {
-        e.preventDefault();
-        let popUrl = "/agreePop";
-        let popOption = "width = 650px, height=550px, top=300px, left=300px, scrollbars=yes";
-        window.open(popUrl, "loginId", popOption);
-
-    });
+    // $('#formId').on("click",function(e) {
+    //     e.preventDefault();
+    //     let popUrl = "/agreePop";
+    //     let popOption = "width = 650px, height=550px, top=300px, left=300px, scrollbars=yes";
+    //     window.open(popUrl, "loginId", popOption);
+    //
+    // });
 
     window.onpageshow = function(event){
         if(event.persisted || (window.performance && window.performance.navigation.type == 2)){

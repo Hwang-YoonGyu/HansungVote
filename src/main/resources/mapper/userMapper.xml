@@ -8,7 +8,7 @@
 <mapper namespace="mapper.userMapper">
 	<!-- 로그인  -->
 	<select id="login" parameterType="com.codingquokka.hansungenquete.domain.UserVO" resultType="com.codingquokka.hansungenquete.domain.UserVO">
-		select stuId, name, password, phoneNumber, department
+		select *
 		from user
 		where stuId=#{stuId} and password=#{password}
 	</select>
@@ -42,8 +42,8 @@
 	</select>
 
 	<insert id = "insertUser" parameterType="com.codingquokka.hansungenquete.domain.ElectionvotedVO">
-		insert into user(stuId, name, password, phoneNumber, department)
-		values (#{stuId}, #{name}, #{password}, #{phoneNumber}, #{department});
+		insert into user(stuId, name, password, phoneNumber, department, delegate, club, agree)
+		values (#{stuId}, #{name}, #{password}, #{phoneNumber}, #{department}, #{delegate}, #{club}, 0);
 	</insert>
 
 

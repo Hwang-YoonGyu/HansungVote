@@ -61,12 +61,12 @@ public class VoteController {
         evVo.setDepartment(department);
         List<ElectionVO> electionList = eDao.selectElection(evVo);
 
-        if (user.getD() == 1) {
+        if (user.getDelegate() == 1) {
             ElectionVO electionD = eDao.selectD(evVo);
             electionList.add(electionD);
 
         }
-        if (user.getY() == 1) {
+        if (user.getClub() == 1) {
             ElectionVO electionY = eDao.selectY(evVo);
             electionList.add(electionY);
 

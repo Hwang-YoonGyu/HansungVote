@@ -30,6 +30,9 @@ public class Defender {
     public void add(String ip) {
         map.put(ip, 1);
     }
+    public void remove(String ip) {
+        map.remove(ip);
+    }
 
     public boolean checkLastTime(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -40,13 +43,17 @@ public class Defender {
 
         Date now = new Date();
         Date lastConnect = (Date) session.getAttribute("date");
+
+        if (lastConnect == null) {
+            session.setAttribute("date", now);
+            return false;
+        }
+
         session.removeAttribute("date");
         session.setAttribute("date", now);
 
-        if(lastConnect.equals(null)) {
-            return false;
-        }
-        else if (now.getTime() - lastConnect.getTime() < 100) {
+
+        if (now.getTime() - lastConnect.getTime() < 100) {
             add(request.getRemoteAddr());
             return true;
         }

@@ -39,11 +39,11 @@ public class HomeController {
     @Inject
     private Defender defender;
 
-/*    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String welcome(HttpServletRequest request) {
 
-        return "redirect:/login";
-    }*/
+        return login(request);
+    }
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String main(HttpServletRequest request) {
@@ -64,19 +64,16 @@ public class HomeController {
 
         return "001_Login";
     }
-    @RequestMapping(value = "/login/accessDenied.do", method = RequestMethod.POST)
-    public String loginDenied(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html; charset=euc-kr");
-        PrintWriter out = response.getWriter();
-        out.println("<script>alert('로그인 정보를 다시 확인해주세요 :(');" +
-                "</script>");
-        out.flush();
-        return "001_Login";
-    }
 
     @RequestMapping(value = "/agreePop", method = RequestMethod.GET)
     public String agreePop(HttpServletRequest request) throws Exception{
         return "agreePop";
+    }
+    @RequestMapping(value = "/agreePop", method = RequestMethod.POST)
+    public String agreePopPost(HttpServletRequest request) throws Exception{
+
+
+        return "redirect:/main";
     }
 
 
@@ -110,10 +107,19 @@ public class HomeController {
                 return "redirect:/manager/main";
 
             }
-            System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login success");
-            //logger.WriteLog(LocalDateTime.now().toString(), result.getStuid() + " " + result.getName()+" login");
+            else {
+                System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login success");
+                //logger.WriteLog(LocalDateTime.now().toString(), result.getStuid() + " " + result.getName()+" login");
+                if (result.getAgree() == 0) {
+                    return "agreePop";
 
-            return "agreePop";
+                }
+                else {
+                    return "redirect:/main";
+
+                }
+            }
+
         }
         else {
             response.setContentType("text/html; charset=euc-kr");
@@ -141,5 +147,29 @@ public class HomeController {
         return new ResponseEntity<byte[]>(imageContent, headers, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/defender", method = RequestMethod.GET)
+    public void removeIP(@RequestParam String ip, HttpServletRequest request, HttpServletResponse response) throws Exception{
 
+        HttpSession session = request.getSession();
+        UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        if (ip != null && uVo.getStuid().equals("manager")) {
+            defender.remove(ip);
+            response.setContentType("text/html; charset=euc-kr");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('차단이 정상 해제되었습니다');" +
+                    "location.href = \"/manager/main\";" +
+                    "</script>");
+            out.flush();
+
+
+        }
+        else {
+            response.setContentType("text/html; charset=euc-kr");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('비정상적인 접근입니다.');" +
+                    "location.href = \"/login\";" +
+                    "</script>");
+            out.flush();
+        }
+    }
 }

@@ -16,6 +16,7 @@ public class RSA {
     public RSA() {
         RSA_WEB_KEY = "_RSA_WEB_Key_"; // 개인키 session key
         RSA_INSTANCE = "RSA"; // rsa transformation
+
     }
 
 

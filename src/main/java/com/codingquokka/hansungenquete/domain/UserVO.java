@@ -8,8 +8,8 @@ public class UserVO {
     private String department;
 
     private int agree;
-    private int Y;
-    private int D;
+    private int club;
+    private int delegate;
 
 
 
@@ -54,14 +54,10 @@ public class UserVO {
         this.agree = agree;
     }
 
-    public int getY() {return Y;}
-    public int getD() {return D;}
-    public void setY(){
-        this.Y = Y;
-    }
-    public void setD(){
-        this.D = D;
-    }
+    public int getClub() {return club;}
+    public int getDelegate() {return delegate;}
+    public void setClub(int club){ this.club = club;}
+    public void setDelegate(int delegate){this.delegate = delegate;}
 
 
 
