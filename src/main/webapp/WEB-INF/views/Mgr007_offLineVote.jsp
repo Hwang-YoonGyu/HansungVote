@@ -124,22 +124,10 @@
             var input1 = document.createElement('input');
             input1.type = 'hidden';
             input1.name = 'stuId';
-            // input1.value = CryptoJS.AES.encrypt(stuId,
-            //     CryptoJS.enc.Utf8.parse(key),
-            //     {iv:CryptoJS.enc.Utf8.parse(iv),
-            //         padding: CryptoJS.pad.Pkcs7,
-            //         mode: CryptoJS.mode.CBC}
-            // ).toString();
             input1.value = rsa.encrypt(stuId);
             var input2 = document.createElement('input');
             input2.type = 'hidden';
             input2.name = 'name';
-            // input2.value = CryptoJS.AES.encrypt(name,
-            //     CryptoJS.enc.Utf8.parse(key),
-            //     {iv:CryptoJS.enc.Utf8.parse(iv),
-            //         padding: CryptoJS.pad.Pkcs7,
-            //         mode: CryptoJS.mode.CBC}
-            // ).toString();
             input2.value = rsa.encrypt(name);
 
 

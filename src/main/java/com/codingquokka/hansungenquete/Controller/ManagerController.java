@@ -140,11 +140,6 @@ public class ManagerController {
             byte[] file = null;
             try {
                 file = mhsr.getFile("candidatePic" + i).getBytes();
-                if (file.length == 0) {
-                    request.setAttribute("msg", "error");
-                    return "home";
-                }
-
             } catch (IOException e1) {
                 System.out.println(e1.getMessage());
             }

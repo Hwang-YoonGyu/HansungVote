@@ -103,13 +103,11 @@ public class HomeController {
             
             if ("manager".equals(result.getStuid())) {
                 System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login success");
-                //logger.WriteLog(LocalDateTime.now().toString(), result.getStuid() + " " + result.getName()+" login");
                 return "redirect:/manager/main";
 
             }
             else {
                 System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login success");
-                //logger.WriteLog(LocalDateTime.now().toString(), result.getStuid() + " " + result.getName()+" login");
                 if (result.getAgree() == 0) {
                     return "agreePop";
 
@@ -138,7 +136,6 @@ public class HomeController {
         String candidateName = request.getParameter("candidateName");
 
         CandidateVO cVo = cDao.selectSpecipicCandidate(candidateName);
-        //System.out.println(cVo.getCandidateName());
 
         byte[] imageContent = cVo.getImage();
         final HttpHeaders headers = new HttpHeaders();
