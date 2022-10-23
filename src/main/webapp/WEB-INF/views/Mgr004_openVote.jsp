@@ -84,13 +84,11 @@
                                     <div class="col-10">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                <button width="100" height="100" id="addcandidate" class="btn btn-primary btn-sm" type="button" onclick="addRow()"> +
-                                                </button>
+                                                <button style="width: 35px; height: 35px; align-content: center;" id="addcandidate" class="btn btn-primary btn-sm" type="button" onclick="addRow()">+</button>
                                             </div>
                                             &nbsp
                                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                <button width="100" height="100" id="subcandidate" class="btn btn-primary btn-sm" type="button" onclick="deleteRow()"> -
-                                                 </button>
+                                                <button style="width: 35px; height: 35px;" id="subcandidate" class="btn btn-primary btn-sm"  type="button" onclick="deleteRow()">-</button>
                                             </div>
                                         </div>
                                         <table class="table table-bordered border-white-50 "
@@ -132,7 +130,7 @@
                                 </div>
                                 <div class="collegeSelect">
                                     <hr class="mt-4">
-                                    <div class="col-2">선거 대상</div>
+                                    <div class="col-2" >선거 대상</div>
                                     <br>
                                     <div class="col-10">
                                         <select class="form-select" id="college">
@@ -151,6 +149,7 @@
                                 </div>
                                 <div class="selectP" style="display: none">
                                     <hr class="mt-4">
+                                    <div class="col-2">세부 대상</div>
                                     <br>
                                     <div class="col-10">
                                             <select class="form-select" id="targetP">
@@ -179,6 +178,7 @@
                                 </div>
                                 <div class="selectR" style="display: none">
                                     <hr class="mt-4">
+                                    <div class="col-2">세부 대상</div>
                                     <br>
                                     <div class="col-10">
                                         <select class="form-select" id="targetR">
@@ -201,6 +201,7 @@
                                 </div>
                                 <div class="selectT" style="display: none">
                                     <hr class="mt-4">
+                                    <div class="col-2">세부 대상</div>
                                     <br>
                                     <div class="col-10">
                                         <select class="form-select" id="targetT">
@@ -226,6 +227,7 @@
                                 </div>
                                 <div class="selectV" style="display: none">
                                     <hr class="mt-4">
+                                    <div class="col-2">세부 대상</div>
                                     <br>
                                     <div class="col-10">
                                         <select class="form-select" id="targetV">
@@ -259,6 +261,7 @@
                                 </div>
                                 <div class="selectY" style="display: none">
                                     <hr class="mt-4">
+                                    <div class="col-2">세부 대상</div>
                                     <br>
                                     <div class="col-10">
                                         <select class="form-select" id="targetY">
@@ -273,6 +276,7 @@
                                 </div>
                                 <div class="selectZ" style="display: none">
                                     <hr class="mt-4">
+                                    <div class="col-2">세부 대상</div>
                                     <br>
                                     <div class="col-10">
                                         <select class="form-select" id="targetZ">

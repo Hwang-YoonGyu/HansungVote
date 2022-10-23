@@ -80,9 +80,9 @@ padding-top: 10px; padding-bottom: 60px;">
                                         <th class="rounded-start" scope="col"
                                             style="background-color:hsl(0, 0%, 41%) ; color: white;">전화번호
                                         </th>
-                                        <th class="rounded-end" scope="col"
-                                            style="background-color:hsl(0, 0%, 41%); color: white;">비밀번호
-                                        </th>
+<%--                                        <th class="rounded-end" scope="col"--%>
+<%--                                            style="background-color:hsl(0, 0%, 41%); color: white;">비밀번호--%>
+<%--                                        </th>--%>
                                         <th class="rounded-start" scope="col"
                                             style="background-color:hsl(0, 0%, 41%) ; color: white;">투표여부
                                         </th>
@@ -95,7 +95,7 @@ padding-top: 10px; padding-bottom: 60px;">
                                             <td style="background-color: white;">${map.stuId}</td>
                                             <td style="background-color: white;">${map.name}</td>
                                             <td style="background-color: white;">${map.phoneNumber}</td>
-                                            <td style="background-color: white;">${map.password}</td>
+<%--                                            <td style="background-color: white;">${map.password}</td>--%>
 
                                             <c:choose>
                                                 <c:when test="${fn:length(map.candidateName) eq 0}">
