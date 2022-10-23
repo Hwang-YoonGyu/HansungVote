@@ -42,8 +42,8 @@ public class ManagerController {
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
             return "Mgr001_Main";
-
-        } else {
+        }
+        else {
             return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
 
@@ -56,8 +56,8 @@ public class ManagerController {
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
             return "Mgr003_showTurnOutList";
-
-        } else {
+        }
+        else {
             return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
     }
@@ -70,8 +70,8 @@ public class ManagerController {
             List<ElectionVO> eList = eDao.selectElectionAll();
             request.setAttribute("electionList", eList);
             return "Mgr002_ViewVote";
-
-        } else {
+        }
+        else {
             return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
     }
@@ -89,9 +89,8 @@ public class ManagerController {
             request.setAttribute("List", list);
 
             return "Mgr003_showTurnOutList";
-
-
-        } else {
+        }
+        else {
             return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
     }
@@ -140,6 +139,9 @@ public class ManagerController {
             byte[] file = null;
             try {
                 file = mhsr.getFile("candidatePic" + i).getBytes();
+                if (file.length == 0) {
+                    return customResponse(response,"파일 업로드 에러.\n관리자에게 문의하세요."," \"/manager/main\"");
+                }
             } catch (IOException e1) {
                 System.out.println(e1.getMessage());
             }
@@ -149,9 +151,7 @@ public class ManagerController {
             cVo.setCandidateName(candidateName);
             cVo.setElectionName(electionName);
             cDao.insert(cVo);
-
         }
-
         return "redirect:/manager/viewVote";
     }
 
@@ -168,7 +168,7 @@ public class ManagerController {
             cDao.deleteCandidate(electionName);
             eDao.deleteElection(electionName);
 
-            return customResponse(response,"삭제가 완료되었습니다","\"/manager/main\"");
+            return customResponse(response,"삭제가 완료되었습니다","\"/manager/viewVote\"");
 
         } else {
             return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
@@ -221,7 +221,7 @@ public class ManagerController {
     }
 
     @RequestMapping(value = "/addVoted", method = RequestMethod.POST)
-    public String addVotedPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void addVotedPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         PrivateKey privateKey = (PrivateKey) session.getAttribute(RSA.RSA_WEB_KEY);
@@ -231,7 +231,7 @@ public class ManagerController {
             UserVO user = uDao.findDepartmentOfUser(deStuId);
 
             if (user == null) {
-                return customResponse(response,"입력 정보가 유효하지 않습니다.","\"/manager/addVoted\"");
+                customResponse(response,"입력 정보가 유효하지 않습니다.","\"/manager/addVoted\"");
             }
             List<String> electionNameList = uDao.voteCan(user.getDepartment());
 
@@ -243,7 +243,7 @@ public class ManagerController {
                 ElectionvotedVO result = evDao.wasVoted(evVo);
 
                 if (result != null) {
-                    return customResponse(response,"이미 하나 이상의 선거에 투표를 완료한 유권자입니다.","\"/manager/addVoted\"");
+                    customResponse(response,"이미 하나 이상의 선거에 투표를 완료한 유권자입니다.","\"/manager/addVoted\"");
                 }
             }
 
@@ -256,9 +256,10 @@ public class ManagerController {
                 evVo.setCandidateName("오프라인");
                 evDao.insertVote(evVo);
             }
-            return customResponse(response,"오프라인 투표 처리 되었습니다.","\"/manager/addVoted\"");
-        } else {
-            return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
+            customResponse(response,"오프라인 투표 처리 되었습니다.","\"/manager/addVoted\"");
+        }
+        else {
+            customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
     }
     @RequestMapping(value = "/addUserDB", method = RequestMethod.GET)
@@ -267,10 +268,10 @@ public class ManagerController {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
-
             return "Mgr006_userDbUpdate";
 
-        } else {
+        }
+        else {
             return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
 
@@ -278,7 +279,7 @@ public class ManagerController {
 
 
     @RequestMapping(value = "/addUserDB", method = RequestMethod.POST)
-    public String excelReadPOST(HttpServletRequest request, HttpServletResponse response) {
+    public void excelReadPOST(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 
         MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request;
@@ -287,7 +288,7 @@ public class ManagerController {
         try {
             bytesFile = mhsr.getFile("excelFile").getBytes();
             if (bytesFile.length == 0) {
-                return customResponse(response,"파일 업로드 에러.\n관리자에게 문의하세요."," \"/manager/main\"");
+                customResponse(response,"파일 업로드 에러.\n관리자에게 문의하세요."," \"/manager/viewVote\"");
             }
 
             Thread thread = new Thread(new InputThread(bytesFile, uDao));
@@ -295,8 +296,7 @@ public class ManagerController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return "redirect:/manager/viewVote";
+        customResponse(response,"유권자 DB파일이 업로드 되었습니다.\n데이터삽입 스레드가 시작됩니다."," \"/manager/viewVote\"");
     }
 
 

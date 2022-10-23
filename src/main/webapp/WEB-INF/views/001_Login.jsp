@@ -114,20 +114,11 @@
         var input1 = document.createElement('input');
         input1.type = 'hidden';
         input1.name = 'stu_id';
-        // input1.value = CryptoJS.AES.encrypt(document.getElementById('userId').value,
-        //     CryptoJS.enc.Utf8.parse(key),
-        //     {
-        //         iv: CryptoJS.enc.Utf8.parse(iv),
-        //         padding: CryptoJS.pad.Pkcs7,
-        //         mode: CryptoJS.mode.CBC
-        //     }
-        // ).toString();
         input1.value = rsa.encrypt(document.getElementById('userId').value);
 
         var input2 = document.createElement('input');
         input2.type = 'hidden';
         input2.name = 'password';
-        // input2.value = CryptoJS.SHA256(document.getElementById('password').value).toString();
         input2.value = CryptoJS.SHA256(document.getElementById('password').value).toString();
 
         form.appendChild(input1);
