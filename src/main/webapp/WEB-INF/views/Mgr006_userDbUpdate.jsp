@@ -60,7 +60,7 @@
             <div class="row">
                 <div class="col-md-8 offset-md-2">
                     <div class="login-form bg-white mt-4 p-4 rounded">
-                        <form action="/manager/addUserDB" enctype="multipart/form-data" method="POST" class="row g-3">
+                        <form action="/mgr/addUserDB" enctype="multipart/form-data" method="POST" class="row g-3">
                             <span style="font-size: 30px;">유저 DB 업데이트</span>
 
 

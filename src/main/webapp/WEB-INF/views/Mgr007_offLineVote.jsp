@@ -119,7 +119,7 @@
             var form = document.createElement("form");
             form.setAttribute("charset", "UTF-8");
             form.setAttribute("method", "Post");  //Post 방식
-            form.setAttribute("action", "/manager/addVoted"); //요청 보낼 주소
+            form.setAttribute("action", "/mgr/addVoted"); //요청 보낼 주소
 
             var input1 = document.createElement('input');
             input1.type = 'hidden';

@@ -73,15 +73,15 @@
                             </div>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
 
-                                <button onclick="location.href ='/manager/addUserDB'" class="btn btn-success"
+                                <button onclick="location.href ='/mgr/addUserDB'" class="btn btn-success"
                                         type="button" style="margin-bottom: 30px">유권자 DB 추가
                                 </button>
 
-                                <button onclick="location.href ='/manager/modifyElection'" class="btn btn-primary"
+                                <button onclick="location.href ='/mgr/modifyElection'" class="btn btn-primary"
                                         type="button" style="margin-bottom: 30px">선거,후보 추가
                                 </button>
 
-                                <button onclick="location.href ='/manager/addVoted'" class="btn btn-warning"
+                                <button onclick="location.href ='/mgr/addVoted'" class="btn btn-warning"
                                         type="button" style="margin-bottom: 30px">오프라인 투표 추가
                                 </button>
 
@@ -127,11 +127,11 @@
                                                     type="button"
                                                     class="btn btn-outline-danger btn-sm">삭제
                                             </button>
-                                            <button onclick="location.href ='/manager/showTurnOutList?electionName=${ElectionVO.electionName}'"
+                                            <button onclick="location.href ='/mgr/showTurnOutList?electionName=${ElectionVO.electionName}'"
                                                     type="button"
                                                     class="btn btn-outline-primary btn-sm">조회
                                             </button>
-                                            <button onclick="location.href ='/manager/ballotCount?electionName=${ElectionVO.electionName}'"
+                                            <button onclick="location.href ='/mgr/ballotCount?electionName=${ElectionVO.electionName}'"
                                                     type="button"
                                                     class="btn btn-outline-primary btn-sm">개표
                                             </button>
@@ -143,10 +143,10 @@
                             </table>
 
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button onclick="location.href ='/manager/modifyElection'" class="btn btn-danger"
+                                <button onclick="location.href ='/mgr/modifyElection'" class="btn btn-danger"
                                         type="button" style="margin-bottom: 30px">유권자 DB 전체삭제
                                 </button>
-                                <button onclick="location.href ='/manager/modifyElection'" class="btn btn-danger"
+                                <button onclick="location.href ='/mgr/modifyElection'" class="btn btn-danger"
                                         type="button" style="margin-bottom: 30px">선거 DB 전체삭제
                                 </button>
                             </div>
@@ -160,7 +160,7 @@
         function deleteAction(electionName) {
             var result = confirm(electionName + "을 삭제하시겠습니까?");
             if (result == true) {
-                location.href = '/manager/deleteElection?electionName=' + electionName;
+                location.href = '/mgr/deleteElection?electionName=' + electionName;
             }
         }
     </script>

@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.security.PrivateKey;
 
-@RequestMapping("/manager")
+@RequestMapping("/mgr")
 @Controller
 public class ManagerController {
 
@@ -152,7 +152,7 @@ public class ManagerController {
             cVo.setElectionName(electionName);
             cDao.insert(cVo);
         }
-        return "redirect:/manager/viewVote";
+        return "redirect:/mgr/viewVote";
     }
 
 
@@ -168,7 +168,7 @@ public class ManagerController {
             cDao.deleteCandidate(electionName);
             eDao.deleteElection(electionName);
 
-            return customResponse(response,"삭제가 완료되었습니다","\"/manager/viewVote\"");
+            return customResponse(response,"삭제가 완료되었습니다","\"/mgr/viewVote\"");
 
         } else {
             return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
@@ -184,7 +184,7 @@ public class ManagerController {
             System.out.println(request.getParameter("electionName"));
 
             if (LocalTime.now().getHour() < eVo.getEndDate().getHours()) {
-                return customResponse(response,"선거가 아직 종료되지 않았습니다.","\"/manager/viewVote\"");
+                return customResponse(response,"선거가 아직 종료되지 않았습니다.","\"/mgr/viewVote\"");
             }
             List<Map<String, String>> map = evDao.votepercentage(request.getParameter("electionName"));
             System.out.println(map);
@@ -201,7 +201,7 @@ public class ManagerController {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
-            return customResponse(response,"준비중입니다.","\"/manager/main\"");
+            return customResponse(response,"준비중입니다.","\"/mgr/main\"");
         } else {
             return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
@@ -231,7 +231,7 @@ public class ManagerController {
             UserVO user = uDao.findDepartmentOfUser(deStuId);
 
             if (user == null) {
-                customResponse(response,"입력 정보가 유효하지 않습니다.","\"/manager/addVoted\"");
+                customResponse(response,"입력 정보가 유효하지 않습니다.","\"/mgr/addVoted\"");
             }
             List<String> electionNameList = uDao.voteCan(user.getDepartment());
 
@@ -256,7 +256,7 @@ public class ManagerController {
                 evVo.setCandidateName("오프라인");
                 evDao.insertVote(evVo);
             }
-            customResponse(response,"오프라인 투표 처리 되었습니다.","\"/manager/addVoted\"");
+            customResponse(response,"오프라인 투표 처리 되었습니다.","\"/mgr/addVoted\"");
         }
         else {
             customResponse(response,"비정상적인 접근입니다.","\"/login\"");
@@ -288,7 +288,7 @@ public class ManagerController {
         try {
             bytesFile = mhsr.getFile("excelFile").getBytes();
             if (bytesFile.length == 0) {
-                customResponse(response,"파일 업로드 에러.\n관리자에게 문의하세요."," \"/manager/viewVote\"");
+                customResponse(response,"파일 업로드 에러.\n관리자에게 문의하세요."," \"/mgr/viewVote\"");
             }
 
             Thread thread = new Thread(new InputThread(bytesFile, uDao));
@@ -296,7 +296,7 @@ public class ManagerController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        customResponse(response,"유권자 DB파일이 업로드 되었습니다.\n데이터삽입 스레드가 시작됩니다."," \"/manager/viewVote\"");
+        customResponse(response,"유권자 DB파일이 업로드 되었습니다.\n데이터삽입 스레드가 시작됩니다."," \"/mgr/viewVote\"");
     }
 
 

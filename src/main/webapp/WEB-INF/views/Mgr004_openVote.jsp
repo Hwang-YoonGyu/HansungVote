@@ -56,7 +56,7 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div class="login-form bg-white mt-4 p-4 rounded">
-                    <form action="/manager/modifyElection" enctype="multipart/form-data" method="post" class="row g-3" id="formId">
+                    <form action="/mgr/modifyElection" enctype="multipart/form-data" method="post" class="row g-3" id="formId">
                         <span style="font-size: 30px;">투표 개설 및 수정</span>
 
 
