@@ -103,7 +103,7 @@ public class HomeController {
             
             if ("manager".equals(result.getStuid())) {
                 System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login success");
-                return "redirect:/manager/main";
+                return "redirect:/mgr/main";
 
             }
             else {
@@ -154,7 +154,7 @@ public class HomeController {
             response.setContentType("text/html; charset=euc-kr");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('차단이 정상 해제되었습니다');" +
-                    "location.href = \"/manager/main\";" +
+                    "location.href = \"/mgr/main\";" +
                     "</script>");
             out.flush();
 
