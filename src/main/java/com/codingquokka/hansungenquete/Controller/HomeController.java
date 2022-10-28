@@ -78,7 +78,7 @@ public class HomeController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam("stu_id") String stu_id, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String login(@RequestParam("stu_id") String stu_id, @RequestParam("phoneNumber") String phoneNumber, HttpServletRequest request, HttpServletResponse response) throws Exception {
         if (defender.checkLastTime(request)) {
             return "home";
         }
@@ -92,7 +92,7 @@ public class HomeController {
         uVo.setStuid(RSA.decryptRsa(privateKey,stu_id));
         session.removeAttribute(RSA.RSA_WEB_KEY);
 
-        uVo.setPassword(password);
+        uVo.setPhoneNumber(RSA.decryptRsa(privateKey,phoneNumber));
         System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +uVo.getStuid() + " " + uVo.getPassword()+" try login");
 
         UserVO result = uDao.login(uVo);

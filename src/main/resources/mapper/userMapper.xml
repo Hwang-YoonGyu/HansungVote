@@ -10,7 +10,7 @@
 	<select id="login" parameterType="com.codingquokka.hansungenquete.domain.UserVO" resultType="com.codingquokka.hansungenquete.domain.UserVO">
 		select *
 		from user
-		where stuId=#{stuId} and password=#{password}
+		where stuId=#{stuId} and phoneNumber=#{phoneNumber}
 	</select>
 
 	<select id="findDepartmentOfUser" parameterType="String" resultType="com.codingquokka.hansungenquete.domain.UserVO">

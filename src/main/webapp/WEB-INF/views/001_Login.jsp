@@ -71,7 +71,7 @@
                     </div>
                     <div class="col-12">
                         <label>Password</label>
-                        <input id="password" name="password" value="" type="password" class="form-control"
+                        <input id="phoneNumber" name="phoneNumber" value="" type="password" class="form-control"
                                placeholder="비밀번호">
                     </div>
                     <br>
@@ -118,8 +118,8 @@
 
         var input2 = document.createElement('input');
         input2.type = 'hidden';
-        input2.name = 'password';
-        input2.value = CryptoJS.SHA256(document.getElementById('password').value).toString();
+        input2.name = 'phoneNumber';
+        input2.value = rsa.encrypt(document.getElementById('phoneNumber').value);
 
         form.appendChild(input1);
         form.appendChild(input2);
