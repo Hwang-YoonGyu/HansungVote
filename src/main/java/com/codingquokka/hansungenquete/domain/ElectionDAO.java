@@ -41,4 +41,8 @@ public class ElectionDAO {
 	public void deleteElection(String electionName) throws Exception {
 		sqlSession.delete(namespace+".deleteElection", electionName);
 	}
+
+	public void electionDataDelete() throws Exception {
+		sqlSession.delete(namespace+".electionDataDelete");
+	}
 }

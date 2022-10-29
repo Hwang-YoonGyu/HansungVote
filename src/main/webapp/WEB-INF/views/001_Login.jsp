@@ -65,17 +65,20 @@
             <div class="col-md-4 offset-md-4">
                 <div class="login-form bg-light mt-4 p-4">
                     <h4>한성대학교 온라인 투표 시스템</h4>
+                    <br>
                     <div class="col-12">
                         <label>Student ID</label>
                         <input id="userId" name="stu_id" value="" type="text" class="form-control" placeholder="학번">
                     </div>
+                    <br>
                     <div class="col-12">
                         <label>Password</label>
                         <input id="phoneNumber" name="phoneNumber" value="" type="password" class="form-control"
-                               placeholder="비밀번호">
+                               placeholder="비밀번호는 자신의 전화번호 입니다.">
                     </div>
                     <br>
                     <div class="col-12">
+                        <br>
                         <form id="formId" action="/login" method="post" class="row g-3">
                             <input type="button" onclick=sendPostRequest() class="btn btn-primary float-end"
                                     value="log in" id="loginId"/>

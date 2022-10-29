@@ -56,7 +56,8 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div class="login-form bg-white mt-4 p-4 rounded">
-                    <form action="/mgr/modifyElection" enctype="multipart/form-data" method="post" class="row g-3" id="formId">
+                    <form action="/mgr/modifyElection" enctype="multipart/form-data" method="post" class="row g-3"
+                          id="formId">
                         <span style="font-size: 30px;">투표 개설 및 수정</span>
 
 
@@ -72,7 +73,8 @@
                                     <div class="col-2">선거이름</div>
                                     <div class="col-10">
                                         <div class="input-group mb-3">
-                                            <input id="electionName" name="electionName" value="" type="text" class="form-control" placeholder="선거이름을 입력해주세요."
+                                            <input id="electionName" name="electionName" value="" type="text"
+                                                   class="form-control" placeholder="선거이름을 입력해주세요."
                                                    aria-label="voteName" aria-describedby="voteNamebutton">
                                         </div>
                                     </div>
@@ -84,21 +86,29 @@
                                     <div class="col-10">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                <button style="width: 35px; height: 35px; align-content: center;" id="addcandidate" class="btn btn-primary btn-sm" type="button" onclick="addRow()">+</button>
+                                                <button style="width: 35px; height: 35px; align-content: center;"
+                                                        id="addcandidate" class="btn btn-primary btn-sm" type="button"
+                                                        onclick="addRow()">+
+                                                </button>
                                             </div>
                                             &nbsp
-                                                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                                <button style="width: 35px; height: 35px;" id="subcandidate" class="btn btn-primary btn-sm"  type="button" onclick="deleteRow()">-</button>
+                                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                                <button style="width: 35px; height: 35px;" id="subcandidate"
+                                                        class="btn btn-primary btn-sm" type="button"
+                                                        onclick="deleteRow()">-
+                                                </button>
                                             </div>
                                         </div>
                                         <table class="table table-bordered border-white-50 "
                                                style="text-align: center;  ">
                                             <thead>
-                                            <tr >
-                                                <th class="rounded-end" width="400" scope="col" style="background-color:hsl(0, 0%, 41%); color: white;">후보자
+                                            <tr>
+                                                <th class="rounded-end" width="400" scope="col"
+                                                    style="background-color:hsl(0, 0%, 41%); color: white;">후보자
                                                     이름
                                                 </th>
-                                                <th class="rounded-start" width="400" scope="col" style="background-color:hsl(0, 0%, 41%) ; color: white;">후보자
+                                                <th class="rounded-start" width="400" scope="col"
+                                                    style="background-color:hsl(0, 0%, 41%) ; color: white;">후보자
                                                     포스터
                                                 </th>
                                             </tr>
@@ -117,7 +127,9 @@
                                 <div class="row">
                                     <div class="col-2">투표 시작 시간</div>
                                     <div class="col-10">
-                                        <input type="date" id="startDate" name="startDate"><input type="time" id="startTime" name="startTime">
+                                        <input type="date" id="startDate" name="startDate"><input type="time"
+                                                                                                  id="startTime"
+                                                                                                  name="startTime">
                                     </div>
                                 </div>
 
@@ -125,25 +137,26 @@
                                 <div class="row">
                                     <div class="col-2">투표 종료 시간</div>
                                     <div class="col-10">
-                                        <input type="date" id="endDate" name="endDate"><input type="time" id="endTime" name="endTime">
+                                        <input type="date" id="endDate" name="endDate"><input type="time" id="endTime"
+                                                                                              name="endTime">
                                     </div>
                                 </div>
                                 <div class="collegeSelect">
                                     <hr class="mt-4">
-                                    <div class="col-2" >선거 대상</div>
+                                    <div class="col-2">선거 대상</div>
                                     <br>
                                     <div class="col-10">
                                         <select class="form-select" id="college">
-                                            <option value="0" >대상을 선택하세요</option>
-                                            <option value="1" >학부생 전체</option>
-                                            <option value="2" >크리에이티브인문예술대학</option>
-                                            <option value="3" >미래융합사회과학대학</option>
-                                            <option value="4" >디자인대학</option>
-                                            <option value="5" >IT공과대학</option>
-                                            <option value="6" >창의융합대학</option>
-                                            <option value="7" >미래플러스대학</option>
-                                            <option value="8" >대의원</option>
-                                            <option value="9" >동아리 가입자</option>
+                                            <option value="0">대상을 선택하세요</option>
+                                            <option value="1">학부생 전체</option>
+                                            <option value="2">크리에이티브인문예술대학</option>
+                                            <option value="3">미래융합사회과학대학</option>
+                                            <option value="4">디자인대학</option>
+                                            <option value="5">IT공과대학</option>
+                                            <option value="6">창의융합대학</option>
+                                            <option value="7">미래플러스대학</option>
+                                            <option value="8">대의원</option>
+                                            <option value="9">동아리 가입자</option>
                                         </select>
                                     </div>
                                 </div>
@@ -152,28 +165,29 @@
                                     <div class="col-2">세부 대상</div>
                                     <br>
                                     <div class="col-10">
-                                            <select class="form-select" id="targetP">
-                                                <option value="0" >세부 대상을 선택하세요</option>
-                                                <option value="1" id="P" style="color: midnightblue;">크리에이티브인문예술대학 전체</option>
-                                                <option value="2" id="P01" style="color: royalblue;">크리에이티브인문학부</option>
-                                                <option value="3" id="P011">영미문학문화트랙</option>
-                                                <option value="4" id="P012">영미언어정보트랙</option>
-                                                <option value="5" id="P013">한국어교육트랙</option>
-                                                <option value="6" id="P014">문학문화콘텐츠트랙</option>
-                                                <option value="7" id="P015">글로컬역사트랙</option>
-                                                <option value="8" id="P016">역사문화콘텐츠트랙</option>
-                                                <option value="9" id="P017">도서관정보문화트랙</option>
-                                                <option value="10" id="P018">디지털인문정보학트랙</option>
-                                                <option value="11" id="P019">역사문화큐레이션트랙</option>
-                                                <option value="12" id="P02" style="color: royalblue;">예술학부</option>
-                                                <option value="13" id="P021">동양화전공</option>
-                                                <option value="14" id="P022">서양화전공</option>
-                                                <option value="15" id="P023">한국무용전공</option>
-                                                <option value="16" id="P024">현대무용전공</option>
-                                                <option value="17" id="P025">발레전공</option>
-                                                <option value="18" id="P026">이민&다문화트랙</option>
+                                        <select class="form-select" id="targetP">
+                                            <option value="0">세부 대상을 선택하세요</option>
+                                            <option value="1" id="P" style="color: midnightblue;">크리에이티브인문예술대학 전체
+                                            </option>
+                                            <option value="2" id="P01" style="color: royalblue;">크리에이티브인문학부</option>
+                                            <option value="3" id="P011">영미문학문화트랙</option>
+                                            <option value="4" id="P012">영미언어정보트랙</option>
+                                            <option value="5" id="P013">한국어교육트랙</option>
+                                            <option value="6" id="P014">문학문화콘텐츠트랙</option>
+                                            <option value="7" id="P015">글로컬역사트랙</option>
+                                            <option value="8" id="P016">역사문화콘텐츠트랙</option>
+                                            <option value="9" id="P017">도서관정보문화트랙</option>
+                                            <option value="10" id="P018">디지털인문정보학트랙</option>
+                                            <option value="11" id="P019">역사문화큐레이션트랙</option>
+                                            <option value="12" id="P02" style="color: royalblue;">예술학부</option>
+                                            <option value="13" id="P021">동양화전공</option>
+                                            <option value="14" id="P022">서양화전공</option>
+                                            <option value="15" id="P023">한국무용전공</option>
+                                            <option value="16" id="P024">현대무용전공</option>
+                                            <option value="17" id="P025">발레전공</option>
+                                            <option value="18" id="P026">이민&다문화트랙</option>
 
-                                            </select>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="selectR" style="display: none">
@@ -182,7 +196,7 @@
                                     <br>
                                     <div class="col-10">
                                         <select class="form-select" id="targetR">
-                                            <option value="0" >세부 대상을 선택하세요</option>
+                                            <option value="0">세부 대상을 선택하세요</option>
                                             <option value="1" id="R" style="color: midnightblue;">미래융합사회과학대학 전체</option>
                                             <option value="2" id="R01" style="color: royalblue;">사회과학부</option>
                                             <option value="3" id="R011">국제무역트랙</option>
@@ -205,13 +219,13 @@
                                     <br>
                                     <div class="col-10">
                                         <select class="form-select" id="targetT">
-                                            <option value="0" >세부 대상을 선택하세요</option>
+                                            <option value="0">세부 대상을 선택하세요</option>
                                             <option value="1" id="T" style="color: midnightblue;">디자인대학 전체</option>
                                             <option value="2" id="T01" style="color: royalblue;">글로벌패션산업학부</option>
                                             <option value="3" id="T011">패션마케팅트랙</option>
                                             <option value="4" id="T012">패션디자인트랙</option>
                                             <option value="5" id="T013">기업&패션크리에이티브디렉션트랙</option>
-                                            <option value="6" id="T02"style="color: royalblue;">ICT디자인학부</option>
+                                            <option value="6" id="T02" style="color: royalblue;">ICT디자인학부</option>
                                             <option value="7" id="T021">뉴미디어광고&커뮤니케이션디자인트랙</option>
                                             <option value="8" id="T022">영상&애니메이션디자인트랙</option>
                                             <option value="9" id="T023">제품&서비스디자인트랙</option>
@@ -220,8 +234,8 @@
                                             <option value="12" id="T026">VMD&전시디자인트랙</option>
                                             <option value="13" id="T027">게임그래픽디자인트랙</option>
                                             <option value="14" id="T028">UI/UX디자인트랙</option>
-                                            <option value="15" id="T030"style="color: royalblue;">뷰티디자인매니지먼트학과</option>
-                                            <option value="16" id="T040"style="color: royalblue;">뷰티매니지먼트계약학과</option>
+                                            <option value="15" id="T030" style="color: royalblue;">뷰티디자인매니지먼트학과</option>
+                                            <option value="16" id="T040" style="color: royalblue;">뷰티매니지먼트계약학과</option>
                                         </select>
                                     </div>
                                 </div>
@@ -231,7 +245,7 @@
                                     <br>
                                     <div class="col-10">
                                         <select class="form-select" id="targetV">
-                                            <option value="0" >세부 대상을 선택하세요</option>
+                                            <option value="0">세부 대상을 선택하세요</option>
                                             <option value="1" id="V" style="color: midnightblue;">IT공과대학 전체</option>
                                             <option value="2" id="V02" style="color: royalblue;">컴퓨터공학부</option>
                                             <option value="3" id="V021">모바일소프트웨어트랙</option>
@@ -265,14 +279,14 @@
                                     <br>
                                     <div class="col-10">
                                         <select class="form-select" id="targetY">
-                                            <option value="0" >세부 대상을 선택하세요</option>
+                                            <option value="0">세부 대상을 선택하세요</option>
                                             <option value="1" id="Y" style="color: midnightblue;">창의융합대학 전체</option>
                                             <option value="2" id="Y010" style="color: royalblue;">상상력인재학부</option>
                                             <option value="3" id="Y021" style="color: royalblue;">문학문화콘텐츠학과</option>
                                             <option value="4" id="Y031" style="color: royalblue;">AI응용학과</option>
                                             <option value="5" id="Y041" style="color: royalblue;">융합보안학과</option>
                                         </select>
-                                </div>
+                                    </div>
                                 </div>
                                 <div class="selectZ" style="display: none">
                                     <hr class="mt-4">
@@ -280,7 +294,7 @@
                                     <br>
                                     <div class="col-10">
                                         <select class="form-select" id="targetZ">
-                                            <option value="0" >세부 대상을 선택하세요</option>
+                                            <option value="0">세부 대상을 선택하세요</option>
                                             <option value="1" id="Z" style="color: midnightblue;">미래플러스대학 전체</option>
                                             <option value="2" id="Z010" style="color: royalblue;">융합행정학과</option>
                                             <option value="3" id="Z020" style="color: royalblue;">호텔외식경영학과</option>
@@ -305,10 +319,6 @@
             </div>
         </div>
     </div>
-    </div>
-    </div>
-
-
 </main>
 
 
@@ -322,9 +332,9 @@
         Row = document.all("addrow").insertRow();
 
         var candidateName = Row.insertCell();
-        candidateName.innerHTML = "<input type='text' placeholder='ex) 기호 n번 상상부기' name='candidateName"+cadidateCount+"' size='30' value=\'\'/>";
+        candidateName.innerHTML = "<input type='text' placeholder='ex) 기호 n번 상상부기' name='candidateName" + cadidateCount + "' size='30' value=\'\'/>";
         var candidatePicture = Row.insertCell();
-        candidatePicture.innerHTML = "<input type='file' class='real-upload' accept='image/!*' name='candidatePic"+cadidateCount+"'  size='10' value='"+ image+"'/>";
+        candidatePicture.innerHTML = "<input type='file' class='real-upload' accept='image/!*' name='candidatePic" + cadidateCount + "'  size='10' value='" + image + "'/>";
         cadidateCount++;
     }
 
@@ -336,6 +346,7 @@
         cadidateCount--;
 
     }
+
     $('#college').change(function () {
         $('.selectP').hide();
         $('.selectR').hide();
@@ -795,7 +806,7 @@
             "\n선거 대상 : " + DisplayDepartment +
             "\n선거 개설을 진행하시겠습니까?"
         );
-        if (result==true) {
+        if (result == true) {
             var form = document.getElementById("formId");
 
             var input1 = document.createElement('input');

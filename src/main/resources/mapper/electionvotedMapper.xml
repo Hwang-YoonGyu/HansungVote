@@ -29,8 +29,6 @@
 		where electionName=#{electionName}
 	</select>
 
-
-
 	<insert id = "insertVote" parameterType="com.codingquokka.hansungenquete.domain.ElectionvotedVO">
 		insert into electionVoted(stuId, name, department, candidateName, electionName)
 		values (#{stuId}, #{name}, #{department}, #{candidateName}, #{electionName});

@@ -58,7 +58,4 @@ public class UserVO {
     public int getDelegate() {return delegate;}
     public void setClub(int club){ this.club = club;}
     public void setDelegate(int delegate){this.delegate = delegate;}
-
-
-
 }

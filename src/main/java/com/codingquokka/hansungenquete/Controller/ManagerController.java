@@ -299,6 +299,35 @@ public class ManagerController {
         customResponse(response,"유권자 DB파일이 업로드 되었습니다.\n데이터삽입 스레드가 시작됩니다."," \"/mgr/viewVote\"");
     }
 
+    @RequestMapping(value = "/electionDataDelete", method = RequestMethod.GET)
+    public void electionDataDelete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        HttpSession session = request.getSession();
+        UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        if (uVo != null && uVo.getStuid().equals("manager")) {
+            eDao.electionDataDelete();
+            customResponse(response,"모든 선거 데이터가 삭제 되었습니다."," \"/mgr/viewVote\"");
+        }
+        else {
+            customResponse(response,"비정상적인 접근입니다.","\"/login\"");
+        }
+    }
+
+    @RequestMapping(value = "/userDateDelete", method = RequestMethod.GET)
+    public void userDateDelete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+        HttpSession session = request.getSession();
+        UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        if (uVo != null && uVo.getStuid().equals("manager")) {
+            uDao.userDateDelete();
+            customResponse(response,"모든 유저 데이터가 삭제 되었습니다."," \"/mgr/viewVote\"");
+        }
+        else {
+            customResponse(response,"비정상적인 접근입니다.","\"/login\"");
+        }
+    }
+
+
 
     //----------------------------------Method------------------------------------------------------------------------//
     String customResponse(HttpServletResponse response, String msg, String link) throws IOException {

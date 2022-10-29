@@ -143,10 +143,10 @@
                             </table>
 
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button onclick="location.href ='/mgr/modifyElection'" class="btn btn-danger"
+                                <button onclick=userDateDelete() class="btn btn-danger"
                                         type="button" style="margin-bottom: 30px">유권자 DB 전체삭제
                                 </button>
-                                <button onclick="location.href ='/mgr/modifyElection'" class="btn btn-danger"
+                                <button onclick=electionDataDelete() class="btn btn-danger"
                                         type="button" style="margin-bottom: 30px">선거 DB 전체삭제
                                 </button>
                             </div>
@@ -156,17 +156,27 @@
             </div>
         </div>
     </div>
-    <script>
-        function deleteAction(electionName) {
-            var result = confirm(electionName + "을 삭제하시겠습니까?");
-            if (result == true) {
-                location.href = '/mgr/deleteElection?electionName=' + electionName;
-            }
-        }
-    </script>
-
 </main>
-
+<script>
+    function deleteAction(electionName) {
+        var result = confirm(electionName + "을 삭제하시겠습니까?");
+        if (result == true) {
+            location.href = '/mgr/deleteElection?electionName=' + electionName;
+        }
+    }
+    function userDateDelete() {
+        var result = confirm("전체 유저 정보를 삭제하시겠습니까?");
+        if (result == true) {
+            location.href = '/mgr/userDateDelete';
+        }
+    }
+    function electionDataDelete() {
+        var result = confirm("전체 선거 정보를 삭제하시겠습니까?");
+        if (result == true) {
+            location.href = '/mgr/electionDataDelete';
+        }
+    }
+</script>
 <div class="fixed-bottom">
     <footer>
         <div>

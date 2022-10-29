@@ -71,6 +71,10 @@
 		where stuId=#{stuId}
 	</update>
 
+	<delete id="electionDataDelete" >
+		delete
+		from user;
+	</delete>
 
 
 

@@ -41,8 +41,12 @@ public class UserDAO {
 		return sqlSession.selectList(namespace+".voteCan", department);
 	}
 
-	public void agreeCount(UserVO vo){
+	public void agreeCount(UserVO vo) {
 		sqlSession.update(namespace + ".agreeCount",vo);
+	}
+
+	public void userDateDelete() {
+		sqlSession.delete(namespace+".userDateDelete");
 	}
 }
 

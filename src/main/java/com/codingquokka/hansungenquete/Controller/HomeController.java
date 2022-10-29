@@ -69,11 +69,25 @@ public class HomeController {
     public String agreePop(HttpServletRequest request) throws Exception{
         return "agreePop";
     }
+
     @RequestMapping(value = "/agreePop", method = RequestMethod.POST)
-    public String agreePopPost(HttpServletRequest request) throws Exception{
+    public String agreePopPost(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        HttpSession session = request.getSession();
+        UserVO uVo = (UserVO) session.getAttribute("UserVO");
 
-
-        return "redirect:/main";
+        if (uVo != null) {
+            uDao.agreeCount(uVo);
+            return "redirect:/main";
+        }
+        else {
+            response.setContentType("text/html; charset=euc-kr");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('비정상적인 접근입니다.');" +
+                    "location.href = \"/login\";" +
+                    "</script>");
+            out.flush();
+            return null;
+        }
     }
 
 
@@ -109,7 +123,7 @@ public class HomeController {
             else {
                 System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login success");
                 if (result.getAgree() == 0) {
-                    return "agreePop";
+                    return "redirect:/agreePop";
 
                 }
                 else {

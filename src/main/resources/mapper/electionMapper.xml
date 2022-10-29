@@ -46,6 +46,9 @@
 
     <delete id="deleteElection" parameterType="String">
         delete
+        from electionvoted
+        where electionName= #{electionName};
+        delete
         from election
         where electionName= #{electionName};
     </delete>
