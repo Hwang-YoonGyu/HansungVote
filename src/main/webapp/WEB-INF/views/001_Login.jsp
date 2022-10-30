@@ -81,7 +81,7 @@
                         <br>
                         <form id="formId" action="/login" method="post" class="row g-3">
                             <input type="button" onclick=sendPostRequest() class="btn btn-primary float-end"
-                                    value="log in" id="loginId"/>
+                                    value="log in" disabled="disabled" id="loginId"/>
                         </form>
                     </div>
                     <hr class="mt-4">
@@ -94,6 +94,7 @@
 </main>
 
 <script>
+    $("#loginId").prop("disabled", false);
     // $('#formId').on("click",function(e) {
     //     e.preventDefault();
     //     let popUrl = "/agreePop";
@@ -109,6 +110,9 @@
     }
 
     function sendPostRequest() {
+
+        $("#loginId").prop("disabled", true);
+
 
         var rsa = new RSAKey();
         rsa.setPublic(document.getElementById('RSAModulus').value,document.getElementById('RSAExponent').value);

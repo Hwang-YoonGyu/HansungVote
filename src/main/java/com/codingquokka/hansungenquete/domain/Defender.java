@@ -53,7 +53,7 @@ public class Defender {
         session.setAttribute("date", now);
 
 
-        if (now.getTime() - lastConnect.getTime() < 100) {
+        if (now.getTime() - lastConnect.getTime() < 10) {
             add(request.getRemoteAddr());
             return true;
         }
