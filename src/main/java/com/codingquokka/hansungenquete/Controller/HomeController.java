@@ -198,7 +198,7 @@ public class HomeController {
 
         return "sample3";
     }
-    @RequestMapping(value = "/sample4", method = RequestMethod.GET)
+    @RequestMapping(value = "/sample4", method = RequestMethod.POST)
     public String sample4(){
 
         return "sample1";
