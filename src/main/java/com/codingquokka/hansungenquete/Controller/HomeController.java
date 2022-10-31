@@ -183,4 +183,24 @@ public class HomeController {
             out.flush();
         }
     }
+    @RequestMapping(value = "/sample1", method = RequestMethod.GET)
+    public String sample1(){
+
+        return "sample1";
+    }
+    @RequestMapping(value = "/sample2", method = RequestMethod.POST)
+    public String sample2(){
+
+        return "sample2";
+    }
+    @RequestMapping(value = "/sample3", method = RequestMethod.POST)
+    public String sample3(){
+
+        return "sample3";
+    }
+    @RequestMapping(value = "/sample4", method = RequestMethod.GET)
+    public String sample4(){
+
+        return "sample1";
+    }
 }
