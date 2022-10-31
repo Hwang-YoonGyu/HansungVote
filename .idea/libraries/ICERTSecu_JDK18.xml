@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="ICERTSecu_JDK18">
     <CLASSES>
-      <root url="jar://$USER_HOME$/Downloads/[KMC] 본인확인서비스 암호화 모듈_JSP_한성대학교_221027/암호화모듈(JDK1.8버전)/ICERTSecu_JDK18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/main/webapp/lib/ICERTSecu_JDK18.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
