@@ -18,6 +18,12 @@
 		from user
 		where stuId=#{stuId}
 	</select>
+
+	<select id="certificate" parameterType="com.codingquokka.hansungenquete.domain.UserVO" resultType="com.codingquokka.hansungenquete.domain.UserVO">
+		select *
+		from user
+		where name=#{name}
+	</select>
 	
 	 <!-- 총유권자수 계산  -->
 	<select id = "totalvoters" parameterType="String" resultType = "int">

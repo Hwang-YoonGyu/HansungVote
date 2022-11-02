@@ -24,6 +24,9 @@ public class UserDAO {
 	public UserVO findDepartmentOfUser(String stuId) throws Exception {
 		return sqlSession.selectOne(namespace+".findDepartmentOfUser",stuId);
 	}
+	public UserVO certificate(UserVO vo) throws Exception{
+		return sqlSession.selectOne(namespace + ".certificate", vo);
+	}
 	
 	//총유권자수 계산
 	public int totalVoters(String department) throws Exception {

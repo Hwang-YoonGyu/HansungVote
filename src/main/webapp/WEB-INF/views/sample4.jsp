@@ -157,7 +157,7 @@ k_certNum : <%=k_certNum%><br><br>
     }
 
     regex = "[0-9]*";
-    if( birthDay.length() != 8 || !paramChk(regex, birthDay) ){
+    if( birth.length() != 8 || !paramChk(regex, birth) ){
         out.println("생년월일 비정상");
         return;
     }
