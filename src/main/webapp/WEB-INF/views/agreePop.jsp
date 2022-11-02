@@ -1,5 +1,69 @@
+<%
+    response.setHeader("Pragma", "no-cache" );
+    response.setDateHeader("Expires", 0);
+    response.setHeader("Pragma", "no-store");
+    response.setHeader("Cache-Control", "no-cache" );
+%>
+<%@ page  contentType = "text/html;charset=ksc5601" pageEncoding="UTF-8"%>
+<%@ page import = "java.util.*" %>
+<%@ page import = "java.util.regex.*" %>
+<%@ page import = "java.text.*" %>
+<%@ page import="com.icert.comm.secu.IcertSecuManager" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%
+    //날짜 생성
+    Calendar today = Calendar.getInstance();
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+    String day = sdf.format(today.getTime());
+
+    java.util.Random ran = new Random();
+    //랜덤 문자 길이
+    int numLength = 6;
+    String randomStr = "";
+
+    for (int i = 0; i < numLength; i++) {
+        //0 ~ 9 랜덤 숫자 생성
+        randomStr += ran.nextInt(10);
+    }
+
+    //reqNum은 최대 40byte 까지 사용 가능
+    String reqNum = day + randomStr;
+%>
+<%
+    String tr_cert		= "";
+    String cpId			= "SUGT1001";			// 회원사ID
+    String urlCode		= "002005";		// URL 코드
+    String certNum		= reqNum;		// 요청번호
+    String date			= day;			// 요청일시
+    String certMet		= "M";		// 본인확인방법
+    String plusInfo		= "";	// 추가DATA정보
+    String extendVar	= "0000000000000000";					// 확장변수
+
+    String tr_url       = "http://3.34.137.130:80/sample3";      // 본인인증 결과수신 POPUP URL
+    String tr_add	   = "N";	     //KMC 본인확인서비스 팝업 Iframe 호출 연동 작업 2016.09.06 kmcweb4
+%>
+<%
+    //01. 한국모바일인증(주) 암호화 모듈 선언
+    IcertSecuManager seed = new IcertSecuManager();
+
+    //02. 1차 암호화 (tr_cert 데이터변수 조합 후 암호화)
+    String enc_tr_cert = "";
+    tr_cert = cpId +"/"+ urlCode +"/"+ certNum +"/"+ date +"/"+ certMet +"///////"+ plusInfo +"/"+ extendVar;
+
+    enc_tr_cert = seed.getEnc(tr_cert, "");
+
+    //03. 1차 암호화 데이터에 대한 위변조 검증값 생성 (HMAC)
+    String hmacMsg = "";
+
+    hmacMsg = seed.getMsg(enc_tr_cert);
+
+    //04. 2차 암호화 (1차 암호화 데이터, HMAC 데이터, extendVar 조합 후 암호화)
+    tr_cert  = seed.getEnc(enc_tr_cert +"/"+ hmacMsg +"/"+ extendVar, "");
+%>
+
+
+
 <html>
 <head>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -89,8 +153,11 @@
                     </div>
 
                     <div class="btn">
-                        <form action="/agreePop" method="post">
-                            <input type="submit" id="btn" value="온라인 투표 하러가기" class="btn btn-primary float-end" disabled="disabled"/>
+                        <form method="post" name="reqKMCISForm">
+                            <input type="hidden" name="tr_cert"   value = "<%=tr_cert%>">
+                            <input type="hidden" name="tr_url"    value = "<%=tr_url%>">
+                            <input type="hidden" name="tr_add"    value = "<%=tr_add%>">
+                            <input type="submit" id="btn" value="본인인증 후 온라인 투표 하러가기" class="btn btn-primary float-end" disabled="disabled" onclick="javascript:openKMCISWindow();"/>
                         </form>
                     </div>
                 </div>
@@ -111,6 +178,48 @@
         }
     })
 </script>
+<script>
+    window.name = "kmcis_web_sample";
 
+    var KMCIS_window;
+
+    function openKMCISWindow(){
+        var UserAgent = navigator.userAgent;
+
+        // 모바일인 경우 (변동사항 있을경우 추가 필요)
+        if (UserAgent.match(/iPhone|iPad|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null || UserAgent.match(/LG|SAMSUNG|Samsung/) != null)
+        {
+            KMCIS_window = window.open('', 'KMCISWindow');
+        }
+        // 모바일이 아닌 경우
+        else
+        {
+            // 기본 팝업 size
+            var jwidth	= "425";
+            var jHeight	= "600";
+
+            var UserAgent = navigator.userAgent.toLowerCase();
+
+            if(UserAgent.indexOf("chrome") != -1){
+                var jwidth	= "560";
+                var jHeight	= "770";
+            }else if(UserAgent.indexOf("safari") != -1){
+                jwidth	= "441";
+                jHeight	= "588";
+            }
+
+            KMCIS_window = window.open('', 'KMCISWindow', 'width='+jwidth+', height='+jHeight+', resizable=0, scrollbars=no, status=0, titlebar=0, toolbar=0, left=435, top=250' );
+        }
+
+        if(KMCIS_window == null){
+            alert(" ※ 윈도우 XP SP2 또는 인터넷 익스플로러 7 사용자일 경우에는 \n    화면 상단에 있는 팝업 차단 알림줄을 클릭하여 팝업을 허용해 주시기 바랍니다. \n\n※ MSN,야후,구글 팝업 차단 툴바가 설치된 경우 팝업허용을 해주시기 바랍니다.");
+        }
+
+        document.reqKMCISForm.action = 'https://www.kmcert.com/kmcis/web/kmcisReq.jsp';
+        document.reqKMCISForm.target = 'KMCISWindow';
+        document.reqKMCISForm.submit();
+    }
+</script>
 </body>
 </html>
+

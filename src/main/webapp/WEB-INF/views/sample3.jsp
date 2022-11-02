@@ -28,7 +28,7 @@ KMC 본인확인서비스 결과 데이터 수신 팝업 샘플 페이지
     <script language="JavaScript">
 
         // 결과 페이지 경로 설정
-        var move_page_url = "/sample4";
+        var move_page_url = "/agreePop";
 
         function end() {
             var UserAgent = navigator.userAgent;
@@ -53,8 +53,6 @@ KMC 본인확인서비스 결과 데이터 수신 팝업 샘플 페이지
 
 <body onload="javascript:end()">
 <form id="form" name="form" method="post">
-    <input type="hidden" name="rec_cert"  id="rec_cert" value="<%=rec_cert%>"/>
-    <input type="hidden" name="certNum"   id="certNum"  value="<%=certNum%>"/>
 </form>
 </body>
 </html>

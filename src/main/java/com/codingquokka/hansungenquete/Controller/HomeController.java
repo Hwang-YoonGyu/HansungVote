@@ -114,7 +114,7 @@ public class HomeController {
         if (result != null) {
 
             session.setAttribute("UserVO", result);
-            
+
             if ("manager".equals(result.getStuid())) {
                 System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login success");
                 return "redirect:/mgr/main";
@@ -194,7 +194,9 @@ public class HomeController {
         return "sample2";
     }
     @RequestMapping(value = "/sample3", method = RequestMethod.POST)
-    public String sample3(){
+    public String sample3(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        HttpSession session = request.getSession();
+        UserVO uVo = (UserVO) session.getAttribute("UserVO");
 
         return "sample3";
     }
