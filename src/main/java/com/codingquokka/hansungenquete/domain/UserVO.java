@@ -50,7 +50,7 @@ public class UserVO {
     public int getAgree(){
         return agree;
     }
-    public void setAgree(){
+    public void setAgree(int agree){
         this.agree = agree;
     }
 
