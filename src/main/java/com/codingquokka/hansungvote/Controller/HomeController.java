@@ -1,6 +1,5 @@
-package com.codingquokka.hansungenquete.Controller;
+package com.codingquokka.hansungvote.Controller;
 
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.PrivateKey;
 import java.time.LocalDate;
@@ -20,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.codingquokka.hansungenquete.domain.*;
+import com.codingquokka.hansungvote.domain.*;
 
 
 @Controller

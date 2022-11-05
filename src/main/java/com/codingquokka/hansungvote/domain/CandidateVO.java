@@ -1,4 +1,4 @@
-package com.codingquokka.hansungenquete.domain;
+package com.codingquokka.hansungvote.domain;
 public class CandidateVO {
 	   
     private String candidateName;

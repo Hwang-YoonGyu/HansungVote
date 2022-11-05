@@ -1,6 +1,6 @@
-package com.codingquokka.hansungenquete.Controller;
+package com.codingquokka.hansungvote.Controller;
 
-import com.codingquokka.hansungenquete.domain.*;
+import com.codingquokka.hansungvote.domain.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -130,7 +130,6 @@ public class ManagerController {
         eVo.setDepartment(request.getParameter("department"));
         eVo.setStartDate(startDate);
         eVo.setEndDate(endDate);
-        eVo.setExplain("");
         eDao.insertElection(eVo);
 
         for (int i = 0; i < Integer.parseInt(request.getParameter("candidateCount")); i++) {

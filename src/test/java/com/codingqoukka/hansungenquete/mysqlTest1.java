@@ -1,5 +1,5 @@
 /*
-package com.codingqoukka.hansungenquete;
+package com.codingqoukka.hansungvote;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

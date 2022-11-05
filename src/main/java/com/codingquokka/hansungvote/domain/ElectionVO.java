@@ -1,4 +1,4 @@
-package com.codingquokka.hansungenquete.domain;
+package com.codingquokka.hansungvote.domain;
 
 import java.util.Date;
 
@@ -7,7 +7,6 @@ public class ElectionVO {
     private String electionName;
     private Date startDate;
     private Date endDate;
-    private String explain;
     private String department;
 
 
@@ -28,12 +27,6 @@ public class ElectionVO {
     }
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
-    }
-    public String getExplain() {
-    	return explain;
-    }
-    public void setExplain(String explain) {
-    	this.explain = explain;
     }
     public String getDepartment() {
     	return department;

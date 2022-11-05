@@ -1,4 +1,4 @@
-package com.codingquokka.hansungenquete.domain;
+package com.codingquokka.hansungvote.domain;
 
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;

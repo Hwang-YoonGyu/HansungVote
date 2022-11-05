@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.codingquokka.hansungenquete">
+	<logger name="com.codingquokka.hansungvote">
 		<level value="info" />
 	</logger>
 	

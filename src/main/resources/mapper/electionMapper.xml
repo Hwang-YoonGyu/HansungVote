@@ -6,8 +6,7 @@
 
  
 <mapper namespace="mapper.electionMapper">
-
-    <select id="selectElection" parameterType="com.codingquokka.hansungenquete.domain.ElectionVO" resultType="com.codingquokka.hansungenquete.domain.ElectionVO">
+    <select id="selectElection" parameterType="com.codingquokka.hansungvote.domain.ElectionVO" resultType="com.codingquokka.hansungvote.domain.ElectionVO">
         select *
         from election
         where department like CONCAT('%',#{department},'%')
@@ -16,30 +15,31 @@
            or department = "";
     </select>
 
-    <select id="selectD" parameterType="com.codingquokka.hansungenquete.domain.ElectionVO" resultType="com.codingquokka.hansungenquete.domain.ElectionVO">
+    <select id="selectD" parameterType="com.codingquokka.hansungvote.domain.ElectionVO" resultType="com.codingquokka.hansungvote.domain.ElectionVO">
         select *
         from election
         where department = "D";
     </select>
 
-    <select id="selectY" parameterType="com.codingquokka.hansungenquete.domain.ElectionVO" resultType="com.codingquokka.hansungenquete.domain.ElectionVO">
+    <select id="selectY" parameterType="com.codingquokka.hansungvote.domain.ElectionVO" resultType="com.codingquokka.hansungvote.domain.ElectionVO">
         select *
         from election
         where department = "Y";
     </select>
 
-    <select id="selectElectionAll" parameterType="com.codingquokka.hansungenquete.domain.ElectionVO" resultType="com.codingquokka.hansungenquete.domain.ElectionVO">
+    <select id="selectElectionAll" parameterType="com.codingquokka.hansungvote.domain.ElectionVO" resultType="com.codingquokka.hansungvote.domain.ElectionVO">
         select *
         from election
         order by department asc;
     </select>
-    <select id="selectSpecipicElection" parameterType="String" resultType="com.codingquokka.hansungenquete.domain.ElectionVO">
+
+    <select id="selectSpecipicElection" parameterType="String" resultType="com.codingquokka.hansungvote.domain.ElectionVO">
         select *
         from election
         where electionName = #{electionName};
     </select>
 
-    <insert id = "insertElection" parameterType="com.codingquokka.hansungenquete.domain.ElectionVO">
+    <insert id = "insertElection" parameterType="com.codingquokka.hansungvote.domain.ElectionVO">
         insert into election(electionName, startDate, endDate, department)
         values (#{electionName}, #{startDate}, #{endDate}, #{department});
     </insert>
@@ -52,5 +52,4 @@
         from election
         where electionName= #{electionName};
     </delete>
-
 </mapper>

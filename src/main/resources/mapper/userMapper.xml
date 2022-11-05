@@ -7,19 +7,19 @@
  
 <mapper namespace="mapper.userMapper">
 	<!-- 로그인  -->
-	<select id="login" parameterType="com.codingquokka.hansungenquete.domain.UserVO" resultType="com.codingquokka.hansungenquete.domain.UserVO">
+	<select id="login" parameterType="com.codingquokka.hansungvote.domain.UserVO" resultType="com.codingquokka.hansungvote.domain.UserVO">
 		select *
 		from user
 		where stuId=#{stuId} and phoneNumber=#{phoneNumber}
 	</select>
 
-	<select id="findDepartmentOfUser" parameterType="String" resultType="com.codingquokka.hansungenquete.domain.UserVO">
+	<select id="findDepartmentOfUser" parameterType="String" resultType="com.codingquokka.hansungvote.domain.UserVO">
 		select *
 		from user
 		where stuId=#{stuId}
 	</select>
 
-	<select id="certificate" parameterType="com.codingquokka.hansungenquete.domain.UserVO" resultType="com.codingquokka.hansungenquete.domain.UserVO">
+	<select id="certificate" parameterType="com.codingquokka.hansungvote.domain.UserVO" resultType="com.codingquokka.hansungvote.domain.UserVO">
 		select *
 		from user
 		where name=#{name}
@@ -32,7 +32,7 @@
 		where (department like CONCAT('%',#{department},'%') and stuId !='manager') or department = substring(#{department} from 1 for 3);
 	</select>
 
-	<select id="allUserWhoHaveRight" parameterType="com.codingquokka.hansungenquete.domain.ElectionVO" resultType="map">
+	<select id="allUserWhoHaveRight" parameterType="com.codingquokka.hansungvote.domain.ElectionVO" resultType="map">
 		alter view temp1 as (
 		select *
 		from user
@@ -47,7 +47,7 @@
 		from temp1 left outer join temp2 on temp1.stuId = temp2.stuId;
 	</select>
 
-	<insert id = "insertUser" parameterType="com.codingquokka.hansungenquete.domain.ElectionvotedVO">
+	<insert id = "insertUser" parameterType="com.codingquokka.hansungvote.domain.ElectionvotedVO">
 		insert into user(stuId, name, password, phoneNumber, department, delegate, club, agree)
 		values (#{stuId}, #{name}, #{password}, #{phoneNumber}, #{department}, #{delegate}, #{club}, 0);
 	</insert>
@@ -71,7 +71,7 @@
 		from temp3 left outer join temp4 on temp3.department = temp4.department
 	</select>
 
-	<update id="agreeCount" parameterType="com.codingquokka.hansungenquete.domain.UserVO">
+	<update id="agreeCount" parameterType="com.codingquokka.hansungvote.domain.UserVO">
 		update user
 		set agree = 1
 		where stuId=#{stuId}

@@ -6,7 +6,7 @@
 
  <!-- 다중투표 방지  -->
 <mapper namespace="mapper.electionvotedMapper">
-	<select id = "wasVoted" parameterType = "com.codingquokka.hansungenquete.domain.ElectionvotedVO" resultType = "com.codingquokka.hansungenquete.domain.ElectionvotedVO">
+	<select id = "wasVoted" parameterType = "com.codingquokka.hansungvote.domain.ElectionvotedVO" resultType = "com.codingquokka.hansungvote.domain.ElectionvotedVO">
 		select * 
 		from electionvoted
 		where stuId=#{stuId} and electionName=#{electionName}
@@ -29,7 +29,7 @@
 		where electionName=#{electionName}
 	</select>
 
-	<insert id = "insertVote" parameterType="com.codingquokka.hansungenquete.domain.ElectionvotedVO">
+	<insert id = "insertVote" parameterType="com.codingquokka.hansungvote.domain.ElectionvotedVO">
 		insert into electionVoted(stuId, name, department, candidateName, electionName)
 		values (#{stuId}, #{name}, #{department}, #{candidateName}, #{electionName});
 	</insert>

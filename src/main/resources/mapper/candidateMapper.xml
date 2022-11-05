@@ -9,18 +9,18 @@
 
 
 
-	<insert id="insertCandidate" parameterType="com.codingquokka.hansungenquete.domain.CandidateVO">
+	<insert id="insertCandidate" parameterType="com.codingquokka.hansungvote.domain.CandidateVO">
 		insert into candidate (candidateName, electionName, image)
 		values (#{candidateName}, #{electionName}, #{image});
 	</insert>
 
-	<select id="selectCandidate" parameterType="String" resultType="com.codingquokka.hansungenquete.domain.CandidateVO">
+	<select id="selectCandidate" parameterType="String" resultType="com.codingquokka.hansungvote.domain.CandidateVO">
 		select *
 		from candidate
 		where electionName=#{electionName};
 	</select>
 
-	<select id="selectSpecipicCandidate" parameterType="String" resultType="com.codingquokka.hansungenquete.domain.CandidateVO">
+	<select id="selectSpecipicCandidate" parameterType="String" resultType="com.codingquokka.hansungvote.domain.CandidateVO">
 		select *
 		from candidate
 		where candidateName= #{candidateName};

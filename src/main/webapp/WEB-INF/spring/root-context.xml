@@ -45,5 +45,5 @@
         <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
     </bean>
 
-    <context:component-scan base-package="com.codingquokka.hansungenquete"></context:component-scan>
+    <context:component-scan base-package="com.codingquokka.hansungvote"></context:component-scan>
 </beans>

@@ -1,4 +1,4 @@
-package com.codingquokka.hansungenquete.domain;
+package com.codingquokka.hansungvote.domain;
 
 import java.util.List;
 import java.util.Map;

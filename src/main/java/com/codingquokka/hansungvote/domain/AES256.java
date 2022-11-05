@@ -1,4 +1,4 @@
-package com.codingquokka.hansungenquete.domain;
+package com.codingquokka.hansungvote.domain;
 
 import java.util.Base64;
 import javax.crypto.Cipher;

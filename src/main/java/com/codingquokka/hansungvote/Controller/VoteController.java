@@ -1,4 +1,4 @@
-package com.codingquokka.hansungenquete.Controller;
+package com.codingquokka.hansungvote.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.codingquokka.hansungenquete.domain.*;
+import com.codingquokka.hansungvote.domain.*;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RequestMapping("/vote")
