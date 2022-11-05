@@ -19,8 +19,8 @@
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
         <property name="url" value="jdbc:mysql://3.38.144.150:3306/hansungvote?allowMultiQueries=true"></property>
-        <property name="username" value="root"></property>   
-        <property name="password" value="hsvote@cq123"></property>
+        <property name="username" value="webServer"></property>
+        <property name="password" value="codingquokka"></property>
     </bean>
     
     <!--  mybatis와 스프링 연동작을 하기위한 SqlsessionFactory == DB연결 및 SQL의 실행을 대한객체 -->
