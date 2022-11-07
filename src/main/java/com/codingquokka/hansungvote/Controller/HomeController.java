@@ -106,7 +106,7 @@ public class HomeController {
         session.removeAttribute(RSA.RSA_WEB_KEY);
 
         uVo.setPhoneNumber(RSA.decryptRsa(privateKey,phoneNumber));
-        System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +uVo.getStuid() + " " + uVo.getPassword()+" try login");
+        System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +uVo.getStuid() + " " + uVo.getPhoneNumber()+" try login");
 
         UserVO result = uDao.login(uVo);
 

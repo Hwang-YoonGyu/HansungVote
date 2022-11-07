@@ -3,7 +3,6 @@ public class UserVO {
 
     private String stuId;
     private String name;
-    private String password;
     private String phoneNumber;
     private String department;
 
@@ -27,12 +26,6 @@ public class UserVO {
     }
     public void setName(String name) {
         this.name = name;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
     }
     public String getPhoneNumber() {
         return phoneNumber;
