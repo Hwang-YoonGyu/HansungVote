@@ -42,9 +42,9 @@ public class InputThread implements Runnable {
             if (row != null) {
                 //int cells = row.getPhysicalNumberOfCells(); // 해당 Row에 사용자가 입력한 셀의 수를 가져온다
 
-                String[] temp = new String[7];
+                String[] temp = new String[6];
 
-                for (int cellIndex = 0; cellIndex < 7; cellIndex++) {
+                for (int cellIndex = 0; cellIndex < 6; cellIndex++) {
                     XSSFCell cell = row.getCell(cellIndex); // 셀의 값을 가져온다
                     String value = "";
                     if (cell == null) { // 빈 셀 체크
@@ -78,8 +78,8 @@ public class InputThread implements Runnable {
                     uVo.setPhoneNumber(temp[2]);
                     uVo.setDepartment(temp[3]);
                     uVo.setAgree(Integer.parseInt(temp[4]));
-                    uVo.setClub(Integer.parseInt(temp[5]));
-                    uVo.setDelegate(Integer.parseInt(temp[6]));
+                    //uVo.setClub(Integer.parseInt(temp[5]));
+                    uVo.setDelegate(Integer.parseInt(temp[5]));
                     uDao.insertUser(uVo);
                 } catch (Exception e) {
                     throw new RuntimeException(e);

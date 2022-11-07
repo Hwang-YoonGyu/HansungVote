@@ -31,6 +31,11 @@
 		from user
 		where (department like CONCAT('%',#{department},'%') and stuId !='manager') or department = substring(#{department} from 1 for 3);
 	</select>
+	<select id = "totalvotersDelegate" parameterType="String" resultType = "int">
+		select COUNT(*)
+		from user
+		where delegate=1;
+	</select>
 
 	<select id="allUserWhoHaveRight" parameterType="com.codingquokka.hansungvote.domain.ElectionVO" resultType="map">
 		alter view temp1 as (

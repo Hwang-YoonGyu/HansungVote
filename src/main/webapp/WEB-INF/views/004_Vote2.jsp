@@ -34,6 +34,7 @@
         main {
             background-color: hsl(228, 26%, 96%);
             height: 100%;
+            min-height: 1000px;
             margin-top: 100px;
             margin-bottom: 100px;
 
@@ -45,7 +46,6 @@
             bottom: 0;
             width: 100%;
             height: 60px;
-
         }
     </style>
 </head>
@@ -209,9 +209,9 @@
     }
 
 </script>
-<div class="fixed-bottom">
-    <footer>
-        <div>
+<div class="fixed-bottom" style="height: 60px">
+    <footer style="height: 60px">
+        <div style="height: 60px">
             <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 1rem;">@2022 Team Coding Quokka All Rights
                 Reserved</p>
         </div>

@@ -51,5 +51,10 @@ public class UserDAO {
 	public void userDateDelete() {
 		sqlSession.delete(namespace+".userDateDelete");
 	}
+
+	public int totalVotersDelegate(String department) {
+		int num = sqlSession.selectOne(namespace+".totalvotersDelegate", department);
+		return num;
+	}
 }
 

@@ -18,7 +18,7 @@
     <select id="selectD" parameterType="com.codingquokka.hansungvote.domain.ElectionVO" resultType="com.codingquokka.hansungvote.domain.ElectionVO">
         select *
         from election
-        where department = "D";
+        where department = "delegate";
     </select>
 
     <select id="selectY" parameterType="com.codingquokka.hansungvote.domain.ElectionVO" resultType="com.codingquokka.hansungvote.domain.ElectionVO">

@@ -64,20 +64,27 @@ public class VoteController {
         if (user.getDelegate() == 1) {
             ElectionVO electionD = eDao.selectD(evVo);
             electionList.add(electionD);
-
         }
-        if (user.getClub() == 1) {
-            ElectionVO electionY = eDao.selectY(evVo);
-            electionList.add(electionY);
-
-        }
+//        if (user.getClub() == 1) {
+//            ElectionVO electionY = eDao.selectY(evVo);
+//            electionList.add(electionY);
+//
+//        }
 
 
         List<Float> votePercentageList = new ArrayList<Float>();
         List<Integer> voteRightCountList = new ArrayList<Integer>();
         for(ElectionVO e : electionList) {
-            int voteRightCount = uDao.totalVoters(e.getDepartment());
-            int votePercentage = evDao.turnout(e.getElectionName());
+            int voteRightCount =0;
+            int votePercentage =0;
+            if (!e.getDepartment().equals("delegate")) {
+                voteRightCount = uDao.totalVoters(e.getDepartment());
+                votePercentage = evDao.turnout(e.getElectionName());
+            }
+            else {
+                voteRightCount = uDao.totalVotersDelegate(e.getDepartment());
+                votePercentage = evDao.turnout(e.getElectionName());
+            }
             votePercentageList.add(((float)votePercentage/voteRightCount*100));
             voteRightCountList.add(voteRightCount);
         }
