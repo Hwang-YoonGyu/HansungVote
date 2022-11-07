@@ -115,12 +115,12 @@ public class HomeController {
             session.setAttribute("UserVO", result);
 
             if ("manager".equals(result.getStuid())) {
-                System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login success");
+                System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getPhoneNumber()+" login success");
                 return "redirect:/mgr/main";
 
             }
             else {
-                System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getName()+" login success");
+                System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getPhoneNumber()+" login success");
                 if (result.getAgree() == 0) {
                     return "redirect:/agreePop";
 
