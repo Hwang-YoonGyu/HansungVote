@@ -167,7 +167,7 @@
     function userDateDelete() {
         var result = confirm("전체 유저 정보를 삭제하시겠습니까?");
         if (result == true) {
-            location.href = '/mgr/userDateDelete';
+            location.href = '/mgr/userDataDelete';
         }
     }
     function electionDataDelete() {

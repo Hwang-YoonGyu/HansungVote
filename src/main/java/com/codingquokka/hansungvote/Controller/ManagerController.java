@@ -312,13 +312,13 @@ public class ManagerController {
         }
     }
 
-    @RequestMapping(value = "/userDateDelete", method = RequestMethod.GET)
-    public void userDateDelete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    @RequestMapping(value = "/userDataDelete", method = RequestMethod.GET)
+    public void userDataDelete(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
-            uDao.userDateDelete();
+            uDao.userDataDelete();
             customResponse(response,"모든 유저 데이터가 삭제 되었습니다."," \"/mgr/viewVote\"");
         }
         else {
