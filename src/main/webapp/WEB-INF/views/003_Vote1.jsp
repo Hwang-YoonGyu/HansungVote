@@ -188,7 +188,6 @@
                 electionName : "${ElectionVO.electionName}",
                 startDate : "${start}",
                 endDate : "${end}",
-                explain : "${ElectionVO.explain}",
                 department : "${ElectionVO.department}"
             },
             </c:forEach>
