@@ -156,7 +156,7 @@
                                             <option value="6">창의융합대학</option>
                                             <option value="7">미래플러스대학</option>
                                             <option value="8">대의원</option>
-                                            <option value="9">동아리</option>
+<%--                                            <option value="9">동아리</option>--%>
                                         </select>
                                     </div>
                                 </div>

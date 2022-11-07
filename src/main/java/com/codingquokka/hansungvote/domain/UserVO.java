@@ -7,7 +7,7 @@ public class UserVO {
     private String department;
 
     private int agree;
-    private int club;
+//    private int club;
     private int delegate;
 
 
@@ -47,8 +47,8 @@ public class UserVO {
         this.agree = agree;
     }
 
-    public int getClub() {return club;}
+//    public int getClub() {return club;}
     public int getDelegate() {return delegate;}
-    public void setClub(int club){ this.club = club;}
+//    public void setClub(int club){ this.club = club;}
     public void setDelegate(int delegate){this.delegate = delegate;}
 }
