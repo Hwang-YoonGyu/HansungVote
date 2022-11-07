@@ -33,14 +33,14 @@
 <%
     String tr_cert		= "";
     String cpId			= "SUGT1001";			// 회원사ID
-    String urlCode		= "002005";		// URL 코드
+    String urlCode		= "003001";		// URL 코드
     String certNum		= reqNum;		// 요청번호
     String date			= day;			// 요청일시
     String certMet		= "M";		// 본인확인방법
     String plusInfo		= "";	// 추가DATA정보
     String extendVar	= "0000000000000000";					// 확장변수
 
-    String tr_url       = "http://3.34.137.130:80/sample3";      // 본인인증 결과수신 POPUP URL
+    String tr_url       = "http://52.79.201.73/sample3";      // 본인인증 결과수신 POPUP URL
     String tr_add	   = "N";	     //KMC 본인확인서비스 팝업 Iframe 호출 연동 작업 2016.09.06 kmcweb4
 %>
 <%
