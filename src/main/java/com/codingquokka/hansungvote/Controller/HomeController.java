@@ -74,8 +74,7 @@ public class HomeController {
     public String agreePopPost(HttpServletRequest request, HttpServletResponse response) throws Exception{
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
-        System.out.println(request.getParameter("certNumber")+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        System.out.println(request.getSession().getAttribute("certNumber")+"@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println(request.getParameter("certPhoneNumber")+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
         if (uVo != null) {
             uDao.agreeCount(uVo);

@@ -130,7 +130,6 @@ k_certNum : <%=k_certNum%><br><br>
 <head>
     <script language="JavaScript">
 
-        var name = ${name};
         // 결과 페이지 경로 설정
         var move_page_url = "/agreePop";
 
@@ -138,10 +137,16 @@ k_certNum : <%=k_certNum%><br><br>
             var UserAgent = navigator.userAgent;
 
             document.form.action = move_page_url;
+            var input1 = document.createElement('input');
+            input1.type = 'hidden';
+            input1.name = 'certPhoneNumber';
+            input1.value = '<%=mNumber%>';
+            document.form.appendChild(input1);
 
             // 모바일인 경우 (변동사항 있을 경우 추가 필요!)
             if (UserAgent.match(/iPhone|iPad|Android|Windows CE|BlackBerry|Symbian|Windows Phone|webOS|Opera Mini|Opera Mobi|POLARIS|IEMobile|lgtelecom|nokia|SonyEricsson/i) != null || UserAgent.match(/LG|SAMSUNG|Samsung/) != null)
             {
+
                 document.form.submit();
             }
             // 모바일이 아닌 경우
