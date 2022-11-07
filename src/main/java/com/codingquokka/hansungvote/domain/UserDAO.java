@@ -48,8 +48,8 @@ public class UserDAO {
 		sqlSession.update(namespace + ".agreeCount",vo);
 	}
 
-	public void userDateDelete() {
-		sqlSession.delete(namespace+".userDateDelete");
+	public void userDataDelete() {
+		sqlSession.delete(namespace+".userDataDelete");
 	}
 
 	public int totalVotersDelegate(String department) {

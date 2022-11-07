@@ -83,9 +83,10 @@
 		where stuId=#{stuId}
 	</update>
 
-	<delete id="electionDataDelete" >
+	<delete id="userDataDelete" >
 		delete
-		from user;
+		from user
+		where stuId not in("manager");
 	</delete>
 
 
