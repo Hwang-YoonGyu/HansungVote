@@ -148,7 +148,7 @@
                                     <div class="col-10">
                                         <select class="form-select" id="college">
                                             <option value="0">대상을 선택하세요</option>
-                                            <option value="1">학부생 전체</option>
+                                            <option value="1">전체</option>
                                             <option value="2">크리에이티브인문예술대학</option>
                                             <option value="3">미래융합사회과학대학</option>
                                             <option value="4">디자인대학</option>
@@ -156,7 +156,7 @@
                                             <option value="6">창의융합대학</option>
                                             <option value="7">미래플러스대학</option>
                                             <option value="8">대의원</option>
-                                            <option value="9">동아리 가입자</option>
+                                            <option value="9">동아리</option>
                                         </select>
                                     </div>
                                 </div>
