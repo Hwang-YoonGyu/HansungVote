@@ -130,6 +130,7 @@ k_certNum : <%=k_certNum%><br><br>
 <head>
     <script language="JavaScript">
 
+        var name = ${name};
         // 결과 페이지 경로 설정
         var move_page_url = "/agreePop";
 

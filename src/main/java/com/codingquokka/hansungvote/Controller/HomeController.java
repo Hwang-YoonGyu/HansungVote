@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.security.PrivateKey;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -73,6 +74,8 @@ public class HomeController {
     public String agreePopPost(HttpServletRequest request, HttpServletResponse response) throws Exception{
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        System.out.println(request.getParameter("certNumber")+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        System.out.println(request.getSession().getAttribute("certNumber")+"@@@@@@@@@@@@@@@@@@@@@@@");
 
         if (uVo != null) {
             uDao.agreeCount(uVo);
@@ -91,7 +94,7 @@ public class HomeController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(@RequestParam("stu_id") String stu_id, @RequestParam("phoneNumber") String phoneNumber, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String login(@RequestParam("stu_id") String stu_id, @RequestParam("phoneNumber") String phoneNumber, HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> paramMap) throws Exception {
         if (defender.checkLastTime(request)) {
             return "home";
         }
