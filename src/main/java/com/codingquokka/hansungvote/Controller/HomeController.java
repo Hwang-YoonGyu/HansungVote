@@ -77,8 +77,19 @@ public class HomeController {
         System.out.println(request.getParameter("certPhoneNumber")+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
         if (uVo != null) {
-            uDao.agreeCount(uVo);
-            return "redirect:/main";
+            if (uVo.getPhoneNumber().equals(request.getParameter("certPhoneNumber"))) {
+                uDao.agreeCount(uVo);
+                return "redirect:/main";
+            }
+            else {
+                response.setContentType("text/html; charset=euc-kr");
+                PrintWriter out = response.getWriter();
+                out.println("<script>alert('인증된 전화번호와 가입된 전화번호가\n일치하지 않습니다.');" +
+                        "location.href = \"/login\";" +
+                        "</script>");
+                out.flush();
+                return null;
+            }
         }
         else {
             response.setContentType("text/html; charset=euc-kr");
