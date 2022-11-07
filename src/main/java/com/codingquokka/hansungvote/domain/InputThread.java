@@ -73,7 +73,7 @@ public class InputThread implements Runnable {
                 }
                 try {
                     UserVO uVo = new UserVO();
-                    uVo.setStuid(temp[0]);
+                    uVo.setStuid(temp[0].toString());
                     uVo.setName(temp[1]);
                     uVo.setPhoneNumber(temp[2]);
                     uVo.setDepartment(temp[3]);

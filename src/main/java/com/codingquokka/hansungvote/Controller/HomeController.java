@@ -162,7 +162,7 @@ public class HomeController {
 
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
-        if (ip != null && uVo.getStuid().equals("hsvmanager")) {
+        if (ip != null && uVo.getStuid().equals("manager")) {
             defender.remove(ip);
             response.setContentType("text/html; charset=euc-kr");
             PrintWriter out = response.getWriter();

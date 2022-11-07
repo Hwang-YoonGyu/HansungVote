@@ -64,6 +64,7 @@
 		from election
 		where department like CONCAT('%',#{department},'%')
 		or department = substring(#{department} from 1 for 1)
+		or department = substring(#{department} from 1 for 3)
 		or department = ""
 		);
 		alter view temp4 as(
