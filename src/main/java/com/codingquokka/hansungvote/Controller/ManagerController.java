@@ -242,7 +242,7 @@ public class ManagerController {
                 ElectionvotedVO result = evDao.wasVoted(evVo);
 
                 if (result != null) {
-                    customResponse(response,"이미 하나 이상의 선거에 투표를 완료한 유권자입니다.","\"/manager/addVoted\"");
+                    customResponse(response,"이미 하나 이상의 선거에 투표를 완료한 유권자입니다.","\"/mgr/addVoted\"");
                 }
             }
 
@@ -278,16 +278,16 @@ public class ManagerController {
 
 
     @RequestMapping(value = "/addUserDB", method = RequestMethod.POST)
-    public void excelReadPOST(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String excelReadPOST(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
 
         MultipartHttpServletRequest mhsr = (MultipartHttpServletRequest) request;
-        byte[] bytesFile = null;
+        byte[] bytesFile;
 
         try {
             bytesFile = mhsr.getFile("excelFile").getBytes();
-            if (bytesFile.length == 0) {
-                customResponse(response,"파일 업로드 에러.\n관리자에게 문의하세요."," \"/mgr/viewVote\"");
+            if (bytesFile.length == 0 || bytesFile ==null) {
+                return customResponse(response,"파일 업로드 에러. 관리자에게 문의하세요.","\"/mgr/viewVote\"");
             }
 
             Thread thread = new Thread(new InputThread(bytesFile, uDao));
@@ -295,7 +295,7 @@ public class ManagerController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        customResponse(response,"유권자 DB파일이 업로드 되었습니다.\n데이터삽입 스레드가 시작됩니다."," \"/mgr/viewVote\"");
+        return customResponse(response,"유권자 DB파일이 업로드 되었습니다. 데이터삽입 스레드가 시작됩니다.","\"/mgr/viewVote\"");
     }
 
     @RequestMapping(value = "/electionDataDelete", method = RequestMethod.GET)
@@ -305,7 +305,7 @@ public class ManagerController {
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
             eDao.electionDataDelete();
-            customResponse(response,"모든 선거 데이터가 삭제 되었습니다."," \"/mgr/viewVote\"");
+            customResponse(response,"모든 선거 데이터가 삭제 되었습니다.","\"/mgr/viewVote\"");
         }
         else {
             customResponse(response,"비정상적인 접근입니다.","\"/login\"");
@@ -333,7 +333,7 @@ public class ManagerController {
         response.setContentType("text/html; charset=euc-kr");
         PrintWriter out = null;
         out = response.getWriter();
-        out.println("<script>alert('" + msg + "');" +
+        out.println("<script>alert(\""+msg+"\");\n" +
                 "location.href = " + link + ";" +
                 "</script>");
         out.flush();
