@@ -53,8 +53,8 @@
 	</select>
 
 	<insert id = "insertUser" parameterType="com.codingquokka.hansungvote.domain.ElectionvotedVO">
-		insert into user(stuId, name, phoneNumber, department, delegate, agree)
-		values (#{stuId}, #{name}, #{phoneNumber}, #{department}, #{delegate}, 0);
+		insert into user(stuId, name, phoneNumber, department, agree ,delegate)
+		values (#{stuId}, #{name}, #{phoneNumber}, #{department}, 0,#{delegate});
 	</insert>
 
 

@@ -5,15 +5,8 @@ public class UserVO {
     private String name;
     private String phoneNumber;
     private String department;
-
     private int agree;
-//    private int club;
     private int delegate;
-
-
-
-
-
 
     public String getStuid() {
         return stuId;
@@ -47,8 +40,6 @@ public class UserVO {
         this.agree = agree;
     }
 
-//    public int getClub() {return club;}
     public int getDelegate() {return delegate;}
-//    public void setClub(int club){ this.club = club;}
     public void setDelegate(int delegate){this.delegate = delegate;}
 }
