@@ -5,8 +5,8 @@ public class UserVO {
     private String name;
     private String phoneNumber;
     private String department;
-    private int agree;
-    private int delegate;
+    private String agree;
+    private String delegate;
 
     public String getStuid() {
         return stuId;
@@ -33,13 +33,13 @@ public class UserVO {
         this.department = department;
     }
 
-    public int getAgree(){
+    public String getAgree(){
         return agree;
     }
-    public void setAgree(int agree){
+    public void setAgree(String agree){
         this.agree = agree;
     }
 
-    public int getDelegate() {return delegate;}
-    public void setDelegate(int delegate){this.delegate = delegate;}
+    public String getDelegate() {return delegate;}
+    public void setDelegate(String delegate){this.delegate = delegate;}
 }

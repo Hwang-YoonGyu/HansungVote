@@ -40,16 +40,17 @@ public class InputThread implements Runnable {
             XSSFRow row = sheet.getRow(rowNo);
 
             if (row != null) {
-                //int cells = row.getPhysicalNumberOfCells(); // 해당 Row에 사용자가 입력한 셀의 수를 가져온다
+                int cells = row.getPhysicalNumberOfCells(); // 해당 Row에 사용자가 입력한 셀의 수를 가져온다
 
                 String[] temp = new String[6];
 
-                for (int cellIndex = 0; cellIndex < 6; cellIndex++) {
+                for (int cellIndex = 0; cellIndex < cells; cellIndex++) {
                     XSSFCell cell = row.getCell(cellIndex); // 셀의 값을 가져온다
                     String value = "";
                     if (cell == null) { // 빈 셀 체크
                         continue;
-                    } else {
+                    }
+                    else {
                         // 타입 별로 내용을 읽는다
                         switch (cell.getCellType()) {
                             case XSSFCell.CELL_TYPE_FORMULA:
@@ -73,18 +74,19 @@ public class InputThread implements Runnable {
                 }
                 try {
                     UserVO uVo = new UserVO();
-                    uVo.setStuid(temp[0].toString());
+                    uVo.setStuid(temp[0]);
                     uVo.setName(temp[1]);
                     uVo.setPhoneNumber(temp[2]);
                     uVo.setDepartment(temp[3]);
-                    uVo.setAgree(Integer.parseInt(temp[4]));
-                    //uVo.setClub(Integer.parseInt(temp[5]));
-                    uVo.setDelegate(Integer.parseInt(temp[5]));
+                    uVo.setAgree(temp[4]);
+                    uVo.setDelegate(temp[5]);
                     uDao.insertUser(uVo);
+                    System.out.println(temp[0] + " " + temp[1] + " " + temp[2] + " " + temp[3]);
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
             }
         }
+        System.out.println("Thread Terminate");
     }
 }

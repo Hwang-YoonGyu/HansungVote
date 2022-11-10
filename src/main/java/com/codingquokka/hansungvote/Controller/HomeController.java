@@ -74,7 +74,6 @@ public class HomeController {
     public String agreePopPost(HttpServletRequest request, HttpServletResponse response) throws Exception{
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
-        System.out.println(request.getParameter("certPhoneNumber")+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
         if (uVo != null) {
             if (uVo.getPhoneNumber().equals(request.getParameter("certPhoneNumber"))) {
@@ -134,7 +133,7 @@ public class HomeController {
             }
             else {
                 System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getPhoneNumber()+" login success");
-                if (result.getAgree() == 0) {
+                if (result.getAgree().equals("0")) {
                     return "redirect:/agreePop";
 
                 }

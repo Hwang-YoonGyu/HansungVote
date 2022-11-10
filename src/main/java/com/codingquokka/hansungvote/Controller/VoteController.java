@@ -51,7 +51,7 @@ public class VoteController {
 
         UserVO user = (UserVO) session.getAttribute("UserVO");
         if (user == null) {
-            return customResponse(response,"세션이 만료되었습니다. \n다시 로그인 해주세요. :(", "\"/login\"");
+            return customResponse(response,"세션이 만료되었습니다.\n다시 로그인 해주세요. :(", "\"/login\"");
         }
         System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +user.getStuid() +" votehome");
         String department = user.getDepartment();
@@ -61,7 +61,7 @@ public class VoteController {
         evVo.setDepartment(department);
         List<ElectionVO> electionList = eDao.selectElection(evVo);
 
-        if (user.getDelegate() == 1) {
+        if (user.getDelegate().equals("1")) {
             ElectionVO electionD = eDao.selectD(evVo);
             electionList.add(electionD);
         }
@@ -109,7 +109,7 @@ public class VoteController {
         rsa.initRsa(request);
 
         if (user == null) {
-            return customResponse(response,"세션이 만료되었습니다. \n다시 로그인 해주세요. :(", "\"/login\"");
+            return customResponse(response,"세션이 만료되었습니다.\n다시 로그인 해주세요. :(", "\"/login\"");
         }
         String election = request.getParameter("electionName");
 
@@ -117,7 +117,7 @@ public class VoteController {
 
 
         if (LocalTime.now().getHour() < eVo.getStartDate().getHours() || LocalTime.now().getHour() >  eVo.getEndDate().getHours()) {
-            customResponse(response,"투표 가능 시간이 아닙니다. :(", "\"/vote/votehome\"");
+            return customResponse(response,"투표 가능 시간이 아닙니다. :(", "\"/vote/votehome\"");
 
         }
 
