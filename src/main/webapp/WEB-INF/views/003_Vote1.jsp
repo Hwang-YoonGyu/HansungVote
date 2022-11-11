@@ -66,14 +66,14 @@
                         <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
                             padding-top: 10px; padding-bottom: 10px;">
                             <label class="form-label">선거 단위</label>
-                            <select onchange=getIndex() class="form-select" aria-label="Default select example"
-                                    id="select">
+                            <div class="list-group" onchange=getIndex() class="form-select" aria-label="Default select example"
+                                 id="select" role="tablist">
                                 <c:forEach items="${electionList}" var="ElectionVO" varStatus="status">
                                     <a href=\"#\>
-                                        <option id=status">${ElectionVO.electionName}</option>
-                                    </a>"/>
+                                        <a id = "status" href="#" class="list-group-item list-group-item-action" data-bs-toggle="list">${ElectionVO.electionName}</a>
+                                    </a>
                                 </c:forEach>
-                            </select>
+                            </div>
                         </div>
 
                         <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
