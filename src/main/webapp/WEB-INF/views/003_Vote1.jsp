@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://www.markuptag.com/bootstrap/5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
     <style>
@@ -69,9 +70,7 @@
                             <div class="list-group" onchange=getIndex() class="form-select" aria-label="Default select example"
                                  id="select" role="tablist">
                                 <c:forEach items="${electionList}" var="ElectionVO" varStatus="status">
-                                    <a href=\"#\>
-                                        <a id = "status" href="#" class="list-group-item list-group-item-action" data-bs-toggle="list">${ElectionVO.electionName}</a>
-                                    </a>
+                                    <a id="${status.index}" onclick=updateInfo(this.id) class="list-group-item list-group-item-action " data-bs-toggle="list">${ElectionVO.electionName}</a>
                                 </c:forEach>
                             </div>
                         </div>
@@ -192,12 +191,14 @@
             },
             </c:forEach>
         ];
-        function getIndex() {
+
+        function updateInfo(index) {
+
+            $('.list-group-item').removeClass("active");
+            $('#'+index).addClass("active");
+
             var votePercentageList = ${votePercentageList};
             var voteRightCountList = ${voteRightCountList};
-
-            var select = document.getElementById("select");
-            var index = select.selectedIndex;
 
 
             var vote = document.getElementById("vote");
@@ -229,10 +230,12 @@
             endDate.innerHTML = list[index].endDate;
             vote.innerHTML = votePercentageList[index].toFixed(2) +"%";
             person.innerHTML = voteRightCountList[index]+"명";
-            electionName.innerHTML = select.options[index].value;
-            detailButton.href = "/vote/voteDetail?electionName=" + select.options[index].value;
+            electionName.innerHTML = list[index].electionName;
+            detailButton.href = "/vote/voteDetail?electionName=" + list[index].electionName;
         }
-        getIndex();
+        updateInfo(0);
+
+
 
 
     </script>

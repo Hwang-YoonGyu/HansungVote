@@ -73,7 +73,7 @@ padding-top: 10px; padding-bottom: 60px;">
                                 <thead>
                                 <tr>
                                     <th class="rounded-start" scope="col"
-                                        style="background-color:hsl(0, 0%, 41%) ; color: white;">후보이름
+                                        style="background-color:hsl(0, 0%, 41%) ; color: white;">선거명
                                     </th>
                                     <th class="rounded-end" scope="col"
                                         style="background-color:hsl(0, 0%, 41%); color: white;">실시간 투표율

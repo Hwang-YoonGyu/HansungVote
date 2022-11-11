@@ -66,7 +66,7 @@
 
                             </div>
                             <div class="col-3 d-grid gap-2 d-md-flex justify-content-md-end">
-                                <button onclick="location.href ='' "class="btn btn-outline-info"
+                                <button onclick="location.href ='/mgr/showTurnOutRate' "class="btn btn-outline-info"
                                         type="button" style="margin-right: -30px;">실시간 투표율
                                 </button>
                             </div>
@@ -153,7 +153,7 @@
 
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <button onclick=userDateDelete() class="btn btn-danger"
-                                        type="button" style="margin-bottom: 30px">유권자 DB 전체삭제
+                                        type="button"  style="margin-bottom: 30px">유권자 DB 전체삭제
                                 </button>
                                 <button onclick=electionDataDelete() class="btn btn-danger"
                                         type="button" style="margin-bottom: 30px">선거 DB 전체삭제

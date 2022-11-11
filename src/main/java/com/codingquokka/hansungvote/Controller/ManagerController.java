@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -89,6 +90,18 @@ public class ManagerController {
             request.setAttribute("List", list);
 
             return "Mgr003_showTurnOutList";
+        }
+        else {
+            return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
+        }
+    }
+
+    @RequestMapping(value = "/showTurnOutRate", method = RequestMethod.GET)
+     public String showTurnOutRate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session = request.getSession();
+        UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        if (uVo != null && uVo.getStuid().equals("manager")) {
+            return "Mgr008_showTurnOutRate";
         }
         else {
             return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
@@ -295,7 +308,7 @@ public class ManagerController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return customResponse(response,"유권자 DB파일이 업로드 되었습니다. 데이터삽입 스레드가 시작됩니다.","\"/mgr/viewVote\"");
+        return customResponse(response,"유권자 DB파일이 업로드 되었습니다.\n데이터삽입 스레드가 시작됩니다.","\"/mgr/viewVote\"");
     }
 
     @RequestMapping(value = "/electionDataDelete", method = RequestMethod.GET)

@@ -199,6 +199,12 @@ public class HomeController {
 
         return "sample1";
     }
+
+    @RequestMapping(value = "/error", method = RequestMethod.GET)
+    public String error(){
+        new Exception();
+        return "";
+    }
     @RequestMapping(value = "/sample2", method = RequestMethod.POST)
     public String sample2(){
 

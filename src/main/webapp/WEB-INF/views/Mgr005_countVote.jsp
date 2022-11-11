@@ -59,7 +59,7 @@
         <div class="row">
             <div class="col-md-8 offset-md-2">
                 <div class="login-form bg-white mt-4 p-4 rounded">
-                    <span style="font-size: 30px;">개표 현황</span>
+                    <span style="font-size: 30px;">개표 결과</span>
                     <hr class="mt-4">
                     <div class="mb-3 rounded" style="background-color: hsl(228, 26%, 96%);
                             padding-top: 10px; padding-bottom: 60px;">
@@ -74,7 +74,7 @@ padding-top: 10px; padding-bottom: 60px;">
                                         style="background-color:hsl(0, 0%, 41%) ; color: white;">후보자
                                     </th>
                                     <th class="rounded-end" scope="col"
-                                        style="background-color:hsl(0, 0%, 41%); color: white;">득표
+                                        style="background-color:hsl(0, 0%, 41%); color: white;">득표 수
                                     </th>
                                 </tr>
                                 </thead>

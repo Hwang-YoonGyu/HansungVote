@@ -74,14 +74,14 @@ public class InputThread implements Runnable {
                 }
                 try {
                     UserVO uVo = new UserVO();
-                    uVo.setStuid(temp[0]);
-                    uVo.setName(temp[1]);
-                    uVo.setPhoneNumber(temp[2]);
-                    uVo.setDepartment(temp[3]);
-                    uVo.setAgree(temp[4]);
-                    uVo.setDelegate(temp[5]);
+                    uVo.setStuid(temp[0].trim());
+                    uVo.setName(temp[1].trim());
+                    uVo.setPhoneNumber(temp[2].trim().replace("-",""));
+                    uVo.setDepartment(temp[3].trim());
+                    uVo.setAgree(temp[4].trim());
+                    uVo.setDelegate(temp[5].trim());
                     uDao.insertUser(uVo);
-                    System.out.println(temp[0] + " " + temp[1] + " " + temp[2] + " " + temp[3]);
+                    System.out.println(temp[0].trim() + " " + temp[1].trim() + " " + temp[2].trim().replace("-","") + " " + temp[3].trim());
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
