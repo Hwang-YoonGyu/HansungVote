@@ -58,10 +58,19 @@
             <div class="col-md-8 offset-md-2">
                 <div class="login-form bg-white mt-4 p-4 rounded">
                     <form action="" method="" class="row g-3">
-                        <span style="font-size: 30px;">선거 관리</span>
+                        <div class="row">
+                            <div class="col-3">
+                                <span class="rounded-start" style="font-size: 30px;">선거 관리</span>
+                            </div>
+                            <div class="col">
 
-
-                        <hr class="mt-4">
+                            </div>
+                            <div class="col-3 d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button onclick="location.href ='' "class="btn btn-outline-info"
+                                        type="button" style="margin-right: -30px;">실시간 투표율
+                                </button>
+                            </div>
+                        </div> class="mt-4">
                         <pre>*대상 ex) A = 단과대 (IT공과대학, 디자인대학 ...)
          A01 = 학부생 (컴퓨터공학부, 기계전자공학부 ...)
          A011 = 트랙학생 (모바일소프트웨어트랙, 빅데이터트랙 ...)
