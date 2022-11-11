@@ -1,4 +1,3 @@
-KMC 본인확인서비스 결과 데이터 수신 팝업 샘플 페이지
 <%
     response.setHeader("Pragma","no-cache");			// HTTP1.0 캐쉬 방지
     response.setDateHeader("Expires",0);				// proxy 서버의 캐쉬 방지
@@ -43,9 +42,6 @@ KMC 본인확인서비스 결과 데이터 수신 팝업 샘플 페이지
         rec_cert = request.getParameter("rec_cert").trim();
         k_certNum = request.getParameter("certNum").trim();
 %>
-[복호화 하기전 수신값]<br><br>
-rec_cert : <%=rec_cert%><br><br>
-k_certNum : <%=k_certNum%><br><br>
 <%
     //01. 암호화 모듈 (jar) Loading
     com.icert.comm.secu.IcertSecuManager seed    = new com.icert.comm.secu.IcertSecuManager();
@@ -151,7 +147,7 @@ k_certNum : <%=k_certNum%><br><br>
             }
             // 모바일이 아닌 경우
             else {
-                document.form.target = opener.window.name;
+                document.form.target = "window";
                 document.form.submit();
                 self.close();
             }
@@ -160,7 +156,7 @@ k_certNum : <%=k_certNum%><br><br>
     </script>
 </head>
 
-<body onload="javascript:end()">
+<body onload="end()">
 <form id="form" name="form" method="post">
     <input type="hidden" id="name" value="<%=name%>" />
 </form>
