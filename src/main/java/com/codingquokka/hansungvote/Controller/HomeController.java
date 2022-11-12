@@ -75,7 +75,6 @@ public class HomeController {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
 
-        if (uVo != null) {
             if (uVo.getPhoneNumber().equals(request.getParameter("certPhoneNumber"))) {
                 uDao.agreeCount(uVo);
                 return "redirect:/main";
@@ -90,16 +89,8 @@ public class HomeController {
                 return null;
             }
         }
-        else {
-            response.setContentType("text/html; charset=euc-kr");
-            PrintWriter out = response.getWriter();
-            out.println("<script>alert('비정상적인 접근입니다.');" +
-                    "location.href = \"/login\";" +
-                    "</script>");
-            out.flush();
-            return null;
-        }
-    }
+
+    
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
