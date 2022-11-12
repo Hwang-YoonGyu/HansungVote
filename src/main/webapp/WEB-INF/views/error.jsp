@@ -62,10 +62,14 @@
             <p class="fs-4" style="color:dimgray; margin-top: 20px;">요청하신 페이지로 이동하지 못했습니다.</p>
             <p class="fs-4" style="color:dimgray; margin-top: -20px;">잠시 후에 다시 한번 시도해주세요.</p>
         </div>
-        <button href="/" type="button" class="btn btn-outline-primary" style="text-align: center; margin-top: 100px;">로그인 페이지로 돌아가기</button>
+        <button onclick="gotoLogin()" type="button" class="btn btn-outline-primary" style="text-align: center; margin-top: 100px;">로그인 페이지로 돌아가기</button>
     </div>
 </main>
-ß
+<script>
+    function gotoLogin() {
+        location.href = "/";
+    }
+</script>
 <div class="fixed-bottom">
     <footer>
         <div>
