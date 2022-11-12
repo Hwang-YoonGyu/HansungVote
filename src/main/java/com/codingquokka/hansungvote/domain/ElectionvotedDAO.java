@@ -36,4 +36,7 @@ public class ElectionvotedDAO {
 		sqlSession.insert(namespace + ".insertVote", vo);
 	}
 
+	public List<String> voteDoneList(Map<String, String> map) throws Exception {
+		return sqlSession.selectList(namespace + ".voteDoneList", map);
+	}
 }

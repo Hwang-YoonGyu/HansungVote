@@ -233,7 +233,7 @@ public class ManagerController {
     }
 
     @RequestMapping(value = "/addVoted", method = RequestMethod.POST)
-    public void addVotedPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String addVotedPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         PrivateKey privateKey = (PrivateKey) session.getAttribute(RSA.RSA_WEB_KEY);
@@ -243,7 +243,7 @@ public class ManagerController {
             UserVO user = uDao.findDepartmentOfUser(deStuId);
 
             if (user == null) {
-                customResponse(response,"입력 정보가 유효하지 않습니다.","\"/mgr/addVoted\"");
+                return customResponse(response,"입력 정보가 유효하지 않습니다.","\"/mgr/addVoted\"");
             }
             List<String> electionNameList = uDao.voteCan(user.getDepartment());
 
@@ -255,7 +255,8 @@ public class ManagerController {
                 ElectionvotedVO result = evDao.wasVoted(evVo);
 
                 if (result != null) {
-                    customResponse(response,"이미 하나 이상의 선거에 투표를 완료한 유권자입니다.","\"/mgr/addVoted\"");
+                    return customResponse(response,"이미 하나 이상의 선거에 투표를 완료한 유권자입니다.","\"/mgr/addVoted\"");
+
                 }
             }
 
@@ -268,10 +269,10 @@ public class ManagerController {
                 evVo.setCandidateName("오프라인");
                 evDao.insertVote(evVo);
             }
-            customResponse(response,"오프라인 투표 처리 되었습니다.","\"/mgr/addVoted\"");
+            return customResponse(response,"오프라인 투표 처리 되었습니다.","\"/mgr/addVoted\"");
         }
         else {
-            customResponse(response,"비정상적인 접근입니다.","\"/login\"");
+            return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
     }
     @RequestMapping(value = "/addUserDB", method = RequestMethod.GET)
@@ -312,30 +313,30 @@ public class ManagerController {
     }
 
     @RequestMapping(value = "/electionDataDelete", method = RequestMethod.GET)
-    public void electionDataDelete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String electionDataDelete(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
             eDao.electionDataDelete();
-            customResponse(response,"모든 선거 데이터가 삭제 되었습니다.","\"/mgr/viewVote\"");
+            return customResponse(response,"모든 선거 데이터가 삭제 되었습니다.","\"/mgr/viewVote\"");
         }
         else {
-            customResponse(response,"비정상적인 접근입니다.","\"/login\"");
+            return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
     }
 
     @RequestMapping(value = "/userDataDelete", method = RequestMethod.GET)
-    public void userDataDelete(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String userDataDelete(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
             uDao.userDataDelete();
-            customResponse(response,"모든 유저 데이터가 삭제 되었습니다."," \"/mgr/viewVote\"");
+            return customResponse(response,"모든 유저 데이터가 삭제 되었습니다."," \"/mgr/viewVote\"");
         }
         else {
-            customResponse(response,"비정상적인 접근입니다.","\"/login\"");
+            return customResponse(response,"비정상적인 접근입니다.","\"/login\"");
         }
     }
 

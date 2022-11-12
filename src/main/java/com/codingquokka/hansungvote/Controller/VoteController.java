@@ -54,12 +54,13 @@ public class VoteController {
             return customResponse(response,"세션이 만료되었습니다.\n다시 로그인 해주세요. :(", "\"/login\"");
         }
         System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +user.getStuid() +" votehome");
-        String department = user.getDepartment();
-
 
         ElectionVO evVo = new ElectionVO();
-        evVo.setDepartment(department);
+        evVo.setDepartment(user.getDepartment());
         List<ElectionVO> electionList = eDao.selectElection(evVo);
+        Map<String, String> temp1 = new HashMap<>();
+        temp1.put("stuId", user.getStuid());
+        List<String> voteDoneList = evDao.voteDoneList(temp1);
 
         if (user.getDelegate().equals("1")) {
             ElectionVO electionD = eDao.selectD(evVo);
@@ -71,9 +72,9 @@ public class VoteController {
 //
 //        }
 
+        List<Float> votePercentageList = new ArrayList<>();
+        List<Integer> voteRightCountList = new ArrayList<>();
 
-        List<Float> votePercentageList = new ArrayList<Float>();
-        List<Integer> voteRightCountList = new ArrayList<Integer>();
         for(ElectionVO e : electionList) {
             int voteRightCount =0;
             int votePercentage =0;
@@ -85,9 +86,19 @@ public class VoteController {
                 voteRightCount = uDao.totalVotersDelegate(e.getDepartment());
                 votePercentage = evDao.turnout(e.getElectionName());
             }
+
+            if(voteDoneList.contains(e.getElectionName())) {
+                e.setElectionName(e.getElectionName() + " (완료)");
+            }
+            else {
+                e.setElectionName(e.getElectionName() + " (미완료)");
+            }
+
             votePercentageList.add(((float)votePercentage/voteRightCount*100));
             voteRightCountList.add(voteRightCount);
         }
+
+
 
         request.setAttribute("username", user.getName() + " (" + user.getStuid() + ")");
         request.setAttribute("electionList",electionList);

@@ -34,6 +34,12 @@
 		values (#{stuId}, #{name}, #{department}, #{candidateName}, #{electionName});
 	</insert>
 
+	<select id="voteDoneList" parameterType="map" resultType="String">
+		select electionName
+		from electionvoted
+		where stuId = ${stuId}
+	</select>
+
 
 
 
