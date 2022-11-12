@@ -66,31 +66,28 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/agreePop", method = RequestMethod.GET)
-    public String agreePop(HttpServletRequest request) throws Exception{
+    public String agreePop(HttpServletRequest request) throws Exception {
         return "agreePop";
     }
 
     @RequestMapping(value = "/agreePop", method = RequestMethod.POST)
-    public String agreePopPost(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public String agreePopPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
 
-            if (uVo.getPhoneNumber().equals(request.getParameter("certPhoneNumber"))) {
-                uDao.agreeCount(uVo);
-                return "redirect:/main";
-            }
-            else {
-                response.setContentType("text/html; charset=euc-kr");
-                PrintWriter out = response.getWriter();
-                out.println("<script>alert('인증된 전화번호와 가입된 전화번호가\n일치하지 않습니다.');" +
-                        "location.href = \"/login\";" +
-                        "</script>");
-                out.flush();
-                return null;
-            }
+        if (uVo.getPhoneNumber().equals(request.getParameter("certPhoneNumber"))) {
+            uDao.agreeCount(uVo);
+            return "redirect:/main";
+        } else {
+            response.setContentType("text/html; charset=euc-kr");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('인증된 전화번호와 가입된 전화번호가\n일치하지 않습니다.');" +
+                    "location.href = \"/login\";" +
+                    "</script>");
+            out.flush();
+            return null;
         }
-
-    
+    }
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -105,11 +102,11 @@ public class HomeController {
         PrivateKey privateKey = (PrivateKey) session.getAttribute(RSA.RSA_WEB_KEY);
 
 
-        uVo.setStuid(RSA.decryptRsa(privateKey,stu_id));
+        uVo.setStuid(RSA.decryptRsa(privateKey, stu_id));
         session.removeAttribute(RSA.RSA_WEB_KEY);
 
-        uVo.setPhoneNumber(RSA.decryptRsa(privateKey,phoneNumber));
-        System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +uVo.getStuid() + " " + uVo.getPhoneNumber()+" try login");
+        uVo.setPhoneNumber(RSA.decryptRsa(privateKey, phoneNumber));
+        System.out.println(LocalDate.now() + " " + LocalTime.now() + ": " + uVo.getStuid() + " " + uVo.getPhoneNumber() + " try login");
 
         UserVO result = uDao.login(uVo);
 
@@ -118,24 +115,21 @@ public class HomeController {
             session.setAttribute("UserVO", result);
 
             if ("manager".equals(result.getStuid())) {
-                System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getPhoneNumber()+" login success");
+                System.out.println(LocalDate.now() + " " + LocalTime.now() + ": " + result.getStuid() + " " + result.getPhoneNumber() + " login success");
                 return "redirect:/mgr/main";
 
-            }
-            else {
-                System.out.println(LocalDate.now()+" "+LocalTime.now()+": " +result.getStuid() + " " + result.getPhoneNumber()+" login success");
+            } else {
+                System.out.println(LocalDate.now() + " " + LocalTime.now() + ": " + result.getStuid() + " " + result.getPhoneNumber() + " login success");
                 if (result.getAgree().equals("0")) {
                     return "redirect:/agreePop";
 
-                }
-                else {
+                } else {
                     return "redirect:/main";
 
                 }
             }
 
-        }
-        else {
+        } else {
             response.setContentType("text/html; charset=euc-kr");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('로그인 정보를 다시 확인해주세요');" +
@@ -161,7 +155,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/defender", method = RequestMethod.GET)
-    public void removeIP(@RequestParam String ip, HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public void removeIP(@RequestParam String ip, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
@@ -175,8 +169,7 @@ public class HomeController {
             out.flush();
 
 
-        }
-        else {
+        } else {
             response.setContentType("text/html; charset=euc-kr");
             PrintWriter out = response.getWriter();
             out.println("<script>alert('비정상적인 접근입니다.');" +
@@ -185,31 +178,35 @@ public class HomeController {
             out.flush();
         }
     }
+
     @RequestMapping(value = "/sample1", method = RequestMethod.GET)
-    public String sample1(){
+    public String sample1() {
 
         return "sample1";
     }
 
     @RequestMapping(value = "/error", method = RequestMethod.GET)
-    public String error(){
+    public String error() {
         new Exception();
         return "";
     }
+
     @RequestMapping(value = "/sample2", method = RequestMethod.POST)
-    public String sample2(){
+    public String sample2() {
 
         return "sample2";
     }
+
     @RequestMapping(value = "/sample3", method = RequestMethod.POST)
-    public String sample3(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    public String sample3(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
 
         return "sample3";
     }
+
     @RequestMapping(value = "/sample4", method = RequestMethod.POST)
-    public String sample4(){
+    public String sample4() {
 
         return "sample1";
     }
