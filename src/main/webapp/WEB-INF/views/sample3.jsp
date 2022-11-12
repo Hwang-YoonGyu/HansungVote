@@ -127,7 +127,7 @@
     <script language="JavaScript">
 
         // 결과 페이지 경로 설정
-        var move_page_url = "/agreePop";
+        var move_page_url = "https://hansungvote.com/agreePop";
 
         function end() {
             var UserAgent = navigator.userAgent;
