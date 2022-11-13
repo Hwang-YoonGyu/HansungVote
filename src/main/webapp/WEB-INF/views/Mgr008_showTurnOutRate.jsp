@@ -84,7 +84,21 @@ padding-top: 10px; padding-bottom: 60px;">
                                 <c:forEach var="map" items="${turnOutRateList}" varStatus="status">
                                     <tr>
                                         <td>${map.electionName}</td>
-                                        <td><fmt:formatNumber value="${map.rate}" pattern="0.00"/></td>
+                                        <td
+                                                <c:choose>
+                                                    <c:when test="${map.rate lt 10}">
+                                                        style="color: #888888"
+                                                    </c:when>
+                                                    <c:when test="${map.rate lt 50}">
+                                                        style="color: #AA0000"
+                                                    </c:when>
+                                                    <c:when test="${map.rate lt 100}">
+                                                        style="color: #3b8800"
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                        ><fmt:formatNumber value="${map.rate}" pattern="0.00"/></td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
