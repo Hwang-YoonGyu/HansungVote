@@ -15,10 +15,7 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.security.PrivateKey;
 
 @RequestMapping("/mgr")
@@ -103,6 +100,29 @@ public class ManagerController {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
         if (uVo != null && uVo.getStuid().equals("manager")) {
+
+            List<ElectionVO> allElection = eDao.selectElectionAll();
+            List<Map<String,Object>> turnOutRateList = new ArrayList<>();
+            for(ElectionVO e: allElection) {
+
+                int voteRightCount =0;
+                int votePercentage =0;
+
+                if (!e.getDepartment().equals("delegate")) {
+                    voteRightCount = uDao.totalVoters(e.getDepartment());
+                    votePercentage = evDao.turnout(e.getElectionName());
+                }
+                else {
+                    voteRightCount = uDao.totalVotersDelegate(e.getDepartment());
+                    votePercentage = evDao.turnout(e.getElectionName());
+                }
+                Map<String,Object> temp = new HashMap<>();
+                temp.put("rate",(float)votePercentage/voteRightCount*100);
+                temp.put("electionName",e.getElectionName());
+                turnOutRateList.add(temp);
+
+            }
+            request.setAttribute("turnOutRateList",turnOutRateList);
             return "Mgr008_showTurnOutRate";
         }
         else {

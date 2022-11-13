@@ -81,10 +81,10 @@ padding-top: 10px; padding-bottom: 60px;">
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var="map" items="${mapList}" varStatus="status">
+                                <c:forEach var="map" items="${turnOutRateList}" varStatus="status">
                                     <tr>
-                                        <td>${map.candidateName}</td>
-                                        <td>${map.cnt}</td>
+                                        <td>${map.electionName}</td>
+                                        <td><fmt:formatNumber value="${map.rate}" pattern="0.00"/></td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
