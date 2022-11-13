@@ -231,7 +231,7 @@
             vote.innerHTML = votePercentageList[index].toFixed(2) +"%";
             person.innerHTML = voteRightCountList[index]+"명";
             electionName.innerHTML = list[index].electionName;
-            detailButton.href = "/vote/voteDetail?electionName=" + list[index].electionName;
+            detailButton.href = "/vote/voteDetail?electionName=" + String(list[index].electionName).replace("(완료)","").replace("(미완료)","").trim();
         }
         updateInfo(0);
 

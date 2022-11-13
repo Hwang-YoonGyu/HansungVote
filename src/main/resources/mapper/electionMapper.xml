@@ -49,7 +49,21 @@
         from electionvoted
         where electionName= #{electionName};
         delete
+        from candidate
+        where electionName = #{electionName};
+        delete
         from election
         where electionName= #{electionName};
     </delete>
+
+    <delete id="electionDateDelete" >
+        delete
+        from electionvoted;
+        delete
+        from candidate;
+        delete
+        from election;
+    </delete>
+
+
 </mapper>

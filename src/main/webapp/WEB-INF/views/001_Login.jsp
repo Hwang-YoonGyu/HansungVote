@@ -55,8 +55,8 @@
 
 <body>
 
-<header class="fixed-top">
-    <img src="/resources/img/Logo.png" style="height: 100px;">
+<header class="fixed-top" style="border-bottom: 1px solid hsl(0, 0%, 56%);">
+    <img src="/resources/img/Logo.png" style="height: 100px; border-bottom: 1px solid hsl(0, 0%, 56%);">
 </header>
 
 <main>
@@ -138,7 +138,7 @@
 <div class="fixed-bottom">
     <footer>
         <div>
-            <p style="text-align:center; color: hsl(0, 0%, 34%); padding: 1rem;">@2022 Team Coding Quokka All Rights
+            <p style="text-align:center; border-top: 1px solid hsl(0, 0%, 56%); color: hsl(0, 0%, 34%); padding: 1rem;">@2022 Team Coding Quokka All Rights
                 Reserved</p>
         </div>
     </footer>

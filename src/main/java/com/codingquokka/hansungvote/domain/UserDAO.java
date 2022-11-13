@@ -21,8 +21,8 @@ public class UserDAO {
 		return sqlSession.selectOne(namespace+".login", vo);	
 	}
 
-	public UserVO findDepartmentOfUser(String stuId) throws Exception {
-		return sqlSession.selectOne(namespace+".findDepartmentOfUser",stuId);
+	public UserVO findDepartmentOfUser(Map<String, String> parmaMap) throws Exception {
+		return sqlSession.selectOne(namespace+".findDepartmentOfUser", parmaMap);
 	}
 	public UserVO certificate(UserVO vo) throws Exception{
 		return sqlSession.selectOne(namespace + ".certificate", vo);

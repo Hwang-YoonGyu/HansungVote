@@ -13,10 +13,10 @@
 		where stuId=#{stuId} and phoneNumber=#{phoneNumber}
 	</select>
 
-	<select id="findDepartmentOfUser" parameterType="String" resultType="com.codingquokka.hansungvote.domain.UserVO">
+	<select id="findDepartmentOfUser" parameterType="Map" resultType="com.codingquokka.hansungvote.domain.UserVO">
 		select *
 		from user
-		where stuId=#{stuId}
+		where stuId=#{stuId} and name=#{name}
 	</select>
 
 	<select id="certificate" parameterType="com.codingquokka.hansungvote.domain.UserVO" resultType="com.codingquokka.hansungvote.domain.UserVO">

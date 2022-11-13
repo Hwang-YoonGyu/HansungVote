@@ -751,27 +751,27 @@
                 DisplayDepartment = "";
                 break;
             case '1':
-                targetDepartment = "Z";
+                targetDepartment = "W";
                 DisplayDepartment = "미래플러스대학 전체";
                 break;
             case '2':
-                targetDepartment = "Z010";
+                targetDepartment = "W010";
                 DisplayDepartment = "융합행정학과";
                 break;
             case '3':
-                targetDepartment = "Z020";
+                targetDepartment = "W020";
                 DisplayDepartment = "호텔외식경영학과";
                 break;
             case '4':
-                targetDepartment = "Z030";
+                targetDepartment = "W030";
                 DisplayDepartment = "뷰티디자인학과";
                 break;
             case '5':
-                targetDepartment = "Z040";
+                targetDepartment = "W040";
                 DisplayDepartment = "비즈니스컨설팅학과";
                 break;
             case '5':
-                targetDepartment = "Z050";
+                targetDepartment = "W050";
                 DisplayDepartment = "ICT융합디자인학과";
                 break;
 

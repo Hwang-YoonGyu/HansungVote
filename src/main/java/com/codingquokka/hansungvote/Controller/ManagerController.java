@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.security.PrivateKey;
@@ -191,11 +193,12 @@ public class ManagerController {
     public String ballotCount(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        Date now = new Date();
         if (uVo != null && uVo.getStuid().equals("manager")) {
             ElectionVO eVo = eDao.selectSpecipicElection(request.getParameter("electionName"));
             System.out.println(request.getParameter("electionName"));
 
-            if (LocalTime.now().getHour() < eVo.getEndDate().getHours()) {
+            if (now.before(eVo.getEndDate())) {
                 return customResponse(response,"선거가 아직 종료되지 않았습니다.","\"/mgr/viewVote\"");
             }
             List<Map<String, String>> map = evDao.votepercentage(request.getParameter("electionName"));
@@ -240,7 +243,13 @@ public class ManagerController {
         if (uVo != null && uVo.getStuid().equals("manager")) {
 
             String deStuId = RSA.decryptRsa(privateKey,request.getParameter("stuId"));
-            UserVO user = uDao.findDepartmentOfUser(deStuId);
+            String deName = RSA.decryptRsa(privateKey,request.getParameter("name"));
+
+            Map<String, String> paramMap = new HashMap<>();
+            paramMap.put("stuId",deStuId);
+            paramMap.put("name",deName);
+
+            UserVO user = uDao.findDepartmentOfUser(paramMap);
 
             if (user == null) {
                 return customResponse(response,"입력 정보가 유효하지 않습니다.","\"/mgr/addVoted\"");

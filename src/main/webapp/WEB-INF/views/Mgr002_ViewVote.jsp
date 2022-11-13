@@ -70,7 +70,7 @@
                                         type="button" style="margin-right: -30px;">실시간 투표율
                                 </button>
                             </div>
-                        </div> class="mt-4">
+                        </div>
                         <pre>*대상 ex) A = 단과대 (IT공과대학, 디자인대학 ...)
          A01 = 학부생 (컴퓨터공학부, 기계전자공학부 ...)
          A011 = 트랙학생 (모바일소프트웨어트랙, 빅데이터트랙 ...)
