@@ -125,13 +125,9 @@
 <html>
 <head>
     <script language="JavaScript">
-
-        // 결과 페이지 경로 설정
-        var move_page_url = "https://hansungvote.com/agreePop";
-
+        var move_page_url = "/agreePop";
         function end() {
             var UserAgent = navigator.userAgent;
-
             document.form.action = move_page_url;
             var input1 = document.createElement('input');
             input1.type = 'hidden';
@@ -147,7 +143,7 @@
             }
             // 모바일이 아닌 경우
             else {
-                document.form.target = "window";
+                document.form.target = opener.window.name;
                 document.form.submit();
                 self.close();
             }
@@ -158,7 +154,7 @@
 
 <body onload="end()">
 <form id="form" name="form" method="post">
-    <input type="hidden" id="name" value="<%=name%>" />
+
 </form>
 </body>
 </html>

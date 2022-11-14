@@ -67,6 +67,7 @@ public class HomeController {
 
     @RequestMapping(value = "/agreePop", method = RequestMethod.GET)
     public String agreePop(HttpServletRequest request) throws Exception {
+
         return "agreePop";
     }
 
@@ -74,19 +75,32 @@ public class HomeController {
     public String agreePopPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
         HttpSession session = request.getSession();
         UserVO uVo = (UserVO) session.getAttribute("UserVO");
+        System.out.println(uVo);
+        if(uVo != null){
+            if(uVo.getPhoneNumber().equals(request.getParameter("certPhoneNumber"))){
+                uDao.agreeCount(uVo);
+                return "redirect:/main";
+            } else {
+                response.setContentType("text/html; charset=euc-kr");
+                PrintWriter out = response.getWriter();
+                out.println("<script>alert('인증된 전화번호와 가입된 전화번호가 일치하지 않습니다.');" +
+                        "location.href = \"/agreePop\";" +
+                        "</script>");
+                out.flush();
+                return null;
+            }
 
-        if (uVo.getPhoneNumber().equals(request.getParameter("certPhoneNumber"))) {
-            uDao.agreeCount(uVo);
-            return "redirect:/main";
-        } else {
+        }
+        else{
             response.setContentType("text/html; charset=euc-kr");
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('인증된 전화번호와 가입된 전화번호가\n일치하지 않습니다.');" +
+            out.println("<script>alert('세션정보를 잃었습니다. 다시 로그인 해주세요');" +
                     "location.href = \"/login\";" +
                     "</script>");
             out.flush();
             return null;
         }
+
     }
 
 
