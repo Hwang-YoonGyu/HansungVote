@@ -124,6 +124,7 @@ public class HomeController {
 
         UserVO result = uDao.login(uVo);
 
+
         if (result != null) {
 
             session.setAttribute("UserVO", result);
